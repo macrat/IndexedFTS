@@ -1,0 +1,10 @@
+{
+	"presets": ["env"],
+	"env": {
+		"development": {
+			"presets": ["power-assert"],
+			"plugins": ["istanbul"],
+		},
+	},
+	"plugins": ["transform-runtime"],
+}
