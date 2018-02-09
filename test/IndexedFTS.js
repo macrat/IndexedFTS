@@ -9,7 +9,7 @@ import IndexedFTS from '../lib';
 import apitest from './apitest';
 
 
-describe('IFTSTransaction', function() {
+describe('IndexedFTS', function() {
 	apitest(async function() {
 		this.target = new IndexedFTS('test', 1, this.schema, {scope: scope});
 

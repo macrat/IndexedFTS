@@ -1,7 +1,6 @@
 import assert from 'power-assert';
-import rewire from 'rewire';
 
-const IndexedFTS = rewire('../lib');
+import {IFTSArrayPromise} from '../lib';
 
 import apitest from './apitest';
 
@@ -13,8 +12,7 @@ describe('IFTSArrayPromise', function() {
 			indexes.add(col);
 		}
 
-		this.IFTSArrayPromise = IndexedFTS.__get__('IFTSArrayPromise');
-		this.target = this.IFTSArrayPromise.resolve(indexes, this.values);
+		this.target = IFTSArrayPromise.resolve(indexes, this.values);
 	});
 
 	it('static resolve', async function() {
@@ -26,10 +24,10 @@ describe('IFTSArrayPromise', function() {
 		const err1 = await this.target.then(xs => Promise.reject('error test')).catch(err => err);
 		assert(err1 === 'error test');
 
-		const err2 = await (new this.IFTSArrayPromise(new Set(), Promise.reject('error test 2'))).catch(err => err);
+		const err2 = await (new IFTSArrayPromise(new Set(), Promise.reject('error test 2'))).catch(err => err);
 		assert(err2 === 'error test 2');
 
-		const err3 = await this.IFTSArrayPromise.reject(new Set(), 'error test 3').catch(err => err);
+		const err3 = await IFTSArrayPromise.reject(new Set(), 'error test 3').catch(err => err);
 		assert(err3 === 'error test 3');
 	});
 

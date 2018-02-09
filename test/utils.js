@@ -50,6 +50,7 @@ describe('utils', function() {
 		});
 	});
 
+	/** @test {splitQuery} */
 	describe('splitQuery', function() {
 		beforeEach(function() {
 			this.splitQuery = IndexedFTS.__get__('splitQuery');

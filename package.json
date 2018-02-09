@@ -4,7 +4,8 @@
   "description": "Full-Text Search engine for web browser.",
   "main": "lib/index.js",
   "scripts": {
-    "test": "NODE_ENV=development ./node_modules/.bin/nyc --require babel-core/register ./node_modules/.bin/mocha"
+    "test": "NODE_ENV=development ./node_modules/.bin/nyc --require babel-core/register ./node_modules/.bin/mocha",
+	"doc": "./node_modules/.bin/esdoc"
   },
   "repository": {
     "type": "git",
@@ -22,6 +23,8 @@
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-env": "^1.6.1",
     "babel-preset-power-assert": "^2.0.0",
+    "esdoc": "^1.0.4",
+    "esdoc-standard-plugin": "^1.0.0",
     "fake-indexeddb": "^2.0.3",
     "mocha": "^5.0.0",
     "nyc": "^11.4.1",
