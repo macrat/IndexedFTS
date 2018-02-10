@@ -33,11 +33,11 @@ module.exports = function(config) {
 		autoWatch: false,
 		singleRun: true,
 
-		browsers: ['Chrome', 'Firefox'],
+		browsers: ['ChromeHeadless', 'FirefoxHeadless'],
 
 		customLaunchers: {
 			Chrome_travis: {
-				base: 'Chrome',
+				base: 'ChromeHeadless',
 				flags: ['--no-sandbox'],
 			},
 		},
