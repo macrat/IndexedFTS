@@ -1,6 +1,6 @@
 import assert from 'power-assert';
 
-import {IFTSArrayPromise} from '../lib';
+import {IFTSArrayPromise} from '../../lib';
 
 import apitest from './apitest';
 

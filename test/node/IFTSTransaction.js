@@ -4,17 +4,19 @@ import indexedDB from 'fake-indexeddb';
 import IDBKeyRange from 'fake-indexeddb/lib/FDBKeyRange';
 const scope = {indexedDB, IDBKeyRange};
 
-import IndexedFTS from '../lib';
+import IndexedFTS from '../../lib';
 
-import apitest from './apitest';
+import apitest from '../common/apitest';
 
 
-describe('IndexedFTS', function() {
+describe('IFTSTransaction', function() {
 	apitest(async function() {
-		this.target = new IndexedFTS('test', 1, this.schema, {scope: scope});
+		const db = new IndexedFTS('test', 1, this.schema, {scope: scope});
 
-		await this.target.open();
-		await this.target.put(...this.values);
+		await db.open();
+		await db.put(...this.values);
+
+		this.target = db.transaction();
 	});
 
 	it('getAll', async function() {

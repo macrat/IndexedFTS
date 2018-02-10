@@ -2,7 +2,7 @@ import assert from 'power-assert';
 import rewire from 'rewire';
 
 
-const IndexedFTS = rewire('../lib');
+const IndexedFTS = rewire('../../lib');
 
 
 describe('utils', function() {
