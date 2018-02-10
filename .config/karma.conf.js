@@ -34,5 +34,12 @@ module.exports = function(config) {
 		singleRun: true,
 
 		browsers: ['Chrome', 'Firefox'],
+
+		customLaunchers: {
+			Chrome_travis: {
+				base: 'Chrome',
+				flags: ['--no-sandbox'],
+			},
+		},
 	});
 }
