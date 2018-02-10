@@ -21,7 +21,7 @@ function apitest(targetFunc) {
 				.then(x => 'not causes error')
 				.catch(err => err);
 
-			assert(err.toString() === 'NoSuchColumnError(foobar)');
+			assert(err.toString() === 'foobar: no such column or no indexed');
 			assert(err.column === 'foobar');
 		});
 	});
@@ -39,7 +39,7 @@ function apitest(targetFunc) {
 				.then(x => 'not causes error')
 				.catch(err => err);
 
-			assert(err.toString() === 'NoSuchColumnError(foobar)');
+			assert(err.toString() === 'foobar: no such column or no indexed');
 			assert(err.column === 'foobar');
 		});
 	});
@@ -57,7 +57,7 @@ function apitest(targetFunc) {
 				.then(x => 'not causes error')
 				.catch(err => err);
 
-			assert(err.toString() === 'NoSuchColumnError(foobar)');
+			assert(err.toString() === 'foobar: no such column or no indexed');
 			assert(err.column === 'foobar');
 		});
 	});
@@ -75,7 +75,7 @@ function apitest(targetFunc) {
 				.then(x => 'not causes error')
 				.catch(err => err);
 
-			assert(err.toString() === 'NoSuchColumnError(foobar)');
+			assert(err.toString() === 'foobar: no such column or no indexed');
 			assert(err.column === 'foobar');
 		});
 	});
@@ -93,7 +93,7 @@ function apitest(targetFunc) {
 				.then(x => 'not causes error')
 				.catch(err => err);
 
-			assert(err.toString() === 'NoSuchColumnError(foobar)');
+			assert(err.toString() === 'foobar: no such column or no indexed');
 			assert(err.column === 'foobar');
 		});
 	});
@@ -119,7 +119,7 @@ function apitest(targetFunc) {
 				.then(x => 'not causes error')
 				.catch(err => err);
 
-			assert(err.toString() === 'NoSuchColumnError(foobar)');
+			assert(err.toString() === 'foobar: no such column or no indexed');
 			assert(err.column === 'foobar');
 		});
 	});
@@ -159,7 +159,7 @@ function apitest(targetFunc) {
 				.then(x => 'not causes error')
 				.catch(err => err);
 
-			assert(err.toString() === 'NoSuchColumnError(foobar)');
+			assert(err.toString() === 'foobar: no such column or no indexed');
 			assert(err.column === 'foobar');
 		});
 
@@ -184,7 +184,7 @@ function apitest(targetFunc) {
 					.then(x => 'not causes error')
 					.catch(err => err);
 
-				assert(err.toString() === 'NoSuchColumnError(foobar)');
+				assert(err.toString() === 'foobar: no such column or no indexed');
 				assert(err.column === 'foobar');
 			});
 		});
