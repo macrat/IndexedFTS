@@ -4,7 +4,7 @@ IndexedFTS
 [![Build Status](https://travis-ci.org/macrat/indexedfts.svg?branch=master)](https://travis-ci.org/macrat/indexedfts)
 [![Coverage Status](https://coveralls.io/repos/github/macrat/indexedfts/badge.svg?branch=master)](https://coveralls.io/github/macrat/indexedfts?branch=master)
 [![license](https://img.shields.io/github/license/macrat/indexedfts.svg)](https://github.com/macrat/IndexedFTS/blob/master/LICENSE)
-[![document](https://img.shields.io/badge/github%20pages-document-blue.svg)](https://macrat.github.io/IndexedFTS/)
+[![document](https://macrat.github.io/IndexedFTS/badge.svg)](https://macrat.github.io/IndexedFTS/)
 
 Full-Text Search engine for web browser.
 
