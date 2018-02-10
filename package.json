@@ -7,7 +7,7 @@
     "test": "npm run test:node && npm run test:karma",
     "test:node": "NODE_ENV=development ./node_modules/.bin/nyc --require babel-core/register --reporter lcov ./node_modules/.bin/mocha ./test/node/*.js",
     "test:karma": "NODE_ENV=development ./node_modules/.bin/karma start",
-    "doc": "./node_modules/.bin/esdoc"
+    "docs": "./node_modules/.bin/esdoc"
   },
   "repository": {
     "type": "git",
@@ -41,5 +41,20 @@
     "nyc": "^11.4.1",
     "power-assert": "^1.4.4",
     "rewire": "^3.0.2"
+  },
+  "babel": {
+    "presets": ["env"],
+    "env": {
+      "development": {
+        "presets": ["power-assert"],
+        "plugins": ["istanbul"]
+      }
+    },
+    "plugins": ["transform-runtime"]
+  },
+  "esdoc": {
+    "source": "./lib",
+    "destination": "./docs",
+    "plugins": [{"name": "esdoc-standard-plugin"}]
   }
 }

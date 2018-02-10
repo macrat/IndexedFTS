@@ -1,6 +1,6 @@
 module.exports = function(config) {
 	config.set({
-		basePath: '',
+		basePath: '../',
 
 		frameworks: [
 			'mocha',
@@ -29,13 +29,10 @@ module.exports = function(config) {
 
 		reporters: ['mocha', 'coverage'],
 		coverageReporter: {type: 'lcov'},
-		colors: true,
-		logLevel: config.LOG_INFO,
 
 		autoWatch: false,
 		singleRun: true,
 
-		port: 9876,
 		browsers: ['Chrome', 'Firefox'],
 	});
 }
