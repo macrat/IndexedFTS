@@ -10,10 +10,14 @@ function apitest(targetFunc) {
 
 	describe('equals', function() {
 		it('simple', async function() {
-			assert.deepStrictEqual(
-				await this.target.equals('title', 'test content'),
-				[this.values[1]],
-			);
+			try {
+				assert.deepStrictEqual(
+					await this.target.equals('title', 'test content'),
+					[this.values[1]],
+				);
+			} catch(e) {
+				console.error(e);
+			}
 		});
 
 		it('invalid column', async function() {
