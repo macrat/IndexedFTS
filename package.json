@@ -1,7 +1,14 @@
 {
   "name": "indexedfts",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "Full-Text Search engine for web browser.",
+  "keywords": [
+    "FTS",
+    "Full-Text Search",
+    "IndexedDB",
+    "database",
+    "client-side"
+  ],
   "main": "lib/index.js",
   "scripts": {
     "test": "npm run test:node && npm run test:karma",
@@ -9,16 +16,24 @@
     "test:karma": "NODE_ENV=development ./node_modules/.bin/karma start",
     "docs": "./node_modules/.bin/esdoc"
   },
+  "files": [
+    "README.md",
+    "lib",
+    "test",
+    "package.json"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/macrat/indexedfts.git"
   },
-  "author": "MacRat",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/macrat/indexedfts/issues"
+  "author": {
+    "name": "MacRat",
+    "email": "m@crat.jp",
+    "url": "https://blanktar.jp/"
   },
-  "homepage": "https://github.com/macrat/indexedfts#readme",
+  "license": "MIT",
+  "bugs": "https://github.com/macrat/indexedfts/issues",
+  "homepage": "https://macrat.github.io/indexedfts/",
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-plugin-istanbul": "^4.1.5",
@@ -43,18 +58,30 @@
     "rewire": "^3.0.2"
   },
   "babel": {
-    "presets": ["env"],
+    "presets": [
+      "env"
+    ],
     "env": {
       "development": {
-        "presets": ["power-assert"],
-        "plugins": ["istanbul"]
+        "presets": [
+          "power-assert"
+        ],
+        "plugins": [
+          "istanbul"
+        ]
       }
     },
-    "plugins": ["transform-runtime"]
+    "plugins": [
+      "transform-runtime"
+    ]
   },
   "esdoc": {
     "source": "./lib",
     "destination": "./docs",
-    "plugins": [{"name": "esdoc-standard-plugin"}]
+    "plugins": [
+      {
+        "name": "esdoc-standard-plugin"
+      }
+    ]
   }
 }
