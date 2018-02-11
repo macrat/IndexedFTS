@@ -1,0 +1,38 @@
+<meta charset=utf-8>
+
+<h1>IndexedFTS benchmarks</h1>
+
+<style>
+th { 
+	font-weight: normal;
+	background-color: #ddd;
+}
+tr:nth-child(3n-1) {
+	background-color: #e9e9e9;
+}
+tr:nth-child(3n-1) th { 
+	background-color: #ccc;
+}
+th, td {
+	padding: .2em 1em;
+}
+#loading {
+	animation: loading-animation 1s ease 0s infinite alternate;
+}
+@keyframes loading-animation {
+	0% { opacity: 0.3; }
+	100% { opacity: 0.8; }
+}
+</style>
+
+<table>
+	<thead>
+		<tr><td></td><th>average time [msec]</th><th>error range</th><th>error rate</th><th>times tried</th></tr>
+	</thead>
+	<tbody id=results></tbody>
+	<tfoot>
+		<tr id=loading><td id=current-bench></td><td colspan=4 id=status align=center>loading...</td></tr>
+	</tfoot>
+</table>
+
+<script src="./bundle.js"></script>
