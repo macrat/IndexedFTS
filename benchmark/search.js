@@ -1,4 +1,4 @@
-import {Suite} from 'promise-bench';
+import {Suite} from 'asyncmark/dist/asyncmark.mjs';
 
 import IndexedFTS from '../lib';
 

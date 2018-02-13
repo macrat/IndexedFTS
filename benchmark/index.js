@@ -20,7 +20,7 @@ function zfill(n, str) {
 				console.log('done: ' + result);
 
 				const avg = zfill(5, Math.round(result.average * 100000) / 100000);
-				const error = zfill(5, Math.round(result.error * 100000) / 100000);
+				const error = zfill(5, Math.round(result.errorRange * 100000) / 100000);
 				const rate = zfill(3, Math.round(result.errorRate * 100000) / 1000);
 				document.querySelector('#results').innerHTML += `<tr><th align=left>${result.name}</th><td align=right>${avg}</td><td align=right>${error}</td><td>${rate}%</td><td>${result.msecs.length}</td></tr>`;
 			},
