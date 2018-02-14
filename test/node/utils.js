@@ -1,6 +1,6 @@
 import assert from 'power-assert';
 
-import {splitText, tokenize, splitQuery, dedup, fastMap} from '../../lib/utils';
+import {splitText, tokenize, splitQuery, dedup, fastMap, flatten} from '../../lib/utils';
 
 
 describe('utils', function() {
@@ -109,6 +109,23 @@ describe('utils', function() {
 
 		it('empty', function() {
 			assert.deepStrictEqual(fastMap([], x => x * 2), []);
+		});
+	});
+
+	/** @test {flatten} */
+	describe('flatten', function() {
+		it('simple', function() {
+			const v1 = [[1, 2], [3, 4], [], [5, 6]];
+			assert.deepStrictEqual(flatten(v1), [1, 2, 3, 4, 5, 6]);
+
+			const v2 = [['a', 1], ['b', 2], []];
+			assert.deepStrictEqual(flatten(v2), ['a', 1, 'b', 2]);
+		});
+
+		it('empty', function() {
+			assert.deepStrictEqual(flatten([[], []]), []);
+			assert.deepStrictEqual(flatten([[]]), []);
+			assert.deepStrictEqual(flatten([]), []);
 		});
 	});
 });
