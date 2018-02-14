@@ -69,19 +69,16 @@
     "presets": [
       "env"
     ],
+    "plugins": [
+      "transform-runtime"
+    ],
     "env": {
       "development": {
         "presets": [
           "power-assert"
-        ],
-        "plugins": [
-          "istanbul"
         ]
       }
-    },
-    "plugins": [
-      "transform-runtime"
-    ]
+    }
   },
   "esdoc": {
     "source": "./lib",
