@@ -35,6 +35,8 @@ module.exports = function(config) {
 
 		browsers: ['ChromeHeadless', 'FirefoxHeadless'],
 
+		client: {mocha: {timeout: 5000}},
+
 		customLaunchers: {
 			Chrome_travis: {
 				base: 'ChromeHeadless',

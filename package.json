@@ -13,7 +13,7 @@
   "main": "lib/index.js",
   "scripts": {
     "test": "npm run test:node && npm run test:karma",
-    "test:node": "NODE_ENV=development ./node_modules/.bin/nyc --require babel-core/register --reporter lcov ./node_modules/.bin/mocha ./test/node/*.js",
+    "test:node": "NODE_ENV=development ./node_modules/.bin/nyc --require babel-core/register --reporter lcov ./node_modules/.bin/mocha --timeout 5000 ./test/node/*.js",
     "test:karma": "NODE_ENV=development ./node_modules/.bin/karma start",
     "build": "npm run docs && npm run benchmark:build",
     "benchmark": "npm run benchmark:build && npm run benchmark:open",
