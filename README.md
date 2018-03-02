@@ -6,7 +6,7 @@ Full-Text Search engine for web browser.
 [![NPM](https://nodei.co/npm/indexedfts.png)](https://nodei.co/npm/indexedfts/)
 
 [![Build Status](https://travis-ci.org/macrat/IndexedFTS.svg?branch=master)](https://travis-ci.org/macrat/IndexedFTS)
-[![Coverage Status](https://coveralls.io/repos/github/macrat/indexedfts/badge.svg?branch=master)](https://coveralls.io/github/macrat/indexedfts?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/macrat/IndexedFTS/badge.svg?branch=master)](https://coveralls.io/github/macrat/IndexedFTS?branch=master)
 [![license](https://img.shields.io/github/license/macrat/IndexedFTS.svg)](https://github.com/macrat/IndexedFTS/blob/master/LICENSE)
 [![document](https://macrat.github.io/IndexedFTS/badge.svg)](https://macrat.github.io/IndexedFTS/)
 
