@@ -38,7 +38,7 @@
   "bugs": "https://github.com/macrat/indexedfts/issues",
   "homepage": "https://macrat.github.io/indexedfts/",
   "devDependencies": {
-    "asyncmark": "^0.1.1",
+    "asyncmark": "^0.2.1",
     "babel-cli": "^6.26.0",
     "babel-plugin-istanbul": "^4.1.5",
     "babel-plugin-transform-runtime": "^6.23.0",
