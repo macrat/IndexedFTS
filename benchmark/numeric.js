@@ -75,4 +75,22 @@ export default function(base) {
 			await this.db.transaction().lower('value', 10);
 		},
 	})
+	.add({
+		name: 'IndexedFTS#sort',
+		async fun() {
+			await this.db.sort('value');
+		},
+	})
+	.add({
+		name: 'IFTSTransaction#sort',
+		async fun() {
+			await this.db.sort('value');
+		},
+	})
+	.add({
+		name: 'IFTSArrayPromise#sort',
+		async fun() {
+			await this.db.sort('value');
+		},
+	})
 }
