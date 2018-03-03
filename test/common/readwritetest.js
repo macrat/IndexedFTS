@@ -1,5 +1,7 @@
 import assert from 'power-assert';
 
+import {InvalidKeyError} from '../../lib';
+
 
 export default function readwritetest() {
 	it('getAll', async function() {
@@ -23,8 +25,11 @@ export default function readwritetest() {
 		});
 
 		it('invalid key', async function() {
-			assert(await this.target.get(null).catch(err => err) === 'invalid key');
-			assert(await this.target.get(undefined).catch(err => err) === 'invalid key');
+			assert(await this.target.get(null).catch(err => err.toString()) === 'invalid key');
+			assert(await this.target.get(null).catch(err => err.key) === null);
+
+			assert(await this.target.get(undefined).catch(err => err.toString()) === 'invalid key');
+			assert(await this.target.get(undefined).catch(err => err.key) === undefined);
 		});
 
 		it('all', async function() {
@@ -71,11 +76,15 @@ export default function readwritetest() {
 		});
 
 		it('invalid key', async function() {
-			assert(await this.target.delete(null).catch(err => err) === 'invalid key');
-			assert(await this.target.delete(undefined).catch(err => err) === 'invalid key');
+			assert(await this.target.delete(null).catch(err => err.toString()) === 'invalid key');
+			assert(await this.target.delete(null).catch(err => err.key) === null);
+			assert(await this.target.delete(undefined).catch(err => err.toString()) === 'invalid key');
+			assert(await this.target.delete(undefined).catch(err => err.key) === undefined);
 
-			assert(await this.target.delete(0, null).catch(err => err) === 'invalid key');
-			assert(await this.target.delete(null, 1).catch(err => err) === 'invalid key');
+			assert(await this.target.delete(0, null).catch(err => err.toString()) === 'invalid key');
+			assert(await this.target.delete(0, null).catch(err => err.key) === null);
+			assert(await this.target.delete(null, 1).catch(err => err.toString()) === 'invalid key');
+			assert(await this.target.delete(null, 1).catch(err => err.key) === null);
 		});
 	});
 }
