@@ -8,6 +8,46 @@ function apitest(targetFunc) {
 		await targetFunc.call(this);
 	});
 
+	it('map', async function() {
+		assert.deepStrictEqual(
+			await this.target.map(x => x.title),
+			this.values.map(x => x.title),
+		);
+
+		assert.deepStrictEqual(
+			await this.target.map(x => x.id * 2),
+			this.values.map(x => x.id * 2),
+		);
+	});
+
+	describe('filter', function() {
+		it('simple', async function() {
+			assert.deepStrictEqual(
+				await this.target.filter(x => x.id >= 1),
+				this.values.filter(x => x.id >= 1),
+			);
+
+			assert.deepStrictEqual(
+				await this.target.filter(x => x.title === 'test data'),
+				this.values.filter(x => x.title === 'test data'),
+			);
+		});
+
+		it('all', async function() {
+			assert.deepStrictEqual(
+				await this.target.filter(x => true),
+				this.values,
+			);
+		});
+
+		it('nothing', async function() {
+			assert.deepStrictEqual(
+				await this.target.filter(x => false),
+				[],
+			);
+		});
+	});
+
 	describe('sort', function() {
 		it('asc by id', async function() {
 			assert.deepStrictEqual(
