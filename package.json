@@ -20,7 +20,7 @@
     "benchmark": "npm run benchmark:build && npm run benchmark:open",
     "benchmark:build": "cd benchmark && ../node_modules/.bin/rollup -c",
     "benchmark:open": "./node_modules/.bin/opener ./benchmark/index.html",
-	"dist:build": "NODE_ENV=production node build.js",
+    "dist:build": "NODE_ENV=production node build.js",
     "docs": "./node_modules/.bin/esdoc"
   },
   "files": [
@@ -73,13 +73,11 @@
     "env": {
       "development": {
         "presets": [
-          "env"
+          "env",
+          "power-assert"
         ],
         "plugins": [
           "transform-runtime"
-        ],
-        "presets": [
-          "power-assert"
         ]
       }
     }
