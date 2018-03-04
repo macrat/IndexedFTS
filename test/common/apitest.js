@@ -81,6 +81,14 @@ function apitest(targetFunc) {
 				['test content', 'japanese data 日本語', 'hello world'],
 			);
 		});
+		it('missing column', async function() {
+			const err = await this.target.sort('foobar')
+				.then(x => 'not causes error')
+				.catch(err => err);
+
+			assert(err.toString() === 'foobar: no such column or no indexed');
+			assert(err.column === 'foobar');
+		});
 	});
 
 	describe('equals', function() {
@@ -230,6 +238,12 @@ function apitest(targetFunc) {
 			assert.deepStrictEqual(
 				await this.target.search(['title', 'text'], 'data'),
 				[this.values[1], this.values[2]],
+			);
+		});
+		it('not found', async function() {
+			assert.deepStrictEqual(
+				await this.target.search(['title', 'text'], 'this is not included'),
+				[],
 			);
 		});
 

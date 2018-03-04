@@ -31,13 +31,6 @@ export default function readwritetest() {
 			assert(await this.target.get(undefined).catch(err => err.toString()) === 'invalid key');
 			assert(await this.target.get(undefined).catch(err => err.key) === undefined);
 		});
-
-		it('all', async function() {
-			assert.deepStrictEqual(
-				await this.target.getAll(),
-				this.values,
-			);
-		});
 	});
 
 	describe('delete', function() {

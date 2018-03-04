@@ -18,5 +18,28 @@ describe('IndexedFTS', function() {
 		await this.target.put(...this.values);
 	});
 
+	describe('constructor', function() {
+		it('multiple primary key', function() {
+			assert.throws(() => {
+				new IndexedFTS('tea', 1, {
+					hoge: 'primary',
+					fuga: {primary: true, fulltext: true},
+				}, {scope: scope});
+			}, /can not use multi primary key/);
+		});
+	});
+
+	it('close', async function() {
+		assert.doesNotThrow(() => {
+			this.target.getAll();
+		});
+		assert.doesNotThrow(() => {
+			this.target.close();
+		});
+		assert.throws(() => {
+			this.target.getAll();
+		}, /InvalidStateError/);
+	});
+
 	readwritetest();
 });

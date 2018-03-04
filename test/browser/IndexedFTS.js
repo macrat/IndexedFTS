@@ -14,5 +14,16 @@ describe('IndexedFTS', function() {
 		await this.target.put(...this.values);
 	});
 
+	describe('constructor', function() {
+		it('multiple primary key', function() {
+			assert.throws(() => {
+				new IndexedFTS('tea', 1, {
+					hoge: 'primary',
+					fuga: {primary: true, fulltext: true},
+				});
+			}, /can not use multi primary key/);
+		});
+	});
+
 	readwritetest();
 });
