@@ -209,7 +209,7 @@ class IFTSArrayPromise {
 	/**
   * Do something process for each elements and make a new IFTSArrayPromise.
   *
-  * @param {function(content: object): object} fun - function for processing element.
+  * @param {function(content: object, index: Number): object} fun - function for processing element.
   *
   * @return {IFTSArrayPromise}
   */
@@ -220,7 +220,7 @@ class IFTSArrayPromise {
 	/**
   * Filtering elements by function and make a new IFTSArrayPromise.
   *
-  * @param {function(content: object): boolean} fun - function for filtering element.
+  * @param {function(content: object, index: Number): boolean} fun - function for filtering element.
   *
   * @return {IFTSArrayPromise}
   */
@@ -528,12 +528,13 @@ class IFTSTransaction {
   *
   * @ignore
   */
-	_readCursor(cursorRequest, filter = null, map = null) {
-		filter = filter || (x => true);
-		map = map || (x => x);
+	_readCursor(cursorRequest, filter = null, map = null, limit = undefined) {
+		filter = filter || ((x, i) => true);
+		map = map || ((x, i) => x);
 
 		return new IFTSArrayPromise(this.db.indexes, new Promise((resolve, reject) => {
 			const result = [];
+			let index = 0;
 
 			cursorRequest.onsuccess = ev => {
 				const cursor = ev.target.result;
@@ -543,10 +544,16 @@ class IFTSTransaction {
 						value._key = cursor.key;
 					}
 					this._cache[cursor.key] = value;
-					if (filter(value)) {
-						result.push(map(value));
+					if (filter(value, index)) {
+						result.push(map(value, index));
 					}
-					cursor.continue();
+
+					index++;
+					if (limit === undefined || index < limit) {
+						cursor.continue();
+					} else {
+						resolve(result);
+					}
 				} else {
 					resolve(result);
 				}
@@ -598,7 +605,7 @@ class IFTSTransaction {
   *
   * NOTE: This method doesn't fast. May better do filtering before doing map if need filtering.
   *
-  * @param {function(content: object): object} fun - function for processing element.
+  * @param {function(content: object, index: Number): object} fun - function for processing element.
   *
   * @return {IFTSArrayPromise}
   */
@@ -611,7 +618,7 @@ class IFTSTransaction {
   *
   * WARNING: This method won't use the index. Other methods(eg. {@link IFTSTransaction#equals} or {@link IFTSTransaction#lower} may faster than this.
   *
-  * @param {function(content: object): object} fun - function for filtering element.
+  * @param {function(content: object, index: Number): object} fun - function for filtering element.
   *
   * return {IFTSArrayPromise}
   */
@@ -634,19 +641,15 @@ class IFTSTransaction {
 			return IFTSArrayPromise.reject(this.db.indexes, new NoSuchColumnError(column));
 		}
 
-		let index = 0;
-		const indexFilter = () => {
-			const result = offset <= index && (limit === undefined || index < offset + limit);
-			index++;
-			return result;
-		};
+		limit = limit === undefined ? undefined : offset + limit;
+		const offsetFilter = (x, i) => offset <= i;
 
 		const store = this.transaction.objectStore('data');
 
 		if (column === this.db.primary_key) {
-			return this._readCursor(store.openCursor(null, order === 'desc' ? 'prev' : 'next'), indexFilter);
+			return this._readCursor(store.openCursor(null, order === 'desc' ? 'prev' : 'next'), offsetFilter, null, limit);
 		} else {
-			return this._readCursor(store.index(column).openCursor(null, order === 'desc' ? 'prev' : 'next'), indexFilter);
+			return this._readCursor(store.index(column).openCursor(null, order === 'desc' ? 'prev' : 'next'), offsetFilter, null, limit);
 		}
 	}
 
@@ -1106,7 +1109,7 @@ class IndexedFTS {
   *
   * NOTE: This method doesn't fast. May better do filtering before doing map if need filtering.
   *
-  * @param {function(content: object): object} fun - function for processing element.
+  * @param {function(content: object, index: Number): object} fun - function for processing element.
   *
   * @return {IFTSArrayPromise}
   */
@@ -1119,7 +1122,7 @@ class IndexedFTS {
   *
   * WARNING: This method won't use the index. Other methods(eg. {@link IFTSTransaction#equals or @link IFTSTransaction#lower} may faster than this.
   *
-  * @param {function(content: object): object} fun - function for filtering element.
+  * @param {function(content: object, index: Number): object} fun - function for filtering element.
   *
   * return {IFTSArrayPromise}
   */
