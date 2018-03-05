@@ -328,13 +328,55 @@ function apitest(targetFunc) {
 			});
 		});
 	});
+
+	describe('searchWord', function() {
+		it('simple', async function() {
+			assert.deepStrictEqual(
+				await this.target.searchWord('text', 'test').sort('id'),
+				[this.values[0], this.values[1]],
+			);
+		});
+		it('simple partial', async function() {
+			assert.deepStrictEqual(
+				await this.target.searchWord('text', 'est'),
+				[],
+			);
+		});
+		it('japanese', async function() {
+			assert.deepStrictEqual(
+				await this.target.searchWord('title', '日本語'),
+				[this.values[2]],
+			);
+		});
+		it('multi columns', async function() {
+			assert.deepStrictEqual(
+				await this.target.searchWord(['title', 'text'], 'data').sort('id'),
+				[this.values[1], this.values[2]],
+			);
+		});
+		it('not found', async function() {
+			assert.deepStrictEqual(
+				await this.target.searchWord(['title', 'text'], 'this is not included'),
+				[],
+			);
+		});
+
+		it('invalid column', async function() {
+			const err = await this.target.searchWord('foobar', 'hello')
+				.then(x => 'not causes error')
+				.catch(err => err);
+
+			assert(err.toString() === 'foobar: no such column or no indexed');
+			assert(err.column === 'foobar');
+		});
+	});
 }
 
 
 apitest.schema = {
 	id: 'primary',
-	title: {unique: true, fulltext: true},
-	text: 'fulltext',
+	title: {unique: true, fulltext: true, word: true},
+	text: {ngram: true, word: true},
 	age: {},
 };
 

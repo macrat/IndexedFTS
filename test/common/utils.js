@@ -1,6 +1,6 @@
 import assert from 'power-assert';
 
-import {splitText, tokenize, splitQuery, dedup, fastMap, flatten} from '../../lib/utils';
+import {splitText, tokenize, splitQuery, splitWords, dedup, fastMap, flatten} from '../../lib/utils';
 
 
 describe('utils', function() {
@@ -19,6 +19,17 @@ describe('utils', function() {
 
 		it('short text', function() {
 			assert.deepStrictEqual(splitText('hi', 3), []);
+		});
+	});
+
+	describe('splitWords', function() {
+		it('simple', function() {
+			assert.deepStrictEqual(splitWords('hello world'), ['hello', 'world']);
+			assert.deepStrictEqual(splitWords('hello\nworld\tthis is\rtest'), ['hello', 'world', 'this', 'is', 'test']);
+		});
+
+		it('empty', function() {
+			assert.deepStrictEqual(splitWords(''), []);
 		});
 	});
 
