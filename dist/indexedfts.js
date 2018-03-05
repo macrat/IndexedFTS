@@ -237,12 +237,14 @@ class IFTSArrayPromise {
 	/**
   * Sort contents.
   *
-  * @param {column} column - the column for sorting.
-  * @param {column} [order='asc'] - 'asc' or 'desc'.
+  * @param {object} column - the column for sorting.
+  * @param {'asc'|'desc'} [order='asc'] - sort order.
+  * @param {Number} [offset=0] - starting offset of the result.
+  * @param {Number} [limit] - maximum number of result length. will unlimited if omitted.
   *
   * @return {IFTSArrayPromise} sorted contents.
   */
-	sort(column, order = 'asc') {
+	sort(column, order = 'asc', offset = 0, limit = undefined) {
 		if (!this.indexes.has(column)) {
 			return IFTSArrayPromise.reject(this.indexes, new NoSuchColumnError(column));
 		}
@@ -255,7 +257,7 @@ class IFTSArrayPromise {
 			} else {
 				return 0;
 			}
-		})));
+		}).slice(offset, limit === undefined ? undefined : offset + limit)));
 	}
 
 	/**
@@ -626,22 +628,31 @@ class IFTSTransaction {
 	/**
   * Sort and get all contents.
   *
-  * @param {column} column - the column for sorting.
-  * @param {column} [order='asc'] - 'asc' or 'desc'.
+  * @param {object} column - the column for sorting.
+  * @param {'asc'|'desc'} [order='asc'] - sort order.
+  * @param {Number} [offset=0] - starting offset of the result.
+  * @param {Number} [limit] - maximum number of result length. will unlimited if omitted.
   *
   * @return {IFTSArrayPromise} sorted contents.
   */
-	sort(column, order = 'asc') {
+	sort(column, order = 'asc', offset = 0, limit = undefined) {
 		if (!this.db.indexes.has(column)) {
 			return IFTSArrayPromise.reject(this.db.indexes, new NoSuchColumnError(column));
 		}
 
+		let index = 0;
+		const indexFilter = () => {
+			const result = offset <= index && (limit === undefined || index < offset + limit);
+			index++;
+			return result;
+		};
+
 		const store = this.transaction.objectStore('data');
 
 		if (column === this.db.primary_key) {
-			return this._readCursor(store.openCursor(null, order === 'desc' ? 'prev' : 'next'));
+			return this._readCursor(store.openCursor(null, order === 'desc' ? 'prev' : 'next'), indexFilter);
 		} else {
-			return this._readCursor(store.index(column).openCursor(null, order === 'desc' ? 'prev' : 'next'));
+			return this._readCursor(store.index(column).openCursor(null, order === 'desc' ? 'prev' : 'next'), indexFilter);
 		}
 	}
 
@@ -1125,13 +1136,15 @@ class IndexedFTS {
 	/**
   * Sort and get all contents.
   *
-  * @param {column} column - the column for sorting.
-  * @param {column} [order='asc'] - 'asc' or 'desc'.
+  * @param {object} column - the column for sorting.
+  * @param {'asc'|'desc'} [order='asc'] - sort order.
+  * @param {Number} [offset=0] - starting offset of the result.
+  * @param {Number} [limit] - maximum number of result length. will unlimited if omitted.
   *
   * @return {IFTSArrayPromise} sorted contents.
   */
-	sort(column, order = 'asc') {
-		return this._getFiltered(x => x.sort(column, order));
+	sort(column, order = 'asc', offset = 0, limit = undefined) {
+		return this._getFiltered(x => x.sort(column, order, offset, limit));
 	}
 
 	/**

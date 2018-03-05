@@ -89,6 +89,52 @@ function apitest(targetFunc) {
 			assert(err.toString() === 'foobar: no such column or no indexed');
 			assert(err.column === 'foobar');
 		});
+		it('offset', async function() {
+			assert.deepStrictEqual(
+				await this.target.sort('id', 'asc', 1).map(x => x.id),
+				[1, 2],
+			);
+			assert.deepStrictEqual(
+				await this.target.sort('id', 'desc', 2).map(x => x.id),
+				[0],
+			);
+			assert.deepStrictEqual(
+				await this.target.sort('id', 'asc', 100).map(x => x.id),
+				[],
+			);
+		});
+		it('limit', async function() {
+			assert.deepStrictEqual(
+				await this.target.sort('id', 'asc', 0, 2).map(x => x.id),
+				[0, 1],
+			);
+			assert.deepStrictEqual(
+				await this.target.sort('id', 'desc', 0, 1).map(x => x.id),
+				[2],
+			);
+			assert.deepStrictEqual(
+				await this.target.sort('id', 'asc', 0, 100).map(x => x.id),
+				[0, 1, 2],
+			);
+		});
+		it('offset / limit', async function() {
+			assert.deepStrictEqual(
+				await this.target.sort('id', 'asc', 1, 1).map(x => x.id),
+				[1],
+			);
+			assert.deepStrictEqual(
+				await this.target.sort('id', 'asc', 1, 2).map(x => x.id),
+				[1, 2],
+			);
+			assert.deepStrictEqual(
+				await this.target.sort('id', 'asc', 1, 100).map(x => x.id),
+				[1, 2],
+			);
+			assert.deepStrictEqual(
+				await this.target.sort('id', 'asc', 100, 5).map(x => x.id),
+				[],
+			);
+		});
 	});
 
 	describe('equals', function() {
