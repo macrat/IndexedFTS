@@ -20,11 +20,15 @@ const data = [
 export default function(base) {
 	return new Suite(Object.assign(base, {
 		async before() {
-			this.db = await (new IndexedFTS('test-text', 1, {text: 'fulltext'})).open();
+			console.log('starting search bench');
 
-			await this.db.put({text: 'xyzxテスト'});
+			this.db = await (new IndexedFTS('test-text', 1, {text: {ngram: true, word: true}})).open();
+
+			await this.db.put({text: 'xyzx テスト'});
 		},
 		async after() {
+			console.log('end search bench');
+
 			return this.db.getAll().then(contents => {
 				return this.db.delete(...contents.map(x => x._key));
 			});
@@ -128,6 +132,42 @@ export default function(base) {
 		name: 'IFTSArrayResult#search "asd"',
 		async fun() {
 			await this.db.getAll().search('text', 'asd');
+		},
+	})
+	.add({
+		name: 'IndexedFTS#searchWord "xyzx"',
+		async fun() {
+			await this.db.searchWord('text', 'xyzx');
+		},
+	})
+	.add({
+		name: 'IFTSTransaction#searchWord "xyzx"',
+		async fun() {
+			await this.db.transaction().searchWord('text', 'xyzx');
+		},
+	})
+	.add({
+		name: 'IFTSArrayResult#searchWord "xyzx"',
+		async fun() {
+			await this.db.getAll().searchWord('text', 'xyzx');
+		},
+	})
+	.add({
+		name: 'IndexedFTS#searchWord "asd"',
+		async fun() {
+			await this.db.searchWord('text', 'asd');
+		},
+	})
+	.add({
+		name: 'IFTSTransaction#searchWord "asd"',
+		async fun() {
+			await this.db.transaction().searchWord('text', 'asd');
+		},
+	})
+	.add({
+		name: 'IFTSArrayResult#searchWord "asd"',
+		async fun() {
+			await this.db.getAll().searchWord('text', 'asd');
 		},
 	})
 }
