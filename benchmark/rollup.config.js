@@ -7,6 +7,7 @@ export default {
 	output: {
 		file: 'bundle.js',
 		format: 'es',
+		sourcemap: true,
 	},
 	plugins: [commonjs(), resolve()],
 }
