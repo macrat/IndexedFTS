@@ -25,5 +25,34 @@ describe('IndexedFTS', function() {
 		});
 	});
 
+	it('close', async function() {
+		assert.doesNotThrow(() => {
+			this.target.getAll();
+		});
+		assert.doesNotThrow(() => {
+			this.target.close();
+		});
+		assert.throws(() => {
+			this.target.getAll();
+		}, /InvalidStateError/);
+	});
+
+	it('delete database', async function() {
+		let db = new IndexedFTS('test-for-delete', 1, this.schema);
+		await db.open();
+		await db.put(...this.values);
+		assert.deepStrictEqual(await db.getAll(), this.values);
+		db.close();
+
+		assert(await IndexedFTS.delete('test-for-delete') === undefined);
+
+		db = new IndexedFTS('test-for-delete', 1, this.schema);
+		await db.open();
+		assert.deepStrictEqual(await db.getAll(), []);
+		db.close();
+
+		assert(await IndexedFTS.delete('test-for-delete') === undefined);
+	});
+
 	readwritetest();
 });

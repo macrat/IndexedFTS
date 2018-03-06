@@ -41,5 +41,22 @@ describe('IndexedFTS', function() {
 		}, /InvalidStateError/);
 	});
 
+	it('delete database', async function() {
+		let db = new IndexedFTS('test-for-delete', 1, this.schema, {scope: scope});
+		await db.open();
+		await db.put(...this.values);
+		assert.deepStrictEqual(await db.getAll(), this.values);
+		db.close();
+
+		assert(await IndexedFTS.delete('test-for-delete', scope) === undefined);
+
+		db = new IndexedFTS('test-for-delete', 1, this.schema, {scope: scope});
+		await db.open();
+		assert.deepStrictEqual(await db.getAll(), []);
+		db.close();
+
+		assert(await IndexedFTS.delete('test-for-delete', scope) === undefined);
+	});
+
 	readwritetest();
 });

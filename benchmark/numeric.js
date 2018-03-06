@@ -6,18 +6,11 @@ import IndexedFTS from '../lib';
 export default function(base) {
 	return new Suite(Object.assign(base, {
 		async before() {
-			console.log('starting numeric bench');
-
 			this.db = await (new IndexedFTS('test-numeric', 1, {value: {}})).open();
 		},
 		async after() {
-			console.log('end numeric bench');
-
 			this.db.close();
 			await IndexedFTS.delete('test-text');
-			return this.db.getAll().then(contents => {
-				return this.db.delete(...contents.map(x => x._key));
-			});
 		},
 	}))
 	.add({
