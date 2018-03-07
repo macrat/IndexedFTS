@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl">
+  <title data-ice="title">Home | indexedfts</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="Full-Text Search engine for web browser."><meta property="twitter:card" content="summary"><meta property="twitter:title" content="indexedfts"><meta property="twitter:description" content="Full-Text Search engine for web browser."></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/macrat/indexedfts"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/IFTSArrayPromise.js~IFTSArrayPromise.html">IFTSArrayPromise</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/IFTSTransaction.js~IFTSTransaction.html">IFTSTransaction</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/IndexedFTS.js~IndexedFTS.html">IndexedFTS</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/errors.js~InvalidKeyError.html">InvalidKeyError</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/errors.js~NoSuchColumnError.html">NoSuchColumnError</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><div data-ice="index" class="github-markdown"><h1 id="indexedfts">IndexedFTS</h1><p>Full-Text Search engine for web browser.</p>
+<p><a href="https://nodei.co/npm/indexedfts/"><img src="https://nodei.co/npm/indexedfts.png" alt="NPM"></a></p>
+<p><a href="https://travis-ci.org/macrat/IndexedFTS"><img src="https://travis-ci.org/macrat/IndexedFTS.svg?branch=master" alt="Build Status"></a>
+<a href="https://coveralls.io/github/macrat/IndexedFTS?branch=master"><img src="https://coveralls.io/repos/github/macrat/IndexedFTS/badge.svg?branch=master" alt="Coverage Status"></a>
+<a href="https://github.com/macrat/IndexedFTS/blob/master/LICENSE"><img src="https://img.shields.io/github/license/macrat/IndexedFTS.svg" alt="license"></a>
+<a href="https://macrat.github.io/IndexedFTS/"><img src="https://macrat.github.io/IndexedFTS/badge.svg" alt="document"></a></p>
+<h2 id="install">install</h2><h3 id="html">HTML</h3><pre><code class="lang-html"><code class="source-code prettyprint">&lt;script src=&quot;https://unpkg.com/indexedfts&quot;&gt;&lt;/script&gt;</code>
+</code></pre>
+<h3 id="node">Node</h3><pre><code class="lang-shell"><code class="source-code prettyprint">$ npm install indexedfts</code>
+</code></pre>
+<h4 id="es6">ES6</h4><pre><code class="lang-javascript"><code class="source-code prettyprint">import IndexedFTS from &apos;indexedfts&apos;;</code>
+</code></pre>
+<h4 id="common-js">common js</h4><pre><code class="lang-javascript"><code class="source-code prettyprint">const IndexedFTS = require(&apos;indexedfts&apos;).IndexedFTS;</code>
+</code></pre>
+<h2 id="example">example</h2><pre><code class="lang-javascript"><code class="source-code prettyprint">// make database
+const db = IndexedFTS(&apos;database-name&apos;, 1, {
+    userid: &apos;primary&apos;,                     // primary key will indexed but can not full-text search
+    name: {unique: true, fulltext: true},  // unique index and can full-text search
+    description: &apos;fulltext&apos;,               // full-text search
+});
+
+
+db.open()
+    .then(() =&gt; {
+        db.put({
+            userid: 1,
+            name: &apos;hello&apos;,
+            description: &apos;this is test\n&apos;,
+        }, {
+            userid: 20,
+            name: &apos;world&apos;,
+            description: &apos;check check\nhello hello world!&apos;,
+        });
+    })
+
+    .then(() =&gt; db.search([&apos;name&apos;, &apos;description&apos;], &apos;hel&apos;).lower(&apos;userid&apos;, 5))
+    .then(result =&gt; {
+        console.log(result.length);   // output: 1
+        console.log(result[0].name);  // output: hello
+    })</code>
+</code></pre>
+</div>
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.0.4)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

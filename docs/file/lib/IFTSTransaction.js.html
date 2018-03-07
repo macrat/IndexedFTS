@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../">
+  <title data-ice="title">lib/IFTSTransaction.js | indexedfts</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="Full-Text Search engine for web browser."><meta property="twitter:card" content="summary"><meta property="twitter:title" content="indexedfts"><meta property="twitter:description" content="Full-Text Search engine for web browser."></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/macrat/indexedfts"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/IFTSArrayPromise.js~IFTSArrayPromise.html">IFTSArrayPromise</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/IFTSTransaction.js~IFTSTransaction.html">IFTSTransaction</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/IndexedFTS.js~IndexedFTS.html">IndexedFTS</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/errors.js~InvalidKeyError.html">InvalidKeyError</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/errors.js~NoSuchColumnError.html">NoSuchColumnError</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">lib/IFTSTransaction.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import {tokenize, splitQuery, splitWords, fastMap, flatten, dedup} from &apos;./utils&apos;;
+import {NoSuchColumnError, InvalidKeyError} from &apos;./errors&apos;;
+import IFTSArrayPromise from &apos;./IFTSArrayPromise&apos;;
+
+
+/**
+ * Transaction.
+ *
+ * Almost methods are the same interface as {@link IndexedFTS} and {@link IFTSArrayPromise}.
+ * Probably this class is faster than other classes in most cases.
+ *
+ * Please be careful, IFTSTransaction are sometimes makes a big cache.
+ * Should not keep many transactions if not need.
+ */
+export default class IFTSTransaction {
+	/**
+	 * @param {IndexedFTS} db - database.
+	 * @param {IDBTransaction} transaction - transaction of IndexedDB.
+	 */
+	constructor(db, transaction) {
+		/** @type {IndexedDB} */
+		this.db = db;
+
+		/** @type {IDBTransaction} */
+		this.transaction = transaction;
+
+		/** @ignore */
+		this._KeyRange = this.db.scope.IDBKeyRange;
+
+		/**
+		 * Promise for await closing transaction.
+		 *
+		 * @type {Promise&lt;IndexedDB&gt;}
+		 */
+		this.promise = new Promise((resolve, reject) =&gt; {
+			this.transaction.oncomplete = () =&gt; resolve(this.db);
+			this.transaction.onerror = err =&gt; reject(err);
+		});
+
+		/** @ignore */
+		this._cache = {};
+	}
+
+	/**
+	 * Put contents into database.
+	 *
+	 * @param {object} contents - contents for save. allowed multiple arguments.
+	 *
+	 * @return {Promise&lt;IFTSTransaction&gt;} returns self for chain.
+	 */
+	put(...contents) {
+		const store = this.transaction.objectStore(&apos;data&apos;);
+		const ngram_indexes = fastMap([...this.db.ngram_indexes], column =&gt; ({name: column, store: this.transaction.objectStore(this.db.index_prefix + &apos;ngram_&apos; + column)}));
+		const word_indexes = fastMap([...this.db.word_indexes], column =&gt; ({name: column, store: this.transaction.objectStore(this.db.index_prefix + &apos;word_&apos; + column)}));
+
+		const putPromises = new Array(contents.length);
+		for (let i=0; i&lt;contents.length; i++) {
+			putPromises[i] = new Promise((resolve, reject) =&gt; {
+				const req = store.put(contents[i]);
+				req.onerror = reject;
+				req.onsuccess = ev =&gt; {
+					resolve(
+						this._updateNGramIndex(ev.target.result, contents[i], ngram_indexes)
+							.then(() =&gt; this._updateWordIndex(ev.target.result, contents[i], word_indexes)))
+				};
+			});
+		}
+
+		return Promise.all(putPromises).then(data =&gt; {
+			for (let i=0; i&lt;data.length; i++) {
+				const key = data[i][0];
+				const value = data[i][1];
+				if (this.db.primary_key === null) {
+					value._key = key;
+				}
+				this._cache[key] = value;
+			}
+			return this;
+		});
+	}
+
+	/**
+	 * Update ngram index.
+	 *
+	 * @ignore
+	 */
+	_updateNGramIndex(key, data, ngram_indexes) {
+		return this._deleteIndex(key, ngram_indexes.map(x =&gt; this.db.index_prefix + &apos;ngram_&apos; + x.name))
+			.then(() =&gt; Promise.all(fastMap(ngram_indexes, col =&gt; {
+				const tokens = tokenize(data[col.name]);
+				const promises = new Array(tokens.length);
+				for (let i=0; i&lt;tokens.length; i++) {
+					promises[i] = new Promise((resolve, reject) =&gt; {
+						const req = col.store.put({
+							key: key,
+							token: tokens[i],
+						});
+						req.onsuccess = () =&gt; resolve();
+						req.onerror = reject;
+					});
+				}
+				return Promise.all(promises);
+			})))
+			.then(() =&gt; [key, data]);
+	}
+
+	/**
+	 * Update word index.
+	 *
+	 * @ignore
+	 */
+	_updateWordIndex(key, data, word_indexes) {
+		return this._deleteIndex(key, word_indexes.map(x =&gt; this.db.index_prefix + &apos;word_&apos; + x.name))
+			.then(() =&gt; Promise.all(fastMap(word_indexes, col =&gt; {
+				const words = splitWords(data[col.name]);
+				const promises = new Array(words.length);
+				for (let i=0; i&lt;words.length; i++) {
+					promises[i] = new Promise((resolve, reject) =&gt; {
+						const req = col.store.put({
+							key: key,
+							word: words[i],
+						});
+						req.onsuccess = () =&gt; resolve();
+						req.onerror = reject;
+					});
+				}
+				return Promise.all(promises);
+			})))
+			.then(() =&gt; [key, data]);
+	}
+
+	/**
+	 * Delete content by FTS indexes of database.
+	 *
+	 * @ignore
+	 */
+	_deleteIndex(key, tableNames) {
+		return Promise.all(tableNames.map(table =&gt; {
+			return new Promise((resolve, reject) =&gt; {
+				const store = this.transaction.objectStore(table);
+				store.onerror = reject;
+
+				const requests = [];
+
+				const req = store.index(&apos;key&apos;).openKeyCursor(this._KeyRange.only(key));
+				req.onerror = reject;
+				req.onsuccess = ev =&gt; {
+					const cursor = ev.target.result;
+					if (cursor) {
+						requests.push(new Promise((resolve, reject) =&gt; {
+							const d = store.delete(cursor.primaryKey);
+							d.onsuccess = resolve;
+							d.onerror = reject
+						}));
+						cursor.continue();
+					} else {
+						resolve(Promise.all(requests));
+					}
+				}
+			});
+		}));
+	}
+
+	/**
+	 * Delete contents from database.
+	 *
+	 * @param {object} keys - key of contents. allowed multiple arguments.
+	 *
+	 * @return {Promise&lt;IFTSTransaction&gt;} returns self for chain. Will reject with {@link InvalidKeyError} if keys included null or undefined.
+	 */
+	delete(...keys) {
+		for (let i=0; i&lt;keys.length; i++) {
+			if (keys[i] === null || keys[i] === undefined) {
+				return Promise.reject(new InvalidKeyError(keys[i]));
+			}
+		}
+
+		return Promise.all(fastMap(keys, key =&gt; {
+			return new Promise((resolve, reject) =&gt; {
+				const req = this.transaction.objectStore(&apos;data&apos;).delete(key);
+				req.onerror = reject;
+				req.onsuccess = resolve;
+			})
+			.then(() =&gt; this._deleteIndex(key, [
+				...[...this.db.ngram_indexes].map(x =&gt; this.db.index_prefix + &apos;ngram_&apos; + x),
+				...[...this.db.word_indexes].map(x =&gt; this.db.index_prefix + &apos;word_&apos; + x),
+			]))
+		})).then(() =&gt; this);
+	}
+
+	/**
+	 * Make {@link IFTSArrayPromise} by cursor.
+	 *
+	 * @ignore
+	 */
+	_readCursor(cursorRequest, filter=null, map=null, limit=undefined) {
+		filter = filter || ((x, i) =&gt; true);
+		map = map || ((x, i) =&gt; x);
+
+		return new IFTSArrayPromise(this.db.indexes, new Promise((resolve, reject) =&gt; {
+			const result = [];
+			let index = 0;
+
+			cursorRequest.onsuccess = ev =&gt; {
+				const cursor = ev.target.result;
+				if (cursor) {
+					const value = cursor.value;
+					if (this.db.primary_key === null) {
+						value._key = cursor.key;
+					}
+					this._cache[cursor.key] = value;
+					if (filter(value, index)) {
+						result.push(map(value, index));
+					}
+
+					index++;
+					if (limit === undefined || index &lt; limit) {
+						cursor.continue();
+					} else {
+						resolve(result);
+					}
+				} else {
+					resolve(result);
+				}
+			};
+			cursorRequest.onerror = err =&gt; reject(err);
+		}));
+	}
+
+	/**
+	 * Get all contents.
+	 *
+	 * @return {IFTSArrayPromise} contents.
+	 */
+	getAll() {
+		return this._readCursor(this.transaction.objectStore(&apos;data&apos;).openCursor());
+	}
+
+	/**
+	 * Get all contents with primary keys.
+	 *
+	 * @ignore
+	 */
+	_getAllWithKeys() {
+		return new IFTSArrayPromise(this.db.indexes, new Promise((resolve, reject) =&gt; {
+			const request = this.transaction.objectStore(&apos;data&apos;).openCursor();
+
+			const result = [];
+			request.onsuccess = ev =&gt; {
+				const cursor = ev.target.result;
+				if (cursor) {
+					const value = cursor.value;
+					if (this.db.primary_key === null) {
+						value._key = cursor.key;
+					}
+					this._cache[cursor.key] = value;
+					result.push({key: cursor.key, data: value});
+					cursor.continue();
+				} else {
+					resolve(result);
+				}
+			};
+
+			request.onerror = err =&gt; reject(err);
+		}));
+	}
+
+	/**
+	 * Do something process for each elements and returns {@link IFTSArrayPromise}.
+	 *
+	 * NOTE: This method doesn&apos;t fast. May better do filtering before doing map if need filtering.
+	 *
+	 * @param {function(content: object, index: Number): object} fun - function for processing element.
+	 *
+	 * @return {IFTSArrayPromise}
+	 */
+	map(fun) {
+		return this._readCursor(this.transaction.objectStore(&apos;data&apos;).openCursor(null), null, fun);
+	}
+
+	/**
+	 * Filtering elements by function and returns {@link IFTSArrayPromise}.
+	 *
+	 * WARNING: This method won&apos;t use the index. Other methods(eg. {@link IFTSTransaction#equals} or {@link IFTSTransaction#lower} may faster than this.
+	 *
+	 * @param {function(content: object, index: Number): object} fun - function for filtering element.
+	 *
+	 * return {IFTSArrayPromise}
+	 */
+	filter(fun) {
+		return this._readCursor(this.transaction.objectStore(&apos;data&apos;).openCursor(null), fun, null);
+	}
+
+	/**
+	 * Sort and get all contents.
+	 *
+	 * @param {object} column - the column for sorting.
+	 * @param {&apos;asc&apos;|&apos;desc&apos;} [order=&apos;asc&apos;] - sort order.
+	 * @param {Number} [offset=0] - starting offset of the result.
+	 * @param {Number} [limit] - maximum number of result length. will unlimited if omitted.
+	 *
+	 * @return {IFTSArrayPromise} sorted contents.
+	 */
+	sort(column, order=&apos;asc&apos;, offset=0, limit=undefined) {
+		if (!this.db.indexes.has(column)) {
+			return IFTSArrayPromise.reject(this.db.indexes, new NoSuchColumnError(column));
+		}
+
+		limit = limit === undefined ? undefined : offset + limit;
+		const offsetFilter = (x, i) =&gt; offset &lt;= i;
+
+		const store = this.transaction.objectStore(&apos;data&apos;);
+
+		if (column === this.db.primary_key) {
+			return this._readCursor(store.openCursor(null, order === &apos;desc&apos; ? &apos;prev&apos; : &apos;next&apos;), offsetFilter, null, limit);
+		} else {
+			return this._readCursor(store.index(column).openCursor(null, order === &apos;desc&apos; ? &apos;prev&apos; : &apos;next&apos;), offsetFilter, null, limit);
+		}
+	}
+
+	/**
+	 * Get content by primary key.
+	 *
+	 * @param {object} key - the key of content.
+	 *
+	 * @return {Promise&lt;object|undefined&gt;} content. promise will reject with {@link InvalidKeyError} if keys included null or undefined. result value will be undefined if not found.
+	 */
+	get(key) {
+		if (key === null || key === undefined) {
+			return Promise.reject(new InvalidKeyError(key));
+		}
+		if (key in this._cache) {
+			return Promise.resolve(this._cache[key]);
+		}
+		return new Promise((resolve, reject) =&gt; {
+			const req = this.transaction.objectStore(&apos;data&apos;).get(key);
+			req.onsuccess = ev =&gt; {
+				const value = ev.target.result;
+				if (this.db.primary_key === null) {
+					value._key = key;
+				}
+				this._cache[key] = value;
+				resolve(value);
+			};
+			req.onerror = reject;
+		});
+	}
+
+	/**
+	 * Get contents matched keyRange.
+	 *
+	 * @ignore
+	 */
+	_getAllWithIndex(column, keyRange) {
+		if (!this.db.indexes.has(column)) {
+			return IFTSArrayPromise.reject(this.db.indexes, new NoSuchColumnError(column));
+		}
+
+		const store = this.transaction.objectStore(&apos;data&apos;);
+
+		if (column === this.db.primary_key) {
+			return this._readCursor(store.openCursor(keyRange));
+		} else {
+			return this._readCursor(store.index(column).openCursor(keyRange));
+		}
+	}
+
+	/**
+	 * Get contents that have fully matched property.
+	 *
+	 * @param {object} column - column name for search.
+	 * @param {object} value - value for search.
+	 *
+	 * @return {IFTSArrayPromise} matched contents. may reject with {@link NoSuchColumnError}.
+	 */
+	equals(column, value) {
+		return this._getAllWithIndex(column, this._KeyRange.only(value));
+	}
+
+	/**
+	 * Get contents that have property lower than value.
+	 *
+	 * @param {object} column - column name for search.
+	 * @param {object} value - value for search.
+	 *
+	 * @return {IFTSArrayPromise} matched contents. may reject with {@link NoSuchColumnError}.
+	 */
+	lower(column, value) {
+		return this._getAllWithIndex(column, this._KeyRange.upperBound(value, true));
+	}
+
+	/**
+	 * Get contents that have property greater than value.
+	 *
+	 * @param {object} column - column name for search.
+	 * @param {object} value - value for search.
+	 *
+	 * @return {IFTSArrayPromise} matched contents. may reject with {@link NoSuchColumnError}.
+	 */
+	greater(column, value) {
+		return this._getAllWithIndex(column, this._KeyRange.lowerBound(value, true));
+	}
+
+	/**
+	 * Get contents that have property lower than value or equals value.
+	 *
+	 * @param {object} column - column name for search.
+	 * @param {object} value - value for search.
+	 *
+	 * @return {IFTSArrayPromise} matched contents. may reject with {@link NoSuchColumnError}.
+	 */
+	lowerOrEquals(column, value) {
+		return this._getAllWithIndex(column, this._KeyRange.upperBound(value, false));
+	}
+
+	/**
+	 * Get contents that have property greater than value or equals value.
+	 *
+	 * @param {object} column - column name for search.
+	 * @param {object} value - value for search.
+	 *
+	 * @return {IFTSArrayPromise} matched contents. may reject with {@link NoSuchColumnError}.
+	 */
+	greaterOrEquals(column, value) {
+		return this._getAllWithIndex(column, this._KeyRange.lowerBound(value, false));
+	}
+
+	/**
+	 * Get contents that have property is between argument values.
+	 *
+	 * @param {object} column - column name for search.
+	 * @param {object} lower - minimal value.
+	 * @param {object} upper - maximum value.
+	 *
+	 * @return {IFTSArrayPromise} matched contents. may reject with {@link NoSuchColumnError}.
+	 */
+	between(column, lower, upper) {
+		return this._getAllWithIndex(column, this._KeyRange.bound(lower, upper, false, false));
+	}
+
+	/**
+	 * Get candidates of search result.
+	 *
+	 * @ignore
+	 */
+	_takeCandidatesBySingleColumn(column, queries) {
+		const index = this.transaction.objectStore(this.db.index_prefix + &apos;ngram_&apos; + column).index(&apos;token&apos;);
+		const result = [];
+
+		for (let q in queries) {
+			if (queries[q].length === 0) {
+				result.push(this._getAllWithKeys().filter(x =&gt; x.data[column].includes(q)).map(x =&gt; x.key).then(xs =&gt; ({query: q, keys: xs})));
+				continue;
+			}
+
+			const promises = new Array(queries[q].length);
+			for (let i=0; i&lt;queries[q].length; i++) {
+				promises[i] = this._readCursor(index.openCursor(queries[q][i]), null, data =&gt; data.key);
+			}
+
+			const candidate = Promise.all(promises)
+				.then(founds =&gt; {
+					if (founds.length === 0) {
+						return Promise.resolve([]);
+					}
+
+					founds = flatten(founds);
+
+					const deduped = new Array(founds.length);
+					let dedup_num = 0;
+					const hit_count = {};
+					for (let i=0; i&lt;founds.length; i++) {
+						if (!(founds[i] in hit_count)) {
+							hit_count[founds[i]] = 0;
+
+							deduped[dedup_num] = founds[i];
+							dedup_num++;
+						}
+						hit_count[founds[i]]++;
+					}
+
+					const candidates = new Array(dedup_num);
+					let candidate_num = 0;
+					for (let i=0; i&lt;dedup_num; i++) {
+						if (hit_count[deduped[i]] &gt;= queries[q].length) {
+							candidates[candidate_num] = this.get(deduped[i]).then(data =&gt; ({key: deduped[i], data: data}));
+							candidate_num++;
+						}
+					}
+					return Promise.all(candidates.slice(0, candidate_num));
+				})
+				.then(xs =&gt; ({query: q, keys: xs.filter(x =&gt; x.data[column].includes(q)).map(x =&gt; x.key)}))
+
+			result.push(candidate);
+		}
+
+		return result;
+	}
+
+	/**
+	 * Prune contents by result of {@link IFTSTransaction#_takeCandidatesBySingleColumn}.
+	 *
+	 * @ignore
+	 */
+	async _pruneCandidates(queries_num, candidates) {
+		const keys = {};
+
+		for (let i=0; i&lt;candidates.length; i++) {
+			for (let j=0; j&lt;candidates[i].keys.length; j++) {
+				if (!(candidates[i].keys[j] in keys)) {
+					keys[candidates[i].keys[j]] = new Set();
+				}
+				keys[candidates[i].keys[j]].add(candidates[i].query);
+			}
+		}
+
+		const result = new Array(candidates.length);
+		let result_num = 0;
+		for (let key in keys) {
+			if (keys[key].size == queries_num) {
+				result[result_num] = this.get(key);
+				result_num++;
+			}
+		}
+
+		return await Promise.all(result.slice(0, result_num));
+	}
+
+	/**
+	 * Get contents that have matched property by full-text search.
+	 *
+	 * All target columns have to made ngram index when created database.
+	 * If you didn&apos;t made ngram index, you can use {@link IFTSArrayPromise#search} (but this way is very slow).
+	 *
+	 *
+	 * @param {object|object[]} columns - column names for search.
+	 * @param {string} query - query for search.
+	 *
+	 * @return {IFTSArrayPromise} matched contents. may reject with {@link NoSuchColumnError}.
+	 */
+	search(columns, query) {
+		if (typeof columns === &apos;string&apos;) {
+			columns = [columns];
+		}
+
+		for (let i=0; i&lt;columns.length; i++) {
+			if (!this.db.ngram_indexes.has(columns[i])) {
+				return IFTSArrayPromise.reject(this.db.indexes, new NoSuchColumnError(columns[i]));
+			}
+		}
+
+		const queries = splitQuery(query);
+		let queries_length = 0;
+
+		for (let q in queries) {
+			queries[q] = fastMap(queries[q], x =&gt; this._KeyRange.only(x));
+			queries_length++;
+		}
+
+		const candidatePromises = [];
+
+		for (let i=0; i&lt;columns.length; i++) {
+			Array.prototype.push.apply(candidatePromises, this._takeCandidatesBySingleColumn(columns[i], queries));
+		}
+
+		return new IFTSArrayPromise(
+			this.db.indexes,
+			Promise.all(candidatePromises).then(xs =&gt; this._pruneCandidates(queries_length, xs)),
+		);
+	}
+
+	/**
+	 * Find contents that have fully matched word in property.
+	 *
+	 * All target columns have to made word index when created database.
+	 * If you didn&apos;t made word index, you can use {@link IFTSArrayPromise#searchWord} (but this way is very slow).
+	 *
+	 *
+	 * @param {object|object[]} columns - column names for search.
+	 * @param {string} query - query for search.
+	 *
+	 * @return {IFTSArrayPromise} matched contents. may reject with {@link NoSuchColumnError}.
+	 */
+	searchWord(columns, query) {
+		if (typeof columns === &apos;string&apos;) {
+			columns = [columns];
+		}
+
+		for (let i=0; i&lt;columns.length; i++) {
+			if (!this.db.word_indexes.has(columns[i])) {
+				return IFTSArrayPromise.reject(this.db.indexes, new NoSuchColumnError(columns[i]));
+			}
+		}
+
+		const queries = splitWords(query).map(x =&gt; ({text: x, keyRange: this._KeyRange.only(x)}));
+
+		return new IFTSArrayPromise(this.db.indexes, Promise.all(flatten(columns.map(col =&gt; {
+			const index = this.transaction.objectStore(this.db.index_prefix + &apos;word_&apos; + col).index(&apos;word&apos;);
+
+			return queries.map(query =&gt; this._readCursor(index.openCursor(query.keyRange), null, data =&gt; [data.key, query.text]));
+		}))).then(candidates =&gt; {
+			candidates = dedup(flatten(candidates));
+
+			const counts = {};
+			for (let i=0; i&lt;candidates.length; i++) {
+				const key = candidates[i][0];
+				if (!(key in counts)) {
+					counts[key] = 0;
+				}
+				counts[key]++;
+			}
+
+			const hits = new Array(candidates.length);
+			let hits_count = 0;
+			for (let i=0; i&lt;candidates.length; i++) {
+				const key = candidates[i][0];
+				if (counts[key] &gt;= queries.length) {
+					hits[hits_count] = key;
+					hits_count++;
+				}
+			}
+
+			const result = new Array(hits_count);
+			for (let i=0; i&lt;hits_count; i++) {
+				result[i] = this.get(hits[i]);
+			}
+			return new IFTSArrayPromise(this.db.indexes, Promise.all(result));
+		}));
+	}
+}
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.0.4)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

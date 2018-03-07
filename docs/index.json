@@ -1,0 +1,3958 @@
+[
+  {
+    "__docId__": 1,
+    "kind": "external",
+    "name": "Infinity",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Infinity",
+    "memberof": "lib/.external-ecmascript.js",
+    "static": true,
+    "longname": "lib/.external-ecmascript.js~Infinity",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 2,
+    "kind": "external",
+    "name": "NaN",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/NaN",
+    "memberof": "lib/.external-ecmascript.js",
+    "static": true,
+    "longname": "lib/.external-ecmascript.js~NaN",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 3,
+    "kind": "external",
+    "name": "undefined",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined",
+    "memberof": "lib/.external-ecmascript.js",
+    "static": true,
+    "longname": "lib/.external-ecmascript.js~undefined",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 4,
+    "kind": "external",
+    "name": "null",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/null",
+    "memberof": "lib/.external-ecmascript.js",
+    "static": true,
+    "longname": "lib/.external-ecmascript.js~null",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 5,
+    "kind": "external",
+    "name": "Object",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object",
+    "memberof": "lib/.external-ecmascript.js",
+    "static": true,
+    "longname": "lib/.external-ecmascript.js~Object",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 6,
+    "kind": "external",
+    "name": "object",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object",
+    "memberof": "lib/.external-ecmascript.js",
+    "static": true,
+    "longname": "lib/.external-ecmascript.js~object",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 7,
+    "kind": "external",
+    "name": "Function",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function",
+    "memberof": "lib/.external-ecmascript.js",
+    "static": true,
+    "longname": "lib/.external-ecmascript.js~Function",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 8,
+    "kind": "external",
+    "name": "function",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function",
+    "memberof": "lib/.external-ecmascript.js",
+    "static": true,
+    "longname": "lib/.external-ecmascript.js~function",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 9,
+    "kind": "external",
+    "name": "Boolean",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean",
+    "memberof": "lib/.external-ecmascript.js",
+    "static": true,
+    "longname": "lib/.external-ecmascript.js~Boolean",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 10,
+    "kind": "external",
+    "name": "boolean",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean",
+    "memberof": "lib/.external-ecmascript.js",
+    "static": true,
+    "longname": "lib/.external-ecmascript.js~boolean",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 11,
+    "kind": "external",
+    "name": "Symbol",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol",
+    "memberof": "lib/.external-ecmascript.js",
+    "static": true,
+    "longname": "lib/.external-ecmascript.js~Symbol",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 12,
+    "kind": "external",
+    "name": "Error",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error",
+    "memberof": "lib/.external-ecmascript.js",
+    "static": true,
+    "longname": "lib/.external-ecmascript.js~Error",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 13,
+    "kind": "external",
+    "name": "EvalError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/EvalError",
+    "memberof": "lib/.external-ecmascript.js",
+    "static": true,
+    "longname": "lib/.external-ecmascript.js~EvalError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 14,
+    "kind": "external",
+    "name": "InternalError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/InternalError",
+    "memberof": "lib/.external-ecmascript.js",
+    "static": true,
+    "longname": "lib/.external-ecmascript.js~InternalError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 15,
+    "kind": "external",
+    "name": "RangeError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RangeError",
+    "memberof": "lib/.external-ecmascript.js",
+    "static": true,
+    "longname": "lib/.external-ecmascript.js~RangeError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 16,
+    "kind": "external",
+    "name": "ReferenceError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ReferenceError",
+    "memberof": "lib/.external-ecmascript.js",
+    "static": true,
+    "longname": "lib/.external-ecmascript.js~ReferenceError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 17,
+    "kind": "external",
+    "name": "SyntaxError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SyntaxError",
+    "memberof": "lib/.external-ecmascript.js",
+    "static": true,
+    "longname": "lib/.external-ecmascript.js~SyntaxError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 18,
+    "kind": "external",
+    "name": "TypeError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypeError",
+    "memberof": "lib/.external-ecmascript.js",
+    "static": true,
+    "longname": "lib/.external-ecmascript.js~TypeError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 19,
+    "kind": "external",
+    "name": "URIError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/URIError",
+    "memberof": "lib/.external-ecmascript.js",
+    "static": true,
+    "longname": "lib/.external-ecmascript.js~URIError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 20,
+    "kind": "external",
+    "name": "Number",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number",
+    "memberof": "lib/.external-ecmascript.js",
+    "static": true,
+    "longname": "lib/.external-ecmascript.js~Number",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 21,
+    "kind": "external",
+    "name": "number",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number",
+    "memberof": "lib/.external-ecmascript.js",
+    "static": true,
+    "longname": "lib/.external-ecmascript.js~number",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 22,
+    "kind": "external",
+    "name": "Date",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date",
+    "memberof": "lib/.external-ecmascript.js",
+    "static": true,
+    "longname": "lib/.external-ecmascript.js~Date",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 23,
+    "kind": "external",
+    "name": "String",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+    "memberof": "lib/.external-ecmascript.js",
+    "static": true,
+    "longname": "lib/.external-ecmascript.js~String",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 24,
+    "kind": "external",
+    "name": "string",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+    "memberof": "lib/.external-ecmascript.js",
+    "static": true,
+    "longname": "lib/.external-ecmascript.js~string",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 25,
+    "kind": "external",
+    "name": "RegExp",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp",
+    "memberof": "lib/.external-ecmascript.js",
+    "static": true,
+    "longname": "lib/.external-ecmascript.js~RegExp",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 26,
+    "kind": "external",
+    "name": "Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+    "memberof": "lib/.external-ecmascript.js",
+    "static": true,
+    "longname": "lib/.external-ecmascript.js~Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 27,
+    "kind": "external",
+    "name": "Int8Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int8Array",
+    "memberof": "lib/.external-ecmascript.js",
+    "static": true,
+    "longname": "lib/.external-ecmascript.js~Int8Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 28,
+    "kind": "external",
+    "name": "Uint8Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array",
+    "memberof": "lib/.external-ecmascript.js",
+    "static": true,
+    "longname": "lib/.external-ecmascript.js~Uint8Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 29,
+    "kind": "external",
+    "name": "Uint8ClampedArray",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8ClampedArray",
+    "memberof": "lib/.external-ecmascript.js",
+    "static": true,
+    "longname": "lib/.external-ecmascript.js~Uint8ClampedArray",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 30,
+    "kind": "external",
+    "name": "Int16Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int16Array",
+    "memberof": "lib/.external-ecmascript.js",
+    "static": true,
+    "longname": "lib/.external-ecmascript.js~Int16Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 31,
+    "kind": "external",
+    "name": "Uint16Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint16Array",
+    "memberof": "lib/.external-ecmascript.js",
+    "static": true,
+    "longname": "lib/.external-ecmascript.js~Uint16Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 32,
+    "kind": "external",
+    "name": "Int32Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int32Array",
+    "memberof": "lib/.external-ecmascript.js",
+    "static": true,
+    "longname": "lib/.external-ecmascript.js~Int32Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 33,
+    "kind": "external",
+    "name": "Uint32Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint32Array",
+    "memberof": "lib/.external-ecmascript.js",
+    "static": true,
+    "longname": "lib/.external-ecmascript.js~Uint32Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 34,
+    "kind": "external",
+    "name": "Float32Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float32Array",
+    "memberof": "lib/.external-ecmascript.js",
+    "static": true,
+    "longname": "lib/.external-ecmascript.js~Float32Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 35,
+    "kind": "external",
+    "name": "Float64Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float64Array",
+    "memberof": "lib/.external-ecmascript.js",
+    "static": true,
+    "longname": "lib/.external-ecmascript.js~Float64Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 36,
+    "kind": "external",
+    "name": "Map",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map",
+    "memberof": "lib/.external-ecmascript.js",
+    "static": true,
+    "longname": "lib/.external-ecmascript.js~Map",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 37,
+    "kind": "external",
+    "name": "Set",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set",
+    "memberof": "lib/.external-ecmascript.js",
+    "static": true,
+    "longname": "lib/.external-ecmascript.js~Set",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 38,
+    "kind": "external",
+    "name": "WeakMap",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap",
+    "memberof": "lib/.external-ecmascript.js",
+    "static": true,
+    "longname": "lib/.external-ecmascript.js~WeakMap",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 39,
+    "kind": "external",
+    "name": "WeakSet",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet",
+    "memberof": "lib/.external-ecmascript.js",
+    "static": true,
+    "longname": "lib/.external-ecmascript.js~WeakSet",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 40,
+    "kind": "external",
+    "name": "ArrayBuffer",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer",
+    "memberof": "lib/.external-ecmascript.js",
+    "static": true,
+    "longname": "lib/.external-ecmascript.js~ArrayBuffer",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 41,
+    "kind": "external",
+    "name": "DataView",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView",
+    "memberof": "lib/.external-ecmascript.js",
+    "static": true,
+    "longname": "lib/.external-ecmascript.js~DataView",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 42,
+    "kind": "external",
+    "name": "JSON",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON",
+    "memberof": "lib/.external-ecmascript.js",
+    "static": true,
+    "longname": "lib/.external-ecmascript.js~JSON",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 43,
+    "kind": "external",
+    "name": "Promise",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise",
+    "memberof": "lib/.external-ecmascript.js",
+    "static": true,
+    "longname": "lib/.external-ecmascript.js~Promise",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 44,
+    "kind": "external",
+    "name": "Generator",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Generator",
+    "memberof": "lib/.external-ecmascript.js",
+    "static": true,
+    "longname": "lib/.external-ecmascript.js~Generator",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 45,
+    "kind": "external",
+    "name": "GeneratorFunction",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/GeneratorFunction",
+    "memberof": "lib/.external-ecmascript.js",
+    "static": true,
+    "longname": "lib/.external-ecmascript.js~GeneratorFunction",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 46,
+    "kind": "external",
+    "name": "Reflect",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect",
+    "memberof": "lib/.external-ecmascript.js",
+    "static": true,
+    "longname": "lib/.external-ecmascript.js~Reflect",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 47,
+    "kind": "external",
+    "name": "Proxy",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy",
+    "memberof": "lib/.external-ecmascript.js",
+    "static": true,
+    "longname": "lib/.external-ecmascript.js~Proxy",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 48,
+    "kind": "file",
+    "name": "lib/IFTSArrayPromise.js",
+    "content": "import {splitQuery, splitWords} from './utils';\nimport {NoSuchColumnError} from './errors';\n\n\n/**\n * Promise like object for contents array.\n *\n * Almost methods are the same interface as {@link IndexedFTS} and {@link IFTSTransaction}.\n * But this class will processing all contents without using indexes.\n * Please consider using {@link IFTSTransaction} directly if it can.\n */\nexport default class IFTSArrayPromise {\n\t/**\n\t * @param {Set<string>} indexes - index names.\n\t * @param {Promise<object[]>} promise - Promise for wrapping.\n\t */\n\tconstructor(indexes, promise) {\n\t\t/** @type {Set<string>} */\n\t\tthis.indexes = indexes;\n\n\t\t/** @type {Promise<object[]>} */\n\t\tthis.promise = promise;\n\t}\n\n\t/**\n\t * Make resolved promise.\n\t *\n\t * @param {Set<string>} indexes - index names.\n\t * @param {object[]} value - value for promise.\n\t *\n\t * @return {IFTSArrayPromise}\n\t */\n\tstatic resolve(indexes, value=[]) {\n\t\treturn new IFTSArrayPromise(indexes, Promise.resolve(value));\n\t}\n\n\t/**\n\t * Make rejected promise.\n\t *\n\t * @param {Set<string>} indexes - index names.\n\t * @param {object} value - value for promise.\n\t *\n\t * @return {IFTSArrayPromise}\n\t */\n\tstatic reject(indexes, value=null) {\n\t\treturn new IFTSArrayPromise(indexes, Promise.reject(value));\n\t}\n\n\t/**\n\t * Set next function.\n\t *\n\t * @param {function(contents: object[]): *} fun - next function.\n\t *\n\t * @return {Promise}\n\t */\n\tthen(fun) {\n\t\treturn this.promise.then(fun);\n\t}\n\n\t/**\n\t * Set error handling function.\n\t *\n\t * @param {function(error: *): *} fun - error handling function.\n\t *\n\t * @return {Promise}\n\t */\n\tcatch(fun) {\n\t\treturn this.promise.catch(fun);\n\t}\n\n\t/**\n\t * Do something process for each elements and make a new IFTSArrayPromise.\n\t *\n\t * @param {function(content: object, index: Number): object} fun - function for processing element.\n\t *\n\t * @return {IFTSArrayPromise}\n\t */\n\tmap(fun) {\n\t\treturn new IFTSArrayPromise(this.indexes, this.then(xs => xs.map(fun)));\n\t}\n\n\t/**\n\t * Filtering elements by function and make a new IFTSArrayPromise.\n\t *\n\t * @param {function(content: object, index: Number): boolean} fun - function for filtering element.\n\t *\n\t * @return {IFTSArrayPromise}\n\t */\n\tfilter(fun) {\n\t\treturn new IFTSArrayPromise(this.indexes, this.then(xs => xs.filter(fun)));\n\t}\n\n\t/**\n\t * Sort contents.\n\t *\n\t * @param {object} column - the column for sorting.\n\t * @param {'asc'|'desc'} [order='asc'] - sort order.\n\t * @param {Number} [offset=0] - starting offset of the result.\n\t * @param {Number} [limit] - maximum number of result length. will unlimited if omitted.\n\t *\n\t * @return {IFTSArrayPromise} sorted contents.\n\t */\n\tsort(column, order='asc', offset=0, limit=undefined) {\n\t\tif (!this.indexes.has(column)) {\n\t\t\treturn IFTSArrayPromise.reject(this.indexes, new NoSuchColumnError(column));\n\t\t}\n\n\t\treturn new IFTSArrayPromise(this.indexes, this.then(xs => Array.prototype.concat.call([], xs).sort((x, y) => {\n\t\t\tif (x[column] < y[column]) {\n\t\t\t\treturn order === 'desc' ? 1 : -1;\n\t\t\t} else if (x[column] > y[column]) {\n\t\t\t\treturn order === 'desc' ? -1 : 1;\n\t\t\t} else {\n\t\t\t\treturn 0;\n\t\t\t}\n\t\t}).slice(offset, limit === undefined ? undefined : offset + limit)));\n\t}\n\n\t/**\n\t * Checking index of column are exists and do {@link IFTSArrayPromise#filter}.\n\t *\n\t * @ignore\n\t */\n\t_checkAndFilter(column, fun) {\n\t\tif (!this.indexes.has(column)) {\n\t\t\treturn IFTSArrayPromise.reject(this.indexes, new NoSuchColumnError(column));\n\t\t}\n\n\t\treturn this.filter(fun);\n\t}\n\n\t/**\n\t * Get contents that have fully matched property.\n\t *\n\t * @param {object} column - column name for search.\n\t * @param {object} value - value for search.\n\t *\n\t * @return {IFTSArrayPromise} matched contents. may reject with {@link NoSuchColumnError}.\n\t */\n\tequals(column, value) {\n\t\treturn this._checkAndFilter(column, x => x[column] === value);\n\t}\n\n\t/**\n\t * Get contents that have property lower than value.\n\t *\n\t * @param {object} column - column name for search.\n\t * @param {object} value - value for search.\n\t *\n\t * @return {IFTSArrayPromise} matched contents. may reject with {@link NoSuchColumnError}.\n\t */\n\tlower(column, value) {\n\t\treturn this._checkAndFilter(column, x => x[column] < value);\n\t}\n\n\t/**\n\t * Get contents that have property greater than value.\n\t *\n\t * @param {object} column - column name for search.\n\t * @param {object} value - value for search.\n\t *\n\t * @return {IFTSArrayPromise} matched contents. may reject with {@link NoSuchColumnError}.\n\t */\n\tgreater(column, value) {\n\t\treturn this._checkAndFilter(column, x => x[column] > value);\n\t}\n\n\t/**\n\t * Get contents that have property lower than value or equals value.\n\t *\n\t * @param {object} column - column name for search.\n\t * @param {object} value - value for search.\n\t *\n\t * @return {IFTSArrayPromise} matched contents. may reject with {@link NoSuchColumnError}.\n\t */\n\tlowerOrEquals(column, value) {\n\t\treturn this._checkAndFilter(column, x => x[column] <= value);\n\t}\n\n\t/**\n\t * Get contents that have property greater than value or equals value.\n\t *\n\t * @param {object} column - column name for search.\n\t * @param {object} value - value for search.\n\t *\n\t * @return {IFTSArrayPromise} matched contents. may reject with {@link NoSuchColumnError}.\n\t */\n\tgreaterOrEquals(column, value) {\n\t\treturn this._checkAndFilter(column, x => x[column] >= value);\n\t}\n\n\t/**\n\t * Get contents that have property is between argument values.\n\t *\n\t * @param {object} column - column name for search.\n\t * @param {object} lower - minimal value.\n\t * @param {object} upper - maximum value.\n\t *\n\t * @return {IFTSArrayPromise} matched contents. may reject with {@link NoSuchColumnError}.\n\t */\n\tbetween(column, lower, upper) {\n\t\treturn this._checkAndFilter(column, x => lower <= x[column] && x[column] <= upper);\n\t}\n\n\t/**\n\t * Get contents that have matched property by full-text search.\n\t *\n\t * This method can search even if didn't made ngram index.\n\t *\n\t * WARNING: This method always processes all contents without using indexes.\n\t * Please consider using {@link IFTSTransaction#search}.\n\t *\n\t *\n\t * @param {object|object[]} columns - column names for search.\n\t * @param {string} query - query for search.\n\t *\n\t * @return {IFTSArrayPromise} matched contents.\n\t */\n\tsearch(columns, query) {\n\t\tif (typeof columns === 'string') {\n\t\t\tcolumns = [columns];\n\t\t}\n\n\t\tfor (let c of columns) {\n\t\t\tif (!this.indexes.has(c)) {\n\t\t\t\treturn IFTSArrayPromise.reject(this.indexes, new NoSuchColumnError(c));\n\t\t\t}\n\t\t}\n\n\t\tconst queries = [];\n\t\tfor (let q in splitQuery(query)) {\n\t\t\tqueries.push(q);\n\t\t}\n\n\t\treturn this.filter(data => queries.every(q => columns.some(col => data[col].includes(q))));\n\t}\n\n\t/**\n\t * Find contents that have fully matched word in property.\n\t *\n\t * This method can search even if didn't made word index.\n\t *\n\t * WARNING: This method always processes all contents without using indexes.\n\t * Please consider using {@link IFTSTransaction#searchWord}.\n\t *\n\t *\n\t * @param {object|object[]} columns - column names for search.\n\t * @param {string} query - query for search.\n\t *\n\t * @return {IFTSArrayPromise} matched contents. may reject with {@link NoSuchColumnError}.\n\t */\n\tsearchWord(columns, query) {\n\t\tif (typeof columns === 'string') {\n\t\t\tcolumns = [columns];\n\t\t}\n\n\t\tfor (let c of columns) {\n\t\t\tif (!this.indexes.has(c)) {\n\t\t\t\treturn IFTSArrayPromise.reject(this.indexes, new NoSuchColumnError(c));\n\t\t\t}\n\t\t}\n\n\t\tconst queries = splitWords(query);\n\n\t\treturn this.filter(data => queries.every(q => columns.some(col => {\n\t\t\treturn splitWords(data[col]).includes(q);\n\t\t})));\n\t}\n}\n",
+    "static": true,
+    "longname": "/home/ena/indexedfts/lib/IFTSArrayPromise.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 49,
+    "kind": "class",
+    "name": "IFTSArrayPromise",
+    "memberof": "lib/IFTSArrayPromise.js",
+    "static": true,
+    "longname": "lib/IFTSArrayPromise.js~IFTSArrayPromise",
+    "access": "public",
+    "export": true,
+    "importPath": "indexedfts/lib/IFTSArrayPromise.js",
+    "importStyle": "IFTSArrayPromise",
+    "description": "Promise like object for contents array.\n\nAlmost methods are the same interface as {@link IndexedFTS} and {@link IFTSTransaction}.\nBut this class will processing all contents without using indexes.\nPlease consider using {@link IFTSTransaction} directly if it can.",
+    "lineNumber": 12,
+    "interface": false
+  },
+  {
+    "__docId__": 50,
+    "kind": "constructor",
+    "name": "constructor",
+    "memberof": "lib/IFTSArrayPromise.js~IFTSArrayPromise",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "lib/IFTSArrayPromise.js~IFTSArrayPromise#constructor",
+    "access": "public",
+    "description": "",
+    "lineNumber": 17,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Set<string>"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "indexes",
+        "description": "index names."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Promise<object[]>"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "promise",
+        "description": "Promise for wrapping."
+      }
+    ]
+  },
+  {
+    "__docId__": 51,
+    "kind": "member",
+    "name": "indexes",
+    "memberof": "lib/IFTSArrayPromise.js~IFTSArrayPromise",
+    "static": false,
+    "longname": "lib/IFTSArrayPromise.js~IFTSArrayPromise#indexes",
+    "access": "public",
+    "description": null,
+    "lineNumber": 19,
+    "type": {
+      "nullable": null,
+      "types": [
+        "Set<string>"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "__docId__": 52,
+    "kind": "member",
+    "name": "promise",
+    "memberof": "lib/IFTSArrayPromise.js~IFTSArrayPromise",
+    "static": false,
+    "longname": "lib/IFTSArrayPromise.js~IFTSArrayPromise#promise",
+    "access": "public",
+    "description": null,
+    "lineNumber": 22,
+    "type": {
+      "nullable": null,
+      "types": [
+        "Promise<object[]>"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "__docId__": 53,
+    "kind": "method",
+    "name": "resolve",
+    "memberof": "lib/IFTSArrayPromise.js~IFTSArrayPromise",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "lib/IFTSArrayPromise.js~IFTSArrayPromise.resolve",
+    "access": "public",
+    "description": "Make resolved promise.",
+    "lineNumber": 33,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Set<string>"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "indexes",
+        "description": "index names."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "object[]"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "value",
+        "description": "value for promise."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "IFTSArrayPromise"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 54,
+    "kind": "method",
+    "name": "reject",
+    "memberof": "lib/IFTSArrayPromise.js~IFTSArrayPromise",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "lib/IFTSArrayPromise.js~IFTSArrayPromise.reject",
+    "access": "public",
+    "description": "Make rejected promise.",
+    "lineNumber": 45,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Set<string>"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "indexes",
+        "description": "index names."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "value",
+        "description": "value for promise."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "IFTSArrayPromise"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 55,
+    "kind": "method",
+    "name": "then",
+    "memberof": "lib/IFTSArrayPromise.js~IFTSArrayPromise",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "lib/IFTSArrayPromise.js~IFTSArrayPromise#then",
+    "access": "public",
+    "description": "Set next function.",
+    "lineNumber": 56,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "function(contents: object[]): *"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "fun",
+        "description": "next function."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Promise"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 56,
+    "kind": "method",
+    "name": "catch",
+    "memberof": "lib/IFTSArrayPromise.js~IFTSArrayPromise",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "lib/IFTSArrayPromise.js~IFTSArrayPromise#catch",
+    "access": "public",
+    "description": "Set error handling function.",
+    "lineNumber": 67,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "function(error: *): *"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "fun",
+        "description": "error handling function."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Promise"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 57,
+    "kind": "method",
+    "name": "map",
+    "memberof": "lib/IFTSArrayPromise.js~IFTSArrayPromise",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "lib/IFTSArrayPromise.js~IFTSArrayPromise#map",
+    "access": "public",
+    "description": "Do something process for each elements and make a new IFTSArrayPromise.",
+    "lineNumber": 78,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "function(content: object, index: Number): object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "fun",
+        "description": "function for processing element."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "IFTSArrayPromise"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 58,
+    "kind": "method",
+    "name": "filter",
+    "memberof": "lib/IFTSArrayPromise.js~IFTSArrayPromise",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "lib/IFTSArrayPromise.js~IFTSArrayPromise#filter",
+    "access": "public",
+    "description": "Filtering elements by function and make a new IFTSArrayPromise.",
+    "lineNumber": 89,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "function(content: object, index: Number): boolean"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "fun",
+        "description": "function for filtering element."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "IFTSArrayPromise"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 59,
+    "kind": "method",
+    "name": "sort",
+    "memberof": "lib/IFTSArrayPromise.js~IFTSArrayPromise",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "lib/IFTSArrayPromise.js~IFTSArrayPromise#sort",
+    "access": "public",
+    "description": "Sort contents.",
+    "lineNumber": 103,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "column",
+        "description": "the column for sorting."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "'asc'",
+          "'desc'"
+        ],
+        "spread": false,
+        "optional": true,
+        "defaultValue": "'asc'",
+        "defaultRaw": "'asc'",
+        "name": "order",
+        "description": "sort order."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Number"
+        ],
+        "spread": false,
+        "optional": true,
+        "defaultValue": "0",
+        "defaultRaw": 0,
+        "name": "offset",
+        "description": "starting offset of the result."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Number"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "limit",
+        "description": "maximum number of result length. will unlimited if omitted."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "IFTSArrayPromise"
+      ],
+      "spread": false,
+      "description": "sorted contents."
+    }
+  },
+  {
+    "__docId__": 60,
+    "kind": "method",
+    "name": "_checkAndFilter",
+    "memberof": "lib/IFTSArrayPromise.js~IFTSArrayPromise",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "lib/IFTSArrayPromise.js~IFTSArrayPromise#_checkAndFilter",
+    "access": "private",
+    "description": "Checking index of column are exists and do {@link IFTSArrayPromise#filter}.",
+    "lineNumber": 124,
+    "ignore": true,
+    "params": [
+      {
+        "name": "column",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "fun",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 61,
+    "kind": "method",
+    "name": "equals",
+    "memberof": "lib/IFTSArrayPromise.js~IFTSArrayPromise",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "lib/IFTSArrayPromise.js~IFTSArrayPromise#equals",
+    "access": "public",
+    "description": "Get contents that have fully matched property.",
+    "lineNumber": 140,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "column",
+        "description": "column name for search."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "value",
+        "description": "value for search."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "IFTSArrayPromise"
+      ],
+      "spread": false,
+      "description": "matched contents. may reject with {@link NoSuchColumnError}."
+    }
+  },
+  {
+    "__docId__": 62,
+    "kind": "method",
+    "name": "lower",
+    "memberof": "lib/IFTSArrayPromise.js~IFTSArrayPromise",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "lib/IFTSArrayPromise.js~IFTSArrayPromise#lower",
+    "access": "public",
+    "description": "Get contents that have property lower than value.",
+    "lineNumber": 152,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "column",
+        "description": "column name for search."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "value",
+        "description": "value for search."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "IFTSArrayPromise"
+      ],
+      "spread": false,
+      "description": "matched contents. may reject with {@link NoSuchColumnError}."
+    }
+  },
+  {
+    "__docId__": 63,
+    "kind": "method",
+    "name": "greater",
+    "memberof": "lib/IFTSArrayPromise.js~IFTSArrayPromise",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "lib/IFTSArrayPromise.js~IFTSArrayPromise#greater",
+    "access": "public",
+    "description": "Get contents that have property greater than value.",
+    "lineNumber": 164,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "column",
+        "description": "column name for search."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "value",
+        "description": "value for search."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "IFTSArrayPromise"
+      ],
+      "spread": false,
+      "description": "matched contents. may reject with {@link NoSuchColumnError}."
+    }
+  },
+  {
+    "__docId__": 64,
+    "kind": "method",
+    "name": "lowerOrEquals",
+    "memberof": "lib/IFTSArrayPromise.js~IFTSArrayPromise",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "lib/IFTSArrayPromise.js~IFTSArrayPromise#lowerOrEquals",
+    "access": "public",
+    "description": "Get contents that have property lower than value or equals value.",
+    "lineNumber": 176,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "column",
+        "description": "column name for search."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "value",
+        "description": "value for search."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "IFTSArrayPromise"
+      ],
+      "spread": false,
+      "description": "matched contents. may reject with {@link NoSuchColumnError}."
+    }
+  },
+  {
+    "__docId__": 65,
+    "kind": "method",
+    "name": "greaterOrEquals",
+    "memberof": "lib/IFTSArrayPromise.js~IFTSArrayPromise",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "lib/IFTSArrayPromise.js~IFTSArrayPromise#greaterOrEquals",
+    "access": "public",
+    "description": "Get contents that have property greater than value or equals value.",
+    "lineNumber": 188,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "column",
+        "description": "column name for search."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "value",
+        "description": "value for search."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "IFTSArrayPromise"
+      ],
+      "spread": false,
+      "description": "matched contents. may reject with {@link NoSuchColumnError}."
+    }
+  },
+  {
+    "__docId__": 66,
+    "kind": "method",
+    "name": "between",
+    "memberof": "lib/IFTSArrayPromise.js~IFTSArrayPromise",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "lib/IFTSArrayPromise.js~IFTSArrayPromise#between",
+    "access": "public",
+    "description": "Get contents that have property is between argument values.",
+    "lineNumber": 201,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "column",
+        "description": "column name for search."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "lower",
+        "description": "minimal value."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "upper",
+        "description": "maximum value."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "IFTSArrayPromise"
+      ],
+      "spread": false,
+      "description": "matched contents. may reject with {@link NoSuchColumnError}."
+    }
+  },
+  {
+    "__docId__": 67,
+    "kind": "method",
+    "name": "search",
+    "memberof": "lib/IFTSArrayPromise.js~IFTSArrayPromise",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "lib/IFTSArrayPromise.js~IFTSArrayPromise#search",
+    "access": "public",
+    "description": "Get contents that have matched property by full-text search.\n\nThis method can search even if didn't made ngram index.\n\nWARNING: This method always processes all contents without using indexes.\nPlease consider using {@link IFTSTransaction#search}.",
+    "lineNumber": 219,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "object",
+          "object[]"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "columns",
+        "description": "column names for search."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "query",
+        "description": "query for search."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "IFTSArrayPromise"
+      ],
+      "spread": false,
+      "description": "matched contents."
+    }
+  },
+  {
+    "__docId__": 68,
+    "kind": "method",
+    "name": "searchWord",
+    "memberof": "lib/IFTSArrayPromise.js~IFTSArrayPromise",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "lib/IFTSArrayPromise.js~IFTSArrayPromise#searchWord",
+    "access": "public",
+    "description": "Find contents that have fully matched word in property.\n\nThis method can search even if didn't made word index.\n\nWARNING: This method always processes all contents without using indexes.\nPlease consider using {@link IFTSTransaction#searchWord}.",
+    "lineNumber": 252,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "object",
+          "object[]"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "columns",
+        "description": "column names for search."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "query",
+        "description": "query for search."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "IFTSArrayPromise"
+      ],
+      "spread": false,
+      "description": "matched contents. may reject with {@link NoSuchColumnError}."
+    }
+  },
+  {
+    "__docId__": 69,
+    "kind": "file",
+    "name": "lib/IFTSTransaction.js",
+    "content": "import {tokenize, splitQuery, splitWords, fastMap, flatten, dedup} from './utils';\nimport {NoSuchColumnError, InvalidKeyError} from './errors';\nimport IFTSArrayPromise from './IFTSArrayPromise';\n\n\n/**\n * Transaction.\n *\n * Almost methods are the same interface as {@link IndexedFTS} and {@link IFTSArrayPromise}.\n * Probably this class is faster than other classes in most cases.\n *\n * Please be careful, IFTSTransaction are sometimes makes a big cache.\n * Should not keep many transactions if not need.\n */\nexport default class IFTSTransaction {\n\t/**\n\t * @param {IndexedFTS} db - database.\n\t * @param {IDBTransaction} transaction - transaction of IndexedDB.\n\t */\n\tconstructor(db, transaction) {\n\t\t/** @type {IndexedDB} */\n\t\tthis.db = db;\n\n\t\t/** @type {IDBTransaction} */\n\t\tthis.transaction = transaction;\n\n\t\t/** @ignore */\n\t\tthis._KeyRange = this.db.scope.IDBKeyRange;\n\n\t\t/**\n\t\t * Promise for await closing transaction.\n\t\t *\n\t\t * @type {Promise<IndexedDB>}\n\t\t */\n\t\tthis.promise = new Promise((resolve, reject) => {\n\t\t\tthis.transaction.oncomplete = () => resolve(this.db);\n\t\t\tthis.transaction.onerror = err => reject(err);\n\t\t});\n\n\t\t/** @ignore */\n\t\tthis._cache = {};\n\t}\n\n\t/**\n\t * Put contents into database.\n\t *\n\t * @param {object} contents - contents for save. allowed multiple arguments.\n\t *\n\t * @return {Promise<IFTSTransaction>} returns self for chain.\n\t */\n\tput(...contents) {\n\t\tconst store = this.transaction.objectStore('data');\n\t\tconst ngram_indexes = fastMap([...this.db.ngram_indexes], column => ({name: column, store: this.transaction.objectStore(this.db.index_prefix + 'ngram_' + column)}));\n\t\tconst word_indexes = fastMap([...this.db.word_indexes], column => ({name: column, store: this.transaction.objectStore(this.db.index_prefix + 'word_' + column)}));\n\n\t\tconst putPromises = new Array(contents.length);\n\t\tfor (let i=0; i<contents.length; i++) {\n\t\t\tputPromises[i] = new Promise((resolve, reject) => {\n\t\t\t\tconst req = store.put(contents[i]);\n\t\t\t\treq.onerror = reject;\n\t\t\t\treq.onsuccess = ev => {\n\t\t\t\t\tresolve(\n\t\t\t\t\t\tthis._updateNGramIndex(ev.target.result, contents[i], ngram_indexes)\n\t\t\t\t\t\t\t.then(() => this._updateWordIndex(ev.target.result, contents[i], word_indexes)))\n\t\t\t\t};\n\t\t\t});\n\t\t}\n\n\t\treturn Promise.all(putPromises).then(data => {\n\t\t\tfor (let i=0; i<data.length; i++) {\n\t\t\t\tconst key = data[i][0];\n\t\t\t\tconst value = data[i][1];\n\t\t\t\tif (this.db.primary_key === null) {\n\t\t\t\t\tvalue._key = key;\n\t\t\t\t}\n\t\t\t\tthis._cache[key] = value;\n\t\t\t}\n\t\t\treturn this;\n\t\t});\n\t}\n\n\t/**\n\t * Update ngram index.\n\t *\n\t * @ignore\n\t */\n\t_updateNGramIndex(key, data, ngram_indexes) {\n\t\treturn this._deleteIndex(key, ngram_indexes.map(x => this.db.index_prefix + 'ngram_' + x.name))\n\t\t\t.then(() => Promise.all(fastMap(ngram_indexes, col => {\n\t\t\t\tconst tokens = tokenize(data[col.name]);\n\t\t\t\tconst promises = new Array(tokens.length);\n\t\t\t\tfor (let i=0; i<tokens.length; i++) {\n\t\t\t\t\tpromises[i] = new Promise((resolve, reject) => {\n\t\t\t\t\t\tconst req = col.store.put({\n\t\t\t\t\t\t\tkey: key,\n\t\t\t\t\t\t\ttoken: tokens[i],\n\t\t\t\t\t\t});\n\t\t\t\t\t\treq.onsuccess = () => resolve();\n\t\t\t\t\t\treq.onerror = reject;\n\t\t\t\t\t});\n\t\t\t\t}\n\t\t\t\treturn Promise.all(promises);\n\t\t\t})))\n\t\t\t.then(() => [key, data]);\n\t}\n\n\t/**\n\t * Update word index.\n\t *\n\t * @ignore\n\t */\n\t_updateWordIndex(key, data, word_indexes) {\n\t\treturn this._deleteIndex(key, word_indexes.map(x => this.db.index_prefix + 'word_' + x.name))\n\t\t\t.then(() => Promise.all(fastMap(word_indexes, col => {\n\t\t\t\tconst words = splitWords(data[col.name]);\n\t\t\t\tconst promises = new Array(words.length);\n\t\t\t\tfor (let i=0; i<words.length; i++) {\n\t\t\t\t\tpromises[i] = new Promise((resolve, reject) => {\n\t\t\t\t\t\tconst req = col.store.put({\n\t\t\t\t\t\t\tkey: key,\n\t\t\t\t\t\t\tword: words[i],\n\t\t\t\t\t\t});\n\t\t\t\t\t\treq.onsuccess = () => resolve();\n\t\t\t\t\t\treq.onerror = reject;\n\t\t\t\t\t});\n\t\t\t\t}\n\t\t\t\treturn Promise.all(promises);\n\t\t\t})))\n\t\t\t.then(() => [key, data]);\n\t}\n\n\t/**\n\t * Delete content by FTS indexes of database.\n\t *\n\t * @ignore\n\t */\n\t_deleteIndex(key, tableNames) {\n\t\treturn Promise.all(tableNames.map(table => {\n\t\t\treturn new Promise((resolve, reject) => {\n\t\t\t\tconst store = this.transaction.objectStore(table);\n\t\t\t\tstore.onerror = reject;\n\n\t\t\t\tconst requests = [];\n\n\t\t\t\tconst req = store.index('key').openKeyCursor(this._KeyRange.only(key));\n\t\t\t\treq.onerror = reject;\n\t\t\t\treq.onsuccess = ev => {\n\t\t\t\t\tconst cursor = ev.target.result;\n\t\t\t\t\tif (cursor) {\n\t\t\t\t\t\trequests.push(new Promise((resolve, reject) => {\n\t\t\t\t\t\t\tconst d = store.delete(cursor.primaryKey);\n\t\t\t\t\t\t\td.onsuccess = resolve;\n\t\t\t\t\t\t\td.onerror = reject\n\t\t\t\t\t\t}));\n\t\t\t\t\t\tcursor.continue();\n\t\t\t\t\t} else {\n\t\t\t\t\t\tresolve(Promise.all(requests));\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t});\n\t\t}));\n\t}\n\n\t/**\n\t * Delete contents from database.\n\t *\n\t * @param {object} keys - key of contents. allowed multiple arguments.\n\t *\n\t * @return {Promise<IFTSTransaction>} returns self for chain. Will reject with {@link InvalidKeyError} if keys included null or undefined.\n\t */\n\tdelete(...keys) {\n\t\tfor (let i=0; i<keys.length; i++) {\n\t\t\tif (keys[i] === null || keys[i] === undefined) {\n\t\t\t\treturn Promise.reject(new InvalidKeyError(keys[i]));\n\t\t\t}\n\t\t}\n\n\t\treturn Promise.all(fastMap(keys, key => {\n\t\t\treturn new Promise((resolve, reject) => {\n\t\t\t\tconst req = this.transaction.objectStore('data').delete(key);\n\t\t\t\treq.onerror = reject;\n\t\t\t\treq.onsuccess = resolve;\n\t\t\t})\n\t\t\t.then(() => this._deleteIndex(key, [\n\t\t\t\t...[...this.db.ngram_indexes].map(x => this.db.index_prefix + 'ngram_' + x),\n\t\t\t\t...[...this.db.word_indexes].map(x => this.db.index_prefix + 'word_' + x),\n\t\t\t]))\n\t\t})).then(() => this);\n\t}\n\n\t/**\n\t * Make {@link IFTSArrayPromise} by cursor.\n\t *\n\t * @ignore\n\t */\n\t_readCursor(cursorRequest, filter=null, map=null, limit=undefined) {\n\t\tfilter = filter || ((x, i) => true);\n\t\tmap = map || ((x, i) => x);\n\n\t\treturn new IFTSArrayPromise(this.db.indexes, new Promise((resolve, reject) => {\n\t\t\tconst result = [];\n\t\t\tlet index = 0;\n\n\t\t\tcursorRequest.onsuccess = ev => {\n\t\t\t\tconst cursor = ev.target.result;\n\t\t\t\tif (cursor) {\n\t\t\t\t\tconst value = cursor.value;\n\t\t\t\t\tif (this.db.primary_key === null) {\n\t\t\t\t\t\tvalue._key = cursor.key;\n\t\t\t\t\t}\n\t\t\t\t\tthis._cache[cursor.key] = value;\n\t\t\t\t\tif (filter(value, index)) {\n\t\t\t\t\t\tresult.push(map(value, index));\n\t\t\t\t\t}\n\n\t\t\t\t\tindex++;\n\t\t\t\t\tif (limit === undefined || index < limit) {\n\t\t\t\t\t\tcursor.continue();\n\t\t\t\t\t} else {\n\t\t\t\t\t\tresolve(result);\n\t\t\t\t\t}\n\t\t\t\t} else {\n\t\t\t\t\tresolve(result);\n\t\t\t\t}\n\t\t\t};\n\t\t\tcursorRequest.onerror = err => reject(err);\n\t\t}));\n\t}\n\n\t/**\n\t * Get all contents.\n\t *\n\t * @return {IFTSArrayPromise} contents.\n\t */\n\tgetAll() {\n\t\treturn this._readCursor(this.transaction.objectStore('data').openCursor());\n\t}\n\n\t/**\n\t * Get all contents with primary keys.\n\t *\n\t * @ignore\n\t */\n\t_getAllWithKeys() {\n\t\treturn new IFTSArrayPromise(this.db.indexes, new Promise((resolve, reject) => {\n\t\t\tconst request = this.transaction.objectStore('data').openCursor();\n\n\t\t\tconst result = [];\n\t\t\trequest.onsuccess = ev => {\n\t\t\t\tconst cursor = ev.target.result;\n\t\t\t\tif (cursor) {\n\t\t\t\t\tconst value = cursor.value;\n\t\t\t\t\tif (this.db.primary_key === null) {\n\t\t\t\t\t\tvalue._key = cursor.key;\n\t\t\t\t\t}\n\t\t\t\t\tthis._cache[cursor.key] = value;\n\t\t\t\t\tresult.push({key: cursor.key, data: value});\n\t\t\t\t\tcursor.continue();\n\t\t\t\t} else {\n\t\t\t\t\tresolve(result);\n\t\t\t\t}\n\t\t\t};\n\n\t\t\trequest.onerror = err => reject(err);\n\t\t}));\n\t}\n\n\t/**\n\t * Do something process for each elements and returns {@link IFTSArrayPromise}.\n\t *\n\t * NOTE: This method doesn't fast. May better do filtering before doing map if need filtering.\n\t *\n\t * @param {function(content: object, index: Number): object} fun - function for processing element.\n\t *\n\t * @return {IFTSArrayPromise}\n\t */\n\tmap(fun) {\n\t\treturn this._readCursor(this.transaction.objectStore('data').openCursor(null), null, fun);\n\t}\n\n\t/**\n\t * Filtering elements by function and returns {@link IFTSArrayPromise}.\n\t *\n\t * WARNING: This method won't use the index. Other methods(eg. {@link IFTSTransaction#equals} or {@link IFTSTransaction#lower} may faster than this.\n\t *\n\t * @param {function(content: object, index: Number): object} fun - function for filtering element.\n\t *\n\t * return {IFTSArrayPromise}\n\t */\n\tfilter(fun) {\n\t\treturn this._readCursor(this.transaction.objectStore('data').openCursor(null), fun, null);\n\t}\n\n\t/**\n\t * Sort and get all contents.\n\t *\n\t * @param {object} column - the column for sorting.\n\t * @param {'asc'|'desc'} [order='asc'] - sort order.\n\t * @param {Number} [offset=0] - starting offset of the result.\n\t * @param {Number} [limit] - maximum number of result length. will unlimited if omitted.\n\t *\n\t * @return {IFTSArrayPromise} sorted contents.\n\t */\n\tsort(column, order='asc', offset=0, limit=undefined) {\n\t\tif (!this.db.indexes.has(column)) {\n\t\t\treturn IFTSArrayPromise.reject(this.db.indexes, new NoSuchColumnError(column));\n\t\t}\n\n\t\tlimit = limit === undefined ? undefined : offset + limit;\n\t\tconst offsetFilter = (x, i) => offset <= i;\n\n\t\tconst store = this.transaction.objectStore('data');\n\n\t\tif (column === this.db.primary_key) {\n\t\t\treturn this._readCursor(store.openCursor(null, order === 'desc' ? 'prev' : 'next'), offsetFilter, null, limit);\n\t\t} else {\n\t\t\treturn this._readCursor(store.index(column).openCursor(null, order === 'desc' ? 'prev' : 'next'), offsetFilter, null, limit);\n\t\t}\n\t}\n\n\t/**\n\t * Get content by primary key.\n\t *\n\t * @param {object} key - the key of content.\n\t *\n\t * @return {Promise<object|undefined>} content. promise will reject with {@link InvalidKeyError} if keys included null or undefined. result value will be undefined if not found.\n\t */\n\tget(key) {\n\t\tif (key === null || key === undefined) {\n\t\t\treturn Promise.reject(new InvalidKeyError(key));\n\t\t}\n\t\tif (key in this._cache) {\n\t\t\treturn Promise.resolve(this._cache[key]);\n\t\t}\n\t\treturn new Promise((resolve, reject) => {\n\t\t\tconst req = this.transaction.objectStore('data').get(key);\n\t\t\treq.onsuccess = ev => {\n\t\t\t\tconst value = ev.target.result;\n\t\t\t\tif (this.db.primary_key === null) {\n\t\t\t\t\tvalue._key = key;\n\t\t\t\t}\n\t\t\t\tthis._cache[key] = value;\n\t\t\t\tresolve(value);\n\t\t\t};\n\t\t\treq.onerror = reject;\n\t\t});\n\t}\n\n\t/**\n\t * Get contents matched keyRange.\n\t *\n\t * @ignore\n\t */\n\t_getAllWithIndex(column, keyRange) {\n\t\tif (!this.db.indexes.has(column)) {\n\t\t\treturn IFTSArrayPromise.reject(this.db.indexes, new NoSuchColumnError(column));\n\t\t}\n\n\t\tconst store = this.transaction.objectStore('data');\n\n\t\tif (column === this.db.primary_key) {\n\t\t\treturn this._readCursor(store.openCursor(keyRange));\n\t\t} else {\n\t\t\treturn this._readCursor(store.index(column).openCursor(keyRange));\n\t\t}\n\t}\n\n\t/**\n\t * Get contents that have fully matched property.\n\t *\n\t * @param {object} column - column name for search.\n\t * @param {object} value - value for search.\n\t *\n\t * @return {IFTSArrayPromise} matched contents. may reject with {@link NoSuchColumnError}.\n\t */\n\tequals(column, value) {\n\t\treturn this._getAllWithIndex(column, this._KeyRange.only(value));\n\t}\n\n\t/**\n\t * Get contents that have property lower than value.\n\t *\n\t * @param {object} column - column name for search.\n\t * @param {object} value - value for search.\n\t *\n\t * @return {IFTSArrayPromise} matched contents. may reject with {@link NoSuchColumnError}.\n\t */\n\tlower(column, value) {\n\t\treturn this._getAllWithIndex(column, this._KeyRange.upperBound(value, true));\n\t}\n\n\t/**\n\t * Get contents that have property greater than value.\n\t *\n\t * @param {object} column - column name for search.\n\t * @param {object} value - value for search.\n\t *\n\t * @return {IFTSArrayPromise} matched contents. may reject with {@link NoSuchColumnError}.\n\t */\n\tgreater(column, value) {\n\t\treturn this._getAllWithIndex(column, this._KeyRange.lowerBound(value, true));\n\t}\n\n\t/**\n\t * Get contents that have property lower than value or equals value.\n\t *\n\t * @param {object} column - column name for search.\n\t * @param {object} value - value for search.\n\t *\n\t * @return {IFTSArrayPromise} matched contents. may reject with {@link NoSuchColumnError}.\n\t */\n\tlowerOrEquals(column, value) {\n\t\treturn this._getAllWithIndex(column, this._KeyRange.upperBound(value, false));\n\t}\n\n\t/**\n\t * Get contents that have property greater than value or equals value.\n\t *\n\t * @param {object} column - column name for search.\n\t * @param {object} value - value for search.\n\t *\n\t * @return {IFTSArrayPromise} matched contents. may reject with {@link NoSuchColumnError}.\n\t */\n\tgreaterOrEquals(column, value) {\n\t\treturn this._getAllWithIndex(column, this._KeyRange.lowerBound(value, false));\n\t}\n\n\t/**\n\t * Get contents that have property is between argument values.\n\t *\n\t * @param {object} column - column name for search.\n\t * @param {object} lower - minimal value.\n\t * @param {object} upper - maximum value.\n\t *\n\t * @return {IFTSArrayPromise} matched contents. may reject with {@link NoSuchColumnError}.\n\t */\n\tbetween(column, lower, upper) {\n\t\treturn this._getAllWithIndex(column, this._KeyRange.bound(lower, upper, false, false));\n\t}\n\n\t/**\n\t * Get candidates of search result.\n\t *\n\t * @ignore\n\t */\n\t_takeCandidatesBySingleColumn(column, queries) {\n\t\tconst index = this.transaction.objectStore(this.db.index_prefix + 'ngram_' + column).index('token');\n\t\tconst result = [];\n\n\t\tfor (let q in queries) {\n\t\t\tif (queries[q].length === 0) {\n\t\t\t\tresult.push(this._getAllWithKeys().filter(x => x.data[column].includes(q)).map(x => x.key).then(xs => ({query: q, keys: xs})));\n\t\t\t\tcontinue;\n\t\t\t}\n\n\t\t\tconst promises = new Array(queries[q].length);\n\t\t\tfor (let i=0; i<queries[q].length; i++) {\n\t\t\t\tpromises[i] = this._readCursor(index.openCursor(queries[q][i]), null, data => data.key);\n\t\t\t}\n\n\t\t\tconst candidate = Promise.all(promises)\n\t\t\t\t.then(founds => {\n\t\t\t\t\tif (founds.length === 0) {\n\t\t\t\t\t\treturn Promise.resolve([]);\n\t\t\t\t\t}\n\n\t\t\t\t\tfounds = flatten(founds);\n\n\t\t\t\t\tconst deduped = new Array(founds.length);\n\t\t\t\t\tlet dedup_num = 0;\n\t\t\t\t\tconst hit_count = {};\n\t\t\t\t\tfor (let i=0; i<founds.length; i++) {\n\t\t\t\t\t\tif (!(founds[i] in hit_count)) {\n\t\t\t\t\t\t\thit_count[founds[i]] = 0;\n\n\t\t\t\t\t\t\tdeduped[dedup_num] = founds[i];\n\t\t\t\t\t\t\tdedup_num++;\n\t\t\t\t\t\t}\n\t\t\t\t\t\thit_count[founds[i]]++;\n\t\t\t\t\t}\n\n\t\t\t\t\tconst candidates = new Array(dedup_num);\n\t\t\t\t\tlet candidate_num = 0;\n\t\t\t\t\tfor (let i=0; i<dedup_num; i++) {\n\t\t\t\t\t\tif (hit_count[deduped[i]] >= queries[q].length) {\n\t\t\t\t\t\t\tcandidates[candidate_num] = this.get(deduped[i]).then(data => ({key: deduped[i], data: data}));\n\t\t\t\t\t\t\tcandidate_num++;\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t\treturn Promise.all(candidates.slice(0, candidate_num));\n\t\t\t\t})\n\t\t\t\t.then(xs => ({query: q, keys: xs.filter(x => x.data[column].includes(q)).map(x => x.key)}))\n\n\t\t\tresult.push(candidate);\n\t\t}\n\n\t\treturn result;\n\t}\n\n\t/**\n\t * Prune contents by result of {@link IFTSTransaction#_takeCandidatesBySingleColumn}.\n\t *\n\t * @ignore\n\t */\n\tasync _pruneCandidates(queries_num, candidates) {\n\t\tconst keys = {};\n\n\t\tfor (let i=0; i<candidates.length; i++) {\n\t\t\tfor (let j=0; j<candidates[i].keys.length; j++) {\n\t\t\t\tif (!(candidates[i].keys[j] in keys)) {\n\t\t\t\t\tkeys[candidates[i].keys[j]] = new Set();\n\t\t\t\t}\n\t\t\t\tkeys[candidates[i].keys[j]].add(candidates[i].query);\n\t\t\t}\n\t\t}\n\n\t\tconst result = new Array(candidates.length);\n\t\tlet result_num = 0;\n\t\tfor (let key in keys) {\n\t\t\tif (keys[key].size == queries_num) {\n\t\t\t\tresult[result_num] = this.get(key);\n\t\t\t\tresult_num++;\n\t\t\t}\n\t\t}\n\n\t\treturn await Promise.all(result.slice(0, result_num));\n\t}\n\n\t/**\n\t * Get contents that have matched property by full-text search.\n\t *\n\t * All target columns have to made ngram index when created database.\n\t * If you didn't made ngram index, you can use {@link IFTSArrayPromise#search} (but this way is very slow).\n\t *\n\t *\n\t * @param {object|object[]} columns - column names for search.\n\t * @param {string} query - query for search.\n\t *\n\t * @return {IFTSArrayPromise} matched contents. may reject with {@link NoSuchColumnError}.\n\t */\n\tsearch(columns, query) {\n\t\tif (typeof columns === 'string') {\n\t\t\tcolumns = [columns];\n\t\t}\n\n\t\tfor (let i=0; i<columns.length; i++) {\n\t\t\tif (!this.db.ngram_indexes.has(columns[i])) {\n\t\t\t\treturn IFTSArrayPromise.reject(this.db.indexes, new NoSuchColumnError(columns[i]));\n\t\t\t}\n\t\t}\n\n\t\tconst queries = splitQuery(query);\n\t\tlet queries_length = 0;\n\n\t\tfor (let q in queries) {\n\t\t\tqueries[q] = fastMap(queries[q], x => this._KeyRange.only(x));\n\t\t\tqueries_length++;\n\t\t}\n\n\t\tconst candidatePromises = [];\n\n\t\tfor (let i=0; i<columns.length; i++) {\n\t\t\tArray.prototype.push.apply(candidatePromises, this._takeCandidatesBySingleColumn(columns[i], queries));\n\t\t}\n\n\t\treturn new IFTSArrayPromise(\n\t\t\tthis.db.indexes,\n\t\t\tPromise.all(candidatePromises).then(xs => this._pruneCandidates(queries_length, xs)),\n\t\t);\n\t}\n\n\t/**\n\t * Find contents that have fully matched word in property.\n\t *\n\t * All target columns have to made word index when created database.\n\t * If you didn't made word index, you can use {@link IFTSArrayPromise#searchWord} (but this way is very slow).\n\t *\n\t *\n\t * @param {object|object[]} columns - column names for search.\n\t * @param {string} query - query for search.\n\t *\n\t * @return {IFTSArrayPromise} matched contents. may reject with {@link NoSuchColumnError}.\n\t */\n\tsearchWord(columns, query) {\n\t\tif (typeof columns === 'string') {\n\t\t\tcolumns = [columns];\n\t\t}\n\n\t\tfor (let i=0; i<columns.length; i++) {\n\t\t\tif (!this.db.word_indexes.has(columns[i])) {\n\t\t\t\treturn IFTSArrayPromise.reject(this.db.indexes, new NoSuchColumnError(columns[i]));\n\t\t\t}\n\t\t}\n\n\t\tconst queries = splitWords(query).map(x => ({text: x, keyRange: this._KeyRange.only(x)}));\n\n\t\treturn new IFTSArrayPromise(this.db.indexes, Promise.all(flatten(columns.map(col => {\n\t\t\tconst index = this.transaction.objectStore(this.db.index_prefix + 'word_' + col).index('word');\n\n\t\t\treturn queries.map(query => this._readCursor(index.openCursor(query.keyRange), null, data => [data.key, query.text]));\n\t\t}))).then(candidates => {\n\t\t\tcandidates = dedup(flatten(candidates));\n\n\t\t\tconst counts = {};\n\t\t\tfor (let i=0; i<candidates.length; i++) {\n\t\t\t\tconst key = candidates[i][0];\n\t\t\t\tif (!(key in counts)) {\n\t\t\t\t\tcounts[key] = 0;\n\t\t\t\t}\n\t\t\t\tcounts[key]++;\n\t\t\t}\n\n\t\t\tconst hits = new Array(candidates.length);\n\t\t\tlet hits_count = 0;\n\t\t\tfor (let i=0; i<candidates.length; i++) {\n\t\t\t\tconst key = candidates[i][0];\n\t\t\t\tif (counts[key] >= queries.length) {\n\t\t\t\t\thits[hits_count] = key;\n\t\t\t\t\thits_count++;\n\t\t\t\t}\n\t\t\t}\n\n\t\t\tconst result = new Array(hits_count);\n\t\t\tfor (let i=0; i<hits_count; i++) {\n\t\t\t\tresult[i] = this.get(hits[i]);\n\t\t\t}\n\t\t\treturn new IFTSArrayPromise(this.db.indexes, Promise.all(result));\n\t\t}));\n\t}\n}\n",
+    "static": true,
+    "longname": "/home/ena/indexedfts/lib/IFTSTransaction.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 70,
+    "kind": "class",
+    "name": "IFTSTransaction",
+    "memberof": "lib/IFTSTransaction.js",
+    "static": true,
+    "longname": "lib/IFTSTransaction.js~IFTSTransaction",
+    "access": "public",
+    "export": true,
+    "importPath": "indexedfts/lib/IFTSTransaction.js",
+    "importStyle": "IFTSTransaction",
+    "description": "Transaction.\n\nAlmost methods are the same interface as {@link IndexedFTS} and {@link IFTSArrayPromise}.\nProbably this class is faster than other classes in most cases.\n\nPlease be careful, IFTSTransaction are sometimes makes a big cache.\nShould not keep many transactions if not need.",
+    "lineNumber": 15,
+    "interface": false
+  },
+  {
+    "__docId__": 71,
+    "kind": "constructor",
+    "name": "constructor",
+    "memberof": "lib/IFTSTransaction.js~IFTSTransaction",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "lib/IFTSTransaction.js~IFTSTransaction#constructor",
+    "access": "public",
+    "description": "",
+    "lineNumber": 20,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "IndexedFTS"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "db",
+        "description": "database."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "IDBTransaction"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "transaction",
+        "description": "transaction of IndexedDB."
+      }
+    ]
+  },
+  {
+    "__docId__": 72,
+    "kind": "member",
+    "name": "db",
+    "memberof": "lib/IFTSTransaction.js~IFTSTransaction",
+    "static": false,
+    "longname": "lib/IFTSTransaction.js~IFTSTransaction#db",
+    "access": "public",
+    "description": null,
+    "lineNumber": 22,
+    "type": {
+      "nullable": null,
+      "types": [
+        "IndexedDB"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "__docId__": 73,
+    "kind": "member",
+    "name": "transaction",
+    "memberof": "lib/IFTSTransaction.js~IFTSTransaction",
+    "static": false,
+    "longname": "lib/IFTSTransaction.js~IFTSTransaction#transaction",
+    "access": "public",
+    "description": null,
+    "lineNumber": 25,
+    "type": {
+      "nullable": null,
+      "types": [
+        "IDBTransaction"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "__docId__": 74,
+    "kind": "member",
+    "name": "_KeyRange",
+    "memberof": "lib/IFTSTransaction.js~IFTSTransaction",
+    "static": false,
+    "longname": "lib/IFTSTransaction.js~IFTSTransaction#_KeyRange",
+    "access": "private",
+    "description": null,
+    "lineNumber": 28,
+    "ignore": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 75,
+    "kind": "member",
+    "name": "promise",
+    "memberof": "lib/IFTSTransaction.js~IFTSTransaction",
+    "static": false,
+    "longname": "lib/IFTSTransaction.js~IFTSTransaction#promise",
+    "access": "public",
+    "description": "Promise for await closing transaction.",
+    "lineNumber": 35,
+    "type": {
+      "nullable": null,
+      "types": [
+        "Promise<IndexedDB>"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "__docId__": 76,
+    "kind": "member",
+    "name": "_cache",
+    "memberof": "lib/IFTSTransaction.js~IFTSTransaction",
+    "static": false,
+    "longname": "lib/IFTSTransaction.js~IFTSTransaction#_cache",
+    "access": "private",
+    "description": null,
+    "lineNumber": 41,
+    "ignore": true,
+    "type": {
+      "types": [
+        "{}"
+      ]
+    }
+  },
+  {
+    "__docId__": 77,
+    "kind": "method",
+    "name": "put",
+    "memberof": "lib/IFTSTransaction.js~IFTSTransaction",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "lib/IFTSTransaction.js~IFTSTransaction#put",
+    "access": "public",
+    "description": "Put contents into database.",
+    "lineNumber": 51,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "contents",
+        "description": "contents for save. allowed multiple arguments."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Promise<IFTSTransaction>"
+      ],
+      "spread": false,
+      "description": "returns self for chain."
+    }
+  },
+  {
+    "__docId__": 78,
+    "kind": "method",
+    "name": "_updateNGramIndex",
+    "memberof": "lib/IFTSTransaction.js~IFTSTransaction",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "lib/IFTSTransaction.js~IFTSTransaction#_updateNGramIndex",
+    "access": "private",
+    "description": "Update ngram index.",
+    "lineNumber": 87,
+    "ignore": true,
+    "params": [
+      {
+        "name": "key",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "data",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "ngram_indexes",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 79,
+    "kind": "method",
+    "name": "_updateWordIndex",
+    "memberof": "lib/IFTSTransaction.js~IFTSTransaction",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "lib/IFTSTransaction.js~IFTSTransaction#_updateWordIndex",
+    "access": "private",
+    "description": "Update word index.",
+    "lineNumber": 112,
+    "ignore": true,
+    "params": [
+      {
+        "name": "key",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "data",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "word_indexes",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 80,
+    "kind": "method",
+    "name": "_deleteIndex",
+    "memberof": "lib/IFTSTransaction.js~IFTSTransaction",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "lib/IFTSTransaction.js~IFTSTransaction#_deleteIndex",
+    "access": "private",
+    "description": "Delete content by FTS indexes of database.",
+    "lineNumber": 137,
+    "ignore": true,
+    "params": [
+      {
+        "name": "key",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "tableNames",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 81,
+    "kind": "method",
+    "name": "delete",
+    "memberof": "lib/IFTSTransaction.js~IFTSTransaction",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "lib/IFTSTransaction.js~IFTSTransaction#delete",
+    "access": "public",
+    "description": "Delete contents from database.",
+    "lineNumber": 171,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "keys",
+        "description": "key of contents. allowed multiple arguments."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Promise<IFTSTransaction>"
+      ],
+      "spread": false,
+      "description": "returns self for chain. Will reject with {@link InvalidKeyError} if keys included null or undefined."
+    }
+  },
+  {
+    "__docId__": 82,
+    "kind": "method",
+    "name": "_readCursor",
+    "memberof": "lib/IFTSTransaction.js~IFTSTransaction",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "lib/IFTSTransaction.js~IFTSTransaction#_readCursor",
+    "access": "private",
+    "description": "Make {@link IFTSArrayPromise} by cursor.",
+    "lineNumber": 196,
+    "ignore": true,
+    "params": [
+      {
+        "name": "cursorRequest",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "filter",
+        "optional": true,
+        "types": [
+          "undefined"
+        ],
+        "defaultValue": "undefined"
+      },
+      {
+        "name": "map",
+        "optional": true,
+        "types": [
+          "undefined"
+        ],
+        "defaultValue": "undefined"
+      },
+      {
+        "name": "limit",
+        "optional": true,
+        "types": [
+          "*"
+        ],
+        "defaultRaw": "undefined",
+        "defaultValue": "undefined"
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 83,
+    "kind": "method",
+    "name": "getAll",
+    "memberof": "lib/IFTSTransaction.js~IFTSTransaction",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "lib/IFTSTransaction.js~IFTSTransaction#getAll",
+    "access": "public",
+    "description": "Get all contents.",
+    "lineNumber": 235,
+    "return": {
+      "nullable": null,
+      "types": [
+        "IFTSArrayPromise"
+      ],
+      "spread": false,
+      "description": "contents."
+    },
+    "params": []
+  },
+  {
+    "__docId__": 84,
+    "kind": "method",
+    "name": "_getAllWithKeys",
+    "memberof": "lib/IFTSTransaction.js~IFTSTransaction",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "lib/IFTSTransaction.js~IFTSTransaction#_getAllWithKeys",
+    "access": "private",
+    "description": "Get all contents with primary keys.",
+    "lineNumber": 244,
+    "ignore": true,
+    "params": [],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 85,
+    "kind": "method",
+    "name": "map",
+    "memberof": "lib/IFTSTransaction.js~IFTSTransaction",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "lib/IFTSTransaction.js~IFTSTransaction#map",
+    "access": "public",
+    "description": "Do something process for each elements and returns {@link IFTSArrayPromise}.\n\nNOTE: This method doesn't fast. May better do filtering before doing map if need filtering.",
+    "lineNumber": 277,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "function(content: object, index: Number): object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "fun",
+        "description": "function for processing element."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "IFTSArrayPromise"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 86,
+    "kind": "method",
+    "name": "filter",
+    "memberof": "lib/IFTSTransaction.js~IFTSTransaction",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "lib/IFTSTransaction.js~IFTSTransaction#filter",
+    "access": "public",
+    "description": "Filtering elements by function and returns {@link IFTSArrayPromise}.\n\nWARNING: This method won't use the index. Other methods(eg. {@link IFTSTransaction#equals} or {@link IFTSTransaction#lower} may faster than this.",
+    "lineNumber": 290,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "function(content: object, index: Number): object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "fun",
+        "description": "function for filtering element.\n\nreturn {IFTSArrayPromise}"
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 87,
+    "kind": "method",
+    "name": "sort",
+    "memberof": "lib/IFTSTransaction.js~IFTSTransaction",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "lib/IFTSTransaction.js~IFTSTransaction#sort",
+    "access": "public",
+    "description": "Sort and get all contents.",
+    "lineNumber": 304,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "column",
+        "description": "the column for sorting."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "'asc'",
+          "'desc'"
+        ],
+        "spread": false,
+        "optional": true,
+        "defaultValue": "'asc'",
+        "defaultRaw": "'asc'",
+        "name": "order",
+        "description": "sort order."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Number"
+        ],
+        "spread": false,
+        "optional": true,
+        "defaultValue": "0",
+        "defaultRaw": 0,
+        "name": "offset",
+        "description": "starting offset of the result."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Number"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "limit",
+        "description": "maximum number of result length. will unlimited if omitted."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "IFTSArrayPromise"
+      ],
+      "spread": false,
+      "description": "sorted contents."
+    }
+  },
+  {
+    "__docId__": 88,
+    "kind": "method",
+    "name": "get",
+    "memberof": "lib/IFTSTransaction.js~IFTSTransaction",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "lib/IFTSTransaction.js~IFTSTransaction#get",
+    "access": "public",
+    "description": "Get content by primary key.",
+    "lineNumber": 328,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "key",
+        "description": "the key of content."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Promise<object|undefined>"
+      ],
+      "spread": false,
+      "description": "content. promise will reject with {@link InvalidKeyError} if keys included null or undefined. result value will be undefined if not found."
+    }
+  },
+  {
+    "__docId__": 89,
+    "kind": "method",
+    "name": "_getAllWithIndex",
+    "memberof": "lib/IFTSTransaction.js~IFTSTransaction",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "lib/IFTSTransaction.js~IFTSTransaction#_getAllWithIndex",
+    "access": "private",
+    "description": "Get contents matched keyRange.",
+    "lineNumber": 354,
+    "ignore": true,
+    "params": [
+      {
+        "name": "column",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "keyRange",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 90,
+    "kind": "method",
+    "name": "equals",
+    "memberof": "lib/IFTSTransaction.js~IFTSTransaction",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "lib/IFTSTransaction.js~IFTSTransaction#equals",
+    "access": "public",
+    "description": "Get contents that have fully matched property.",
+    "lineNumber": 376,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "column",
+        "description": "column name for search."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "value",
+        "description": "value for search."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "IFTSArrayPromise"
+      ],
+      "spread": false,
+      "description": "matched contents. may reject with {@link NoSuchColumnError}."
+    }
+  },
+  {
+    "__docId__": 91,
+    "kind": "method",
+    "name": "lower",
+    "memberof": "lib/IFTSTransaction.js~IFTSTransaction",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "lib/IFTSTransaction.js~IFTSTransaction#lower",
+    "access": "public",
+    "description": "Get contents that have property lower than value.",
+    "lineNumber": 388,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "column",
+        "description": "column name for search."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "value",
+        "description": "value for search."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "IFTSArrayPromise"
+      ],
+      "spread": false,
+      "description": "matched contents. may reject with {@link NoSuchColumnError}."
+    }
+  },
+  {
+    "__docId__": 92,
+    "kind": "method",
+    "name": "greater",
+    "memberof": "lib/IFTSTransaction.js~IFTSTransaction",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "lib/IFTSTransaction.js~IFTSTransaction#greater",
+    "access": "public",
+    "description": "Get contents that have property greater than value.",
+    "lineNumber": 400,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "column",
+        "description": "column name for search."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "value",
+        "description": "value for search."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "IFTSArrayPromise"
+      ],
+      "spread": false,
+      "description": "matched contents. may reject with {@link NoSuchColumnError}."
+    }
+  },
+  {
+    "__docId__": 93,
+    "kind": "method",
+    "name": "lowerOrEquals",
+    "memberof": "lib/IFTSTransaction.js~IFTSTransaction",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "lib/IFTSTransaction.js~IFTSTransaction#lowerOrEquals",
+    "access": "public",
+    "description": "Get contents that have property lower than value or equals value.",
+    "lineNumber": 412,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "column",
+        "description": "column name for search."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "value",
+        "description": "value for search."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "IFTSArrayPromise"
+      ],
+      "spread": false,
+      "description": "matched contents. may reject with {@link NoSuchColumnError}."
+    }
+  },
+  {
+    "__docId__": 94,
+    "kind": "method",
+    "name": "greaterOrEquals",
+    "memberof": "lib/IFTSTransaction.js~IFTSTransaction",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "lib/IFTSTransaction.js~IFTSTransaction#greaterOrEquals",
+    "access": "public",
+    "description": "Get contents that have property greater than value or equals value.",
+    "lineNumber": 424,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "column",
+        "description": "column name for search."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "value",
+        "description": "value for search."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "IFTSArrayPromise"
+      ],
+      "spread": false,
+      "description": "matched contents. may reject with {@link NoSuchColumnError}."
+    }
+  },
+  {
+    "__docId__": 95,
+    "kind": "method",
+    "name": "between",
+    "memberof": "lib/IFTSTransaction.js~IFTSTransaction",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "lib/IFTSTransaction.js~IFTSTransaction#between",
+    "access": "public",
+    "description": "Get contents that have property is between argument values.",
+    "lineNumber": 437,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "column",
+        "description": "column name for search."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "lower",
+        "description": "minimal value."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "upper",
+        "description": "maximum value."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "IFTSArrayPromise"
+      ],
+      "spread": false,
+      "description": "matched contents. may reject with {@link NoSuchColumnError}."
+    }
+  },
+  {
+    "__docId__": 96,
+    "kind": "method",
+    "name": "_takeCandidatesBySingleColumn",
+    "memberof": "lib/IFTSTransaction.js~IFTSTransaction",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "lib/IFTSTransaction.js~IFTSTransaction#_takeCandidatesBySingleColumn",
+    "access": "private",
+    "description": "Get candidates of search result.",
+    "lineNumber": 446,
+    "ignore": true,
+    "params": [
+      {
+        "name": "column",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "queries",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 97,
+    "kind": "method",
+    "name": "_pruneCandidates",
+    "memberof": "lib/IFTSTransaction.js~IFTSTransaction",
+    "generator": false,
+    "async": true,
+    "static": false,
+    "longname": "lib/IFTSTransaction.js~IFTSTransaction#_pruneCandidates",
+    "access": "private",
+    "description": "Prune contents by result of {@link IFTSTransaction#_takeCandidatesBySingleColumn}.",
+    "lineNumber": 505,
+    "ignore": true,
+    "params": [
+      {
+        "name": "queries_num",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "candidates",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 98,
+    "kind": "method",
+    "name": "search",
+    "memberof": "lib/IFTSTransaction.js~IFTSTransaction",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "lib/IFTSTransaction.js~IFTSTransaction#search",
+    "access": "public",
+    "description": "Get contents that have matched property by full-text search.\n\nAll target columns have to made ngram index when created database.\nIf you didn't made ngram index, you can use {@link IFTSArrayPromise#search} (but this way is very slow).",
+    "lineNumber": 541,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "object",
+          "object[]"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "columns",
+        "description": "column names for search."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "query",
+        "description": "query for search."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "IFTSArrayPromise"
+      ],
+      "spread": false,
+      "description": "matched contents. may reject with {@link NoSuchColumnError}."
+    }
+  },
+  {
+    "__docId__": 99,
+    "kind": "method",
+    "name": "searchWord",
+    "memberof": "lib/IFTSTransaction.js~IFTSTransaction",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "lib/IFTSTransaction.js~IFTSTransaction#searchWord",
+    "access": "public",
+    "description": "Find contents that have fully matched word in property.\n\nAll target columns have to made word index when created database.\nIf you didn't made word index, you can use {@link IFTSArrayPromise#searchWord} (but this way is very slow).",
+    "lineNumber": 584,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "object",
+          "object[]"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "columns",
+        "description": "column names for search."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "query",
+        "description": "query for search."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "IFTSArrayPromise"
+      ],
+      "spread": false,
+      "description": "matched contents. may reject with {@link NoSuchColumnError}."
+    }
+  },
+  {
+    "__docId__": 100,
+    "kind": "file",
+    "name": "lib/IndexedFTS.js",
+    "content": "import IFTSTransaction from './IFTSTransaction';\n\n\n/**\n * The database of IndexedFTS.\n *\n * Almost methods are the same interface as {@link IDBTransaction} and {@link IFTSArrayPromise}.\n */\nexport default class IndexedFTS {\n\t/**\n\t * Create or open IndexedFTS.\n\t *\n\t * Database has name and schema's version.\n\t * The name is a name of the database in the storage.\n\t *\n\t * The schema is an object that key is column name and value is a definition of indexes. Schema can't change in same version database.\n\t * If you want change schema of database, please change version number.\n\t * Please be careful, all contents will remove when changing the version number.\n\t *\n\t * Index types are 'primary', 'unique', 'fulltext', 'ngram', 'word', or normal index.\n\t *\n\t * 'primary' is a primary key of the database. 'primary' can't set to multiple columns.\n\t *\n\t * 'unique' is columns that have a unique value in the database.\n\t *\n\t * If set 'ngram' IndexedFTS will make 2-gram index table for full-text search.\n\t * 'fulltext' is alias to 'ngram'.\n\t *\n\t * 'word' is word based index.\n\t * The word index will split text with whitespaces and store those.\n\t * Word index is faster than the 'ngram' index but can't find a partial match in the word.\n\t *\n\t * The normal index that not set optioned that not unique, not primary, and not indexed for full-text search. You can numeric search like {@link IndexedFTS#lower} {@link IndexedFTS#between} even if not set option.\n\t *\n\t * If you want to set some index types, please use object like `{unique: true, fulltext: true}`.\n\t *\n\t * @param {string} name - name of new (or open) database.\n\t * @param {number} version - schema's version of database.\n\t * @param {Array<string|object>} schema - database schema.\n\t * @param {object} [options] - other options.\n\t * @param {string} [options.index_prefix='indexedfts_'] - prefix of indexes for full-text search.\n\t * @param {object} [options.scope=window] - endpoints for IndexedDB API.\n\t */\n\tconstructor(name, version, schema, options={}) {\n\t\t/** @type {string} */\n\t\tthis.index_prefix = options.index_prefix || 'indexedfts_';\n\n\t\t/** @type {object} */\n\t\tthis.scope = options.scope || window;\n\n\t\t/** @type {string} */\n\t\tthis.name = name;\n\n\t\t/** @type {number} */\n\t\tthis.version = version;\n\n\t\t/** @type {object} */\n\t\tthis.schema = schema;\n\n\t\t/** @type {object} */\n\t\tthis.store_option = {autoIncrement: true};\n\n\t\t/** @type {string|null} */\n\t\tthis.primary_key = null;\n\n\t\t/** @type {Set<string>} */\n\t\tthis.ngram_indexes = new Set();\n\n\t\t/** @type {Set<string>} */\n\t\tthis.word_indexes = new Set();\n\n\t\t/** @type {Set<string>} */\n\t\tthis.unique_indexes = new Set();\n\n\t\t/** @type {Set<string>} */\n\t\tthis.normal_indexes = new Set();\n\n\t\t/** @type {IDBDatabase} */\n\t\tthis.db = null;\n\n\t\tfor (let x in schema) {\n\t\t\tif (schema[x] === 'primary' || schema[x].primary) {\n\t\t\t\tif ('keyPath' in this.store_option) {\n\t\t\t\t\tthrow new Error('can not use multi primary key');\n\t\t\t\t}\n\t\t\t\tthis.primary_key = x;\n\t\t\t\tthis.store_option = {keyPath: x};\n\t\t\t} else if (schema[x] === 'unique' || schema[x].unique) {\n\t\t\t\tthis.unique_indexes.add(x);\n\t\t\t} else {\n\t\t\t\tthis.normal_indexes.add(x);\n\t\t\t}\n\n\t\t\tif (schema[x] === 'ngram' || schema[x].ngram\n\t\t\t|| schema[x] === 'fulltext' || schema[x].fulltext) {\n\t\t\t\tthis.ngram_indexes.add(x);\n\t\t\t}\n\n\t\t\tif (schema[x] === 'word' || schema[x].word) {\n\t\t\t\tthis.word_indexes.add(x);\n\t\t\t}\n\t\t}\n\t}\n\n\t/**\n\t * Delete database.\n\t *\n\t * Must be close all IndexedFTS before delete database.\n\t *\n\t * @param {string} name - name of target database. this method will success even if no such database.\n\t * @param {object} [scope] - endpoints for IndexedDB API.\n\t *\n\t * @return {Promise<undefined>}\n\t */\n\tstatic delete(name, scope=null) {\n\t\treturn new Promise((resolve, reject) => {\n\t\t\tconst req = (scope || window).indexedDB.deleteDatabase(name);\n\t\t\treq.onsuccess = ev => resolve();\n\t\t\treq.onerror = ev => reject(ev);\n\t\t});\n\t}\n\n\t/** @type {Set<string>} */\n\tget indexes() {\n\t\tconst r = new Set([...this.ngram_indexes, ...this.word_indexes, ...this.unique_indexes, ...this.normal_indexes]);\n\t\tif (this.primary_key !== null) {\n\t\t\tr.add(this.primary_key);\n\t\t}\n\t\treturn r;\n\t}\n\n\t/**\n\t * Open database.\n\t *\n\t * @return {Promise<undefined>}\n\t */\n\topen() {\n\t\treturn new Promise((resolve, reject) => {\n\t\t\tconst request = this.scope.indexedDB.open(this.name, this.version);\n\n\t\t\trequest.onsuccess = ev => {\n\t\t\t\tthis.db = ev.target.result;\n\t\t\t\tresolve(this);\n\t\t\t};\n\t\t\trequest.onerror = reject;\n\n\t\t\trequest.onupgradeneeded = ev => {\n\t\t\t\tthis.db = ev.target.result;\n\n\t\t\t\tconst store = this.db.createObjectStore('data', this.store_option);\n\n\t\t\t\tstore.onerror = reject;\n\n\t\t\t\tthis.unique_indexes.forEach(x => store.createIndex(x, x, {unique: true}));\n\n\t\t\t\tthis.normal_indexes.forEach(x => store.createIndex(x, x, {unique: false}));\n\n\t\t\t\tthis.ngram_indexes.forEach(column => {\n\t\t\t\t\tconst fts_store = this.db.createObjectStore(this.index_prefix + 'ngram_' + column, {autoIncrement: true});\n\t\t\t\t\tfts_store.onerror = reject\n\t\t\t\t\tfts_store.createIndex('key', 'key', {unique: false});\n\t\t\t\t\tfts_store.createIndex('token', 'token', {unique: false});\n\t\t\t\t});\n\n\t\t\t\tthis.word_indexes.forEach(column => {\n\t\t\t\t\tconst fts_store = this.db.createObjectStore(this.index_prefix + 'word_' + column, {autoIncrement: true});\n\t\t\t\t\tfts_store.onerror = reject\n\t\t\t\t\tfts_store.createIndex('key', 'key', {unique: false});\n\t\t\t\t\tfts_store.createIndex('word', 'word', {unique: false});\n\t\t\t\t});\n\t\t\t};\n\t\t});\n\t}\n\n\t/**\n\t * Close database.\n\t */\n\tclose() {\n\t\tthis.db.close();\n\t}\n\n\t/**\n\t * Make new {@link IFTSTransaction}.\n\t *\n\t * @param {\"readonly\"|\"readwrite\"} mode - mode of transaction.\n\t * @param {string[]|null} target - open index targets. open for all if null.\n\t *\n\t * @return {IFTSTransaction}\n\t */\n\ttransaction(mode='readonly', target=null) {\n\t\tif (target === null) {\n\t\t\tconst ngrams = [...this.ngram_indexes].map(x => this.index_prefix + 'ngram_' + x);\n\t\t\tconst words = [...this.word_indexes].map(x => this.index_prefix + 'word_' + x);\n\t\t\ttarget = ngrams.concat(words).concat(['data']);\n\t\t}\n\t\treturn new IFTSTransaction(this, this.db.transaction(target, mode));\n\t}\n\n\t/**\n\t * Put contents into database.\n\t *\n\t * @param {object} contents - contents for save. allowed multiple arguments.\n\t *\n\t * @return {Promise<IndexedFTS>} returns self for chain.\n\t */\n\tput(...contents) {\n\t\treturn this.transaction('readwrite').put(...contents).then(() => this);\n\t}\n\n\t/**\n\t * Delete contents from database.\n\t *\n\t * @param {object} keys - key of contents.\n\t *\n\t * @return {Promise<IndexedFTS>} returns self for chain. Will reject with {@link InvalidKeyError} if keys included null or undefined.\n\t */\n\tdelete(...keys) {\n\t\treturn this.transaction('readwrite').delete(...keys).then(() => this);\n\t}\n\n\t/**\n\t * Get content by primary key.\n\t *\n\t * @param {object} key - the key of content.\n\t *\n\t * @return {Promise<object|undefined>} content. promise will reject with {@link InvalidKeyError} if keys included null or undefined. result value will be undefined if not found.\n\t */\n\tget(key) {\n\t\treturn this.transaction('readonly', 'data').get(key);\n\t}\n\n\t/**\n\t * Get filtered contents.\n\t *\n\t * @ignore\n\t */\n\t_getFiltered(fun) {\n\t\treturn fun(this.transaction('readonly', 'data'));\n\t}\n\n\t/**\n\t * Get all contents.\n\t *\n\t * @return {IFTSArrayPromise} contents.\n\t */\n\tgetAll() {\n\t\treturn this._getFiltered(x => x.getAll());\n\t}\n\n\t/**\n\t * Do something process for each elements and returns {@link IFTSArrayPromise}.\n\t *\n\t * NOTE: This method doesn't fast. May better do filtering before doing map if need filtering.\n\t *\n\t * @param {function(content: object, index: Number): object} fun - function for processing element.\n\t *\n\t * @return {IFTSArrayPromise}\n\t */\n\tmap(fun) {\n\t\treturn this._getFiltered(x => x.map(fun));\n\t}\n\n\t/**\n\t * Filtering elements by function and returns {@link IFTSArrayPromise}.\n\t *\n\t * WARNING: This method won't use the index. Other methods(eg. {@link IFTSTransaction#equals or @link IFTSTransaction#lower} may faster than this.\n\t *\n\t * @param {function(content: object, index: Number): object} fun - function for filtering element.\n\t *\n\t * return {IFTSArrayPromise}\n\t */\n\tfilter(fun) {\n\t\treturn this._getFiltered(x => x.filter(fun));\n\t}\n\n\t/**\n\t * Sort and get all contents.\n\t *\n\t * @param {object} column - the column for sorting.\n\t * @param {'asc'|'desc'} [order='asc'] - sort order.\n\t * @param {Number} [offset=0] - starting offset of the result.\n\t * @param {Number} [limit] - maximum number of result length. will unlimited if omitted.\n\t *\n\t * @return {IFTSArrayPromise} sorted contents.\n\t */\n\tsort(column, order='asc', offset=0, limit=undefined) {\n\t\treturn this._getFiltered(x => x.sort(column, order, offset, limit));\n\t}\n\n\t/**\n\t * Get contents that have fully matched property.\n\t *\n\t * @param {object} column - column name for search.\n\t * @param {object} value - value for search.\n\t *\n\t * @return {IFTSArrayPromise} matched contents. may reject with {@link NoSuchColumnError}.\n\t */\n\tequals(column, value) {\n\t\treturn this._getFiltered(x => x.equals(column, value));\n\t}\n\n\t/**\n\t * Get contents that have property lower than value.\n\t *\n\t * @param {object} column - column name for search.\n\t * @param {object} value - value for search.\n\t *\n\t * @return {IFTSArrayPromise} matched contents. may reject with {@link NoSuchColumnError}.\n\t */\n\tlower(column, value) {\n\t\treturn this._getFiltered(x => x.lower(column, value));\n\t}\n\n\t/**\n\t * Get contents that have property greater than value.\n\t *\n\t * @param {object} column - column name for search.\n\t * @param {object} value - value for search.\n\t *\n\t * @return {IFTSArrayPromise} matched contents. may reject with {@link NoSuchColumnError}.\n\t */\n\tgreater(column, value) {\n\t\treturn this._getFiltered(x => x.greater(column, value));\n\t}\n\n\t/**\n\t * Get contents that have property lower than value or equals value.\n\t *\n\t * @param {object} column - column name for search.\n\t * @param {object} value - value for search.\n\t *\n\t * @return {IFTSArrayPromise} matched contents. may reject with {@link NoSuchColumnError}.\n\t */\n\tlowerOrEquals(column, value) {\n\t\treturn this._getFiltered(x => x.lowerOrEquals(column, value));\n\t}\n\n\t/**\n\t * Get contents that have property greater than value or equals value.\n\t *\n\t * @param {object} column - column name for search.\n\t * @param {object} value - value for search.\n\t *\n\t * @return {IFTSArrayPromise} matched contents. may reject with {@link NoSuchColumnError}.\n\t */\n\tgreaterOrEquals(column, value) {\n\t\treturn this._getFiltered(x => x.greaterOrEquals(column, value));\n\t}\n\n\t/**\n\t * Get contents that have property is between argument values.\n\t *\n\t * @param {object} column - column name for search.\n\t * @param {object} lower - minimal value.\n\t * @param {object} upper - maximum value.\n\t *\n\t * @return {IFTSArrayPromise} matched contents. may reject with {@link NoSuchColumnError}.\n\t */\n\tbetween(column, lower, upper) {\n\t\treturn this._getFiltered(x => x.between(column, lower, upper));\n\t}\n\n\t/**\n\t * Get contents that have matched property by full-text search.\n\t *\n\t * All target columns have to made ngram index when created database.\n\t * If you didn't made ngram index, you can use {@link IFTSArrayPromise#search} (but this way is very slow).\n\t *\n\t *\n\t * @param {object|object[]} columns - column names for search.\n\t * @param {string} query - query for search.\n\t *\n\t * @return {IFTSArrayPromise} matched contents. may reject with {@link NoSuchColumnError}.\n\t */\n\tsearch(columns, query) {\n\t\treturn this.transaction().search(columns, query);\n\t}\n\n\t/**\n\t * Find contents that have fully matched word in property.\n\t *\n\t * All target columns have to made word index when created database.\n\t * If you didn't made word index, you can use {@link IFTSArrayPromise#searchWord} (but this way is very slow).\n\t *\n\t *\n\t * @param {object|object[]} columns - column names for search.\n\t * @param {string} query - query for search.\n\t *\n\t * @return {IFTSArrayPromise} matched contents. may reject with {@link NoSuchColumnError}.\n\t */\n\tsearchWord(columns, query) {\n\t\treturn this.transaction().searchWord(columns, query);\n\t}\n}\n",
+    "static": true,
+    "longname": "/home/ena/indexedfts/lib/IndexedFTS.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 101,
+    "kind": "class",
+    "name": "IndexedFTS",
+    "memberof": "lib/IndexedFTS.js",
+    "static": true,
+    "longname": "lib/IndexedFTS.js~IndexedFTS",
+    "access": "public",
+    "export": true,
+    "importPath": "indexedfts/lib/IndexedFTS.js",
+    "importStyle": "IndexedFTS",
+    "description": "The database of IndexedFTS.\n\nAlmost methods are the same interface as {@link IDBTransaction} and {@link IFTSArrayPromise}.",
+    "lineNumber": 9,
+    "interface": false
+  },
+  {
+    "__docId__": 102,
+    "kind": "constructor",
+    "name": "constructor",
+    "memberof": "lib/IndexedFTS.js~IndexedFTS",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "lib/IndexedFTS.js~IndexedFTS#constructor",
+    "access": "public",
+    "description": "Create or open IndexedFTS.\n\nDatabase has name and schema's version.\nThe name is a name of the database in the storage.\n\nThe schema is an object that key is column name and value is a definition of indexes. Schema can't change in same version database.\nIf you want change schema of database, please change version number.\nPlease be careful, all contents will remove when changing the version number.\n\nIndex types are 'primary', 'unique', 'fulltext', 'ngram', 'word', or normal index.\n\n'primary' is a primary key of the database. 'primary' can't set to multiple columns.\n\n'unique' is columns that have a unique value in the database.\n\nIf set 'ngram' IndexedFTS will make 2-gram index table for full-text search.\n'fulltext' is alias to 'ngram'.\n\n'word' is word based index.\nThe word index will split text with whitespaces and store those.\nWord index is faster than the 'ngram' index but can't find a partial match in the word.\n\nThe normal index that not set optioned that not unique, not primary, and not indexed for full-text search. You can numeric search like {@link IndexedFTS#lower} {@link IndexedFTS#between} even if not set option.\n\nIf you want to set some index types, please use object like `{unique: true, fulltext: true}`.",
+    "lineNumber": 44,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "name",
+        "description": "name of new (or open) database."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "version",
+        "description": "schema's version of database."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Array<string|object>"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "schema",
+        "description": "database schema."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "object"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "options",
+        "description": "other options."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": true,
+        "defaultValue": "'indexedfts_'",
+        "defaultRaw": "'indexedfts_'",
+        "name": "options.index_prefix",
+        "description": "prefix of indexes for full-text search."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "object"
+        ],
+        "spread": false,
+        "optional": true,
+        "defaultValue": "window",
+        "defaultRaw": "window",
+        "name": "options.scope",
+        "description": "endpoints for IndexedDB API."
+      }
+    ]
+  },
+  {
+    "__docId__": 103,
+    "kind": "member",
+    "name": "index_prefix",
+    "memberof": "lib/IndexedFTS.js~IndexedFTS",
+    "static": false,
+    "longname": "lib/IndexedFTS.js~IndexedFTS#index_prefix",
+    "access": "public",
+    "description": null,
+    "lineNumber": 46,
+    "type": {
+      "nullable": null,
+      "types": [
+        "string"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "__docId__": 104,
+    "kind": "member",
+    "name": "scope",
+    "memberof": "lib/IndexedFTS.js~IndexedFTS",
+    "static": false,
+    "longname": "lib/IndexedFTS.js~IndexedFTS#scope",
+    "access": "public",
+    "description": null,
+    "lineNumber": 49,
+    "type": {
+      "nullable": null,
+      "types": [
+        "object"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "__docId__": 105,
+    "kind": "member",
+    "name": "name",
+    "memberof": "lib/IndexedFTS.js~IndexedFTS",
+    "static": false,
+    "longname": "lib/IndexedFTS.js~IndexedFTS#name",
+    "access": "public",
+    "description": null,
+    "lineNumber": 52,
+    "type": {
+      "nullable": null,
+      "types": [
+        "string"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "__docId__": 106,
+    "kind": "member",
+    "name": "version",
+    "memberof": "lib/IndexedFTS.js~IndexedFTS",
+    "static": false,
+    "longname": "lib/IndexedFTS.js~IndexedFTS#version",
+    "access": "public",
+    "description": null,
+    "lineNumber": 55,
+    "type": {
+      "nullable": null,
+      "types": [
+        "number"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "__docId__": 107,
+    "kind": "member",
+    "name": "schema",
+    "memberof": "lib/IndexedFTS.js~IndexedFTS",
+    "static": false,
+    "longname": "lib/IndexedFTS.js~IndexedFTS#schema",
+    "access": "public",
+    "description": null,
+    "lineNumber": 58,
+    "type": {
+      "nullable": null,
+      "types": [
+        "object"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "__docId__": 108,
+    "kind": "member",
+    "name": "store_option",
+    "memberof": "lib/IndexedFTS.js~IndexedFTS",
+    "static": false,
+    "longname": "lib/IndexedFTS.js~IndexedFTS#store_option",
+    "access": "public",
+    "description": null,
+    "lineNumber": 61,
+    "type": {
+      "nullable": null,
+      "types": [
+        "object"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "__docId__": 109,
+    "kind": "member",
+    "name": "primary_key",
+    "memberof": "lib/IndexedFTS.js~IndexedFTS",
+    "static": false,
+    "longname": "lib/IndexedFTS.js~IndexedFTS#primary_key",
+    "access": "public",
+    "description": null,
+    "lineNumber": 64,
+    "type": {
+      "nullable": null,
+      "types": [
+        "string",
+        "null"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "__docId__": 110,
+    "kind": "member",
+    "name": "ngram_indexes",
+    "memberof": "lib/IndexedFTS.js~IndexedFTS",
+    "static": false,
+    "longname": "lib/IndexedFTS.js~IndexedFTS#ngram_indexes",
+    "access": "public",
+    "description": null,
+    "lineNumber": 67,
+    "type": {
+      "nullable": null,
+      "types": [
+        "Set<string>"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "__docId__": 111,
+    "kind": "member",
+    "name": "word_indexes",
+    "memberof": "lib/IndexedFTS.js~IndexedFTS",
+    "static": false,
+    "longname": "lib/IndexedFTS.js~IndexedFTS#word_indexes",
+    "access": "public",
+    "description": null,
+    "lineNumber": 70,
+    "type": {
+      "nullable": null,
+      "types": [
+        "Set<string>"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "__docId__": 112,
+    "kind": "member",
+    "name": "unique_indexes",
+    "memberof": "lib/IndexedFTS.js~IndexedFTS",
+    "static": false,
+    "longname": "lib/IndexedFTS.js~IndexedFTS#unique_indexes",
+    "access": "public",
+    "description": null,
+    "lineNumber": 73,
+    "type": {
+      "nullable": null,
+      "types": [
+        "Set<string>"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "__docId__": 113,
+    "kind": "member",
+    "name": "normal_indexes",
+    "memberof": "lib/IndexedFTS.js~IndexedFTS",
+    "static": false,
+    "longname": "lib/IndexedFTS.js~IndexedFTS#normal_indexes",
+    "access": "public",
+    "description": null,
+    "lineNumber": 76,
+    "type": {
+      "nullable": null,
+      "types": [
+        "Set<string>"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "__docId__": 114,
+    "kind": "member",
+    "name": "db",
+    "memberof": "lib/IndexedFTS.js~IndexedFTS",
+    "static": false,
+    "longname": "lib/IndexedFTS.js~IndexedFTS#db",
+    "access": "public",
+    "description": null,
+    "lineNumber": 79,
+    "type": {
+      "nullable": null,
+      "types": [
+        "IDBDatabase"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "__docId__": 117,
+    "kind": "method",
+    "name": "delete",
+    "memberof": "lib/IndexedFTS.js~IndexedFTS",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "lib/IndexedFTS.js~IndexedFTS.delete",
+    "access": "public",
+    "description": "Delete database.\n\nMust be close all IndexedFTS before delete database.",
+    "lineNumber": 115,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "name",
+        "description": "name of target database. this method will success even if no such database."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "object"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "scope",
+        "description": "endpoints for IndexedDB API."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Promise<undefined>"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 118,
+    "kind": "get",
+    "name": "indexes",
+    "memberof": "lib/IndexedFTS.js~IndexedFTS",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "lib/IndexedFTS.js~IndexedFTS#indexes",
+    "access": "public",
+    "description": null,
+    "lineNumber": 124,
+    "type": {
+      "nullable": null,
+      "types": [
+        "Set<string>"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "__docId__": 119,
+    "kind": "method",
+    "name": "open",
+    "memberof": "lib/IndexedFTS.js~IndexedFTS",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "lib/IndexedFTS.js~IndexedFTS#open",
+    "access": "public",
+    "description": "Open database.",
+    "lineNumber": 137,
+    "return": {
+      "nullable": null,
+      "types": [
+        "Promise<undefined>"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "params": []
+  },
+  {
+    "__docId__": 122,
+    "kind": "method",
+    "name": "close",
+    "memberof": "lib/IndexedFTS.js~IndexedFTS",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "lib/IndexedFTS.js~IndexedFTS#close",
+    "access": "public",
+    "description": "Close database.",
+    "lineNumber": 178,
+    "params": [],
+    "return": null
+  },
+  {
+    "__docId__": 123,
+    "kind": "method",
+    "name": "transaction",
+    "memberof": "lib/IndexedFTS.js~IndexedFTS",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "lib/IndexedFTS.js~IndexedFTS#transaction",
+    "access": "public",
+    "description": "Make new {@link IFTSTransaction}.",
+    "lineNumber": 190,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "\"readonly\"",
+          "\"readwrite\""
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "mode",
+        "description": "mode of transaction."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "string[]",
+          "null"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "target",
+        "description": "open index targets. open for all if null."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "IFTSTransaction"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 124,
+    "kind": "method",
+    "name": "put",
+    "memberof": "lib/IndexedFTS.js~IndexedFTS",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "lib/IndexedFTS.js~IndexedFTS#put",
+    "access": "public",
+    "description": "Put contents into database.",
+    "lineNumber": 206,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "contents",
+        "description": "contents for save. allowed multiple arguments."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Promise<IndexedFTS>"
+      ],
+      "spread": false,
+      "description": "returns self for chain."
+    }
+  },
+  {
+    "__docId__": 125,
+    "kind": "method",
+    "name": "delete",
+    "memberof": "lib/IndexedFTS.js~IndexedFTS",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "lib/IndexedFTS.js~IndexedFTS#delete",
+    "access": "public",
+    "description": "Delete contents from database.",
+    "lineNumber": 217,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "keys",
+        "description": "key of contents."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Promise<IndexedFTS>"
+      ],
+      "spread": false,
+      "description": "returns self for chain. Will reject with {@link InvalidKeyError} if keys included null or undefined."
+    }
+  },
+  {
+    "__docId__": 126,
+    "kind": "method",
+    "name": "get",
+    "memberof": "lib/IndexedFTS.js~IndexedFTS",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "lib/IndexedFTS.js~IndexedFTS#get",
+    "access": "public",
+    "description": "Get content by primary key.",
+    "lineNumber": 228,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "key",
+        "description": "the key of content."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Promise<object|undefined>"
+      ],
+      "spread": false,
+      "description": "content. promise will reject with {@link InvalidKeyError} if keys included null or undefined. result value will be undefined if not found."
+    }
+  },
+  {
+    "__docId__": 127,
+    "kind": "method",
+    "name": "_getFiltered",
+    "memberof": "lib/IndexedFTS.js~IndexedFTS",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "lib/IndexedFTS.js~IndexedFTS#_getFiltered",
+    "access": "private",
+    "description": "Get filtered contents.",
+    "lineNumber": 237,
+    "ignore": true,
+    "params": [
+      {
+        "name": "fun",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 128,
+    "kind": "method",
+    "name": "getAll",
+    "memberof": "lib/IndexedFTS.js~IndexedFTS",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "lib/IndexedFTS.js~IndexedFTS#getAll",
+    "access": "public",
+    "description": "Get all contents.",
+    "lineNumber": 246,
+    "return": {
+      "nullable": null,
+      "types": [
+        "IFTSArrayPromise"
+      ],
+      "spread": false,
+      "description": "contents."
+    },
+    "params": []
+  },
+  {
+    "__docId__": 129,
+    "kind": "method",
+    "name": "map",
+    "memberof": "lib/IndexedFTS.js~IndexedFTS",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "lib/IndexedFTS.js~IndexedFTS#map",
+    "access": "public",
+    "description": "Do something process for each elements and returns {@link IFTSArrayPromise}.\n\nNOTE: This method doesn't fast. May better do filtering before doing map if need filtering.",
+    "lineNumber": 259,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "function(content: object, index: Number): object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "fun",
+        "description": "function for processing element."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "IFTSArrayPromise"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 130,
+    "kind": "method",
+    "name": "filter",
+    "memberof": "lib/IndexedFTS.js~IndexedFTS",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "lib/IndexedFTS.js~IndexedFTS#filter",
+    "access": "public",
+    "description": "Filtering elements by function and returns {@link IFTSArrayPromise}.\n\nWARNING: This method won't use the index. Other methods(eg. {@link IFTSTransaction#equals or @link IFTSTransaction#lower} may faster than this.",
+    "lineNumber": 272,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "function(content: object, index: Number): object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "fun",
+        "description": "function for filtering element.\n\nreturn {IFTSArrayPromise}"
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 131,
+    "kind": "method",
+    "name": "sort",
+    "memberof": "lib/IndexedFTS.js~IndexedFTS",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "lib/IndexedFTS.js~IndexedFTS#sort",
+    "access": "public",
+    "description": "Sort and get all contents.",
+    "lineNumber": 286,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "column",
+        "description": "the column for sorting."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "'asc'",
+          "'desc'"
+        ],
+        "spread": false,
+        "optional": true,
+        "defaultValue": "'asc'",
+        "defaultRaw": "'asc'",
+        "name": "order",
+        "description": "sort order."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Number"
+        ],
+        "spread": false,
+        "optional": true,
+        "defaultValue": "0",
+        "defaultRaw": 0,
+        "name": "offset",
+        "description": "starting offset of the result."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Number"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "limit",
+        "description": "maximum number of result length. will unlimited if omitted."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "IFTSArrayPromise"
+      ],
+      "spread": false,
+      "description": "sorted contents."
+    }
+  },
+  {
+    "__docId__": 132,
+    "kind": "method",
+    "name": "equals",
+    "memberof": "lib/IndexedFTS.js~IndexedFTS",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "lib/IndexedFTS.js~IndexedFTS#equals",
+    "access": "public",
+    "description": "Get contents that have fully matched property.",
+    "lineNumber": 298,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "column",
+        "description": "column name for search."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "value",
+        "description": "value for search."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "IFTSArrayPromise"
+      ],
+      "spread": false,
+      "description": "matched contents. may reject with {@link NoSuchColumnError}."
+    }
+  },
+  {
+    "__docId__": 133,
+    "kind": "method",
+    "name": "lower",
+    "memberof": "lib/IndexedFTS.js~IndexedFTS",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "lib/IndexedFTS.js~IndexedFTS#lower",
+    "access": "public",
+    "description": "Get contents that have property lower than value.",
+    "lineNumber": 310,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "column",
+        "description": "column name for search."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "value",
+        "description": "value for search."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "IFTSArrayPromise"
+      ],
+      "spread": false,
+      "description": "matched contents. may reject with {@link NoSuchColumnError}."
+    }
+  },
+  {
+    "__docId__": 134,
+    "kind": "method",
+    "name": "greater",
+    "memberof": "lib/IndexedFTS.js~IndexedFTS",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "lib/IndexedFTS.js~IndexedFTS#greater",
+    "access": "public",
+    "description": "Get contents that have property greater than value.",
+    "lineNumber": 322,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "column",
+        "description": "column name for search."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "value",
+        "description": "value for search."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "IFTSArrayPromise"
+      ],
+      "spread": false,
+      "description": "matched contents. may reject with {@link NoSuchColumnError}."
+    }
+  },
+  {
+    "__docId__": 135,
+    "kind": "method",
+    "name": "lowerOrEquals",
+    "memberof": "lib/IndexedFTS.js~IndexedFTS",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "lib/IndexedFTS.js~IndexedFTS#lowerOrEquals",
+    "access": "public",
+    "description": "Get contents that have property lower than value or equals value.",
+    "lineNumber": 334,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "column",
+        "description": "column name for search."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "value",
+        "description": "value for search."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "IFTSArrayPromise"
+      ],
+      "spread": false,
+      "description": "matched contents. may reject with {@link NoSuchColumnError}."
+    }
+  },
+  {
+    "__docId__": 136,
+    "kind": "method",
+    "name": "greaterOrEquals",
+    "memberof": "lib/IndexedFTS.js~IndexedFTS",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "lib/IndexedFTS.js~IndexedFTS#greaterOrEquals",
+    "access": "public",
+    "description": "Get contents that have property greater than value or equals value.",
+    "lineNumber": 346,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "column",
+        "description": "column name for search."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "value",
+        "description": "value for search."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "IFTSArrayPromise"
+      ],
+      "spread": false,
+      "description": "matched contents. may reject with {@link NoSuchColumnError}."
+    }
+  },
+  {
+    "__docId__": 137,
+    "kind": "method",
+    "name": "between",
+    "memberof": "lib/IndexedFTS.js~IndexedFTS",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "lib/IndexedFTS.js~IndexedFTS#between",
+    "access": "public",
+    "description": "Get contents that have property is between argument values.",
+    "lineNumber": 359,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "column",
+        "description": "column name for search."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "lower",
+        "description": "minimal value."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "upper",
+        "description": "maximum value."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "IFTSArrayPromise"
+      ],
+      "spread": false,
+      "description": "matched contents. may reject with {@link NoSuchColumnError}."
+    }
+  },
+  {
+    "__docId__": 138,
+    "kind": "method",
+    "name": "search",
+    "memberof": "lib/IndexedFTS.js~IndexedFTS",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "lib/IndexedFTS.js~IndexedFTS#search",
+    "access": "public",
+    "description": "Get contents that have matched property by full-text search.\n\nAll target columns have to made ngram index when created database.\nIf you didn't made ngram index, you can use {@link IFTSArrayPromise#search} (but this way is very slow).",
+    "lineNumber": 375,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "object",
+          "object[]"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "columns",
+        "description": "column names for search."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "query",
+        "description": "query for search."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "IFTSArrayPromise"
+      ],
+      "spread": false,
+      "description": "matched contents. may reject with {@link NoSuchColumnError}."
+    }
+  },
+  {
+    "__docId__": 139,
+    "kind": "method",
+    "name": "searchWord",
+    "memberof": "lib/IndexedFTS.js~IndexedFTS",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "lib/IndexedFTS.js~IndexedFTS#searchWord",
+    "access": "public",
+    "description": "Find contents that have fully matched word in property.\n\nAll target columns have to made word index when created database.\nIf you didn't made word index, you can use {@link IFTSArrayPromise#searchWord} (but this way is very slow).",
+    "lineNumber": 391,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "object",
+          "object[]"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "columns",
+        "description": "column names for search."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "query",
+        "description": "query for search."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "IFTSArrayPromise"
+      ],
+      "spread": false,
+      "description": "matched contents. may reject with {@link NoSuchColumnError}."
+    }
+  },
+  {
+    "__docId__": 140,
+    "kind": "file",
+    "name": "lib/browser_index.js",
+    "content": "export {default as IndexedFTS} from './IndexedFTS';\nexport {default as IFTSTransaction} from './IFTSTransaction';\nexport {default as IFTSArrayPromise} from './IFTSArrayPromise';\nexport {NoSuchColumnError, InvalidKeyError} from './errors';\n",
+    "static": true,
+    "longname": "/home/ena/indexedfts/lib/browser_index.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 141,
+    "kind": "file",
+    "name": "lib/errors.js",
+    "content": "/**\n * NoSuchColumnError means specified no indexed column.\n */\nexport class NoSuchColumnError extends Error {\n\t/**\n\t * @param {object} column - name of errored column.\n\t */\n\tconstructor(column) {\n\t\tsuper(column + ': no such column or no indexed');\n\n\t\t/**\n\t\t * Column name that errored.\n\t\t *\n\t\t * @type {object}\n\t\t */\n\t\tthis.column = column;\n\n\t\t/** @ignore */\n\t\tthis.name = '';\n\n\t\tif (Error.captureStackTrace) {\n\t\t\tError.captureStackTrace(this, NoSuchColumnError);\n\t\t}\n\t}\n}\n\n\n/**\n * InvalidKeyError means specified invalid key.\n */\nexport class InvalidKeyError extends Error {\n\t/**\n\t * @param {object} key - name of specified key.\n\t */\n\tconstructor(key) {\n\t\tsuper('invalid key');\n\n\t\t/**\n\t\t * Key name that specified.\n\t\t *\n\t\t * @type {object}\n\t\t */\n\t\tthis.key = key;\n\n\t\t/** @ignore */\n\t\tthis.name = '';\n\n\t\tif (Error.captureStackTrace) {\n\t\t\tError.captureStackTrace(this, InvalidKeyError);\n\t\t}\n\t}\n}\n",
+    "static": true,
+    "longname": "/home/ena/indexedfts/lib/errors.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 142,
+    "kind": "class",
+    "name": "NoSuchColumnError",
+    "memberof": "lib/errors.js",
+    "static": true,
+    "longname": "lib/errors.js~NoSuchColumnError",
+    "access": "public",
+    "export": true,
+    "importPath": "indexedfts/lib/errors.js",
+    "importStyle": "{NoSuchColumnError}",
+    "description": "NoSuchColumnError means specified no indexed column.",
+    "lineNumber": 4,
+    "interface": false,
+    "extends": [
+      "Error"
+    ]
+  },
+  {
+    "__docId__": 143,
+    "kind": "constructor",
+    "name": "constructor",
+    "memberof": "lib/errors.js~NoSuchColumnError",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "lib/errors.js~NoSuchColumnError#constructor",
+    "access": "public",
+    "description": "",
+    "lineNumber": 8,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "column",
+        "description": "name of errored column."
+      }
+    ]
+  },
+  {
+    "__docId__": 144,
+    "kind": "member",
+    "name": "column",
+    "memberof": "lib/errors.js~NoSuchColumnError",
+    "static": false,
+    "longname": "lib/errors.js~NoSuchColumnError#column",
+    "access": "public",
+    "description": "Column name that errored.",
+    "lineNumber": 16,
+    "type": {
+      "nullable": null,
+      "types": [
+        "object"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "__docId__": 145,
+    "kind": "member",
+    "name": "name",
+    "memberof": "lib/errors.js~NoSuchColumnError",
+    "static": false,
+    "longname": "lib/errors.js~NoSuchColumnError#name",
+    "access": "public",
+    "description": null,
+    "lineNumber": 19,
+    "ignore": true,
+    "type": {
+      "types": [
+        "string"
+      ]
+    }
+  },
+  {
+    "__docId__": 146,
+    "kind": "class",
+    "name": "InvalidKeyError",
+    "memberof": "lib/errors.js",
+    "static": true,
+    "longname": "lib/errors.js~InvalidKeyError",
+    "access": "public",
+    "export": true,
+    "importPath": "indexedfts/lib/errors.js",
+    "importStyle": "{InvalidKeyError}",
+    "description": "InvalidKeyError means specified invalid key.",
+    "lineNumber": 31,
+    "interface": false,
+    "extends": [
+      "Error"
+    ]
+  },
+  {
+    "__docId__": 147,
+    "kind": "constructor",
+    "name": "constructor",
+    "memberof": "lib/errors.js~InvalidKeyError",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "lib/errors.js~InvalidKeyError#constructor",
+    "access": "public",
+    "description": "",
+    "lineNumber": 35,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "key",
+        "description": "name of specified key."
+      }
+    ]
+  },
+  {
+    "__docId__": 148,
+    "kind": "member",
+    "name": "key",
+    "memberof": "lib/errors.js~InvalidKeyError",
+    "static": false,
+    "longname": "lib/errors.js~InvalidKeyError#key",
+    "access": "public",
+    "description": "Key name that specified.",
+    "lineNumber": 43,
+    "type": {
+      "nullable": null,
+      "types": [
+        "object"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "__docId__": 149,
+    "kind": "member",
+    "name": "name",
+    "memberof": "lib/errors.js~InvalidKeyError",
+    "static": false,
+    "longname": "lib/errors.js~InvalidKeyError#name",
+    "access": "public",
+    "description": null,
+    "lineNumber": 46,
+    "ignore": true,
+    "type": {
+      "types": [
+        "string"
+      ]
+    }
+  },
+  {
+    "__docId__": 150,
+    "kind": "file",
+    "name": "lib/index.js",
+    "content": "export {default as default} from './IndexedFTS';\nexport {default as IFTSTransaction} from './IFTSTransaction';\nexport {default as IFTSArrayPromise} from './IFTSArrayPromise';\nexport {NoSuchColumnError, InvalidKeyError} from './errors';\n",
+    "static": true,
+    "longname": "/home/ena/indexedfts/lib/index.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 151,
+    "kind": "file",
+    "name": "lib/utils.js",
+    "content": "/**\n * Splitting text to n-gram\n *\n * @ignore\n */\nexport function splitText(text, ngram=2) {\n\tconst result = [];\n\tfor (let i=0; i<text.length-ngram+1; i++) {\n\t\tresult.push(text.slice(i, i+ngram));\n\t}\n\treturn result;\n}\n\n\n/**\n * Splitting text to words\n *\n * @ignore\n */\nexport function splitWords(text) {\n\treturn dedup(text.split(/\\s+/).filter(x => x.length > 0));\n}\n\n\n/**\n * Make n-gram set by text.\n *\n * @ignore\n */\nexport function tokenize(text, ngram=2) {\n\treturn dedup(splitText(text, ngram));\n}\n\n\n/**\n * Parse queries.\n *\n * @ignore\n */\nexport function splitQuery(query, ngram=2) {\n\tconst result = {};\n\tquery.split(/\\s+/).filter(q => q.length > 0).forEach(q => result[q] = tokenize(q, ngram));\n\treturn result;\n}\n\n\n/**\n * Deduplication from Array\n *\n * @ignore\n */\nexport function dedup(array) {\n\tconst result = new Array(array.length);\n\tconst index = new Set();\n\tlet idx = 0;\n\n\tfor (let i=0; i<array.length; i++) {\n\t\tif (!index.has(array[i])) {\n\t\t\tindex.add(array[i]);\n\t\t\tresult[idx] = array[i];\n\t\t\tidx++;\n\t\t}\n\t}\n\n\treturn result.slice(0, idx);\n}\n\n\n/**\n * Faster Array.prototype.map\n *\n * @ignore\n */\nexport function fastMap(array, fun) {\n\tconst result = new Array(array.length);\n\tfor (let i=0; i<array.length; i++) {\n\t\tresult[i] = fun(array[i]);\n\t}\n\treturn result;\n}\n\n\n/**\n * Flatten nested array\n *\n * @ignore\n */\nexport function flatten(array) {\n\tlet length = 0;\n\tfor (let i=0; i<array.length; i++) {\n\t\tlength += array[i].length;\n\t}\n\n\tconst result = new Array(length);\n\tlet idx = 0;\n\tfor (let i=0; i<array.length; i++) {\n\t\tfor (let j=0; j<array[i].length; j++) {\n\t\t\tresult[idx] = array[i][j];\n\t\t\tidx++;\n\t\t}\n\t}\n\n\treturn result;\n}\n",
+    "static": true,
+    "longname": "/home/ena/indexedfts/lib/utils.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 152,
+    "kind": "function",
+    "name": "splitText",
+    "memberof": "lib/utils.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "lib/utils.js~splitText",
+    "access": "public",
+    "export": true,
+    "importPath": "indexedfts/lib/utils.js",
+    "importStyle": "{splitText}",
+    "description": "Splitting text to n-gram",
+    "lineNumber": 6,
+    "ignore": true,
+    "params": [
+      {
+        "name": "text",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "ngram",
+        "optional": true,
+        "types": [
+          "number"
+        ],
+        "defaultRaw": 2,
+        "defaultValue": "2"
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 153,
+    "kind": "function",
+    "name": "splitWords",
+    "memberof": "lib/utils.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "lib/utils.js~splitWords",
+    "access": "public",
+    "export": true,
+    "importPath": "indexedfts/lib/utils.js",
+    "importStyle": "{splitWords}",
+    "description": "Splitting text to words",
+    "lineNumber": 20,
+    "ignore": true,
+    "params": [
+      {
+        "name": "text",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 154,
+    "kind": "function",
+    "name": "tokenize",
+    "memberof": "lib/utils.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "lib/utils.js~tokenize",
+    "access": "public",
+    "export": true,
+    "importPath": "indexedfts/lib/utils.js",
+    "importStyle": "{tokenize}",
+    "description": "Make n-gram set by text.",
+    "lineNumber": 30,
+    "ignore": true,
+    "params": [
+      {
+        "name": "text",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "ngram",
+        "optional": true,
+        "types": [
+          "number"
+        ],
+        "defaultRaw": 2,
+        "defaultValue": "2"
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 155,
+    "kind": "function",
+    "name": "splitQuery",
+    "memberof": "lib/utils.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "lib/utils.js~splitQuery",
+    "access": "public",
+    "export": true,
+    "importPath": "indexedfts/lib/utils.js",
+    "importStyle": "{splitQuery}",
+    "description": "Parse queries.",
+    "lineNumber": 40,
+    "ignore": true,
+    "params": [
+      {
+        "name": "query",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "ngram",
+        "optional": true,
+        "types": [
+          "number"
+        ],
+        "defaultRaw": 2,
+        "defaultValue": "2"
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 156,
+    "kind": "function",
+    "name": "dedup",
+    "memberof": "lib/utils.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "lib/utils.js~dedup",
+    "access": "public",
+    "export": true,
+    "importPath": "indexedfts/lib/utils.js",
+    "importStyle": "{dedup}",
+    "description": "Deduplication from Array",
+    "lineNumber": 52,
+    "ignore": true,
+    "params": [
+      {
+        "name": "array",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 157,
+    "kind": "function",
+    "name": "fastMap",
+    "memberof": "lib/utils.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "lib/utils.js~fastMap",
+    "access": "public",
+    "export": true,
+    "importPath": "indexedfts/lib/utils.js",
+    "importStyle": "{fastMap}",
+    "description": "Faster Array.prototype.map",
+    "lineNumber": 74,
+    "ignore": true,
+    "params": [
+      {
+        "name": "array",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "fun",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 158,
+    "kind": "function",
+    "name": "flatten",
+    "memberof": "lib/utils.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "lib/utils.js~flatten",
+    "access": "public",
+    "export": true,
+    "importPath": "indexedfts/lib/utils.js",
+    "importStyle": "{flatten}",
+    "description": "Flatten nested array",
+    "lineNumber": 88,
+    "ignore": true,
+    "params": [
+      {
+        "name": "array",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "index",
+    "content": "IndexedFTS\n==========\n\nFull-Text Search engine for web browser.\n\n[![NPM](https://nodei.co/npm/indexedfts.png)](https://nodei.co/npm/indexedfts/)\n\n[![Build Status](https://travis-ci.org/macrat/IndexedFTS.svg?branch=master)](https://travis-ci.org/macrat/IndexedFTS)\n[![Coverage Status](https://coveralls.io/repos/github/macrat/IndexedFTS/badge.svg?branch=master)](https://coveralls.io/github/macrat/IndexedFTS?branch=master)\n[![license](https://img.shields.io/github/license/macrat/IndexedFTS.svg)](https://github.com/macrat/IndexedFTS/blob/master/LICENSE)\n[![document](https://macrat.github.io/IndexedFTS/badge.svg)](https://macrat.github.io/IndexedFTS/)\n\n## install\n### HTML\n``` html\n<script src=\"https://unpkg.com/indexedfts\"></script>\n```\n\n### Node\n``` shell\n$ npm install indexedfts\n```\n\n#### ES6\n``` javascript\nimport IndexedFTS from 'indexedfts';\n```\n\n#### common js\n``` javascript\nconst IndexedFTS = require('indexedfts').IndexedFTS;\n```\n\n## example\n``` javascript\n// make database\nconst db = IndexedFTS('database-name', 1, {\n\tuserid: 'primary',                     // primary key will indexed but can not full-text search\n\tname: {unique: true, fulltext: true},  // unique index and can full-text search\n\tdescription: 'fulltext',               // full-text search\n});\n\n\ndb.open()\n\t.then(() => {\n\t\tdb.put({\n\t\t\tuserid: 1,\n\t\t\tname: 'hello',\n\t\t\tdescription: 'this is test\\n',\n\t\t}, {\n\t\t\tuserid: 20,\n\t\t\tname: 'world',\n\t\t\tdescription: 'check check\\nhello hello world!',\n\t\t});\n\t})\n\n\t.then(() => db.search(['name', 'description'], 'hel').lower('userid', 5))\n\t.then(result => {\n\t\tconsole.log(result.length);   // output: 1\n\t\tconsole.log(result[0].name);  // output: hello\n\t})\n```\n",
+    "longname": "/home/ena/indexedfts/README.md",
+    "name": "./README.md",
+    "static": true,
+    "access": "public"
+  },
+  {
+    "kind": "packageJSON",
+    "content": "{\n  \"name\": \"indexedfts\",\n  \"version\": \"0.1.0\",\n  \"description\": \"Full-Text Search engine for web browser.\",\n  \"keywords\": [\n    \"fts\",\n    \"fulltext\",\n    \"full-text\",\n    \"indexeddb\",\n    \"database\",\n    \"client\"\n  ],\n  \"main\": \"dist/indexedfts\",\n  \"unpkg\": \"dist/indexedfts.min.js\",\n  \"scripts\": {\n    \"test\": \"npm run test:node && npm run test:browser\",\n    \"test:node\": \"NODE_ENV=development ./node_modules/.bin/nyc --require babel-core/register --reporter lcov ./node_modules/.bin/mocha --timeout 5000 ./test/node/*.js\",\n    \"test:browser\": \"NODE_ENV=development ./node_modules/.bin/karma start\",\n    \"build\": \"npm run docs && npm run benchmark:build && npm run dist:build\",\n    \"benchmark\": \"npm run benchmark:build && npm run benchmark:open\",\n    \"benchmark:build\": \"cd benchmark && ../node_modules/.bin/rollup -c\",\n    \"benchmark:open\": \"./node_modules/.bin/opener ./benchmark/index.html\",\n    \"dist:build\": \"NODE_ENV=production node build.js\",\n    \"docs\": \"./node_modules/.bin/esdoc\"\n  },\n  \"files\": [\n    \"README.md\",\n    \"dist\"\n  ],\n  \"repository\": {\n    \"type\": \"git\",\n    \"url\": \"git+https://github.com/macrat/indexedfts.git\"\n  },\n  \"author\": {\n    \"name\": \"MacRat\",\n    \"email\": \"m@crat.jp\",\n    \"url\": \"https://blanktar.jp/\"\n  },\n  \"license\": \"MIT\",\n  \"bugs\": \"https://github.com/macrat/indexedfts/issues\",\n  \"homepage\": \"https://macrat.github.io/indexedfts/\",\n  \"devDependencies\": {\n    \"asyncmark\": \"^0.2.1\",\n    \"babel-cli\": \"^6.26.0\",\n    \"babel-plugin-istanbul\": \"^4.1.5\",\n    \"babel-plugin-transform-runtime\": \"^6.23.0\",\n    \"babel-preset-env\": \"^1.6.1\",\n    \"babel-preset-power-assert\": \"^2.0.0\",\n    \"babelify\": \"^8.0.0\",\n    \"esdoc\": \"^1.0.4\",\n    \"esdoc-standard-plugin\": \"^1.0.0\",\n    \"fake-indexeddb\": \"^2.0.4\",\n    \"karma\": \"^2.0.0\",\n    \"karma-browserify\": \"^5.2.0\",\n    \"karma-chrome-launcher\": \"^2.2.0\",\n    \"karma-cli\": \"^1.0.1\",\n    \"karma-coverage\": \"^1.1.1\",\n    \"karma-firefox-launcher\": \"^1.1.0\",\n    \"karma-mocha\": \"^1.3.0\",\n    \"karma-mocha-reporter\": \"^2.2.5\",\n    \"mocha\": \"^5.0.3\",\n    \"nyc\": \"^11.5.0\",\n    \"opener\": \"^1.4.3\",\n    \"power-assert\": \"^1.4.4\",\n    \"promise-bench\": \"git+https://github.com/macrat/PromiseBench.git\",\n    \"rollup\": \"^0.55.5\",\n    \"rollup-plugin-babel\": \"^3.0.3\",\n    \"rollup-plugin-commonjs\": \"^8.4.1\",\n    \"rollup-plugin-node-resolve\": \"^3.2.0\",\n    \"rollup-plugin-uglify\": \"^3.0.0\"\n  },\n  \"babel\": {\n    \"env\": {\n      \"development\": {\n        \"presets\": [\n          \"env\",\n          \"power-assert\"\n        ],\n        \"plugins\": [\n          \"transform-runtime\"\n        ]\n      }\n    }\n  },\n  \"esdoc\": {\n    \"source\": \"./lib\",\n    \"destination\": \"./docs\",\n    \"plugins\": [\n      {\n        \"name\": \"esdoc-standard-plugin\"\n      }\n    ]\n  }\n}\n",
+    "longname": "/home/ena/indexedfts/package.json",
+    "name": "package.json",
+    "static": true,
+    "access": "public"
+  }
+]

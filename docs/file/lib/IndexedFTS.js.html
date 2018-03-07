@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../">
+  <title data-ice="title">lib/IndexedFTS.js | indexedfts</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="Full-Text Search engine for web browser."><meta property="twitter:card" content="summary"><meta property="twitter:title" content="indexedfts"><meta property="twitter:description" content="Full-Text Search engine for web browser."></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/macrat/indexedfts"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/IFTSArrayPromise.js~IFTSArrayPromise.html">IFTSArrayPromise</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/IFTSTransaction.js~IFTSTransaction.html">IFTSTransaction</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/IndexedFTS.js~IndexedFTS.html">IndexedFTS</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/errors.js~InvalidKeyError.html">InvalidKeyError</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/errors.js~NoSuchColumnError.html">NoSuchColumnError</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">lib/IndexedFTS.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import IFTSTransaction from &apos;./IFTSTransaction&apos;;
+
+
+/**
+ * The database of IndexedFTS.
+ *
+ * Almost methods are the same interface as {@link IDBTransaction} and {@link IFTSArrayPromise}.
+ */
+export default class IndexedFTS {
+	/**
+	 * Create or open IndexedFTS.
+	 *
+	 * Database has name and schema&apos;s version.
+	 * The name is a name of the database in the storage.
+	 *
+	 * The schema is an object that key is column name and value is a definition of indexes. Schema can&apos;t change in same version database.
+	 * If you want change schema of database, please change version number.
+	 * Please be careful, all contents will remove when changing the version number.
+	 *
+	 * Index types are &apos;primary&apos;, &apos;unique&apos;, &apos;fulltext&apos;, &apos;ngram&apos;, &apos;word&apos;, or normal index.
+	 *
+	 * &apos;primary&apos; is a primary key of the database. &apos;primary&apos; can&apos;t set to multiple columns.
+	 *
+	 * &apos;unique&apos; is columns that have a unique value in the database.
+	 *
+	 * If set &apos;ngram&apos; IndexedFTS will make 2-gram index table for full-text search.
+	 * &apos;fulltext&apos; is alias to &apos;ngram&apos;.
+	 *
+	 * &apos;word&apos; is word based index.
+	 * The word index will split text with whitespaces and store those.
+	 * Word index is faster than the &apos;ngram&apos; index but can&apos;t find a partial match in the word.
+	 *
+	 * The normal index that not set optioned that not unique, not primary, and not indexed for full-text search. You can numeric search like {@link IndexedFTS#lower} {@link IndexedFTS#between} even if not set option.
+	 *
+	 * If you want to set some index types, please use object like `{unique: true, fulltext: true}`.
+	 *
+	 * @param {string} name - name of new (or open) database.
+	 * @param {number} version - schema&apos;s version of database.
+	 * @param {Array&lt;string|object&gt;} schema - database schema.
+	 * @param {object} [options] - other options.
+	 * @param {string} [options.index_prefix=&apos;indexedfts_&apos;] - prefix of indexes for full-text search.
+	 * @param {object} [options.scope=window] - endpoints for IndexedDB API.
+	 */
+	constructor(name, version, schema, options={}) {
+		/** @type {string} */
+		this.index_prefix = options.index_prefix || &apos;indexedfts_&apos;;
+
+		/** @type {object} */
+		this.scope = options.scope || window;
+
+		/** @type {string} */
+		this.name = name;
+
+		/** @type {number} */
+		this.version = version;
+
+		/** @type {object} */
+		this.schema = schema;
+
+		/** @type {object} */
+		this.store_option = {autoIncrement: true};
+
+		/** @type {string|null} */
+		this.primary_key = null;
+
+		/** @type {Set&lt;string&gt;} */
+		this.ngram_indexes = new Set();
+
+		/** @type {Set&lt;string&gt;} */
+		this.word_indexes = new Set();
+
+		/** @type {Set&lt;string&gt;} */
+		this.unique_indexes = new Set();
+
+		/** @type {Set&lt;string&gt;} */
+		this.normal_indexes = new Set();
+
+		/** @type {IDBDatabase} */
+		this.db = null;
+
+		for (let x in schema) {
+			if (schema[x] === &apos;primary&apos; || schema[x].primary) {
+				if (&apos;keyPath&apos; in this.store_option) {
+					throw new Error(&apos;can not use multi primary key&apos;);
+				}
+				this.primary_key = x;
+				this.store_option = {keyPath: x};
+			} else if (schema[x] === &apos;unique&apos; || schema[x].unique) {
+				this.unique_indexes.add(x);
+			} else {
+				this.normal_indexes.add(x);
+			}
+
+			if (schema[x] === &apos;ngram&apos; || schema[x].ngram
+			|| schema[x] === &apos;fulltext&apos; || schema[x].fulltext) {
+				this.ngram_indexes.add(x);
+			}
+
+			if (schema[x] === &apos;word&apos; || schema[x].word) {
+				this.word_indexes.add(x);
+			}
+		}
+	}
+
+	/**
+	 * Delete database.
+	 *
+	 * Must be close all IndexedFTS before delete database.
+	 *
+	 * @param {string} name - name of target database. this method will success even if no such database.
+	 * @param {object} [scope] - endpoints for IndexedDB API.
+	 *
+	 * @return {Promise&lt;undefined&gt;}
+	 */
+	static delete(name, scope=null) {
+		return new Promise((resolve, reject) =&gt; {
+			const req = (scope || window).indexedDB.deleteDatabase(name);
+			req.onsuccess = ev =&gt; resolve();
+			req.onerror = ev =&gt; reject(ev);
+		});
+	}
+
+	/** @type {Set&lt;string&gt;} */
+	get indexes() {
+		const r = new Set([...this.ngram_indexes, ...this.word_indexes, ...this.unique_indexes, ...this.normal_indexes]);
+		if (this.primary_key !== null) {
+			r.add(this.primary_key);
+		}
+		return r;
+	}
+
+	/**
+	 * Open database.
+	 *
+	 * @return {Promise&lt;undefined&gt;}
+	 */
+	open() {
+		return new Promise((resolve, reject) =&gt; {
+			const request = this.scope.indexedDB.open(this.name, this.version);
+
+			request.onsuccess = ev =&gt; {
+				this.db = ev.target.result;
+				resolve(this);
+			};
+			request.onerror = reject;
+
+			request.onupgradeneeded = ev =&gt; {
+				this.db = ev.target.result;
+
+				const store = this.db.createObjectStore(&apos;data&apos;, this.store_option);
+
+				store.onerror = reject;
+
+				this.unique_indexes.forEach(x =&gt; store.createIndex(x, x, {unique: true}));
+
+				this.normal_indexes.forEach(x =&gt; store.createIndex(x, x, {unique: false}));
+
+				this.ngram_indexes.forEach(column =&gt; {
+					const fts_store = this.db.createObjectStore(this.index_prefix + &apos;ngram_&apos; + column, {autoIncrement: true});
+					fts_store.onerror = reject
+					fts_store.createIndex(&apos;key&apos;, &apos;key&apos;, {unique: false});
+					fts_store.createIndex(&apos;token&apos;, &apos;token&apos;, {unique: false});
+				});
+
+				this.word_indexes.forEach(column =&gt; {
+					const fts_store = this.db.createObjectStore(this.index_prefix + &apos;word_&apos; + column, {autoIncrement: true});
+					fts_store.onerror = reject
+					fts_store.createIndex(&apos;key&apos;, &apos;key&apos;, {unique: false});
+					fts_store.createIndex(&apos;word&apos;, &apos;word&apos;, {unique: false});
+				});
+			};
+		});
+	}
+
+	/**
+	 * Close database.
+	 */
+	close() {
+		this.db.close();
+	}
+
+	/**
+	 * Make new {@link IFTSTransaction}.
+	 *
+	 * @param {&quot;readonly&quot;|&quot;readwrite&quot;} mode - mode of transaction.
+	 * @param {string[]|null} target - open index targets. open for all if null.
+	 *
+	 * @return {IFTSTransaction}
+	 */
+	transaction(mode=&apos;readonly&apos;, target=null) {
+		if (target === null) {
+			const ngrams = [...this.ngram_indexes].map(x =&gt; this.index_prefix + &apos;ngram_&apos; + x);
+			const words = [...this.word_indexes].map(x =&gt; this.index_prefix + &apos;word_&apos; + x);
+			target = ngrams.concat(words).concat([&apos;data&apos;]);
+		}
+		return new IFTSTransaction(this, this.db.transaction(target, mode));
+	}
+
+	/**
+	 * Put contents into database.
+	 *
+	 * @param {object} contents - contents for save. allowed multiple arguments.
+	 *
+	 * @return {Promise&lt;IndexedFTS&gt;} returns self for chain.
+	 */
+	put(...contents) {
+		return this.transaction(&apos;readwrite&apos;).put(...contents).then(() =&gt; this);
+	}
+
+	/**
+	 * Delete contents from database.
+	 *
+	 * @param {object} keys - key of contents.
+	 *
+	 * @return {Promise&lt;IndexedFTS&gt;} returns self for chain. Will reject with {@link InvalidKeyError} if keys included null or undefined.
+	 */
+	delete(...keys) {
+		return this.transaction(&apos;readwrite&apos;).delete(...keys).then(() =&gt; this);
+	}
+
+	/**
+	 * Get content by primary key.
+	 *
+	 * @param {object} key - the key of content.
+	 *
+	 * @return {Promise&lt;object|undefined&gt;} content. promise will reject with {@link InvalidKeyError} if keys included null or undefined. result value will be undefined if not found.
+	 */
+	get(key) {
+		return this.transaction(&apos;readonly&apos;, &apos;data&apos;).get(key);
+	}
+
+	/**
+	 * Get filtered contents.
+	 *
+	 * @ignore
+	 */
+	_getFiltered(fun) {
+		return fun(this.transaction(&apos;readonly&apos;, &apos;data&apos;));
+	}
+
+	/**
+	 * Get all contents.
+	 *
+	 * @return {IFTSArrayPromise} contents.
+	 */
+	getAll() {
+		return this._getFiltered(x =&gt; x.getAll());
+	}
+
+	/**
+	 * Do something process for each elements and returns {@link IFTSArrayPromise}.
+	 *
+	 * NOTE: This method doesn&apos;t fast. May better do filtering before doing map if need filtering.
+	 *
+	 * @param {function(content: object, index: Number): object} fun - function for processing element.
+	 *
+	 * @return {IFTSArrayPromise}
+	 */
+	map(fun) {
+		return this._getFiltered(x =&gt; x.map(fun));
+	}
+
+	/**
+	 * Filtering elements by function and returns {@link IFTSArrayPromise}.
+	 *
+	 * WARNING: This method won&apos;t use the index. Other methods(eg. {@link IFTSTransaction#equals or @link IFTSTransaction#lower} may faster than this.
+	 *
+	 * @param {function(content: object, index: Number): object} fun - function for filtering element.
+	 *
+	 * return {IFTSArrayPromise}
+	 */
+	filter(fun) {
+		return this._getFiltered(x =&gt; x.filter(fun));
+	}
+
+	/**
+	 * Sort and get all contents.
+	 *
+	 * @param {object} column - the column for sorting.
+	 * @param {&apos;asc&apos;|&apos;desc&apos;} [order=&apos;asc&apos;] - sort order.
+	 * @param {Number} [offset=0] - starting offset of the result.
+	 * @param {Number} [limit] - maximum number of result length. will unlimited if omitted.
+	 *
+	 * @return {IFTSArrayPromise} sorted contents.
+	 */
+	sort(column, order=&apos;asc&apos;, offset=0, limit=undefined) {
+		return this._getFiltered(x =&gt; x.sort(column, order, offset, limit));
+	}
+
+	/**
+	 * Get contents that have fully matched property.
+	 *
+	 * @param {object} column - column name for search.
+	 * @param {object} value - value for search.
+	 *
+	 * @return {IFTSArrayPromise} matched contents. may reject with {@link NoSuchColumnError}.
+	 */
+	equals(column, value) {
+		return this._getFiltered(x =&gt; x.equals(column, value));
+	}
+
+	/**
+	 * Get contents that have property lower than value.
+	 *
+	 * @param {object} column - column name for search.
+	 * @param {object} value - value for search.
+	 *
+	 * @return {IFTSArrayPromise} matched contents. may reject with {@link NoSuchColumnError}.
+	 */
+	lower(column, value) {
+		return this._getFiltered(x =&gt; x.lower(column, value));
+	}
+
+	/**
+	 * Get contents that have property greater than value.
+	 *
+	 * @param {object} column - column name for search.
+	 * @param {object} value - value for search.
+	 *
+	 * @return {IFTSArrayPromise} matched contents. may reject with {@link NoSuchColumnError}.
+	 */
+	greater(column, value) {
+		return this._getFiltered(x =&gt; x.greater(column, value));
+	}
+
+	/**
+	 * Get contents that have property lower than value or equals value.
+	 *
+	 * @param {object} column - column name for search.
+	 * @param {object} value - value for search.
+	 *
+	 * @return {IFTSArrayPromise} matched contents. may reject with {@link NoSuchColumnError}.
+	 */
+	lowerOrEquals(column, value) {
+		return this._getFiltered(x =&gt; x.lowerOrEquals(column, value));
+	}
+
+	/**
+	 * Get contents that have property greater than value or equals value.
+	 *
+	 * @param {object} column - column name for search.
+	 * @param {object} value - value for search.
+	 *
+	 * @return {IFTSArrayPromise} matched contents. may reject with {@link NoSuchColumnError}.
+	 */
+	greaterOrEquals(column, value) {
+		return this._getFiltered(x =&gt; x.greaterOrEquals(column, value));
+	}
+
+	/**
+	 * Get contents that have property is between argument values.
+	 *
+	 * @param {object} column - column name for search.
+	 * @param {object} lower - minimal value.
+	 * @param {object} upper - maximum value.
+	 *
+	 * @return {IFTSArrayPromise} matched contents. may reject with {@link NoSuchColumnError}.
+	 */
+	between(column, lower, upper) {
+		return this._getFiltered(x =&gt; x.between(column, lower, upper));
+	}
+
+	/**
+	 * Get contents that have matched property by full-text search.
+	 *
+	 * All target columns have to made ngram index when created database.
+	 * If you didn&apos;t made ngram index, you can use {@link IFTSArrayPromise#search} (but this way is very slow).
+	 *
+	 *
+	 * @param {object|object[]} columns - column names for search.
+	 * @param {string} query - query for search.
+	 *
+	 * @return {IFTSArrayPromise} matched contents. may reject with {@link NoSuchColumnError}.
+	 */
+	search(columns, query) {
+		return this.transaction().search(columns, query);
+	}
+
+	/**
+	 * Find contents that have fully matched word in property.
+	 *
+	 * All target columns have to made word index when created database.
+	 * If you didn&apos;t made word index, you can use {@link IFTSArrayPromise#searchWord} (but this way is very slow).
+	 *
+	 *
+	 * @param {object|object[]} columns - column names for search.
+	 * @param {string} query - query for search.
+	 *
+	 * @return {IFTSArrayPromise} matched contents. may reject with {@link NoSuchColumnError}.
+	 */
+	searchWord(columns, query) {
+		return this.transaction().searchWord(columns, query);
+	}
+}
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.0.4)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>
