@@ -10,11 +10,29 @@ Full-Text Search engine for web browser.
 [![license](https://img.shields.io/github/license/macrat/IndexedFTS.svg)](https://github.com/macrat/IndexedFTS/blob/master/LICENSE)
 [![document](https://macrat.github.io/IndexedFTS/badge.svg)](https://macrat.github.io/IndexedFTS/)
 
-## usage
+## install
+### HTML
+``` html
+<script src="https://unpkg.com/indexedfts"></script>
+```
+
+### Node
+``` shell
+$ npm install indexedfts
+```
+
+#### ES6
 ``` javascript
-import IndexedFTS from 'https://unpkg.com/indexedfts';
+import IndexedFTS from 'indexedfts';
+```
 
+#### common js
+``` javascript
+const IndexedFTS = require('indexedfts').IndexedFTS;
+```
 
+## example
+``` javascript
 // make database
 const db = IndexedFTS('database-name', 1, {
 	userid: 'primary',                     // primary key will indexed but can not full-text search

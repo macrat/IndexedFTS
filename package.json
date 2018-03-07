@@ -10,7 +10,7 @@
     "database",
     "client"
   ],
-  "main": "lib/index.js",
+  "main": "dist/indexedfts",
   "unpkg": "dist/indexedfts.min.js",
   "scripts": {
     "test": "npm run test:node && npm run test:browser",
@@ -25,7 +25,7 @@
   },
   "files": [
     "README.md",
-    "lib"
+    "dist"
   ],
   "repository": {
     "type": "git",
