@@ -1,4 +1,4 @@
-import {Suite} from 'asyncmark/dist/asyncmark.mjs';
+import {Suite} from 'asyncmark';
 
 import IndexedFTS from '../lib';
 

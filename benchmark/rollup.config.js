@@ -9,5 +9,5 @@ export default {
 		format: 'es',
 		sourcemap: true,
 	},
-	plugins: [commonjs(), resolve()],
+	plugins: [commonjs(), resolve({extensions: ['.mjs', '.js']})],
 }
