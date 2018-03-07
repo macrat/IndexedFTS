@@ -1,4 +1,0 @@
-[submodule "docs"]
-	path = docs
-	url = https://github.com/macrat/indexedfts.git
-	branch = gh-pages
