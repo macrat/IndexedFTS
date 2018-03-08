@@ -80,4 +80,48 @@ export default function readwritetest() {
 			assert(await this.target.delete(null, 1).catch(err => err.key) === null);
 		});
 	});
+
+	describe('read indexes', function() {
+		describe('getNGrams', function() {
+			it('simple', async function() {
+				let except = new Set([
+					'he', 'el', 'll', 'lo', 'o ', ' w', 'wo', 'or', 'rl', 'ld',
+					'te', 'es', 'st', 't ', ' c', 'co', 'on', 'nt', 'te', 'en', 'nt',
+					'ja', 'ap', 'pa', 'an', 'ne', 'es', 'se', 'e ', ' d', 'da', 'at', 'ta', 'a ', ' 日', '日本', '本語',
+				]);
+
+				assert.deepStrictEqual((await this.target.getNGrams('title')), except);
+			});
+
+			it('not indexed', async function() {
+				const err = await this.target.getNGrams('id')
+					.then(x => 'not causes error')
+					.catch(err => err);
+
+				assert(err.toString() === 'id: no such column or no indexed');
+				assert(err.column === 'id');
+			});
+		});
+
+		describe('getWords', function() {
+			it('simple', async function() {
+				let except = new Set([
+					'hello', 'world',
+					'test', 'content',
+					'japanese', 'data', '日本語',
+				]);
+
+				assert.deepStrictEqual((await this.target.getWords('title')), except);
+			});
+
+			it('not indexed', async function() {
+				const err = await this.target.getWords('age')
+					.then(x => 'not causes error')
+					.catch(err => err);
+
+				assert(err.toString() === 'age: no such column or no indexed');
+				assert(err.column === 'age');
+			});
+		});
+	});
 }
