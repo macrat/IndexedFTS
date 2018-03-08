@@ -480,6 +480,18 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "lib/iftstransaction.js~iftstransaction#getngrams",
+    "class/lib/IFTSTransaction.js~IFTSTransaction.html#instance-method-getNGrams",
+    "lib/IFTSTransaction.js~IFTSTransaction#getNGrams",
+    "method"
+  ],
+  [
+    "lib/iftstransaction.js~iftstransaction#getwords",
+    "class/lib/IFTSTransaction.js~IFTSTransaction.html#instance-method-getWords",
+    "lib/IFTSTransaction.js~IFTSTransaction#getWords",
+    "method"
+  ],
+  [
     "lib/iftstransaction.js~iftstransaction#greater",
     "class/lib/IFTSTransaction.js~IFTSTransaction.html#instance-method-greater",
     "lib/IFTSTransaction.js~IFTSTransaction#greater",
@@ -603,6 +615,18 @@ window.esdocSearchIndex = [
     "lib/indexedfts.js~indexedfts#getall",
     "class/lib/IndexedFTS.js~IndexedFTS.html#instance-method-getAll",
     "lib/IndexedFTS.js~IndexedFTS#getAll",
+    "method"
+  ],
+  [
+    "lib/indexedfts.js~indexedfts#getngrams",
+    "class/lib/IndexedFTS.js~IndexedFTS.html#instance-method-getNGrams",
+    "lib/IndexedFTS.js~IndexedFTS#getNGrams",
+    "method"
+  ],
+  [
+    "lib/indexedfts.js~indexedfts#getwords",
+    "class/lib/IndexedFTS.js~IndexedFTS.html#instance-method-getWords",
+    "lib/IndexedFTS.js~IndexedFTS#getWords",
     "method"
   ],
   [

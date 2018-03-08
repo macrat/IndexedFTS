@@ -1030,6 +1030,64 @@ class IFTSTransaction {
 			return new IFTSArrayPromise(this.db.indexes, Promise.all(result));
 		}));
 	}
+
+	/**
+  * Get N-Gram set from index.
+  *
+  * @param {string} column - name of column.
+  *
+  * @return {Promise<Map<string, number>>}
+  */
+	getNGrams(column) {
+		if (!this.db.ngram_indexes.has(column)) {
+			return Promise.reject(new NoSuchColumnError(column));
+		}
+
+		const result = new Map();
+
+		const cursor = this.transaction.objectStore(this.db.index_prefix + 'ngram_' + column).openCursor();
+		return new Promise((resolve, reject) => {
+			cursor.onsuccess = ev => {
+				const cursor = ev.target.result;
+				if (cursor) {
+					result.set(cursor.value.token, (result.get(cursor.value.token) || 0) + 1);
+					cursor.continue();
+				} else {
+					resolve(result);
+				}
+			};
+			cursor.onerror = ev => reject(ev);
+		});
+	}
+
+	/**
+  * Get word set from index.
+  *
+  * @param {string} column - name of column.
+  *
+  * @return {Promise<Map<string, number>>}
+  */
+	getWords(column) {
+		if (!this.db.word_indexes.has(column)) {
+			return Promise.reject(new NoSuchColumnError(column));
+		}
+
+		const result = new Map();
+
+		const cursor = this.transaction.objectStore(this.db.index_prefix + 'word_' + column).openCursor();
+		return new Promise((resolve, reject) => {
+			cursor.onsuccess = ev => {
+				const cursor = ev.target.result;
+				if (cursor) {
+					result.set(cursor.value.word, (result.get(cursor.value.word) || 0) + 1);
+					cursor.continue();
+				} else {
+					resolve(result);
+				}
+			};
+			cursor.onerror = ev => reject(ev);
+		});
+	}
 }
 
 /**
@@ -1420,6 +1478,28 @@ class IndexedFTS {
   */
 	searchWord(columns, query) {
 		return this.transaction().searchWord(columns, query);
+	}
+
+	/**
+  * Get N-Gram set from index.
+  *
+  * @param {string} column - name of column.
+  *
+  * @return {Promise<Map<string, number>>}
+  */
+	getNGrams(column) {
+		return this.transaction().getNGrams(column);
+	}
+
+	/**
+  * Get word set from index.
+  *
+  * @param {string} column - name of column.
+  *
+  * @return {Promise<Map<string, number>>}
+  */
+	getWords(column) {
+		return this.transaction().getWords(column);
 	}
 }
 

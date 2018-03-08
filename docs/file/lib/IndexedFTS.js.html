@@ -432,6 +432,28 @@ export default class IndexedFTS {
 	searchWord(columns, query) {
 		return this.transaction().searchWord(columns, query);
 	}
+
+	/**
+	 * Get N-Gram set from index.
+	 *
+	 * @param {string} column - name of column.
+	 *
+	 * @return {Promise&lt;Map&lt;string, number&gt;&gt;}
+	 */
+	getNGrams(column) {
+		return this.transaction().getNGrams(column);
+	}
+
+	/**
+	 * Get word set from index.
+	 *
+	 * @param {string} column - name of column.
+	 *
+	 * @return {Promise&lt;Map&lt;string, number&gt;&gt;}
+	 */
+	getWords(column) {
+		return this.transaction().getWords(column);
+	}
 }
 </code></pre>
 

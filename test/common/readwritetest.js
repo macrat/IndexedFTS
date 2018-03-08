@@ -84,13 +84,17 @@ export default function readwritetest() {
 	describe('read indexes', function() {
 		describe('getNGrams', function() {
 			it('simple', async function() {
-				let except = new Set([
-					'he', 'el', 'll', 'lo', 'o ', ' w', 'wo', 'or', 'rl', 'ld',
-					'te', 'es', 'st', 't ', ' c', 'co', 'on', 'nt', 'te', 'en', 'nt',
-					'ja', 'ap', 'pa', 'an', 'ne', 'es', 'se', 'e ', ' d', 'da', 'at', 'ta', 'a ', ' 日', '日本', '本語',
-				]);
+				const tokens = [
+					...new Set(['he', 'el', 'll', 'lo', 'o ', ' w', 'wo', 'or', 'rl', 'ld']),
+					...new Set(['te', 'es', 'st', 't ', ' c', 'co', 'on', 'nt', 'te', 'en', 'nt']),
+					...new Set(['ja', 'ap', 'pa', 'an', 'ne', 'es', 'se', 'e ', ' d', 'da', 'at', 'ta', 'a ', ' 日', '日本', '本語']),
+				];
+				const except = new Map(tokens.map(x => [x, tokens.filter(y => x === y).length]));
 
-				assert.deepStrictEqual((await this.target.getNGrams('title')), except);
+				assert.deepStrictEqual(
+					[...await this.target.getNGrams('title')].sort(),
+					[...except].sort(),
+				);
 			});
 
 			it('not indexed', async function() {
@@ -105,13 +109,17 @@ export default function readwritetest() {
 
 		describe('getWords', function() {
 			it('simple', async function() {
-				let except = new Set([
+				const tokens = [
 					'hello', 'world',
 					'test', 'content',
 					'japanese', 'data', '日本語',
-				]);
+				];
+				const except = new Map(tokens.map(x => [x, tokens.filter(y => x === y).length]));
 
-				assert.deepStrictEqual((await this.target.getWords('title')), except);
+				assert.deepStrictEqual(
+					[...await this.target.getWords('title')].sort(),
+					[...except].sort(),
+				);
 			});
 
 			it('not indexed', async function() {

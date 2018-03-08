@@ -668,6 +668,64 @@ export default class IFTSTransaction {
 			return new IFTSArrayPromise(this.db.indexes, Promise.all(result));
 		}));
 	}
+
+	/**
+	 * Get N-Gram set from index.
+	 *
+	 * @param {string} column - name of column.
+	 *
+	 * @return {Promise&lt;Map&lt;string, number&gt;&gt;}
+	 */
+	getNGrams(column) {
+		if (!this.db.ngram_indexes.has(column)) {
+			return Promise.reject(new NoSuchColumnError(column));
+		}
+
+		const result = new Map();
+
+		const cursor = this.transaction.objectStore(this.db.index_prefix + &apos;ngram_&apos; + column).openCursor();
+		return new Promise((resolve, reject) =&gt; {
+			cursor.onsuccess = ev =&gt; {
+				const cursor = ev.target.result;
+				if (cursor) {
+					result.set(cursor.value.token, (result.get(cursor.value.token) || 0) + 1);
+					cursor.continue();
+				} else {
+					resolve(result);
+				}
+			}
+			cursor.onerror = ev =&gt; reject(ev);
+		});
+	}
+
+	/**
+	 * Get word set from index.
+	 *
+	 * @param {string} column - name of column.
+	 *
+	 * @return {Promise&lt;Map&lt;string, number&gt;&gt;}
+	 */
+	getWords(column) {
+		if (!this.db.word_indexes.has(column)) {
+			return Promise.reject(new NoSuchColumnError(column));
+		}
+
+		const result = new Map();
+
+		const cursor = this.transaction.objectStore(this.db.index_prefix + &apos;word_&apos; + column).openCursor();
+		return new Promise((resolve, reject) =&gt; {
+			cursor.onsuccess = ev =&gt; {
+				const cursor = ev.target.result;
+				if (cursor) {
+					result.set(cursor.value.word, (result.get(cursor.value.word) || 0) + 1);
+					cursor.continue();
+				} else {
+					resolve(result);
+				}
+			}
+			cursor.onerror = ev =&gt; reject(ev);
+		});
+	}
 }
 </code></pre>
 
