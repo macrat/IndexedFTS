@@ -687,7 +687,7 @@ class IFTSTransaction {
   *
   * @param {function(content: object, index: Number): object} fun - function for filtering element.
   *
-  * return {IFTSArrayPromise}
+  * @return {IFTSArrayPromise}
   */
 	filter(fun) {
 		return this._readCursor(this.transaction.objectStore('data').openCursor(null), fun, null);
@@ -1349,7 +1349,7 @@ class IndexedFTS {
   *
   * @param {function(content: object, index: Number): object} fun - function for filtering element.
   *
-  * return {IFTSArrayPromise}
+  * @return {IFTSArrayPromise}
   */
 	filter(fun) {
 		return this._getFiltered(x => x.filter(fun));

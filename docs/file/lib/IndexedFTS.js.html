@@ -308,7 +308,7 @@ export default class IndexedFTS {
 	 *
 	 * @param {function(content: object, index: Number): object} fun - function for filtering element.
 	 *
-	 * return {IFTSArrayPromise}
+	 * @return {IFTSArrayPromise}
 	 */
 	filter(fun) {
 		return this._getFiltered(x =&gt; x.filter(fun));

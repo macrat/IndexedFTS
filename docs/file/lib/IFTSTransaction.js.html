@@ -326,7 +326,7 @@ export default class IFTSTransaction {
 	 *
 	 * @param {function(content: object, index: Number): object} fun - function for filtering element.
 	 *
-	 * return {IFTSArrayPromise}
+	 * @return {IFTSArrayPromise}
 	 */
 	filter(fun) {
 		return this._readCursor(this.transaction.objectStore(&apos;data&apos;).openCursor(null), fun, null);
