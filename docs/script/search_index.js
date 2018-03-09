@@ -6,6 +6,12 @@ window.esdocSearchIndex = [
     "class"
   ],
   [
+    "indexedfts/lib/iftsschema.js~iftsschema",
+    "class/lib/IFTSSchema.js~IFTSSchema.html",
+    "<span>IFTSSchema</span> <span class=\"search-result-import-path\">indexedfts/lib/IFTSSchema.js</span>",
+    "class"
+  ],
+  [
     "indexedfts/lib/iftstransaction.js~iftstransaction",
     "class/lib/IFTSTransaction.js~IFTSTransaction.html",
     "<span>IFTSTransaction</span> <span class=\"search-result-import-path\">indexedfts/lib/IFTSTransaction.js</span>",
@@ -21,6 +27,12 @@ window.esdocSearchIndex = [
     "indexedfts/lib/errors.js~invalidkeyerror",
     "class/lib/errors.js~InvalidKeyError.html",
     "<span>InvalidKeyError</span> <span class=\"search-result-import-path\">indexedfts/lib/errors.js</span>",
+    "class"
+  ],
+  [
+    "indexedfts/lib/errors.js~invalidschemaerror",
+    "class/lib/errors.js~InvalidSchemaError.html",
+    "<span>InvalidSchemaError</span> <span class=\"search-result-import-path\">indexedfts/lib/errors.js</span>",
     "class"
   ],
   [
@@ -426,6 +438,54 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "lib/iftsschema.js",
+    "file/lib/IFTSSchema.js.html",
+    "lib/IFTSSchema.js",
+    "file"
+  ],
+  [
+    "lib/iftsschema.js~iftsschema#constructor",
+    "class/lib/IFTSSchema.js~IFTSSchema.html#instance-constructor-constructor",
+    "lib/IFTSSchema.js~IFTSSchema#constructor",
+    "method"
+  ],
+  [
+    "lib/iftsschema.js~iftsschema#indexes",
+    "class/lib/IFTSSchema.js~IFTSSchema.html#instance-get-indexes",
+    "lib/IFTSSchema.js~IFTSSchema#indexes",
+    "member"
+  ],
+  [
+    "lib/iftsschema.js~iftsschema#ngramindexes",
+    "class/lib/IFTSSchema.js~IFTSSchema.html#instance-member-ngramIndexes",
+    "lib/IFTSSchema.js~IFTSSchema#ngramIndexes",
+    "member"
+  ],
+  [
+    "lib/iftsschema.js~iftsschema#normalindexes",
+    "class/lib/IFTSSchema.js~IFTSSchema.html#instance-member-normalIndexes",
+    "lib/IFTSSchema.js~IFTSSchema#normalIndexes",
+    "member"
+  ],
+  [
+    "lib/iftsschema.js~iftsschema#primarykey",
+    "class/lib/IFTSSchema.js~IFTSSchema.html#instance-member-primaryKey",
+    "lib/IFTSSchema.js~IFTSSchema#primaryKey",
+    "member"
+  ],
+  [
+    "lib/iftsschema.js~iftsschema#uniqueindexes",
+    "class/lib/IFTSSchema.js~IFTSSchema.html#instance-member-uniqueIndexes",
+    "lib/IFTSSchema.js~IFTSSchema#uniqueIndexes",
+    "member"
+  ],
+  [
+    "lib/iftsschema.js~iftsschema#wordindexes",
+    "class/lib/IFTSSchema.js~IFTSSchema.html#instance-member-wordIndexes",
+    "lib/IFTSSchema.js~IFTSSchema#wordIndexes",
+    "member"
+  ],
+  [
     "lib/iftstransaction.js",
     "file/lib/IFTSTransaction.js.html",
     "lib/IFTSTransaction.js",
@@ -796,6 +856,18 @@ window.esdocSearchIndex = [
     "class/lib/errors.js~InvalidKeyError.html#instance-member-key",
     "lib/errors.js~InvalidKeyError#key",
     "member"
+  ],
+  [
+    "lib/errors.js~invalidschemaerror#column",
+    "class/lib/errors.js~InvalidSchemaError.html#instance-member-column",
+    "lib/errors.js~InvalidSchemaError#column",
+    "member"
+  ],
+  [
+    "lib/errors.js~invalidschemaerror#constructor",
+    "class/lib/errors.js~InvalidSchemaError.html#instance-constructor-constructor",
+    "lib/errors.js~InvalidSchemaError#constructor",
+    "method"
   ],
   [
     "lib/errors.js~nosuchcolumnerror#column",

@@ -30,9 +30,11 @@
   <ul>
     
   <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/IFTSArrayPromise.js~IFTSArrayPromise.html">IFTSArrayPromise</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/IFTSSchema.js~IFTSSchema.html">IFTSSchema</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/IFTSTransaction.js~IFTSTransaction.html">IFTSTransaction</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/IndexedFTS.js~IndexedFTS.html">IndexedFTS</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/errors.js~InvalidKeyError.html">InvalidKeyError</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/errors.js~InvalidSchemaError.html">InvalidSchemaError</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/errors.js~NoSuchColumnError.html">NoSuchColumnError</a></span></span></li>
 </ul>
 </div>
@@ -88,6 +90,34 @@ export class InvalidKeyError extends Error {
 
 		if (Error.captureStackTrace) {
 			Error.captureStackTrace(this, InvalidKeyError);
+		}
+	}
+}
+
+
+/**
+ * InvalidSchemaError means specified invalid schema.
+ */
+export class InvalidSchemaError extends Error {
+	/**
+	 * @param {string} reason - why throws this error.
+	 * @param {string|string[]|null} column - name of column that invalid.
+	 */
+	constructor(reason, column=null) {
+		super(reason);
+
+		/**
+		 * Name of column that invalid.
+		 *
+		 * @type {string|string[]|null}
+		 */
+		this.column = column;
+
+		/** @ignore */
+		this.name = &apos;InvalidSchemaError&apos;;
+
+		if (Error.captureStackTrace) {
+			Error.captureStackTrace(this, InvalidSchemaError);
 		}
 	}
 }

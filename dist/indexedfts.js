@@ -156,6 +156,10 @@ class InvalidKeyError extends Error {
 }
 
 /**
+ * InvalidSchemaError means specified invalid schema.
+ */
+
+/**
  * Promise like object for contents array.
  *
  * Almost methods are the same interface as {@link IndexedFTS} and {@link IFTSTransaction}.

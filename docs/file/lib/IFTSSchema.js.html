@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../">
+  <title data-ice="title">lib/IFTSSchema.js | indexedfts</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="Full-Text Search engine for web browser."><meta property="twitter:card" content="summary"><meta property="twitter:title" content="indexedfts"><meta property="twitter:description" content="Full-Text Search engine for web browser."></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/macrat/indexedfts"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/IFTSArrayPromise.js~IFTSArrayPromise.html">IFTSArrayPromise</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/IFTSSchema.js~IFTSSchema.html">IFTSSchema</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/IFTSTransaction.js~IFTSTransaction.html">IFTSTransaction</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/IndexedFTS.js~IndexedFTS.html">IndexedFTS</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/errors.js~InvalidKeyError.html">InvalidKeyError</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/errors.js~InvalidSchemaError.html">InvalidSchemaError</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/errors.js~NoSuchColumnError.html">NoSuchColumnError</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">lib/IFTSSchema.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import {InvalidSchemaError} from &apos;./errors&apos;;
+
+
+function normalize(schema) {
+	const allowedOptions = new Set([&apos;primary&apos;, &apos;unique&apos;, &apos;ngram&apos;, &apos;fulltext&apos;, &apos;word&apos;]);
+
+	const result = {};
+	for (const col in schema) {
+		result[col] = {
+			primary: schema[col] === &apos;primary&apos; || schema[col].primary,
+			unique: schema[col] === &apos;unique&apos; || schema[col].unique,
+			ngram: schema[col] === &apos;ngram&apos; || schema[col].ngram,
+			fulltext: schema[col] === &apos;fulltext&apos; || schema[col].fulltext,
+			word: schema[col] === &apos;word&apos; || schema[col].word,
+		};
+
+		if (typeof schema[col] === &apos;object&apos;) {
+			for (const opt in schema[col]) {
+				if (!allowedOptions.has(opt)) {
+					throw new InvalidSchemaError(opt + &apos; is unknown option&apos;, col);
+				}
+			}
+		} else if (typeof schema[col] === &apos;string&apos;) {
+			if (!allowedOptions.has(schema[col])) {
+				throw new InvalidSchemaError(schema[col] + &apos; is unknown option&apos;, col);
+			}
+		} else {
+			throw new InvalidSchemaError((typeof schema[col]) + &apos; is invalid option type&apos;, col);
+		}
+	}
+	return result;
+}
+
+
+function schemaCheck(schema) {
+	let primaryKey = null;
+
+	for (const col in schema) {
+		if (schema[col].primary !== undefined) {
+			if (typeof schema[col].primary !== &apos;boolean&apos;) {
+				throw new InvalidSchemaError(&apos;&quot;primary&quot; option must be boolean&apos;, col);
+			}
+			if (schema[col].primary) {
+				if (primaryKey !== null) {
+					throw new InvalidSchemaError(&apos;can not use multiple primary key&apos;, [col, primaryKey]);
+				}
+				primaryKey = col;
+			}
+		}
+
+		if (schema[col].unique !== undefined) {
+			if (typeof schema[col].unique !== &apos;boolean&apos;) {
+				throw new InvalidSchemaError(&apos;&quot;unique&quot; option must be boolean&apos;, col);
+			}
+		}
+
+		if (schema[col].primary &amp;&amp; schema[col].unique) {
+			throw new InvalidSchemaError(&apos;can not enable both of &quot;primary&quot; option and &quot;unique&quot; option to same column&apos;, col);
+		}
+
+		if (schema[col].ngram !== undefined &amp;&amp; schema[col].fulltext !== undefined) {
+			throw new InvalidSchemaError(&apos;can not set both of &quot;ngram&quot; option and &quot;fulltext&quot; option to same column&apos;, col);
+		}
+		const fts = schema[col].ngram === undefined ? schema[col].fulltext : schema[col].ngram;
+		const ftsFrom = schema[col].ngram === undefined ? &apos;fulltext&apos; : &apos;ngram&apos;;
+		if (fts !== undefined &amp;&amp; typeof fts !== &apos;boolean&apos;) {
+			throw new InvalidSchemaError(`&quot;${ftsFrom}&quot; option must be boolean`, col);
+		}
+
+		if (schema[col].word !== undefined &amp;&amp; typeof schema[col].word !== &apos;boolean&apos;) {
+			throw new InvalidSchemaError(&apos;&quot;word&quot; option must be boolean&apos;, col);
+		}
+	}
+}
+
+
+/**
+ * The database schema of IndexedFTS.
+ */
+export default class IFTSSchema {
+	/**
+	 * Create IFTSSchema.
+	 *
+	 * @param {object} schema - please see same name param of {@link IndexedFTS#constructor}.
+	 *
+	 * @throws {InvalidSchemaError}
+	 */
+	constructor(schema) {
+		/** @ignore */
+		this._rawSchema = schema;
+
+		/** @ignore */
+		this._storeOption = {autoIncrement: true};
+
+		/**
+		 * Primary key of this schema.
+		 *
+		 * This value will be null if not set primary key.
+		 *
+		 * @type {string|null}
+		 */
+		this.primaryKey = null;
+
+		/**
+		 * Column names that indexed with ngram for full-text search.
+		 *
+		 * @type {Set&lt;string&gt;}
+		 */
+		this.ngramIndexes = new Set();
+
+		/**
+		 * Column names that indexed with word for full-text search.
+		 *
+		 * @type {Set&lt;string&gt;}
+		 */
+		this.wordIndexes = new Set();
+
+		/**
+		 * Column names that unique indexed.
+		 *
+		 * @type {Set&lt;string&gt;}
+		 */
+		this.uniqueIndexes = new Set();
+
+		/**
+		 * Column names that normal indexed.
+		 *
+		 * @type {Set&lt;string&gt;}
+		 */
+		this.normalIndexes = new Set();
+
+		for (let x in schema) {
+			const normalized = normalize(schema);
+
+			schemaCheck(normalized);
+
+			if (normalized[x].primary) {
+				this.primaryKey = x;
+				this._storeOption = {keyPath: x};
+			} else if (normalized[x].unique) {
+				this.uniqueIndexes.add(x);
+			} else {
+				this.normalIndexes.add(x);
+			}
+
+			if (normalized[x].ngram || normalized[x].fulltext) {
+				this.ngramIndexes.add(x);
+			}
+
+			if (normalized[x].word) {
+				this.wordIndexes.add(x);
+			}
+		}
+	}
+
+	/**
+	 * All column names that indexed in some way.
+	 *
+	 * @type {Set&lt;string&gt;}
+	 */
+	get indexes() {
+		if (this.primaryKey) {
+			return new Set([this.primaryKey, ...this.uniqueIndexes, ...this.normalIndexes]);
+		} else {
+			return new Set([...this.uniqueIndexes, ...this.normalIndexes]);
+		}
+	}
+}
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.0.4)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

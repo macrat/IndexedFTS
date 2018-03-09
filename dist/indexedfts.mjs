@@ -150,6 +150,33 @@ class InvalidKeyError extends Error {
 }
 
 /**
+ * InvalidSchemaError means specified invalid schema.
+ */
+class InvalidSchemaError extends Error {
+	/**
+  * @param {string} reason - why throws this error.
+  * @param {string|string[]|null} column - name of column that invalid.
+  */
+	constructor(reason, column = null) {
+		super(reason);
+
+		/**
+   * Name of column that invalid.
+   *
+   * @type {string|string[]|null}
+   */
+		this.column = column;
+
+		/** @ignore */
+		this.name = 'InvalidSchemaError';
+
+		if (Error.captureStackTrace) {
+			Error.captureStackTrace(this, InvalidSchemaError);
+		}
+	}
+}
+
+/**
  * Promise like object for contents array.
  *
  * Almost methods are the same interface as {@link IndexedFTS} and {@link IFTSTransaction}.
@@ -1497,6 +1524,170 @@ class IndexedFTS {
 	}
 }
 
+function normalize(schema) {
+	const allowedOptions = new Set(['primary', 'unique', 'ngram', 'fulltext', 'word']);
+
+	const result = {};
+	for (const col in schema) {
+		result[col] = {
+			primary: schema[col] === 'primary' || schema[col].primary,
+			unique: schema[col] === 'unique' || schema[col].unique,
+			ngram: schema[col] === 'ngram' || schema[col].ngram,
+			fulltext: schema[col] === 'fulltext' || schema[col].fulltext,
+			word: schema[col] === 'word' || schema[col].word
+		};
+
+		if (typeof schema[col] === 'object') {
+			for (const opt in schema[col]) {
+				if (!allowedOptions.has(opt)) {
+					throw new InvalidSchemaError(opt + ' is unknown option', col);
+				}
+			}
+		} else if (typeof schema[col] === 'string') {
+			if (!allowedOptions.has(schema[col])) {
+				throw new InvalidSchemaError(schema[col] + ' is unknown option', col);
+			}
+		} else {
+			throw new InvalidSchemaError(typeof schema[col] + ' is invalid option type', col);
+		}
+	}
+	return result;
+}
+
+function schemaCheck(schema) {
+	let primaryKey = null;
+
+	for (const col in schema) {
+		if (schema[col].primary !== undefined) {
+			if (typeof schema[col].primary !== 'boolean') {
+				throw new InvalidSchemaError('"primary" option must be boolean', col);
+			}
+			if (schema[col].primary) {
+				if (primaryKey !== null) {
+					throw new InvalidSchemaError('can not use multiple primary key', [col, primaryKey]);
+				}
+				primaryKey = col;
+			}
+		}
+
+		if (schema[col].unique !== undefined) {
+			if (typeof schema[col].unique !== 'boolean') {
+				throw new InvalidSchemaError('"unique" option must be boolean', col);
+			}
+		}
+
+		if (schema[col].primary && schema[col].unique) {
+			throw new InvalidSchemaError('can not enable both of "primary" option and "unique" option to same column', col);
+		}
+
+		if (schema[col].ngram !== undefined && schema[col].fulltext !== undefined) {
+			throw new InvalidSchemaError('can not set both of "ngram" option and "fulltext" option to same column', col);
+		}
+		const fts = schema[col].ngram === undefined ? schema[col].fulltext : schema[col].ngram;
+		const ftsFrom = schema[col].ngram === undefined ? 'fulltext' : 'ngram';
+		if (fts !== undefined && typeof fts !== 'boolean') {
+			throw new InvalidSchemaError(`"${ftsFrom}" option must be boolean`, col);
+		}
+
+		if (schema[col].word !== undefined && typeof schema[col].word !== 'boolean') {
+			throw new InvalidSchemaError('"word" option must be boolean', col);
+		}
+	}
+}
+
+/**
+ * The database schema of IndexedFTS.
+ */
+class IFTSSchema {
+	/**
+  * Create IFTSSchema.
+  *
+  * @param {object} schema - please see same name param of {@link IndexedFTS#constructor}.
+  *
+  * @throws {InvalidSchemaError}
+  */
+	constructor(schema) {
+		/** @ignore */
+		this._rawSchema = schema;
+
+		/** @ignore */
+		this._storeOption = { autoIncrement: true };
+
+		/**
+   * Primary key of this schema.
+   *
+   * This value will be null if not set primary key.
+   *
+   * @type {string|null}
+   */
+		this.primaryKey = null;
+
+		/**
+   * Column names that indexed with ngram for full-text search.
+   *
+   * @type {Set<string>}
+   */
+		this.ngramIndexes = new Set();
+
+		/**
+   * Column names that indexed with word for full-text search.
+   *
+   * @type {Set<string>}
+   */
+		this.wordIndexes = new Set();
+
+		/**
+   * Column names that unique indexed.
+   *
+   * @type {Set<string>}
+   */
+		this.uniqueIndexes = new Set();
+
+		/**
+   * Column names that normal indexed.
+   *
+   * @type {Set<string>}
+   */
+		this.normalIndexes = new Set();
+
+		for (let x in schema) {
+			const normalized = normalize(schema);
+
+			schemaCheck(normalized);
+
+			if (normalized[x].primary) {
+				this.primaryKey = x;
+				this._storeOption = { keyPath: x };
+			} else if (normalized[x].unique) {
+				this.uniqueIndexes.add(x);
+			} else {
+				this.normalIndexes.add(x);
+			}
+
+			if (normalized[x].ngram || normalized[x].fulltext) {
+				this.ngramIndexes.add(x);
+			}
+
+			if (normalized[x].word) {
+				this.wordIndexes.add(x);
+			}
+		}
+	}
+
+	/**
+  * All column names that indexed in some way.
+  *
+  * @type {Set<string>}
+  */
+	get indexes() {
+		if (this.primaryKey) {
+			return new Set([this.primaryKey, ...this.uniqueIndexes, ...this.normalIndexes]);
+		} else {
+			return new Set([...this.uniqueIndexes, ...this.normalIndexes]);
+		}
+	}
+}
+
 export default IndexedFTS;
-export { IFTSTransaction, IFTSArrayPromise, NoSuchColumnError, InvalidKeyError };
+export { IFTSTransaction, IFTSArrayPromise, IFTSSchema, NoSuchColumnError, InvalidKeyError, InvalidSchemaError };
 //# sourceMappingURL=indexedfts.mjs.map
