@@ -1,6 +1,6 @@
 import assert from 'power-assert';
 
-import IndexedFTS from '../../lib';
+import IndexedFTS, {IFTSSchema} from '../../lib';
 
 import apitest from '../common/apitest';
 import readwritetest from '../common/readwritetest';
@@ -15,13 +15,17 @@ describe('IndexedFTS', function() {
 	});
 
 	describe('constructor', function() {
-		it('multiple primary key', function() {
-			assert.throws(() => {
-				new IndexedFTS('tea', 1, {
-					hoge: 'primary',
-					fuga: {primary: true, fulltext: true},
-				});
-			}, /can not use multi primary key/);
+		it('schema from object', function() {
+			assert.deepStrictEqual(this.target.schema._schema, new IFTSSchema(this.schema)._schema);
+		});
+
+		it('schema from IFTSSchema', function() {
+			const schema = new IFTSSchema(this.schema);
+
+			assert.deepStrictEqual(
+				(new IndexedFTS('hoge', 1, schema)).schema._schema,
+				schema._schema,
+			);
 		});
 	});
 
