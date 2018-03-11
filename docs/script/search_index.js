@@ -1,20 +1,20 @@
 window.esdocSearchIndex = [
   [
-    "indexedfts/lib/iftsarraypromise.js~iftsarraypromise",
-    "class/lib/IFTSArrayPromise.js~IFTSArrayPromise.html",
-    "<span>IFTSArrayPromise</span> <span class=\"search-result-import-path\">indexedfts/lib/IFTSArrayPromise.js</span>",
+    "indexedfts/lib/arraypromise.js~iftsarraypromise",
+    "class/lib/ArrayPromise.js~IFTSArrayPromise.html",
+    "<span>IFTSArrayPromise</span> <span class=\"search-result-import-path\">indexedfts/lib/ArrayPromise.js</span>",
     "class"
   ],
   [
-    "indexedfts/lib/iftsschema.js~iftsschema",
-    "class/lib/IFTSSchema.js~IFTSSchema.html",
-    "<span>IFTSSchema</span> <span class=\"search-result-import-path\">indexedfts/lib/IFTSSchema.js</span>",
+    "indexedfts/lib/schema.js~iftsschema",
+    "class/lib/Schema.js~IFTSSchema.html",
+    "<span>IFTSSchema</span> <span class=\"search-result-import-path\">indexedfts/lib/Schema.js</span>",
     "class"
   ],
   [
-    "indexedfts/lib/iftstransaction.js~iftstransaction",
-    "class/lib/IFTSTransaction.js~IFTSTransaction.html",
-    "<span>IFTSTransaction</span> <span class=\"search-result-import-path\">indexedfts/lib/IFTSTransaction.js</span>",
+    "indexedfts/lib/transaction.js~iftstransaction",
+    "class/lib/Transaction.js~IFTSTransaction.html",
+    "<span>IFTSTransaction</span> <span class=\"search-result-import-path\">indexedfts/lib/Transaction.js</span>",
     "class"
   ],
   [
@@ -324,298 +324,118 @@ window.esdocSearchIndex = [
     "external"
   ],
   [
-    "lib/iftsarraypromise.js",
-    "file/lib/IFTSArrayPromise.js.html",
-    "lib/IFTSArrayPromise.js",
+    "lib/arraypromise.js",
+    "file/lib/ArrayPromise.js.html",
+    "lib/ArrayPromise.js",
     "file"
   ],
   [
-    "lib/iftsarraypromise.js~iftsarraypromise#between",
-    "class/lib/IFTSArrayPromise.js~IFTSArrayPromise.html#instance-method-between",
-    "lib/IFTSArrayPromise.js~IFTSArrayPromise#between",
+    "lib/arraypromise.js~iftsarraypromise#between",
+    "class/lib/ArrayPromise.js~IFTSArrayPromise.html#instance-method-between",
+    "lib/ArrayPromise.js~IFTSArrayPromise#between",
     "method"
   ],
   [
-    "lib/iftsarraypromise.js~iftsarraypromise#catch",
-    "class/lib/IFTSArrayPromise.js~IFTSArrayPromise.html#instance-method-catch",
-    "lib/IFTSArrayPromise.js~IFTSArrayPromise#catch",
+    "lib/arraypromise.js~iftsarraypromise#catch",
+    "class/lib/ArrayPromise.js~IFTSArrayPromise.html#instance-method-catch",
+    "lib/ArrayPromise.js~IFTSArrayPromise#catch",
     "method"
   ],
   [
-    "lib/iftsarraypromise.js~iftsarraypromise#constructor",
-    "class/lib/IFTSArrayPromise.js~IFTSArrayPromise.html#instance-constructor-constructor",
-    "lib/IFTSArrayPromise.js~IFTSArrayPromise#constructor",
+    "lib/arraypromise.js~iftsarraypromise#constructor",
+    "class/lib/ArrayPromise.js~IFTSArrayPromise.html#instance-constructor-constructor",
+    "lib/ArrayPromise.js~IFTSArrayPromise#constructor",
     "method"
   ],
   [
-    "lib/iftsarraypromise.js~iftsarraypromise#equals",
-    "class/lib/IFTSArrayPromise.js~IFTSArrayPromise.html#instance-method-equals",
-    "lib/IFTSArrayPromise.js~IFTSArrayPromise#equals",
+    "lib/arraypromise.js~iftsarraypromise#equals",
+    "class/lib/ArrayPromise.js~IFTSArrayPromise.html#instance-method-equals",
+    "lib/ArrayPromise.js~IFTSArrayPromise#equals",
     "method"
   ],
   [
-    "lib/iftsarraypromise.js~iftsarraypromise#filter",
-    "class/lib/IFTSArrayPromise.js~IFTSArrayPromise.html#instance-method-filter",
-    "lib/IFTSArrayPromise.js~IFTSArrayPromise#filter",
+    "lib/arraypromise.js~iftsarraypromise#filter",
+    "class/lib/ArrayPromise.js~IFTSArrayPromise.html#instance-method-filter",
+    "lib/ArrayPromise.js~IFTSArrayPromise#filter",
     "method"
   ],
   [
-    "lib/iftsarraypromise.js~iftsarraypromise#greater",
-    "class/lib/IFTSArrayPromise.js~IFTSArrayPromise.html#instance-method-greater",
-    "lib/IFTSArrayPromise.js~IFTSArrayPromise#greater",
+    "lib/arraypromise.js~iftsarraypromise#greater",
+    "class/lib/ArrayPromise.js~IFTSArrayPromise.html#instance-method-greater",
+    "lib/ArrayPromise.js~IFTSArrayPromise#greater",
     "method"
   ],
   [
-    "lib/iftsarraypromise.js~iftsarraypromise#greaterorequals",
-    "class/lib/IFTSArrayPromise.js~IFTSArrayPromise.html#instance-method-greaterOrEquals",
-    "lib/IFTSArrayPromise.js~IFTSArrayPromise#greaterOrEquals",
+    "lib/arraypromise.js~iftsarraypromise#greaterorequals",
+    "class/lib/ArrayPromise.js~IFTSArrayPromise.html#instance-method-greaterOrEquals",
+    "lib/ArrayPromise.js~IFTSArrayPromise#greaterOrEquals",
     "method"
   ],
   [
-    "lib/iftsarraypromise.js~iftsarraypromise#indexes",
-    "class/lib/IFTSArrayPromise.js~IFTSArrayPromise.html#instance-member-indexes",
-    "lib/IFTSArrayPromise.js~IFTSArrayPromise#indexes",
+    "lib/arraypromise.js~iftsarraypromise#indexes",
+    "class/lib/ArrayPromise.js~IFTSArrayPromise.html#instance-member-indexes",
+    "lib/ArrayPromise.js~IFTSArrayPromise#indexes",
     "member"
   ],
   [
-    "lib/iftsarraypromise.js~iftsarraypromise#lower",
-    "class/lib/IFTSArrayPromise.js~IFTSArrayPromise.html#instance-method-lower",
-    "lib/IFTSArrayPromise.js~IFTSArrayPromise#lower",
+    "lib/arraypromise.js~iftsarraypromise#lower",
+    "class/lib/ArrayPromise.js~IFTSArrayPromise.html#instance-method-lower",
+    "lib/ArrayPromise.js~IFTSArrayPromise#lower",
     "method"
   ],
   [
-    "lib/iftsarraypromise.js~iftsarraypromise#lowerorequals",
-    "class/lib/IFTSArrayPromise.js~IFTSArrayPromise.html#instance-method-lowerOrEquals",
-    "lib/IFTSArrayPromise.js~IFTSArrayPromise#lowerOrEquals",
+    "lib/arraypromise.js~iftsarraypromise#lowerorequals",
+    "class/lib/ArrayPromise.js~IFTSArrayPromise.html#instance-method-lowerOrEquals",
+    "lib/ArrayPromise.js~IFTSArrayPromise#lowerOrEquals",
     "method"
   ],
   [
-    "lib/iftsarraypromise.js~iftsarraypromise#map",
-    "class/lib/IFTSArrayPromise.js~IFTSArrayPromise.html#instance-method-map",
-    "lib/IFTSArrayPromise.js~IFTSArrayPromise#map",
+    "lib/arraypromise.js~iftsarraypromise#map",
+    "class/lib/ArrayPromise.js~IFTSArrayPromise.html#instance-method-map",
+    "lib/ArrayPromise.js~IFTSArrayPromise#map",
     "method"
   ],
   [
-    "lib/iftsarraypromise.js~iftsarraypromise#promise",
-    "class/lib/IFTSArrayPromise.js~IFTSArrayPromise.html#instance-member-promise",
-    "lib/IFTSArrayPromise.js~IFTSArrayPromise#promise",
+    "lib/arraypromise.js~iftsarraypromise#promise",
+    "class/lib/ArrayPromise.js~IFTSArrayPromise.html#instance-member-promise",
+    "lib/ArrayPromise.js~IFTSArrayPromise#promise",
     "member"
   ],
   [
-    "lib/iftsarraypromise.js~iftsarraypromise#search",
-    "class/lib/IFTSArrayPromise.js~IFTSArrayPromise.html#instance-method-search",
-    "lib/IFTSArrayPromise.js~IFTSArrayPromise#search",
+    "lib/arraypromise.js~iftsarraypromise#search",
+    "class/lib/ArrayPromise.js~IFTSArrayPromise.html#instance-method-search",
+    "lib/ArrayPromise.js~IFTSArrayPromise#search",
     "method"
   ],
   [
-    "lib/iftsarraypromise.js~iftsarraypromise#searchword",
-    "class/lib/IFTSArrayPromise.js~IFTSArrayPromise.html#instance-method-searchWord",
-    "lib/IFTSArrayPromise.js~IFTSArrayPromise#searchWord",
+    "lib/arraypromise.js~iftsarraypromise#searchword",
+    "class/lib/ArrayPromise.js~IFTSArrayPromise.html#instance-method-searchWord",
+    "lib/ArrayPromise.js~IFTSArrayPromise#searchWord",
     "method"
   ],
   [
-    "lib/iftsarraypromise.js~iftsarraypromise#sort",
-    "class/lib/IFTSArrayPromise.js~IFTSArrayPromise.html#instance-method-sort",
-    "lib/IFTSArrayPromise.js~IFTSArrayPromise#sort",
+    "lib/arraypromise.js~iftsarraypromise#sort",
+    "class/lib/ArrayPromise.js~IFTSArrayPromise.html#instance-method-sort",
+    "lib/ArrayPromise.js~IFTSArrayPromise#sort",
     "method"
   ],
   [
-    "lib/iftsarraypromise.js~iftsarraypromise#then",
-    "class/lib/IFTSArrayPromise.js~IFTSArrayPromise.html#instance-method-then",
-    "lib/IFTSArrayPromise.js~IFTSArrayPromise#then",
+    "lib/arraypromise.js~iftsarraypromise#then",
+    "class/lib/ArrayPromise.js~IFTSArrayPromise.html#instance-method-then",
+    "lib/ArrayPromise.js~IFTSArrayPromise#then",
     "method"
   ],
   [
-    "lib/iftsarraypromise.js~iftsarraypromise.reject",
-    "class/lib/IFTSArrayPromise.js~IFTSArrayPromise.html#static-method-reject",
-    "lib/IFTSArrayPromise.js~IFTSArrayPromise.reject",
+    "lib/arraypromise.js~iftsarraypromise.reject",
+    "class/lib/ArrayPromise.js~IFTSArrayPromise.html#static-method-reject",
+    "lib/ArrayPromise.js~IFTSArrayPromise.reject",
     "method"
   ],
   [
-    "lib/iftsarraypromise.js~iftsarraypromise.resolve",
-    "class/lib/IFTSArrayPromise.js~IFTSArrayPromise.html#static-method-resolve",
-    "lib/IFTSArrayPromise.js~IFTSArrayPromise.resolve",
+    "lib/arraypromise.js~iftsarraypromise.resolve",
+    "class/lib/ArrayPromise.js~IFTSArrayPromise.html#static-method-resolve",
+    "lib/ArrayPromise.js~IFTSArrayPromise.resolve",
     "method"
-  ],
-  [
-    "lib/iftsschema.js",
-    "file/lib/IFTSSchema.js.html",
-    "lib/IFTSSchema.js",
-    "file"
-  ],
-  [
-    "lib/iftsschema.js~iftsschema#constructor",
-    "class/lib/IFTSSchema.js~IFTSSchema.html#instance-constructor-constructor",
-    "lib/IFTSSchema.js~IFTSSchema#constructor",
-    "method"
-  ],
-  [
-    "lib/iftsschema.js~iftsschema#indexes",
-    "class/lib/IFTSSchema.js~IFTSSchema.html#instance-get-indexes",
-    "lib/IFTSSchema.js~IFTSSchema#indexes",
-    "member"
-  ],
-  [
-    "lib/iftsschema.js~iftsschema#ngramindexes",
-    "class/lib/IFTSSchema.js~IFTSSchema.html#instance-member-ngramIndexes",
-    "lib/IFTSSchema.js~IFTSSchema#ngramIndexes",
-    "member"
-  ],
-  [
-    "lib/iftsschema.js~iftsschema#normalindexes",
-    "class/lib/IFTSSchema.js~IFTSSchema.html#instance-member-normalIndexes",
-    "lib/IFTSSchema.js~IFTSSchema#normalIndexes",
-    "member"
-  ],
-  [
-    "lib/iftsschema.js~iftsschema#primarykey",
-    "class/lib/IFTSSchema.js~IFTSSchema.html#instance-member-primaryKey",
-    "lib/IFTSSchema.js~IFTSSchema#primaryKey",
-    "member"
-  ],
-  [
-    "lib/iftsschema.js~iftsschema#uniqueindexes",
-    "class/lib/IFTSSchema.js~IFTSSchema.html#instance-member-uniqueIndexes",
-    "lib/IFTSSchema.js~IFTSSchema#uniqueIndexes",
-    "member"
-  ],
-  [
-    "lib/iftsschema.js~iftsschema#wordindexes",
-    "class/lib/IFTSSchema.js~IFTSSchema.html#instance-member-wordIndexes",
-    "lib/IFTSSchema.js~IFTSSchema#wordIndexes",
-    "member"
-  ],
-  [
-    "lib/iftstransaction.js",
-    "file/lib/IFTSTransaction.js.html",
-    "lib/IFTSTransaction.js",
-    "file"
-  ],
-  [
-    "lib/iftstransaction.js~iftstransaction#between",
-    "class/lib/IFTSTransaction.js~IFTSTransaction.html#instance-method-between",
-    "lib/IFTSTransaction.js~IFTSTransaction#between",
-    "method"
-  ],
-  [
-    "lib/iftstransaction.js~iftstransaction#constructor",
-    "class/lib/IFTSTransaction.js~IFTSTransaction.html#instance-constructor-constructor",
-    "lib/IFTSTransaction.js~IFTSTransaction#constructor",
-    "method"
-  ],
-  [
-    "lib/iftstransaction.js~iftstransaction#db",
-    "class/lib/IFTSTransaction.js~IFTSTransaction.html#instance-member-db",
-    "lib/IFTSTransaction.js~IFTSTransaction#db",
-    "member"
-  ],
-  [
-    "lib/iftstransaction.js~iftstransaction#delete",
-    "class/lib/IFTSTransaction.js~IFTSTransaction.html#instance-method-delete",
-    "lib/IFTSTransaction.js~IFTSTransaction#delete",
-    "method"
-  ],
-  [
-    "lib/iftstransaction.js~iftstransaction#equals",
-    "class/lib/IFTSTransaction.js~IFTSTransaction.html#instance-method-equals",
-    "lib/IFTSTransaction.js~IFTSTransaction#equals",
-    "method"
-  ],
-  [
-    "lib/iftstransaction.js~iftstransaction#filter",
-    "class/lib/IFTSTransaction.js~IFTSTransaction.html#instance-method-filter",
-    "lib/IFTSTransaction.js~IFTSTransaction#filter",
-    "method"
-  ],
-  [
-    "lib/iftstransaction.js~iftstransaction#get",
-    "class/lib/IFTSTransaction.js~IFTSTransaction.html#instance-method-get",
-    "lib/IFTSTransaction.js~IFTSTransaction#get",
-    "method"
-  ],
-  [
-    "lib/iftstransaction.js~iftstransaction#getall",
-    "class/lib/IFTSTransaction.js~IFTSTransaction.html#instance-method-getAll",
-    "lib/IFTSTransaction.js~IFTSTransaction#getAll",
-    "method"
-  ],
-  [
-    "lib/iftstransaction.js~iftstransaction#getngrams",
-    "class/lib/IFTSTransaction.js~IFTSTransaction.html#instance-method-getNGrams",
-    "lib/IFTSTransaction.js~IFTSTransaction#getNGrams",
-    "method"
-  ],
-  [
-    "lib/iftstransaction.js~iftstransaction#getwords",
-    "class/lib/IFTSTransaction.js~IFTSTransaction.html#instance-method-getWords",
-    "lib/IFTSTransaction.js~IFTSTransaction#getWords",
-    "method"
-  ],
-  [
-    "lib/iftstransaction.js~iftstransaction#greater",
-    "class/lib/IFTSTransaction.js~IFTSTransaction.html#instance-method-greater",
-    "lib/IFTSTransaction.js~IFTSTransaction#greater",
-    "method"
-  ],
-  [
-    "lib/iftstransaction.js~iftstransaction#greaterorequals",
-    "class/lib/IFTSTransaction.js~IFTSTransaction.html#instance-method-greaterOrEquals",
-    "lib/IFTSTransaction.js~IFTSTransaction#greaterOrEquals",
-    "method"
-  ],
-  [
-    "lib/iftstransaction.js~iftstransaction#lower",
-    "class/lib/IFTSTransaction.js~IFTSTransaction.html#instance-method-lower",
-    "lib/IFTSTransaction.js~IFTSTransaction#lower",
-    "method"
-  ],
-  [
-    "lib/iftstransaction.js~iftstransaction#lowerorequals",
-    "class/lib/IFTSTransaction.js~IFTSTransaction.html#instance-method-lowerOrEquals",
-    "lib/IFTSTransaction.js~IFTSTransaction#lowerOrEquals",
-    "method"
-  ],
-  [
-    "lib/iftstransaction.js~iftstransaction#map",
-    "class/lib/IFTSTransaction.js~IFTSTransaction.html#instance-method-map",
-    "lib/IFTSTransaction.js~IFTSTransaction#map",
-    "method"
-  ],
-  [
-    "lib/iftstransaction.js~iftstransaction#promise",
-    "class/lib/IFTSTransaction.js~IFTSTransaction.html#instance-member-promise",
-    "lib/IFTSTransaction.js~IFTSTransaction#promise",
-    "member"
-  ],
-  [
-    "lib/iftstransaction.js~iftstransaction#put",
-    "class/lib/IFTSTransaction.js~IFTSTransaction.html#instance-method-put",
-    "lib/IFTSTransaction.js~IFTSTransaction#put",
-    "method"
-  ],
-  [
-    "lib/iftstransaction.js~iftstransaction#search",
-    "class/lib/IFTSTransaction.js~IFTSTransaction.html#instance-method-search",
-    "lib/IFTSTransaction.js~IFTSTransaction#search",
-    "method"
-  ],
-  [
-    "lib/iftstransaction.js~iftstransaction#searchword",
-    "class/lib/IFTSTransaction.js~IFTSTransaction.html#instance-method-searchWord",
-    "lib/IFTSTransaction.js~IFTSTransaction#searchWord",
-    "method"
-  ],
-  [
-    "lib/iftstransaction.js~iftstransaction#sort",
-    "class/lib/IFTSTransaction.js~IFTSTransaction.html#instance-method-sort",
-    "lib/IFTSTransaction.js~IFTSTransaction#sort",
-    "method"
-  ],
-  [
-    "lib/iftstransaction.js~iftstransaction#transaction",
-    "class/lib/IFTSTransaction.js~IFTSTransaction.html#instance-member-transaction",
-    "lib/IFTSTransaction.js~IFTSTransaction#transaction",
-    "member"
   ],
   [
     "lib/indexedfts.js",
@@ -790,6 +610,186 @@ window.esdocSearchIndex = [
     "class/lib/IndexedFTS.js~IndexedFTS.html#static-method-delete",
     "lib/IndexedFTS.js~IndexedFTS.delete",
     "method"
+  ],
+  [
+    "lib/schema.js",
+    "file/lib/Schema.js.html",
+    "lib/Schema.js",
+    "file"
+  ],
+  [
+    "lib/schema.js~iftsschema#constructor",
+    "class/lib/Schema.js~IFTSSchema.html#instance-constructor-constructor",
+    "lib/Schema.js~IFTSSchema#constructor",
+    "method"
+  ],
+  [
+    "lib/schema.js~iftsschema#indexes",
+    "class/lib/Schema.js~IFTSSchema.html#instance-get-indexes",
+    "lib/Schema.js~IFTSSchema#indexes",
+    "member"
+  ],
+  [
+    "lib/schema.js~iftsschema#ngramindexes",
+    "class/lib/Schema.js~IFTSSchema.html#instance-member-ngramIndexes",
+    "lib/Schema.js~IFTSSchema#ngramIndexes",
+    "member"
+  ],
+  [
+    "lib/schema.js~iftsschema#normalindexes",
+    "class/lib/Schema.js~IFTSSchema.html#instance-member-normalIndexes",
+    "lib/Schema.js~IFTSSchema#normalIndexes",
+    "member"
+  ],
+  [
+    "lib/schema.js~iftsschema#primarykey",
+    "class/lib/Schema.js~IFTSSchema.html#instance-member-primaryKey",
+    "lib/Schema.js~IFTSSchema#primaryKey",
+    "member"
+  ],
+  [
+    "lib/schema.js~iftsschema#uniqueindexes",
+    "class/lib/Schema.js~IFTSSchema.html#instance-member-uniqueIndexes",
+    "lib/Schema.js~IFTSSchema#uniqueIndexes",
+    "member"
+  ],
+  [
+    "lib/schema.js~iftsschema#wordindexes",
+    "class/lib/Schema.js~IFTSSchema.html#instance-member-wordIndexes",
+    "lib/Schema.js~IFTSSchema#wordIndexes",
+    "member"
+  ],
+  [
+    "lib/transaction.js",
+    "file/lib/Transaction.js.html",
+    "lib/Transaction.js",
+    "file"
+  ],
+  [
+    "lib/transaction.js~iftstransaction#between",
+    "class/lib/Transaction.js~IFTSTransaction.html#instance-method-between",
+    "lib/Transaction.js~IFTSTransaction#between",
+    "method"
+  ],
+  [
+    "lib/transaction.js~iftstransaction#constructor",
+    "class/lib/Transaction.js~IFTSTransaction.html#instance-constructor-constructor",
+    "lib/Transaction.js~IFTSTransaction#constructor",
+    "method"
+  ],
+  [
+    "lib/transaction.js~iftstransaction#db",
+    "class/lib/Transaction.js~IFTSTransaction.html#instance-member-db",
+    "lib/Transaction.js~IFTSTransaction#db",
+    "member"
+  ],
+  [
+    "lib/transaction.js~iftstransaction#delete",
+    "class/lib/Transaction.js~IFTSTransaction.html#instance-method-delete",
+    "lib/Transaction.js~IFTSTransaction#delete",
+    "method"
+  ],
+  [
+    "lib/transaction.js~iftstransaction#equals",
+    "class/lib/Transaction.js~IFTSTransaction.html#instance-method-equals",
+    "lib/Transaction.js~IFTSTransaction#equals",
+    "method"
+  ],
+  [
+    "lib/transaction.js~iftstransaction#filter",
+    "class/lib/Transaction.js~IFTSTransaction.html#instance-method-filter",
+    "lib/Transaction.js~IFTSTransaction#filter",
+    "method"
+  ],
+  [
+    "lib/transaction.js~iftstransaction#get",
+    "class/lib/Transaction.js~IFTSTransaction.html#instance-method-get",
+    "lib/Transaction.js~IFTSTransaction#get",
+    "method"
+  ],
+  [
+    "lib/transaction.js~iftstransaction#getall",
+    "class/lib/Transaction.js~IFTSTransaction.html#instance-method-getAll",
+    "lib/Transaction.js~IFTSTransaction#getAll",
+    "method"
+  ],
+  [
+    "lib/transaction.js~iftstransaction#getngrams",
+    "class/lib/Transaction.js~IFTSTransaction.html#instance-method-getNGrams",
+    "lib/Transaction.js~IFTSTransaction#getNGrams",
+    "method"
+  ],
+  [
+    "lib/transaction.js~iftstransaction#getwords",
+    "class/lib/Transaction.js~IFTSTransaction.html#instance-method-getWords",
+    "lib/Transaction.js~IFTSTransaction#getWords",
+    "method"
+  ],
+  [
+    "lib/transaction.js~iftstransaction#greater",
+    "class/lib/Transaction.js~IFTSTransaction.html#instance-method-greater",
+    "lib/Transaction.js~IFTSTransaction#greater",
+    "method"
+  ],
+  [
+    "lib/transaction.js~iftstransaction#greaterorequals",
+    "class/lib/Transaction.js~IFTSTransaction.html#instance-method-greaterOrEquals",
+    "lib/Transaction.js~IFTSTransaction#greaterOrEquals",
+    "method"
+  ],
+  [
+    "lib/transaction.js~iftstransaction#lower",
+    "class/lib/Transaction.js~IFTSTransaction.html#instance-method-lower",
+    "lib/Transaction.js~IFTSTransaction#lower",
+    "method"
+  ],
+  [
+    "lib/transaction.js~iftstransaction#lowerorequals",
+    "class/lib/Transaction.js~IFTSTransaction.html#instance-method-lowerOrEquals",
+    "lib/Transaction.js~IFTSTransaction#lowerOrEquals",
+    "method"
+  ],
+  [
+    "lib/transaction.js~iftstransaction#map",
+    "class/lib/Transaction.js~IFTSTransaction.html#instance-method-map",
+    "lib/Transaction.js~IFTSTransaction#map",
+    "method"
+  ],
+  [
+    "lib/transaction.js~iftstransaction#promise",
+    "class/lib/Transaction.js~IFTSTransaction.html#instance-member-promise",
+    "lib/Transaction.js~IFTSTransaction#promise",
+    "member"
+  ],
+  [
+    "lib/transaction.js~iftstransaction#put",
+    "class/lib/Transaction.js~IFTSTransaction.html#instance-method-put",
+    "lib/Transaction.js~IFTSTransaction#put",
+    "method"
+  ],
+  [
+    "lib/transaction.js~iftstransaction#search",
+    "class/lib/Transaction.js~IFTSTransaction.html#instance-method-search",
+    "lib/Transaction.js~IFTSTransaction#search",
+    "method"
+  ],
+  [
+    "lib/transaction.js~iftstransaction#searchword",
+    "class/lib/Transaction.js~IFTSTransaction.html#instance-method-searchWord",
+    "lib/Transaction.js~IFTSTransaction#searchWord",
+    "method"
+  ],
+  [
+    "lib/transaction.js~iftstransaction#sort",
+    "class/lib/Transaction.js~IFTSTransaction.html#instance-method-sort",
+    "lib/Transaction.js~IFTSTransaction#sort",
+    "method"
+  ],
+  [
+    "lib/transaction.js~iftstransaction#transaction",
+    "class/lib/Transaction.js~IFTSTransaction.html#instance-member-transaction",
+    "lib/Transaction.js~IFTSTransaction#transaction",
+    "member"
   ],
   [
     "lib/browser_index.js",

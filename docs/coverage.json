@@ -3,24 +3,24 @@
   "expectCount": 113,
   "actualCount": 113,
   "files": {
-    "lib/IFTSArrayPromise.js": {
+    "lib/ArrayPromise.js": {
       "expectCount": 20,
       "actualCount": 20,
-      "undocumentLines": []
-    },
-    "lib/IFTSSchema.js": {
-      "expectCount": 12,
-      "actualCount": 12,
-      "undocumentLines": []
-    },
-    "lib/IFTSTransaction.js": {
-      "expectCount": 32,
-      "actualCount": 32,
       "undocumentLines": []
     },
     "lib/IndexedFTS.js": {
       "expectCount": 30,
       "actualCount": 30,
+      "undocumentLines": []
+    },
+    "lib/Schema.js": {
+      "expectCount": 12,
+      "actualCount": 12,
+      "undocumentLines": []
+    },
+    "lib/Transaction.js": {
+      "expectCount": 32,
+      "actualCount": 32,
       "undocumentLines": []
     },
     "lib/errors.js": {

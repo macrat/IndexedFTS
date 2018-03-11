@@ -1,6 +1,6 @@
 import assert from 'power-assert';
 
-import IFTSSchema, {normalize} from '../../lib/IFTSSchema';
+import IFTSSchema, {normalize} from '../../lib/Schema';
 
 
 describe('IFTSSchema', function() {

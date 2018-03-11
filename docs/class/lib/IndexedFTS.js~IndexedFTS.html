@@ -29,10 +29,10 @@
 <nav class="navigation" data-ice="nav"><div>
   <ul>
     
-  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/IFTSArrayPromise.js~IFTSArrayPromise.html">IFTSArrayPromise</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/IFTSSchema.js~IFTSSchema.html">IFTSSchema</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/IFTSTransaction.js~IFTSTransaction.html">IFTSTransaction</a></span></span></li>
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/ArrayPromise.js~IFTSArrayPromise.html">IFTSArrayPromise</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/IndexedFTS.js~IndexedFTS.html">IndexedFTS</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/Schema.js~IFTSSchema.html">IFTSSchema</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/Transaction.js~IFTSTransaction.html">IFTSTransaction</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/errors.js~InvalidKeyError.html">InvalidKeyError</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/errors.js~InvalidSchemaError.html">InvalidSchemaError</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/errors.js~NoSuchColumnError.html">NoSuchColumnError</a></span></span></li>
@@ -68,7 +68,7 @@
   
   
   <div class="description" data-ice="description"><p>The database of IndexedFTS.</p>
-<p>Almost methods are the same interface as <span>IDBTransaction</span> and <span><a href="class/lib/IFTSArrayPromise.js~IFTSArrayPromise.html">IFTSArrayPromise</a></span>.</p>
+<p>Almost methods are the same interface as <span>IDBTransaction</span> and <span><a href="class/lib/ArrayPromise.js~IFTSArrayPromise.html">IFTSArrayPromise</a></span>.</p>
 </div>
   
 
@@ -136,7 +136,7 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/lib/IndexedFTS.js~IndexedFTS.html#instance-constructor-constructor">constructor</a></span></span><span class="code" data-ice="signature">(name: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>, version: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, schema: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span> | <span><a href="class/lib/IFTSSchema.js~IFTSSchema.html">IFTSSchema</a></span>, options: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span>)</span>
+          <span class="code" data-ice="name"><span><a href="class/lib/IndexedFTS.js~IndexedFTS.html#instance-constructor-constructor">constructor</a></span></span><span class="code" data-ice="signature">(name: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>, version: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, schema: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span> | <span><a href="class/lib/Schema.js~IFTSSchema.html">IFTSSchema</a></span>, options: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span>)</span>
         </p>
       </div>
       <div>
@@ -256,7 +256,7 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/lib/IndexedFTS.js~IndexedFTS.html#instance-member-schema">schema</a></span></span><span class="code" data-ice="signature">: <span><a href="class/lib/IFTSSchema.js~IFTSSchema.html">IFTSSchema</a></span></span>
+          <span class="code" data-ice="name"><span><a href="class/lib/IndexedFTS.js~IndexedFTS.html#instance-member-schema">schema</a></span></span><span class="code" data-ice="signature">: <span><a href="class/lib/Schema.js~IFTSSchema.html">IFTSSchema</a></span></span>
         </p>
       </div>
       <div>
@@ -347,7 +347,7 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/lib/IndexedFTS.js~IndexedFTS.html#instance-method-between">between</a></span></span><span class="code" data-ice="signature">(column: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span>, lower: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span>, upper: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span>): <span><a href="class/lib/IFTSArrayPromise.js~IFTSArrayPromise.html">IFTSArrayPromise</a></span></span>
+          <span class="code" data-ice="name"><span><a href="class/lib/IndexedFTS.js~IndexedFTS.html#instance-method-between">between</a></span></span><span class="code" data-ice="signature">(column: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span>, lower: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span>, upper: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span>): <span><a href="class/lib/ArrayPromise.js~IFTSArrayPromise.html">IFTSArrayPromise</a></span></span>
         </p>
       </div>
       <div>
@@ -434,7 +434,7 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/lib/IndexedFTS.js~IndexedFTS.html#instance-method-equals">equals</a></span></span><span class="code" data-ice="signature">(column: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span>, value: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span>): <span><a href="class/lib/IFTSArrayPromise.js~IFTSArrayPromise.html">IFTSArrayPromise</a></span></span>
+          <span class="code" data-ice="name"><span><a href="class/lib/IndexedFTS.js~IndexedFTS.html#instance-method-equals">equals</a></span></span><span class="code" data-ice="signature">(column: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span>, value: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span>): <span><a href="class/lib/ArrayPromise.js~IFTSArrayPromise.html">IFTSArrayPromise</a></span></span>
         </p>
       </div>
       <div>
@@ -463,13 +463,13 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/lib/IndexedFTS.js~IndexedFTS.html#instance-method-filter">filter</a></span></span><span class="code" data-ice="signature">(fun: <span><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">function</a></span><span>(content: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span>, index: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></span>)</span>: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span></span>): <span><a href="class/lib/IFTSArrayPromise.js~IFTSArrayPromise.html">IFTSArrayPromise</a></span></span>
+          <span class="code" data-ice="name"><span><a href="class/lib/IndexedFTS.js~IndexedFTS.html#instance-method-filter">filter</a></span></span><span class="code" data-ice="signature">(fun: <span><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">function</a></span><span>(content: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span>, index: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></span>)</span>: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span></span>): <span><a href="class/lib/ArrayPromise.js~IFTSArrayPromise.html">IFTSArrayPromise</a></span></span>
         </p>
       </div>
       <div>
         
         
-        <div data-ice="description"><p>Filtering elements by function and returns <span><a href="class/lib/IFTSArrayPromise.js~IFTSArrayPromise.html">IFTSArrayPromise</a></span>.</p>
+        <div data-ice="description"><p>Filtering elements by function and returns <span><a href="class/lib/ArrayPromise.js~IFTSArrayPromise.html">IFTSArrayPromise</a></span>.</p>
 </div>
       </div>
     </td>
@@ -521,7 +521,7 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/lib/IndexedFTS.js~IndexedFTS.html#instance-method-getAll">getAll</a></span></span><span class="code" data-ice="signature">(): <span><a href="class/lib/IFTSArrayPromise.js~IFTSArrayPromise.html">IFTSArrayPromise</a></span></span>
+          <span class="code" data-ice="name"><span><a href="class/lib/IndexedFTS.js~IndexedFTS.html#instance-method-getAll">getAll</a></span></span><span class="code" data-ice="signature">(): <span><a href="class/lib/ArrayPromise.js~IFTSArrayPromise.html">IFTSArrayPromise</a></span></span>
         </p>
       </div>
       <div>
@@ -608,7 +608,7 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/lib/IndexedFTS.js~IndexedFTS.html#instance-method-greater">greater</a></span></span><span class="code" data-ice="signature">(column: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span>, value: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span>): <span><a href="class/lib/IFTSArrayPromise.js~IFTSArrayPromise.html">IFTSArrayPromise</a></span></span>
+          <span class="code" data-ice="name"><span><a href="class/lib/IndexedFTS.js~IndexedFTS.html#instance-method-greater">greater</a></span></span><span class="code" data-ice="signature">(column: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span>, value: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span>): <span><a href="class/lib/ArrayPromise.js~IFTSArrayPromise.html">IFTSArrayPromise</a></span></span>
         </p>
       </div>
       <div>
@@ -637,7 +637,7 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/lib/IndexedFTS.js~IndexedFTS.html#instance-method-greaterOrEquals">greaterOrEquals</a></span></span><span class="code" data-ice="signature">(column: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span>, value: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span>): <span><a href="class/lib/IFTSArrayPromise.js~IFTSArrayPromise.html">IFTSArrayPromise</a></span></span>
+          <span class="code" data-ice="name"><span><a href="class/lib/IndexedFTS.js~IndexedFTS.html#instance-method-greaterOrEquals">greaterOrEquals</a></span></span><span class="code" data-ice="signature">(column: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span>, value: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span>): <span><a href="class/lib/ArrayPromise.js~IFTSArrayPromise.html">IFTSArrayPromise</a></span></span>
         </p>
       </div>
       <div>
@@ -666,7 +666,7 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/lib/IndexedFTS.js~IndexedFTS.html#instance-method-lower">lower</a></span></span><span class="code" data-ice="signature">(column: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span>, value: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span>): <span><a href="class/lib/IFTSArrayPromise.js~IFTSArrayPromise.html">IFTSArrayPromise</a></span></span>
+          <span class="code" data-ice="name"><span><a href="class/lib/IndexedFTS.js~IndexedFTS.html#instance-method-lower">lower</a></span></span><span class="code" data-ice="signature">(column: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span>, value: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span>): <span><a href="class/lib/ArrayPromise.js~IFTSArrayPromise.html">IFTSArrayPromise</a></span></span>
         </p>
       </div>
       <div>
@@ -695,7 +695,7 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/lib/IndexedFTS.js~IndexedFTS.html#instance-method-lowerOrEquals">lowerOrEquals</a></span></span><span class="code" data-ice="signature">(column: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span>, value: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span>): <span><a href="class/lib/IFTSArrayPromise.js~IFTSArrayPromise.html">IFTSArrayPromise</a></span></span>
+          <span class="code" data-ice="name"><span><a href="class/lib/IndexedFTS.js~IndexedFTS.html#instance-method-lowerOrEquals">lowerOrEquals</a></span></span><span class="code" data-ice="signature">(column: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span>, value: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span>): <span><a href="class/lib/ArrayPromise.js~IFTSArrayPromise.html">IFTSArrayPromise</a></span></span>
         </p>
       </div>
       <div>
@@ -724,13 +724,13 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/lib/IndexedFTS.js~IndexedFTS.html#instance-method-map">map</a></span></span><span class="code" data-ice="signature">(fun: <span><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">function</a></span><span>(content: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span>, index: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></span>)</span>: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span></span>): <span><a href="class/lib/IFTSArrayPromise.js~IFTSArrayPromise.html">IFTSArrayPromise</a></span></span>
+          <span class="code" data-ice="name"><span><a href="class/lib/IndexedFTS.js~IndexedFTS.html#instance-method-map">map</a></span></span><span class="code" data-ice="signature">(fun: <span><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">function</a></span><span>(content: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span>, index: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></span>)</span>: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span></span>): <span><a href="class/lib/ArrayPromise.js~IFTSArrayPromise.html">IFTSArrayPromise</a></span></span>
         </p>
       </div>
       <div>
         
         
-        <div data-ice="description"><p>Do something process for each elements and returns <span><a href="class/lib/IFTSArrayPromise.js~IFTSArrayPromise.html">IFTSArrayPromise</a></span>.</p>
+        <div data-ice="description"><p>Do something process for each elements and returns <span><a href="class/lib/ArrayPromise.js~IFTSArrayPromise.html">IFTSArrayPromise</a></span>.</p>
 </div>
       </div>
     </td>
@@ -811,7 +811,7 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/lib/IndexedFTS.js~IndexedFTS.html#instance-method-search">search</a></span></span><span class="code" data-ice="signature">(columns: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span> | <span><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span><span>[]</span></span>, query: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>): <span><a href="class/lib/IFTSArrayPromise.js~IFTSArrayPromise.html">IFTSArrayPromise</a></span></span>
+          <span class="code" data-ice="name"><span><a href="class/lib/IndexedFTS.js~IndexedFTS.html#instance-method-search">search</a></span></span><span class="code" data-ice="signature">(columns: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span> | <span><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span><span>[]</span></span>, query: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>): <span><a href="class/lib/ArrayPromise.js~IFTSArrayPromise.html">IFTSArrayPromise</a></span></span>
         </p>
       </div>
       <div>
@@ -840,7 +840,7 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/lib/IndexedFTS.js~IndexedFTS.html#instance-method-searchWord">searchWord</a></span></span><span class="code" data-ice="signature">(columns: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span> | <span><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span><span>[]</span></span>, query: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>): <span><a href="class/lib/IFTSArrayPromise.js~IFTSArrayPromise.html">IFTSArrayPromise</a></span></span>
+          <span class="code" data-ice="name"><span><a href="class/lib/IndexedFTS.js~IndexedFTS.html#instance-method-searchWord">searchWord</a></span></span><span class="code" data-ice="signature">(columns: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span> | <span><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span><span>[]</span></span>, query: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>): <span><a href="class/lib/ArrayPromise.js~IFTSArrayPromise.html">IFTSArrayPromise</a></span></span>
         </p>
       </div>
       <div>
@@ -869,7 +869,7 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/lib/IndexedFTS.js~IndexedFTS.html#instance-method-sort">sort</a></span></span><span class="code" data-ice="signature">(column: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span>, order: <span>&apos;asc&apos;</span> | <span>&apos;desc&apos;</span>, offset: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></span>, limit: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></span>): <span><a href="class/lib/IFTSArrayPromise.js~IFTSArrayPromise.html">IFTSArrayPromise</a></span></span>
+          <span class="code" data-ice="name"><span><a href="class/lib/IndexedFTS.js~IndexedFTS.html#instance-method-sort">sort</a></span></span><span class="code" data-ice="signature">(column: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span>, order: <span>&apos;asc&apos;</span> | <span>&apos;desc&apos;</span>, offset: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></span>, limit: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></span>): <span><a href="class/lib/ArrayPromise.js~IFTSArrayPromise.html">IFTSArrayPromise</a></span></span>
         </p>
       </div>
       <div>
@@ -898,13 +898,13 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/lib/IndexedFTS.js~IndexedFTS.html#instance-method-transaction">transaction</a></span></span><span class="code" data-ice="signature">(mode: <span>&quot;readonly&quot;</span> | <span>&quot;readwrite&quot;</span>, target: <span><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span><span>[]</span></span> | <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/null">null</a></span>): <span><a href="class/lib/IFTSTransaction.js~IFTSTransaction.html">IFTSTransaction</a></span></span>
+          <span class="code" data-ice="name"><span><a href="class/lib/IndexedFTS.js~IndexedFTS.html#instance-method-transaction">transaction</a></span></span><span class="code" data-ice="signature">(mode: <span>&quot;readonly&quot;</span> | <span>&quot;readwrite&quot;</span>, target: <span><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span><span>[]</span></span> | <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/null">null</a></span>): <span><a href="class/lib/Transaction.js~IFTSTransaction.html">IFTSTransaction</a></span></span>
         </p>
       </div>
       <div>
         
         
-        <div data-ice="description"><p>Make new <span><a href="class/lib/IFTSTransaction.js~IFTSTransaction.html">IFTSTransaction</a></span>.</p>
+        <div data-ice="description"><p>Make new <span><a href="class/lib/Transaction.js~IFTSTransaction.html">IFTSTransaction</a></span>.</p>
 </div>
       </div>
     </td>
@@ -1014,7 +1014,7 @@
     
     
     
-    <span class="code" data-ice="name">constructor</span><span class="code" data-ice="signature">(name: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>, version: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, schema: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span> | <span><a href="class/lib/IFTSSchema.js~IFTSSchema.html">IFTSSchema</a></span>, options: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span>)</span>
+    <span class="code" data-ice="name">constructor</span><span class="code" data-ice="signature">(name: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>, version: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, schema: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span> | <span><a href="class/lib/Schema.js~IFTSSchema.html">IFTSSchema</a></span>, options: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span>)</span>
     <span class="right-info">
       
       
@@ -1069,7 +1069,7 @@ Word index is faster than the &apos;ngram&apos; index but can&apos;t find a part
     </tr>
 <tr data-ice="property" data-depth="0">
       <td data-ice="name" class="code" data-depth="0">schema</td>
-      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span> | <span><a href="class/lib/IFTSSchema.js~IFTSSchema.html">IFTSSchema</a></span></td>
+      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span> | <span><a href="class/lib/Schema.js~IFTSSchema.html">IFTSSchema</a></span></td>
       <td data-ice="appendix"></td>
       <td data-ice="description"><p>database schema.</p>
 </td>
@@ -1270,7 +1270,7 @@ Word index is faster than the &apos;ngram&apos; index but can&apos;t find a part
     
     
     
-    <span class="code" data-ice="name">schema</span><span class="code" data-ice="signature">: <span><a href="class/lib/IFTSSchema.js~IFTSSchema.html">IFTSSchema</a></span></span>
+    <span class="code" data-ice="name">schema</span><span class="code" data-ice="signature">: <span><a href="class/lib/Schema.js~IFTSSchema.html">IFTSSchema</a></span></span>
     <span class="right-info">
       
       
@@ -1402,7 +1402,7 @@ Word index is faster than the &apos;ngram&apos; index but can&apos;t find a part
     
     
     
-    <span class="code" data-ice="name">between</span><span class="code" data-ice="signature">(column: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span>, lower: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span>, upper: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span>): <span><a href="class/lib/IFTSArrayPromise.js~IFTSArrayPromise.html">IFTSArrayPromise</a></span></span>
+    <span class="code" data-ice="name">between</span><span class="code" data-ice="signature">(column: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span>, lower: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span>, upper: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span>): <span><a href="class/lib/ArrayPromise.js~IFTSArrayPromise.html">IFTSArrayPromise</a></span></span>
     <span class="right-info">
       
       
@@ -1457,7 +1457,7 @@ Word index is faster than the &apos;ngram&apos; index but can&apos;t find a part
     <table>
       <tbody>
         <tr>
-          <td class="return-type code" data-ice="returnType"><span><a href="class/lib/IFTSArrayPromise.js~IFTSArrayPromise.html">IFTSArrayPromise</a></span></td>
+          <td class="return-type code" data-ice="returnType"><span><a href="class/lib/ArrayPromise.js~IFTSArrayPromise.html">IFTSArrayPromise</a></span></td>
           <td class="return-desc" data-ice="returnDescription"><p>matched contents. may reject with <span><a href="class/lib/errors.js~NoSuchColumnError.html">NoSuchColumnError</a></span>.</p>
 </td>
         </tr>
@@ -1608,7 +1608,7 @@ Word index is faster than the &apos;ngram&apos; index but can&apos;t find a part
     
     
     
-    <span class="code" data-ice="name">equals</span><span class="code" data-ice="signature">(column: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span>, value: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span>): <span><a href="class/lib/IFTSArrayPromise.js~IFTSArrayPromise.html">IFTSArrayPromise</a></span></span>
+    <span class="code" data-ice="name">equals</span><span class="code" data-ice="signature">(column: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span>, value: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span>): <span><a href="class/lib/ArrayPromise.js~IFTSArrayPromise.html">IFTSArrayPromise</a></span></span>
     <span class="right-info">
       
       
@@ -1656,7 +1656,7 @@ Word index is faster than the &apos;ngram&apos; index but can&apos;t find a part
     <table>
       <tbody>
         <tr>
-          <td class="return-type code" data-ice="returnType"><span><a href="class/lib/IFTSArrayPromise.js~IFTSArrayPromise.html">IFTSArrayPromise</a></span></td>
+          <td class="return-type code" data-ice="returnType"><span><a href="class/lib/ArrayPromise.js~IFTSArrayPromise.html">IFTSArrayPromise</a></span></td>
           <td class="return-desc" data-ice="returnDescription"><p>matched contents. may reject with <span><a href="class/lib/errors.js~NoSuchColumnError.html">NoSuchColumnError</a></span>.</p>
 </td>
         </tr>
@@ -1689,7 +1689,7 @@ Word index is faster than the &apos;ngram&apos; index but can&apos;t find a part
     
     
     
-    <span class="code" data-ice="name">filter</span><span class="code" data-ice="signature">(fun: <span><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">function</a></span><span>(content: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span>, index: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></span>)</span>: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span></span>): <span><a href="class/lib/IFTSArrayPromise.js~IFTSArrayPromise.html">IFTSArrayPromise</a></span></span>
+    <span class="code" data-ice="name">filter</span><span class="code" data-ice="signature">(fun: <span><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">function</a></span><span>(content: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span>, index: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></span>)</span>: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span></span>): <span><a href="class/lib/ArrayPromise.js~IFTSArrayPromise.html">IFTSArrayPromise</a></span></span>
     <span class="right-info">
       
       
@@ -1700,7 +1700,7 @@ Word index is faster than the &apos;ngram&apos; index but can&apos;t find a part
   
   
   
-  <div data-ice="description"><p>Filtering elements by function and returns <span><a href="class/lib/IFTSArrayPromise.js~IFTSArrayPromise.html">IFTSArrayPromise</a></span>.</p>
+  <div data-ice="description"><p>Filtering elements by function and returns <span><a href="class/lib/ArrayPromise.js~IFTSArrayPromise.html">IFTSArrayPromise</a></span>.</p>
 <p>WARNING: This method won&apos;t use the index. Other methods(eg. {@link IFTSTransaction#equals or @link IFTSTransaction#lower} may faster than this.</p>
 </div>
 
@@ -1731,7 +1731,7 @@ Word index is faster than the &apos;ngram&apos; index but can&apos;t find a part
     <table>
       <tbody>
         <tr>
-          <td class="return-type code" data-ice="returnType"><span><a href="class/lib/IFTSArrayPromise.js~IFTSArrayPromise.html">IFTSArrayPromise</a></span></td>
+          <td class="return-type code" data-ice="returnType"><span><a href="class/lib/ArrayPromise.js~IFTSArrayPromise.html">IFTSArrayPromise</a></span></td>
           
         </tr>
       </tbody>
@@ -1837,7 +1837,7 @@ Word index is faster than the &apos;ngram&apos; index but can&apos;t find a part
     
     
     
-    <span class="code" data-ice="name">getAll</span><span class="code" data-ice="signature">(): <span><a href="class/lib/IFTSArrayPromise.js~IFTSArrayPromise.html">IFTSArrayPromise</a></span></span>
+    <span class="code" data-ice="name">getAll</span><span class="code" data-ice="signature">(): <span><a href="class/lib/ArrayPromise.js~IFTSArrayPromise.html">IFTSArrayPromise</a></span></span>
     <span class="right-info">
       
       
@@ -1861,7 +1861,7 @@ Word index is faster than the &apos;ngram&apos; index but can&apos;t find a part
     <table>
       <tbody>
         <tr>
-          <td class="return-type code" data-ice="returnType"><span><a href="class/lib/IFTSArrayPromise.js~IFTSArrayPromise.html">IFTSArrayPromise</a></span></td>
+          <td class="return-type code" data-ice="returnType"><span><a href="class/lib/ArrayPromise.js~IFTSArrayPromise.html">IFTSArrayPromise</a></span></td>
           <td class="return-desc" data-ice="returnDescription"><p>contents.</p>
 </td>
         </tr>
@@ -2040,7 +2040,7 @@ Word index is faster than the &apos;ngram&apos; index but can&apos;t find a part
     
     
     
-    <span class="code" data-ice="name">greater</span><span class="code" data-ice="signature">(column: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span>, value: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span>): <span><a href="class/lib/IFTSArrayPromise.js~IFTSArrayPromise.html">IFTSArrayPromise</a></span></span>
+    <span class="code" data-ice="name">greater</span><span class="code" data-ice="signature">(column: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span>, value: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span>): <span><a href="class/lib/ArrayPromise.js~IFTSArrayPromise.html">IFTSArrayPromise</a></span></span>
     <span class="right-info">
       
       
@@ -2088,7 +2088,7 @@ Word index is faster than the &apos;ngram&apos; index but can&apos;t find a part
     <table>
       <tbody>
         <tr>
-          <td class="return-type code" data-ice="returnType"><span><a href="class/lib/IFTSArrayPromise.js~IFTSArrayPromise.html">IFTSArrayPromise</a></span></td>
+          <td class="return-type code" data-ice="returnType"><span><a href="class/lib/ArrayPromise.js~IFTSArrayPromise.html">IFTSArrayPromise</a></span></td>
           <td class="return-desc" data-ice="returnDescription"><p>matched contents. may reject with <span><a href="class/lib/errors.js~NoSuchColumnError.html">NoSuchColumnError</a></span>.</p>
 </td>
         </tr>
@@ -2121,7 +2121,7 @@ Word index is faster than the &apos;ngram&apos; index but can&apos;t find a part
     
     
     
-    <span class="code" data-ice="name">greaterOrEquals</span><span class="code" data-ice="signature">(column: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span>, value: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span>): <span><a href="class/lib/IFTSArrayPromise.js~IFTSArrayPromise.html">IFTSArrayPromise</a></span></span>
+    <span class="code" data-ice="name">greaterOrEquals</span><span class="code" data-ice="signature">(column: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span>, value: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span>): <span><a href="class/lib/ArrayPromise.js~IFTSArrayPromise.html">IFTSArrayPromise</a></span></span>
     <span class="right-info">
       
       
@@ -2169,7 +2169,7 @@ Word index is faster than the &apos;ngram&apos; index but can&apos;t find a part
     <table>
       <tbody>
         <tr>
-          <td class="return-type code" data-ice="returnType"><span><a href="class/lib/IFTSArrayPromise.js~IFTSArrayPromise.html">IFTSArrayPromise</a></span></td>
+          <td class="return-type code" data-ice="returnType"><span><a href="class/lib/ArrayPromise.js~IFTSArrayPromise.html">IFTSArrayPromise</a></span></td>
           <td class="return-desc" data-ice="returnDescription"><p>matched contents. may reject with <span><a href="class/lib/errors.js~NoSuchColumnError.html">NoSuchColumnError</a></span>.</p>
 </td>
         </tr>
@@ -2202,7 +2202,7 @@ Word index is faster than the &apos;ngram&apos; index but can&apos;t find a part
     
     
     
-    <span class="code" data-ice="name">lower</span><span class="code" data-ice="signature">(column: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span>, value: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span>): <span><a href="class/lib/IFTSArrayPromise.js~IFTSArrayPromise.html">IFTSArrayPromise</a></span></span>
+    <span class="code" data-ice="name">lower</span><span class="code" data-ice="signature">(column: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span>, value: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span>): <span><a href="class/lib/ArrayPromise.js~IFTSArrayPromise.html">IFTSArrayPromise</a></span></span>
     <span class="right-info">
       
       
@@ -2250,7 +2250,7 @@ Word index is faster than the &apos;ngram&apos; index but can&apos;t find a part
     <table>
       <tbody>
         <tr>
-          <td class="return-type code" data-ice="returnType"><span><a href="class/lib/IFTSArrayPromise.js~IFTSArrayPromise.html">IFTSArrayPromise</a></span></td>
+          <td class="return-type code" data-ice="returnType"><span><a href="class/lib/ArrayPromise.js~IFTSArrayPromise.html">IFTSArrayPromise</a></span></td>
           <td class="return-desc" data-ice="returnDescription"><p>matched contents. may reject with <span><a href="class/lib/errors.js~NoSuchColumnError.html">NoSuchColumnError</a></span>.</p>
 </td>
         </tr>
@@ -2283,7 +2283,7 @@ Word index is faster than the &apos;ngram&apos; index but can&apos;t find a part
     
     
     
-    <span class="code" data-ice="name">lowerOrEquals</span><span class="code" data-ice="signature">(column: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span>, value: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span>): <span><a href="class/lib/IFTSArrayPromise.js~IFTSArrayPromise.html">IFTSArrayPromise</a></span></span>
+    <span class="code" data-ice="name">lowerOrEquals</span><span class="code" data-ice="signature">(column: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span>, value: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span>): <span><a href="class/lib/ArrayPromise.js~IFTSArrayPromise.html">IFTSArrayPromise</a></span></span>
     <span class="right-info">
       
       
@@ -2331,7 +2331,7 @@ Word index is faster than the &apos;ngram&apos; index but can&apos;t find a part
     <table>
       <tbody>
         <tr>
-          <td class="return-type code" data-ice="returnType"><span><a href="class/lib/IFTSArrayPromise.js~IFTSArrayPromise.html">IFTSArrayPromise</a></span></td>
+          <td class="return-type code" data-ice="returnType"><span><a href="class/lib/ArrayPromise.js~IFTSArrayPromise.html">IFTSArrayPromise</a></span></td>
           <td class="return-desc" data-ice="returnDescription"><p>matched contents. may reject with <span><a href="class/lib/errors.js~NoSuchColumnError.html">NoSuchColumnError</a></span>.</p>
 </td>
         </tr>
@@ -2364,7 +2364,7 @@ Word index is faster than the &apos;ngram&apos; index but can&apos;t find a part
     
     
     
-    <span class="code" data-ice="name">map</span><span class="code" data-ice="signature">(fun: <span><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">function</a></span><span>(content: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span>, index: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></span>)</span>: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span></span>): <span><a href="class/lib/IFTSArrayPromise.js~IFTSArrayPromise.html">IFTSArrayPromise</a></span></span>
+    <span class="code" data-ice="name">map</span><span class="code" data-ice="signature">(fun: <span><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">function</a></span><span>(content: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span>, index: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></span>)</span>: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span></span>): <span><a href="class/lib/ArrayPromise.js~IFTSArrayPromise.html">IFTSArrayPromise</a></span></span>
     <span class="right-info">
       
       
@@ -2375,7 +2375,7 @@ Word index is faster than the &apos;ngram&apos; index but can&apos;t find a part
   
   
   
-  <div data-ice="description"><p>Do something process for each elements and returns <span><a href="class/lib/IFTSArrayPromise.js~IFTSArrayPromise.html">IFTSArrayPromise</a></span>.</p>
+  <div data-ice="description"><p>Do something process for each elements and returns <span><a href="class/lib/ArrayPromise.js~IFTSArrayPromise.html">IFTSArrayPromise</a></span>.</p>
 <p>NOTE: This method doesn&apos;t fast. May better do filtering before doing map if need filtering.</p>
 </div>
 
@@ -2406,7 +2406,7 @@ Word index is faster than the &apos;ngram&apos; index but can&apos;t find a part
     <table>
       <tbody>
         <tr>
-          <td class="return-type code" data-ice="returnType"><span><a href="class/lib/IFTSArrayPromise.js~IFTSArrayPromise.html">IFTSArrayPromise</a></span></td>
+          <td class="return-type code" data-ice="returnType"><span><a href="class/lib/ArrayPromise.js~IFTSArrayPromise.html">IFTSArrayPromise</a></span></td>
           
         </tr>
       </tbody>
@@ -2568,7 +2568,7 @@ Word index is faster than the &apos;ngram&apos; index but can&apos;t find a part
     
     
     
-    <span class="code" data-ice="name">search</span><span class="code" data-ice="signature">(columns: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span> | <span><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span><span>[]</span></span>, query: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>): <span><a href="class/lib/IFTSArrayPromise.js~IFTSArrayPromise.html">IFTSArrayPromise</a></span></span>
+    <span class="code" data-ice="name">search</span><span class="code" data-ice="signature">(columns: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span> | <span><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span><span>[]</span></span>, query: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>): <span><a href="class/lib/ArrayPromise.js~IFTSArrayPromise.html">IFTSArrayPromise</a></span></span>
     <span class="right-info">
       
       
@@ -2581,7 +2581,7 @@ Word index is faster than the &apos;ngram&apos; index but can&apos;t find a part
   
   <div data-ice="description"><p>Get contents that have matched property by full-text search.</p>
 <p>All target columns have to made ngram index when created database.
-If you didn&apos;t made ngram index, you can use <span><a href="class/lib/IFTSArrayPromise.js~IFTSArrayPromise.html#instance-method-search">IFTSArrayPromise#search</a></span> (but this way is very slow).</p>
+If you didn&apos;t made ngram index, you can use <span><a href="class/lib/ArrayPromise.js~IFTSArrayPromise.html#instance-method-search">IFTSArrayPromise#search</a></span> (but this way is very slow).</p>
 </div>
 
   
@@ -2618,7 +2618,7 @@ If you didn&apos;t made ngram index, you can use <span><a href="class/lib/IFTSAr
     <table>
       <tbody>
         <tr>
-          <td class="return-type code" data-ice="returnType"><span><a href="class/lib/IFTSArrayPromise.js~IFTSArrayPromise.html">IFTSArrayPromise</a></span></td>
+          <td class="return-type code" data-ice="returnType"><span><a href="class/lib/ArrayPromise.js~IFTSArrayPromise.html">IFTSArrayPromise</a></span></td>
           <td class="return-desc" data-ice="returnDescription"><p>matched contents. may reject with <span><a href="class/lib/errors.js~NoSuchColumnError.html">NoSuchColumnError</a></span>.</p>
 </td>
         </tr>
@@ -2651,7 +2651,7 @@ If you didn&apos;t made ngram index, you can use <span><a href="class/lib/IFTSAr
     
     
     
-    <span class="code" data-ice="name">searchWord</span><span class="code" data-ice="signature">(columns: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span> | <span><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span><span>[]</span></span>, query: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>): <span><a href="class/lib/IFTSArrayPromise.js~IFTSArrayPromise.html">IFTSArrayPromise</a></span></span>
+    <span class="code" data-ice="name">searchWord</span><span class="code" data-ice="signature">(columns: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span> | <span><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span><span>[]</span></span>, query: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>): <span><a href="class/lib/ArrayPromise.js~IFTSArrayPromise.html">IFTSArrayPromise</a></span></span>
     <span class="right-info">
       
       
@@ -2664,7 +2664,7 @@ If you didn&apos;t made ngram index, you can use <span><a href="class/lib/IFTSAr
   
   <div data-ice="description"><p>Find contents that have fully matched word in property.</p>
 <p>All target columns have to made word index when created database.
-If you didn&apos;t made word index, you can use <span><a href="class/lib/IFTSArrayPromise.js~IFTSArrayPromise.html#instance-method-searchWord">IFTSArrayPromise#searchWord</a></span> (but this way is very slow).</p>
+If you didn&apos;t made word index, you can use <span><a href="class/lib/ArrayPromise.js~IFTSArrayPromise.html#instance-method-searchWord">IFTSArrayPromise#searchWord</a></span> (but this way is very slow).</p>
 </div>
 
   
@@ -2701,7 +2701,7 @@ If you didn&apos;t made word index, you can use <span><a href="class/lib/IFTSArr
     <table>
       <tbody>
         <tr>
-          <td class="return-type code" data-ice="returnType"><span><a href="class/lib/IFTSArrayPromise.js~IFTSArrayPromise.html">IFTSArrayPromise</a></span></td>
+          <td class="return-type code" data-ice="returnType"><span><a href="class/lib/ArrayPromise.js~IFTSArrayPromise.html">IFTSArrayPromise</a></span></td>
           <td class="return-desc" data-ice="returnDescription"><p>matched contents. may reject with <span><a href="class/lib/errors.js~NoSuchColumnError.html">NoSuchColumnError</a></span>.</p>
 </td>
         </tr>
@@ -2734,7 +2734,7 @@ If you didn&apos;t made word index, you can use <span><a href="class/lib/IFTSArr
     
     
     
-    <span class="code" data-ice="name">sort</span><span class="code" data-ice="signature">(column: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span>, order: <span>&apos;asc&apos;</span> | <span>&apos;desc&apos;</span>, offset: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></span>, limit: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></span>): <span><a href="class/lib/IFTSArrayPromise.js~IFTSArrayPromise.html">IFTSArrayPromise</a></span></span>
+    <span class="code" data-ice="name">sort</span><span class="code" data-ice="signature">(column: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span>, order: <span>&apos;asc&apos;</span> | <span>&apos;desc&apos;</span>, offset: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></span>, limit: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></span>): <span><a href="class/lib/ArrayPromise.js~IFTSArrayPromise.html">IFTSArrayPromise</a></span></span>
     <span class="right-info">
       
       
@@ -2798,7 +2798,7 @@ If you didn&apos;t made word index, you can use <span><a href="class/lib/IFTSArr
     <table>
       <tbody>
         <tr>
-          <td class="return-type code" data-ice="returnType"><span><a href="class/lib/IFTSArrayPromise.js~IFTSArrayPromise.html">IFTSArrayPromise</a></span></td>
+          <td class="return-type code" data-ice="returnType"><span><a href="class/lib/ArrayPromise.js~IFTSArrayPromise.html">IFTSArrayPromise</a></span></td>
           <td class="return-desc" data-ice="returnDescription"><p>sorted contents.</p>
 </td>
         </tr>
@@ -2831,7 +2831,7 @@ If you didn&apos;t made word index, you can use <span><a href="class/lib/IFTSArr
     
     
     
-    <span class="code" data-ice="name">transaction</span><span class="code" data-ice="signature">(mode: <span>&quot;readonly&quot;</span> | <span>&quot;readwrite&quot;</span>, target: <span><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span><span>[]</span></span> | <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/null">null</a></span>): <span><a href="class/lib/IFTSTransaction.js~IFTSTransaction.html">IFTSTransaction</a></span></span>
+    <span class="code" data-ice="name">transaction</span><span class="code" data-ice="signature">(mode: <span>&quot;readonly&quot;</span> | <span>&quot;readwrite&quot;</span>, target: <span><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span><span>[]</span></span> | <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/null">null</a></span>): <span><a href="class/lib/Transaction.js~IFTSTransaction.html">IFTSTransaction</a></span></span>
     <span class="right-info">
       
       
@@ -2842,7 +2842,7 @@ If you didn&apos;t made word index, you can use <span><a href="class/lib/IFTSArr
   
   
   
-  <div data-ice="description"><p>Make new <span><a href="class/lib/IFTSTransaction.js~IFTSTransaction.html">IFTSTransaction</a></span>.</p>
+  <div data-ice="description"><p>Make new <span><a href="class/lib/Transaction.js~IFTSTransaction.html">IFTSTransaction</a></span>.</p>
 </div>
 
   
@@ -2879,7 +2879,7 @@ If you didn&apos;t made word index, you can use <span><a href="class/lib/IFTSArr
     <table>
       <tbody>
         <tr>
-          <td class="return-type code" data-ice="returnType"><span><a href="class/lib/IFTSTransaction.js~IFTSTransaction.html">IFTSTransaction</a></span></td>
+          <td class="return-type code" data-ice="returnType"><span><a href="class/lib/Transaction.js~IFTSTransaction.html">IFTSTransaction</a></span></td>
           
         </tr>
       </tbody>
