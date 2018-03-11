@@ -1341,7 +1341,7 @@
     "__docId__": 69,
     "kind": "file",
     "name": "lib/IFTSSchema.js",
-    "content": "import {InvalidSchemaError} from './errors';\n\n\n/** @ignore */\nfunction normalize(schema) {\n\tconst allowedOptions = new Set(['primary', 'unique', 'ngram', 'fulltext', 'word']);\n\n\tconst result = {};\n\tfor (const col in schema) {\n\t\tresult[col] = {};\n\n\t\tif (typeof schema[col] === 'object') {\n\t\t\tfor (const opt in schema[col]) {\n\t\t\t\tif (!allowedOptions.has(opt)) {\n\t\t\t\t\tthrow new InvalidSchemaError(opt + ' is unknown option', col);\n\t\t\t\t}\n\t\t\t\tresult[col][opt] = schema[col][opt];\n\t\t\t}\n\t\t} else if (typeof schema[col] === 'string') {\n\t\t\tif (!allowedOptions.has(schema[col])) {\n\t\t\t\tthrow new InvalidSchemaError(schema[col] + ' is unknown option', col);\n\t\t\t}\n\t\t\tresult[col][schema[col]] = true;\n\t\t} else {\n\t\t\tthrow new InvalidSchemaError((typeof schema[col]) + ' is invalid option type', col);\n\t\t}\n\t}\n\treturn result;\n}\n\n\n/** @ignore */\nfunction schemaCheck(schema) {\n\tlet primaryKey = null;\n\n\tfor (const col in schema) {\n\t\tif (schema[col].primary !== undefined) {\n\t\t\tif (typeof schema[col].primary !== 'boolean') {\n\t\t\t\tthrow new InvalidSchemaError('\"primary\" option must be boolean', col);\n\t\t\t}\n\t\t\tif (schema[col].primary) {\n\t\t\t\tif (primaryKey !== null) {\n\t\t\t\t\tthrow new InvalidSchemaError('can not use multiple primary key', [col, primaryKey]);\n\t\t\t\t}\n\t\t\t\tprimaryKey = col;\n\t\t\t}\n\t\t}\n\n\t\tif (schema[col].unique !== undefined) {\n\t\t\tif (typeof schema[col].unique !== 'boolean') {\n\t\t\t\tthrow new InvalidSchemaError('\"unique\" option must be boolean', col);\n\t\t\t}\n\t\t}\n\n\t\tif (schema[col].primary && schema[col].unique) {\n\t\t\tthrow new InvalidSchemaError('can not enable both of \"primary\" option and \"unique\" option to same column', col);\n\t\t}\n\n\t\tif (schema[col].ngram !== undefined && schema[col].fulltext !== undefined) {\n\t\t\tthrow new InvalidSchemaError('can not set both of \"ngram\" option and \"fulltext\" option to same column', col);\n\t\t}\n\t\tconst fts = schema[col].ngram === undefined ? schema[col].fulltext : schema[col].ngram;\n\t\tconst ftsFrom = schema[col].ngram === undefined ? 'fulltext' : 'ngram';\n\t\tif (fts !== undefined && typeof fts !== 'boolean') {\n\t\t\tthrow new InvalidSchemaError(`\"${ftsFrom}\" option must be boolean`, col);\n\t\t}\n\n\t\tif (schema[col].word !== undefined && typeof schema[col].word !== 'boolean') {\n\t\t\tthrow new InvalidSchemaError('\"word\" option must be boolean', col);\n\t\t}\n\t}\n}\n\n\n/**\n * The database schema of IndexedFTS.\n */\nclass IFTSSchema {\n\t/**\n\t * Create IFTSSchema.\n\t *\n\t * @param {object} schema - please see same name param of {@link IndexedFTS#constructor}.\n\t *\n\t * @throws {InvalidSchemaError}\n\t */\n\tconstructor(schema) {\n\t\t/** @ignore */\n\t\tthis._schema = normalize(schema);\n\n\t\t/** @ignore */\n\t\tthis._storeOption = {autoIncrement: true};\n\n\t\t/**\n\t\t * Primary key of this schema.\n\t\t *\n\t\t * This value will be null if not set primary key.\n\t\t *\n\t\t * @type {string|null}\n\t\t */\n\t\tthis.primaryKey = null;\n\n\t\t/**\n\t\t * Column names that indexed with ngram for full-text search.\n\t\t *\n\t\t * @type {Set<string>}\n\t\t */\n\t\tthis.ngramIndexes = new Set();\n\n\t\t/**\n\t\t * Column names that indexed with word for full-text search.\n\t\t *\n\t\t * @type {Set<string>}\n\t\t */\n\t\tthis.wordIndexes = new Set();\n\n\t\t/**\n\t\t * Column names that unique indexed.\n\t\t *\n\t\t * @type {Set<string>}\n\t\t */\n\t\tthis.uniqueIndexes = new Set();\n\n\t\t/**\n\t\t * Column names that normal indexed.\n\t\t *\n\t\t * @type {Set<string>}\n\t\t */\n\t\tthis.normalIndexes = new Set();\n\n\t\tfor (let x in schema) {\n\t\t\tschemaCheck(this._schema);\n\n\t\t\tif (this._schema[x].primary) {\n\t\t\t\tthis.primaryKey = x;\n\t\t\t\tthis._storeOption = {keyPath: x};\n\t\t\t} else if (this._schema[x].unique) {\n\t\t\t\tthis.uniqueIndexes.add(x);\n\t\t\t} else {\n\t\t\t\tthis.normalIndexes.add(x);\n\t\t\t}\n\n\t\t\tif (this._schema[x].ngram || this._schema[x].fulltext) {\n\t\t\t\tthis.ngramIndexes.add(x);\n\t\t\t}\n\n\t\t\tif (this._schema[x].word) {\n\t\t\t\tthis.wordIndexes.add(x);\n\t\t\t}\n\t\t}\n\t}\n\n\t/**\n\t * All column names that indexed in some way.\n\t *\n\t * @type {Set<string>}\n\t */\n\tget indexes() {\n\t\tif (this.primaryKey) {\n\t\t\treturn new Set([this.primaryKey, ...this.uniqueIndexes, ...this.normalIndexes]);\n\t\t} else {\n\t\t\treturn new Set([...this.uniqueIndexes, ...this.normalIndexes]);\n\t\t}\n\t}\n}\n\n\nexport {IFTSSchema as default, normalize, schemaCheck};\n",
+    "content": "import {InvalidSchemaError} from './errors';\n\n\n/** @ignore */\nfunction normalize(schema) {\n\tconst allowedOptions = new Set(['primary', 'unique', 'ngram', 'fulltext', 'word']);\n\n\tconst result = {};\n\tfor (const col in schema) {\n\t\tresult[col] = {};\n\n\t\tif (typeof schema[col] === 'object') {\n\t\t\tfor (const opt in schema[col]) {\n\t\t\t\tif (!allowedOptions.has(opt)) {\n\t\t\t\t\tthrow new InvalidSchemaError(opt + ' is unknown option', col);\n\t\t\t\t}\n\t\t\t\tresult[col][opt] = schema[col][opt];\n\t\t\t}\n\t\t} else if (typeof schema[col] === 'string') {\n\t\t\tif (!allowedOptions.has(schema[col])) {\n\t\t\t\tthrow new InvalidSchemaError(schema[col] + ' is unknown option', col);\n\t\t\t}\n\t\t\tresult[col][schema[col]] = true;\n\t\t} else {\n\t\t\tthrow new InvalidSchemaError((typeof schema[col]) + ' is invalid option type', col);\n\t\t}\n\t}\n\treturn result;\n}\n\n\n/** @ignore */\nfunction schemaCheck(schema) {\n\tlet primaryKey = null;\n\n\tfor (const col in schema) {\n\t\tif (schema[col].primary !== undefined) {\n\t\t\tif (typeof schema[col].primary !== 'boolean') {\n\t\t\t\tthrow new InvalidSchemaError('\"primary\" option must be boolean', col);\n\t\t\t}\n\t\t\tif (schema[col].primary) {\n\t\t\t\tif (primaryKey !== null) {\n\t\t\t\t\tthrow new InvalidSchemaError('can not use multiple primary key', [col, primaryKey]);\n\t\t\t\t}\n\t\t\t\tprimaryKey = col;\n\t\t\t}\n\t\t}\n\n\t\tif (schema[col].unique !== undefined) {\n\t\t\tif (typeof schema[col].unique !== 'boolean') {\n\t\t\t\tthrow new InvalidSchemaError('\"unique\" option must be boolean', col);\n\t\t\t}\n\t\t}\n\n\t\tif (schema[col].primary && schema[col].unique) {\n\t\t\tthrow new InvalidSchemaError('can not enable both of \"primary\" option and \"unique\" option to same column', col);\n\t\t}\n\n\t\tif (schema[col].ngram !== undefined && schema[col].fulltext !== undefined) {\n\t\t\tthrow new InvalidSchemaError('can not set both of \"ngram\" option and \"fulltext\" option to same column', col);\n\t\t}\n\t\tconst fts = schema[col].ngram === undefined ? schema[col].fulltext : schema[col].ngram;\n\t\tconst ftsFrom = schema[col].ngram === undefined ? 'fulltext' : 'ngram';\n\t\tif (fts !== undefined && typeof fts !== 'boolean') {\n\t\t\tthrow new InvalidSchemaError(`\"${ftsFrom}\" option must be boolean`, col);\n\t\t}\n\n\t\tif (schema[col].word !== undefined && typeof schema[col].word !== 'boolean') {\n\t\t\tthrow new InvalidSchemaError('\"word\" option must be boolean', col);\n\t\t}\n\t}\n}\n\n\nexport {normalize, schemaCheck};\n\n\n/**\n * The database schema of IndexedFTS.\n */\nexport default class IFTSSchema {\n\t/**\n\t * Create IFTSSchema.\n\t *\n\t * @param {object} schema - please see same name param of {@link IndexedFTS#constructor}.\n\t *\n\t * @throws {InvalidSchemaError}\n\t */\n\tconstructor(schema) {\n\t\t/** @ignore */\n\t\tthis._schema = normalize(schema);\n\n\t\t/** @ignore */\n\t\tthis._storeOption = {autoIncrement: true};\n\n\t\t/**\n\t\t * Primary key of this schema.\n\t\t *\n\t\t * This value will be null if not set primary key.\n\t\t *\n\t\t * @type {string|null}\n\t\t */\n\t\tthis.primaryKey = null;\n\n\t\t/**\n\t\t * Column names that indexed with ngram for full-text search.\n\t\t *\n\t\t * @type {Set<string>}\n\t\t */\n\t\tthis.ngramIndexes = new Set();\n\n\t\t/**\n\t\t * Column names that indexed with word for full-text search.\n\t\t *\n\t\t * @type {Set<string>}\n\t\t */\n\t\tthis.wordIndexes = new Set();\n\n\t\t/**\n\t\t * Column names that unique indexed.\n\t\t *\n\t\t * @type {Set<string>}\n\t\t */\n\t\tthis.uniqueIndexes = new Set();\n\n\t\t/**\n\t\t * Column names that normal indexed.\n\t\t *\n\t\t * @type {Set<string>}\n\t\t */\n\t\tthis.normalIndexes = new Set();\n\n\t\tfor (let x in schema) {\n\t\t\tschemaCheck(this._schema);\n\n\t\t\tif (this._schema[x].primary) {\n\t\t\t\tthis.primaryKey = x;\n\t\t\t\tthis._storeOption = {keyPath: x};\n\t\t\t} else if (this._schema[x].unique) {\n\t\t\t\tthis.uniqueIndexes.add(x);\n\t\t\t} else {\n\t\t\t\tthis.normalIndexes.add(x);\n\t\t\t}\n\n\t\t\tif (this._schema[x].ngram || this._schema[x].fulltext) {\n\t\t\t\tthis.ngramIndexes.add(x);\n\t\t\t}\n\n\t\t\tif (this._schema[x].word) {\n\t\t\t\tthis.wordIndexes.add(x);\n\t\t\t}\n\t\t}\n\t}\n\n\t/**\n\t * All column names that indexed in some way.\n\t *\n\t * @type {Set<string>}\n\t */\n\tget indexes() {\n\t\tif (this.primaryKey) {\n\t\t\treturn new Set([this.primaryKey, ...this.uniqueIndexes, ...this.normalIndexes]);\n\t\t} else {\n\t\t\treturn new Set([...this.uniqueIndexes, ...this.normalIndexes]);\n\t\t}\n\t}\n}\n",
     "static": true,
     "longname": "/home/ena/indexedfts/lib/IFTSSchema.js",
     "access": "public",
@@ -1356,13 +1356,12 @@
     "static": true,
     "longname": "lib/IFTSSchema.js~IFTSSchema",
     "access": "public",
-    "export": false,
+    "export": true,
     "importPath": "indexedfts/lib/IFTSSchema.js",
-    "importStyle": null,
+    "importStyle": "IFTSSchema",
     "description": "The database schema of IndexedFTS.",
-    "lineNumber": 78,
-    "interface": false,
-    "ignore": true
+    "lineNumber": 81,
+    "interface": false
   },
   {
     "__docId__": 71,
@@ -1375,7 +1374,7 @@
     "longname": "lib/IFTSSchema.js~IFTSSchema#constructor",
     "access": "public",
     "description": "Create IFTSSchema.",
-    "lineNumber": 86,
+    "lineNumber": 89,
     "params": [
       {
         "nullable": null,
@@ -1406,7 +1405,7 @@
     "longname": "lib/IFTSSchema.js~IFTSSchema#_schema",
     "access": "private",
     "description": null,
-    "lineNumber": 88,
+    "lineNumber": 91,
     "ignore": true,
     "type": {
       "types": [
@@ -1423,7 +1422,7 @@
     "longname": "lib/IFTSSchema.js~IFTSSchema#_storeOption",
     "access": "private",
     "description": null,
-    "lineNumber": 91,
+    "lineNumber": 94,
     "ignore": true,
     "type": {
       "types": [
@@ -1440,7 +1439,7 @@
     "longname": "lib/IFTSSchema.js~IFTSSchema#primaryKey",
     "access": "public",
     "description": "Primary key of this schema.\n\nThis value will be null if not set primary key.",
-    "lineNumber": 100,
+    "lineNumber": 103,
     "type": {
       "nullable": null,
       "types": [
@@ -1460,7 +1459,7 @@
     "longname": "lib/IFTSSchema.js~IFTSSchema#ngramIndexes",
     "access": "public",
     "description": "Column names that indexed with ngram for full-text search.",
-    "lineNumber": 107,
+    "lineNumber": 110,
     "type": {
       "nullable": null,
       "types": [
@@ -1479,7 +1478,7 @@
     "longname": "lib/IFTSSchema.js~IFTSSchema#wordIndexes",
     "access": "public",
     "description": "Column names that indexed with word for full-text search.",
-    "lineNumber": 114,
+    "lineNumber": 117,
     "type": {
       "nullable": null,
       "types": [
@@ -1498,7 +1497,7 @@
     "longname": "lib/IFTSSchema.js~IFTSSchema#uniqueIndexes",
     "access": "public",
     "description": "Column names that unique indexed.",
-    "lineNumber": 121,
+    "lineNumber": 124,
     "type": {
       "nullable": null,
       "types": [
@@ -1517,7 +1516,7 @@
     "longname": "lib/IFTSSchema.js~IFTSSchema#normalIndexes",
     "access": "public",
     "description": "Column names that normal indexed.",
-    "lineNumber": 128,
+    "lineNumber": 131,
     "type": {
       "nullable": null,
       "types": [
@@ -1538,7 +1537,7 @@
     "longname": "lib/IFTSSchema.js~IFTSSchema#indexes",
     "access": "public",
     "description": "All column names that indexed in some way.",
-    "lineNumber": 157,
+    "lineNumber": 160,
     "type": {
       "nullable": null,
       "types": [
