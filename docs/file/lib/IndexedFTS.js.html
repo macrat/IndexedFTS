@@ -30,7 +30,6 @@
   <ul>
     
   <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/IFTSArrayPromise.js~IFTSArrayPromise.html">IFTSArrayPromise</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/IFTSSchema.js~IFTSSchema.html">IFTSSchema</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/IFTSTransaction.js~IFTSTransaction.html">IFTSTransaction</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/IndexedFTS.js~IndexedFTS.html">IndexedFTS</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/errors.js~InvalidKeyError.html">InvalidKeyError</a></span></span></li>
@@ -42,6 +41,7 @@
 
 <div class="content" data-ice="content"><h1 data-ice="title">lib/IndexedFTS.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import IFTSTransaction from &apos;./IFTSTransaction&apos;;
+import IFTSSchema from &apos;./IFTSSchema&apos;;
 
 
 /**
@@ -79,10 +79,12 @@ export default class IndexedFTS {
 	 *
 	 * @param {string} name - name of new (or open) database.
 	 * @param {number} version - schema&apos;s version of database.
-	 * @param {Array&lt;string|object&gt;} schema - database schema.
+	 * @param {object|IFTSSchema} schema - database schema.
 	 * @param {object} [options] - other options.
 	 * @param {string} [options.index_prefix=&apos;indexedfts_&apos;] - prefix of indexes for full-text search.
 	 * @param {object} [options.scope=window] - endpoints for IndexedDB API.
+	 *
+	 * @throws {InvalidSchemaError}
 	 */
 	constructor(name, version, schema, options={}) {
 		/** @type {string} */
@@ -97,52 +99,12 @@ export default class IndexedFTS {
 		/** @type {number} */
 		this.version = version;
 
-		/** @type {object} */
-		this.schema = schema;
+		/** @type {IFTSSchema} */
+		this.schema = schema instanceof IFTSSchema ? schema : new IFTSSchema(schema);
 
-		/** @type {object} */
-		this.store_option = {autoIncrement: true};
-
-		/** @type {string|null} */
-		this.primary_key = null;
-
-		/** @type {Set&lt;string&gt;} */
-		this.ngram_indexes = new Set();
-
-		/** @type {Set&lt;string&gt;} */
-		this.word_indexes = new Set();
-
-		/** @type {Set&lt;string&gt;} */
-		this.unique_indexes = new Set();
-
-		/** @type {Set&lt;string&gt;} */
-		this.normal_indexes = new Set();
 
 		/** @type {IDBDatabase} */
 		this.db = null;
-
-		for (let x in schema) {
-			if (schema[x] === &apos;primary&apos; || schema[x].primary) {
-				if (&apos;keyPath&apos; in this.store_option) {
-					throw new Error(&apos;can not use multi primary key&apos;);
-				}
-				this.primary_key = x;
-				this.store_option = {keyPath: x};
-			} else if (schema[x] === &apos;unique&apos; || schema[x].unique) {
-				this.unique_indexes.add(x);
-			} else {
-				this.normal_indexes.add(x);
-			}
-
-			if (schema[x] === &apos;ngram&apos; || schema[x].ngram
-			|| schema[x] === &apos;fulltext&apos; || schema[x].fulltext) {
-				this.ngram_indexes.add(x);
-			}
-
-			if (schema[x] === &apos;word&apos; || schema[x].word) {
-				this.word_indexes.add(x);
-			}
-		}
 	}
 
 	/**
@@ -163,15 +125,6 @@ export default class IndexedFTS {
 		});
 	}
 
-	/** @type {Set&lt;string&gt;} */
-	get indexes() {
-		const r = new Set([...this.ngram_indexes, ...this.word_indexes, ...this.unique_indexes, ...this.normal_indexes]);
-		if (this.primary_key !== null) {
-			r.add(this.primary_key);
-		}
-		return r;
-	}
-
 	/**
 	 * Open database.
 	 *
@@ -190,22 +143,22 @@ export default class IndexedFTS {
 			request.onupgradeneeded = ev =&gt; {
 				this.db = ev.target.result;
 
-				const store = this.db.createObjectStore(&apos;data&apos;, this.store_option);
+				const store = this.db.createObjectStore(&apos;data&apos;, this.schema._storeOption);
 
 				store.onerror = reject;
 
-				this.unique_indexes.forEach(x =&gt; store.createIndex(x, x, {unique: true}));
+				this.schema.uniqueIndexes.forEach(x =&gt; store.createIndex(x, x, {unique: true}));
 
-				this.normal_indexes.forEach(x =&gt; store.createIndex(x, x, {unique: false}));
+				this.schema.normalIndexes.forEach(x =&gt; store.createIndex(x, x, {unique: false}));
 
-				this.ngram_indexes.forEach(column =&gt; {
+				this.schema.ngramIndexes.forEach(column =&gt; {
 					const fts_store = this.db.createObjectStore(this.index_prefix + &apos;ngram_&apos; + column, {autoIncrement: true});
 					fts_store.onerror = reject
 					fts_store.createIndex(&apos;key&apos;, &apos;key&apos;, {unique: false});
 					fts_store.createIndex(&apos;token&apos;, &apos;token&apos;, {unique: false});
 				});
 
-				this.word_indexes.forEach(column =&gt; {
+				this.schema.wordIndexes.forEach(column =&gt; {
 					const fts_store = this.db.createObjectStore(this.index_prefix + &apos;word_&apos; + column, {autoIncrement: true});
 					fts_store.onerror = reject
 					fts_store.createIndex(&apos;key&apos;, &apos;key&apos;, {unique: false});
@@ -232,8 +185,8 @@ export default class IndexedFTS {
 	 */
 	transaction(mode=&apos;readonly&apos;, target=null) {
 		if (target === null) {
-			const ngrams = [...this.ngram_indexes].map(x =&gt; this.index_prefix + &apos;ngram_&apos; + x);
-			const words = [...this.word_indexes].map(x =&gt; this.index_prefix + &apos;word_&apos; + x);
+			const ngrams = [...this.schema.ngramIndexes].map(x =&gt; this.index_prefix + &apos;ngram_&apos; + x);
+			const words = [...this.schema.wordIndexes].map(x =&gt; this.index_prefix + &apos;word_&apos; + x);
 			target = ngrams.concat(words).concat([&apos;data&apos;]);
 		}
 		return new IFTSTransaction(this, this.db.transaction(target, mode));

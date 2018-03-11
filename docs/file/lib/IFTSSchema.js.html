@@ -30,7 +30,6 @@
   <ul>
     
   <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/IFTSArrayPromise.js~IFTSArrayPromise.html">IFTSArrayPromise</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/IFTSSchema.js~IFTSSchema.html">IFTSSchema</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/IFTSTransaction.js~IFTSTransaction.html">IFTSTransaction</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/IndexedFTS.js~IndexedFTS.html">IndexedFTS</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/errors.js~InvalidKeyError.html">InvalidKeyError</a></span></span></li>
@@ -44,29 +43,26 @@
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import {InvalidSchemaError} from &apos;./errors&apos;;
 
 
+/** @ignore */
 function normalize(schema) {
 	const allowedOptions = new Set([&apos;primary&apos;, &apos;unique&apos;, &apos;ngram&apos;, &apos;fulltext&apos;, &apos;word&apos;]);
 
 	const result = {};
 	for (const col in schema) {
-		result[col] = {
-			primary: schema[col] === &apos;primary&apos; || schema[col].primary,
-			unique: schema[col] === &apos;unique&apos; || schema[col].unique,
-			ngram: schema[col] === &apos;ngram&apos; || schema[col].ngram,
-			fulltext: schema[col] === &apos;fulltext&apos; || schema[col].fulltext,
-			word: schema[col] === &apos;word&apos; || schema[col].word,
-		};
+		result[col] = {};
 
 		if (typeof schema[col] === &apos;object&apos;) {
 			for (const opt in schema[col]) {
 				if (!allowedOptions.has(opt)) {
 					throw new InvalidSchemaError(opt + &apos; is unknown option&apos;, col);
 				}
+				result[col][opt] = schema[col][opt];
 			}
 		} else if (typeof schema[col] === &apos;string&apos;) {
 			if (!allowedOptions.has(schema[col])) {
 				throw new InvalidSchemaError(schema[col] + &apos; is unknown option&apos;, col);
 			}
+			result[col][schema[col]] = true;
 		} else {
 			throw new InvalidSchemaError((typeof schema[col]) + &apos; is invalid option type&apos;, col);
 		}
@@ -75,6 +71,7 @@ function normalize(schema) {
 }
 
 
+/** @ignore */
 function schemaCheck(schema) {
 	let primaryKey = null;
 
@@ -120,7 +117,7 @@ function schemaCheck(schema) {
 /**
  * The database schema of IndexedFTS.
  */
-export default class IFTSSchema {
+class IFTSSchema {
 	/**
 	 * Create IFTSSchema.
 	 *
@@ -130,7 +127,7 @@ export default class IFTSSchema {
 	 */
 	constructor(schema) {
 		/** @ignore */
-		this._rawSchema = schema;
+		this._schema = normalize(schema);
 
 		/** @ignore */
 		this._storeOption = {autoIncrement: true};
@@ -173,24 +170,22 @@ export default class IFTSSchema {
 		this.normalIndexes = new Set();
 
 		for (let x in schema) {
-			const normalized = normalize(schema);
+			schemaCheck(this._schema);
 
-			schemaCheck(normalized);
-
-			if (normalized[x].primary) {
+			if (this._schema[x].primary) {
 				this.primaryKey = x;
 				this._storeOption = {keyPath: x};
-			} else if (normalized[x].unique) {
+			} else if (this._schema[x].unique) {
 				this.uniqueIndexes.add(x);
 			} else {
 				this.normalIndexes.add(x);
 			}
 
-			if (normalized[x].ngram || normalized[x].fulltext) {
+			if (this._schema[x].ngram || this._schema[x].fulltext) {
 				this.ngramIndexes.add(x);
 			}
 
-			if (normalized[x].word) {
+			if (this._schema[x].word) {
 				this.wordIndexes.add(x);
 			}
 		}
@@ -209,6 +204,9 @@ export default class IFTSSchema {
 		}
 	}
 }
+
+
+export {IFTSSchema as default, normalize, schemaCheck};
 </code></pre>
 
 </div>

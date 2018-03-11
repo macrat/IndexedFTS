@@ -1,7 +1,7 @@
 {
-  "coverage": "98.33%",
-  "expectCount": 120,
-  "actualCount": 118,
+  "coverage": "100%",
+  "expectCount": 113,
+  "actualCount": 113,
   "files": {
     "lib/IFTSArrayPromise.js": {
       "expectCount": 20,
@@ -10,11 +10,8 @@
     },
     "lib/IFTSSchema.js": {
       "expectCount": 12,
-      "actualCount": 10,
-      "undocumentLines": [
-        4,
-        35
-      ]
+      "actualCount": 12,
+      "undocumentLines": []
     },
     "lib/IFTSTransaction.js": {
       "expectCount": 32,
@@ -22,8 +19,8 @@
       "undocumentLines": []
     },
     "lib/IndexedFTS.js": {
-      "expectCount": 37,
-      "actualCount": 37,
+      "expectCount": 30,
+      "actualCount": 30,
       "undocumentLines": []
     },
     "lib/errors.js": {

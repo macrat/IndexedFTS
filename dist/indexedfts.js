@@ -158,6 +158,29 @@ class InvalidKeyError extends Error {
 /**
  * InvalidSchemaError means specified invalid schema.
  */
+class InvalidSchemaError extends Error {
+	/**
+  * @param {string} reason - why throws this error.
+  * @param {string|string[]|null} column - name of column that invalid.
+  */
+	constructor(reason, column = null) {
+		super(reason);
+
+		/**
+   * Name of column that invalid.
+   *
+   * @type {string|string[]|null}
+   */
+		this.column = column;
+
+		/** @ignore */
+		this.name = 'InvalidSchemaError';
+
+		if (Error.captureStackTrace) {
+			Error.captureStackTrace(this, InvalidSchemaError);
+		}
+	}
+}
 
 /**
  * Promise like object for contents array.
@@ -472,8 +495,8 @@ class IFTSTransaction {
   */
 	put(...contents) {
 		const store = this.transaction.objectStore('data');
-		const ngram_indexes = fastMap([...this.db.ngram_indexes], column => ({ name: column, store: this.transaction.objectStore(this.db.index_prefix + 'ngram_' + column) }));
-		const word_indexes = fastMap([...this.db.word_indexes], column => ({ name: column, store: this.transaction.objectStore(this.db.index_prefix + 'word_' + column) }));
+		const ngram_indexes = fastMap([...this.db.schema.ngramIndexes], column => ({ name: column, store: this.transaction.objectStore(this.db.index_prefix + 'ngram_' + column) }));
+		const word_indexes = fastMap([...this.db.schema.wordIndexes], column => ({ name: column, store: this.transaction.objectStore(this.db.index_prefix + 'word_' + column) }));
 
 		const putPromises = new Array(contents.length);
 		for (let i = 0; i < contents.length; i++) {
@@ -490,7 +513,7 @@ class IFTSTransaction {
 			for (let i = 0; i < data.length; i++) {
 				const key = data[i][0];
 				const value = data[i][1];
-				if (this.db.primary_key === null) {
+				if (this.db.schema.primaryKey === null) {
 					value._key = key;
 				}
 				this._cache[key] = value;
@@ -596,7 +619,7 @@ class IFTSTransaction {
 				const req = this.transaction.objectStore('data').delete(key);
 				req.onerror = reject;
 				req.onsuccess = resolve;
-			}).then(() => this._deleteIndex(key, [...[...this.db.ngram_indexes].map(x => this.db.index_prefix + 'ngram_' + x), ...[...this.db.word_indexes].map(x => this.db.index_prefix + 'word_' + x)]));
+			}).then(() => this._deleteIndex(key, [...[...this.db.schema.ngramIndexes].map(x => this.db.index_prefix + 'ngram_' + x), ...[...this.db.schema.wordIndexes].map(x => this.db.index_prefix + 'word_' + x)]));
 		})).then(() => this);
 	}
 
@@ -609,7 +632,7 @@ class IFTSTransaction {
 		filter = filter || ((x, i) => true);
 		map = map || ((x, i) => x);
 
-		return new IFTSArrayPromise(this.db.indexes, new Promise((resolve, reject) => {
+		return new IFTSArrayPromise(this.db.schema.indexes, new Promise((resolve, reject) => {
 			const result = [];
 			let index = 0;
 
@@ -617,7 +640,7 @@ class IFTSTransaction {
 				const cursor = ev.target.result;
 				if (cursor) {
 					const value = cursor.value;
-					if (this.db.primary_key === null) {
+					if (this.db.schema.primaryKey === null) {
 						value._key = cursor.key;
 					}
 					this._cache[cursor.key] = value;
@@ -654,7 +677,7 @@ class IFTSTransaction {
   * @ignore
   */
 	_getAllWithKeys() {
-		return new IFTSArrayPromise(this.db.indexes, new Promise((resolve, reject) => {
+		return new IFTSArrayPromise(this.db.schema.indexes, new Promise((resolve, reject) => {
 			const request = this.transaction.objectStore('data').openCursor();
 
 			const result = [];
@@ -662,7 +685,7 @@ class IFTSTransaction {
 				const cursor = ev.target.result;
 				if (cursor) {
 					const value = cursor.value;
-					if (this.db.primary_key === null) {
+					if (this.db.schema.primaryKey === null) {
 						value._key = cursor.key;
 					}
 					this._cache[cursor.key] = value;
@@ -714,8 +737,8 @@ class IFTSTransaction {
   * @return {IFTSArrayPromise} sorted contents.
   */
 	sort(column, order = 'asc', offset = 0, limit = undefined) {
-		if (!this.db.indexes.has(column)) {
-			return IFTSArrayPromise.reject(this.db.indexes, new NoSuchColumnError(column));
+		if (!this.db.schema.indexes.has(column)) {
+			return IFTSArrayPromise.reject(this.db.schema.indexes, new NoSuchColumnError(column));
 		}
 
 		limit = limit === undefined ? undefined : offset + limit;
@@ -723,7 +746,7 @@ class IFTSTransaction {
 
 		const store = this.transaction.objectStore('data');
 
-		if (column === this.db.primary_key) {
+		if (column === this.db.schema.primaryKey) {
 			return this._readCursor(store.openCursor(null, order === 'desc' ? 'prev' : 'next'), offsetFilter, null, limit);
 		} else {
 			return this._readCursor(store.index(column).openCursor(null, order === 'desc' ? 'prev' : 'next'), offsetFilter, null, limit);
@@ -748,7 +771,7 @@ class IFTSTransaction {
 			const req = this.transaction.objectStore('data').get(key);
 			req.onsuccess = ev => {
 				const value = ev.target.result;
-				if (this.db.primary_key === null) {
+				if (this.db.schema.primaryKey === null) {
 					value._key = key;
 				}
 				this._cache[key] = value;
@@ -764,13 +787,13 @@ class IFTSTransaction {
   * @ignore
   */
 	_getAllWithIndex(column, keyRange) {
-		if (!this.db.indexes.has(column)) {
-			return IFTSArrayPromise.reject(this.db.indexes, new NoSuchColumnError(column));
+		if (!this.db.schema.indexes.has(column)) {
+			return IFTSArrayPromise.reject(this.db.schema.indexes, new NoSuchColumnError(column));
 		}
 
 		const store = this.transaction.objectStore('data');
 
-		if (column === this.db.primary_key) {
+		if (column === this.db.schema.primaryKey) {
 			return this._readCursor(store.openCursor(keyRange));
 		} else {
 			return this._readCursor(store.index(column).openCursor(keyRange));
@@ -954,8 +977,8 @@ class IFTSTransaction {
 		}
 
 		for (let i = 0; i < columns.length; i++) {
-			if (!this.db.ngram_indexes.has(columns[i])) {
-				return IFTSArrayPromise.reject(this.db.indexes, new NoSuchColumnError(columns[i]));
+			if (!this.db.schema.ngramIndexes.has(columns[i])) {
+				return IFTSArrayPromise.reject(this.db.schema.indexes, new NoSuchColumnError(columns[i]));
 			}
 		}
 
@@ -973,7 +996,7 @@ class IFTSTransaction {
 			Array.prototype.push.apply(candidatePromises, this._takeCandidatesBySingleColumn(columns[i], queries));
 		}
 
-		return new IFTSArrayPromise(this.db.indexes, Promise.all(candidatePromises).then(xs => this._pruneCandidates(queries_length, xs)));
+		return new IFTSArrayPromise(this.db.schema.indexes, Promise.all(candidatePromises).then(xs => this._pruneCandidates(queries_length, xs)));
 	}
 
 	/**
@@ -994,14 +1017,14 @@ class IFTSTransaction {
 		}
 
 		for (let i = 0; i < columns.length; i++) {
-			if (!this.db.word_indexes.has(columns[i])) {
-				return IFTSArrayPromise.reject(this.db.indexes, new NoSuchColumnError(columns[i]));
+			if (!this.db.schema.wordIndexes.has(columns[i])) {
+				return IFTSArrayPromise.reject(this.db.schema.indexes, new NoSuchColumnError(columns[i]));
 			}
 		}
 
 		const queries = splitWords(query).map(x => ({ text: x, keyRange: this._KeyRange.only(x) }));
 
-		return new IFTSArrayPromise(this.db.indexes, Promise.all(flatten(columns.map(col => {
+		return new IFTSArrayPromise(this.db.schema.indexes, Promise.all(flatten(columns.map(col => {
 			const index = this.transaction.objectStore(this.db.index_prefix + 'word_' + col).index('word');
 
 			return queries.map(query => this._readCursor(index.openCursor(query.keyRange), null, data => [data.key, query.text]));
@@ -1031,7 +1054,7 @@ class IFTSTransaction {
 			for (let i = 0; i < hits_count; i++) {
 				result[i] = this.get(hits[i]);
 			}
-			return new IFTSArrayPromise(this.db.indexes, Promise.all(result));
+			return new IFTSArrayPromise(this.db.schema.indexes, Promise.all(result));
 		}));
 	}
 
@@ -1043,7 +1066,7 @@ class IFTSTransaction {
   * @return {Promise<Map<string, number>>}
   */
 	getNGrams(column) {
-		if (!this.db.ngram_indexes.has(column)) {
+		if (!this.db.schema.ngramIndexes.has(column)) {
 			return Promise.reject(new NoSuchColumnError(column));
 		}
 
@@ -1072,7 +1095,7 @@ class IFTSTransaction {
   * @return {Promise<Map<string, number>>}
   */
 	getWords(column) {
-		if (!this.db.word_indexes.has(column)) {
+		if (!this.db.schema.wordIndexes.has(column)) {
 			return Promise.reject(new NoSuchColumnError(column));
 		}
 
@@ -1091,6 +1114,166 @@ class IFTSTransaction {
 			};
 			cursor.onerror = ev => reject(ev);
 		});
+	}
+}
+
+/** @ignore */
+function normalize(schema) {
+	const allowedOptions = new Set(['primary', 'unique', 'ngram', 'fulltext', 'word']);
+
+	const result = {};
+	for (const col in schema) {
+		result[col] = {};
+
+		if (typeof schema[col] === 'object') {
+			for (const opt in schema[col]) {
+				if (!allowedOptions.has(opt)) {
+					throw new InvalidSchemaError(opt + ' is unknown option', col);
+				}
+				result[col][opt] = schema[col][opt];
+			}
+		} else if (typeof schema[col] === 'string') {
+			if (!allowedOptions.has(schema[col])) {
+				throw new InvalidSchemaError(schema[col] + ' is unknown option', col);
+			}
+			result[col][schema[col]] = true;
+		} else {
+			throw new InvalidSchemaError(typeof schema[col] + ' is invalid option type', col);
+		}
+	}
+	return result;
+}
+
+/** @ignore */
+function schemaCheck(schema) {
+	let primaryKey = null;
+
+	for (const col in schema) {
+		if (schema[col].primary !== undefined) {
+			if (typeof schema[col].primary !== 'boolean') {
+				throw new InvalidSchemaError('"primary" option must be boolean', col);
+			}
+			if (schema[col].primary) {
+				if (primaryKey !== null) {
+					throw new InvalidSchemaError('can not use multiple primary key', [col, primaryKey]);
+				}
+				primaryKey = col;
+			}
+		}
+
+		if (schema[col].unique !== undefined) {
+			if (typeof schema[col].unique !== 'boolean') {
+				throw new InvalidSchemaError('"unique" option must be boolean', col);
+			}
+		}
+
+		if (schema[col].primary && schema[col].unique) {
+			throw new InvalidSchemaError('can not enable both of "primary" option and "unique" option to same column', col);
+		}
+
+		if (schema[col].ngram !== undefined && schema[col].fulltext !== undefined) {
+			throw new InvalidSchemaError('can not set both of "ngram" option and "fulltext" option to same column', col);
+		}
+		const fts = schema[col].ngram === undefined ? schema[col].fulltext : schema[col].ngram;
+		const ftsFrom = schema[col].ngram === undefined ? 'fulltext' : 'ngram';
+		if (fts !== undefined && typeof fts !== 'boolean') {
+			throw new InvalidSchemaError(`"${ftsFrom}" option must be boolean`, col);
+		}
+
+		if (schema[col].word !== undefined && typeof schema[col].word !== 'boolean') {
+			throw new InvalidSchemaError('"word" option must be boolean', col);
+		}
+	}
+}
+
+/**
+ * The database schema of IndexedFTS.
+ */
+class IFTSSchema {
+	/**
+  * Create IFTSSchema.
+  *
+  * @param {object} schema - please see same name param of {@link IndexedFTS#constructor}.
+  *
+  * @throws {InvalidSchemaError}
+  */
+	constructor(schema) {
+		/** @ignore */
+		this._schema = normalize(schema);
+
+		/** @ignore */
+		this._storeOption = { autoIncrement: true };
+
+		/**
+   * Primary key of this schema.
+   *
+   * This value will be null if not set primary key.
+   *
+   * @type {string|null}
+   */
+		this.primaryKey = null;
+
+		/**
+   * Column names that indexed with ngram for full-text search.
+   *
+   * @type {Set<string>}
+   */
+		this.ngramIndexes = new Set();
+
+		/**
+   * Column names that indexed with word for full-text search.
+   *
+   * @type {Set<string>}
+   */
+		this.wordIndexes = new Set();
+
+		/**
+   * Column names that unique indexed.
+   *
+   * @type {Set<string>}
+   */
+		this.uniqueIndexes = new Set();
+
+		/**
+   * Column names that normal indexed.
+   *
+   * @type {Set<string>}
+   */
+		this.normalIndexes = new Set();
+
+		for (let x in schema) {
+			schemaCheck(this._schema);
+
+			if (this._schema[x].primary) {
+				this.primaryKey = x;
+				this._storeOption = { keyPath: x };
+			} else if (this._schema[x].unique) {
+				this.uniqueIndexes.add(x);
+			} else {
+				this.normalIndexes.add(x);
+			}
+
+			if (this._schema[x].ngram || this._schema[x].fulltext) {
+				this.ngramIndexes.add(x);
+			}
+
+			if (this._schema[x].word) {
+				this.wordIndexes.add(x);
+			}
+		}
+	}
+
+	/**
+  * All column names that indexed in some way.
+  *
+  * @type {Set<string>}
+  */
+	get indexes() {
+		if (this.primaryKey) {
+			return new Set([this.primaryKey, ...this.uniqueIndexes, ...this.normalIndexes]);
+		} else {
+			return new Set([...this.uniqueIndexes, ...this.normalIndexes]);
+		}
 	}
 }
 
@@ -1129,10 +1312,12 @@ class IndexedFTS {
   *
   * @param {string} name - name of new (or open) database.
   * @param {number} version - schema's version of database.
-  * @param {Array<string|object>} schema - database schema.
+  * @param {object|IFTSSchema} schema - database schema.
   * @param {object} [options] - other options.
   * @param {string} [options.index_prefix='indexedfts_'] - prefix of indexes for full-text search.
   * @param {object} [options.scope=window] - endpoints for IndexedDB API.
+  *
+  * @throws {InvalidSchemaError}
   */
 	constructor(name, version, schema, options = {}) {
 		/** @type {string} */
@@ -1147,51 +1332,11 @@ class IndexedFTS {
 		/** @type {number} */
 		this.version = version;
 
-		/** @type {object} */
-		this.schema = schema;
-
-		/** @type {object} */
-		this.store_option = { autoIncrement: true };
-
-		/** @type {string|null} */
-		this.primary_key = null;
-
-		/** @type {Set<string>} */
-		this.ngram_indexes = new Set();
-
-		/** @type {Set<string>} */
-		this.word_indexes = new Set();
-
-		/** @type {Set<string>} */
-		this.unique_indexes = new Set();
-
-		/** @type {Set<string>} */
-		this.normal_indexes = new Set();
+		/** @type {IFTSSchema} */
+		this.schema = schema instanceof IFTSSchema ? schema : new IFTSSchema(schema);
 
 		/** @type {IDBDatabase} */
 		this.db = null;
-
-		for (let x in schema) {
-			if (schema[x] === 'primary' || schema[x].primary) {
-				if ('keyPath' in this.store_option) {
-					throw new Error('can not use multi primary key');
-				}
-				this.primary_key = x;
-				this.store_option = { keyPath: x };
-			} else if (schema[x] === 'unique' || schema[x].unique) {
-				this.unique_indexes.add(x);
-			} else {
-				this.normal_indexes.add(x);
-			}
-
-			if (schema[x] === 'ngram' || schema[x].ngram || schema[x] === 'fulltext' || schema[x].fulltext) {
-				this.ngram_indexes.add(x);
-			}
-
-			if (schema[x] === 'word' || schema[x].word) {
-				this.word_indexes.add(x);
-			}
-		}
 	}
 
 	/**
@@ -1212,15 +1357,6 @@ class IndexedFTS {
 		});
 	}
 
-	/** @type {Set<string>} */
-	get indexes() {
-		const r = new Set([...this.ngram_indexes, ...this.word_indexes, ...this.unique_indexes, ...this.normal_indexes]);
-		if (this.primary_key !== null) {
-			r.add(this.primary_key);
-		}
-		return r;
-	}
-
 	/**
   * Open database.
   *
@@ -1239,22 +1375,22 @@ class IndexedFTS {
 			request.onupgradeneeded = ev => {
 				this.db = ev.target.result;
 
-				const store = this.db.createObjectStore('data', this.store_option);
+				const store = this.db.createObjectStore('data', this.schema._storeOption);
 
 				store.onerror = reject;
 
-				this.unique_indexes.forEach(x => store.createIndex(x, x, { unique: true }));
+				this.schema.uniqueIndexes.forEach(x => store.createIndex(x, x, { unique: true }));
 
-				this.normal_indexes.forEach(x => store.createIndex(x, x, { unique: false }));
+				this.schema.normalIndexes.forEach(x => store.createIndex(x, x, { unique: false }));
 
-				this.ngram_indexes.forEach(column => {
+				this.schema.ngramIndexes.forEach(column => {
 					const fts_store = this.db.createObjectStore(this.index_prefix + 'ngram_' + column, { autoIncrement: true });
 					fts_store.onerror = reject;
 					fts_store.createIndex('key', 'key', { unique: false });
 					fts_store.createIndex('token', 'token', { unique: false });
 				});
 
-				this.word_indexes.forEach(column => {
+				this.schema.wordIndexes.forEach(column => {
 					const fts_store = this.db.createObjectStore(this.index_prefix + 'word_' + column, { autoIncrement: true });
 					fts_store.onerror = reject;
 					fts_store.createIndex('key', 'key', { unique: false });
@@ -1281,8 +1417,8 @@ class IndexedFTS {
   */
 	transaction(mode = 'readonly', target = null) {
 		if (target === null) {
-			const ngrams = [...this.ngram_indexes].map(x => this.index_prefix + 'ngram_' + x);
-			const words = [...this.word_indexes].map(x => this.index_prefix + 'word_' + x);
+			const ngrams = [...this.schema.ngramIndexes].map(x => this.index_prefix + 'ngram_' + x);
+			const words = [...this.schema.wordIndexes].map(x => this.index_prefix + 'word_' + x);
 			target = ngrams.concat(words).concat(['data']);
 		}
 		return new IFTSTransaction(this, this.db.transaction(target, mode));
@@ -1510,8 +1646,10 @@ class IndexedFTS {
 exports.IndexedFTS = IndexedFTS;
 exports.IFTSTransaction = IFTSTransaction;
 exports.IFTSArrayPromise = IFTSArrayPromise;
+exports.IFTSSchema = IFTSSchema;
 exports.NoSuchColumnError = NoSuchColumnError;
 exports.InvalidKeyError = InvalidKeyError;
+exports.InvalidSchemaError = InvalidSchemaError;
 
 Object.defineProperty(exports, '__esModule', { value: true });
 

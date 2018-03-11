@@ -30,7 +30,6 @@
   <ul>
     
   <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/IFTSArrayPromise.js~IFTSArrayPromise.html">IFTSArrayPromise</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/IFTSSchema.js~IFTSSchema.html">IFTSSchema</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/IFTSTransaction.js~IFTSTransaction.html">IFTSTransaction</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/IndexedFTS.js~IndexedFTS.html">IndexedFTS</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/errors.js~InvalidKeyError.html">InvalidKeyError</a></span></span></li>
@@ -41,13 +40,13 @@
 </nav>
 
 <div class="content" data-ice="content"><div class="header-notice">
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import IndexedFTS from &apos;<span><a href="file/lib/IndexedFTS.js.html#lineNumber9">indexedfts/lib/IndexedFTS.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import IndexedFTS from &apos;<span><a href="file/lib/IndexedFTS.js.html#lineNumber10">indexedfts/lib/IndexedFTS.js</a></span>&apos;</code></pre></div>
   <span data-ice="access">public</span>
   <span data-ice="kind">class</span>
   
   
   
-  <span data-ice="source">| <span><a href="file/lib/IndexedFTS.js.html#lineNumber9">source</a></span></span>
+  <span data-ice="source">| <span><a href="file/lib/IndexedFTS.js.html#lineNumber10">source</a></span></span>
 </div>
 
 <div class="self-detail detail">
@@ -136,7 +135,7 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/lib/IndexedFTS.js~IndexedFTS.html#instance-constructor-constructor">constructor</a></span></span><span class="code" data-ice="signature">(name: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>, version: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, schema: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a></span>&lt;<span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>|<span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span>&gt;, options: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span>)</span>
+          <span class="code" data-ice="name"><span><a href="class/lib/IndexedFTS.js~IndexedFTS.html#instance-constructor-constructor">constructor</a></span></span><span class="code" data-ice="signature">(name: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>, version: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, schema: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span> | <span>IFTSSchema</span>, options: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span>)</span>
         </p>
       </div>
       <div>
@@ -218,34 +217,6 @@
     <td>
       <span class="access" data-ice="access">public</span>
       
-      <span class="kind" data-ice="kind">get</span>
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
-          
-          
-          
-          <span class="code" data-ice="name"><span><a href="class/lib/IndexedFTS.js~IndexedFTS.html#instance-get-indexes">indexes</a></span></span><span class="code" data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set">Set</a></span>&lt;<span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>&gt;</span>
-        </p>
-      </div>
-      <div>
-        
-        
-        
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
-<tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">public</span>
-      
       
       
       <span class="override" data-ice="override"></span>
@@ -284,91 +255,7 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/lib/IndexedFTS.js~IndexedFTS.html#instance-member-ngram_indexes">ngram_indexes</a></span></span><span class="code" data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set">Set</a></span>&lt;<span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>&gt;</span>
-        </p>
-      </div>
-      <div>
-        
-        
-        
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
-<tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">public</span>
-      
-      
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
-          
-          
-          
-          <span class="code" data-ice="name"><span><a href="class/lib/IndexedFTS.js~IndexedFTS.html#instance-member-normal_indexes">normal_indexes</a></span></span><span class="code" data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set">Set</a></span>&lt;<span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>&gt;</span>
-        </p>
-      </div>
-      <div>
-        
-        
-        
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
-<tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">public</span>
-      
-      
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
-          
-          
-          
-          <span class="code" data-ice="name"><span><a href="class/lib/IndexedFTS.js~IndexedFTS.html#instance-member-primary_key">primary_key</a></span></span><span class="code" data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span> | <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/null">null</a></span></span>
-        </p>
-      </div>
-      <div>
-        
-        
-        
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
-<tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">public</span>
-      
-      
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
-          
-          
-          
-          <span class="code" data-ice="name"><span><a href="class/lib/IndexedFTS.js~IndexedFTS.html#instance-member-schema">schema</a></span></span><span class="code" data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span></span>
+          <span class="code" data-ice="name"><span><a href="class/lib/IndexedFTS.js~IndexedFTS.html#instance-member-schema">schema</a></span></span><span class="code" data-ice="signature">: <span>IFTSSchema</span></span>
         </p>
       </div>
       <div>
@@ -424,91 +311,7 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/lib/IndexedFTS.js~IndexedFTS.html#instance-member-store_option">store_option</a></span></span><span class="code" data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span></span>
-        </p>
-      </div>
-      <div>
-        
-        
-        
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
-<tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">public</span>
-      
-      
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
-          
-          
-          
-          <span class="code" data-ice="name"><span><a href="class/lib/IndexedFTS.js~IndexedFTS.html#instance-member-unique_indexes">unique_indexes</a></span></span><span class="code" data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set">Set</a></span>&lt;<span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>&gt;</span>
-        </p>
-      </div>
-      <div>
-        
-        
-        
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
-<tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">public</span>
-      
-      
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
-          
-          
-          
           <span class="code" data-ice="name"><span><a href="class/lib/IndexedFTS.js~IndexedFTS.html#instance-member-version">version</a></span></span><span class="code" data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
-        </p>
-      </div>
-      <div>
-        
-        
-        
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
-<tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">public</span>
-      
-      
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
-          
-          
-          
-          <span class="code" data-ice="name"><span><a href="class/lib/IndexedFTS.js~IndexedFTS.html#instance-member-word_indexes">word_indexes</a></span></span><span class="code" data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set">Set</a></span>&lt;<span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>&gt;</span>
         </p>
       </div>
       <div>
@@ -1130,7 +933,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber115">source</a></span></span>
+      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber78">source</a></span></span>
     </span>
   </h3>
 
@@ -1210,11 +1013,11 @@
     
     
     
-    <span class="code" data-ice="name">constructor</span><span class="code" data-ice="signature">(name: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>, version: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, schema: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a></span>&lt;<span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>|<span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span>&gt;, options: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span>)</span>
+    <span class="code" data-ice="name">constructor</span><span class="code" data-ice="signature">(name: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>, version: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, schema: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span> | <span>IFTSSchema</span>, options: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span>)</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber44">source</a></span></span>
+      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber47">source</a></span></span>
     </span>
   </h3>
 
@@ -1265,7 +1068,7 @@ Word index is faster than the &apos;ngram&apos; index but can&apos;t find a part
     </tr>
 <tr data-ice="property" data-depth="0">
       <td data-ice="name" class="code" data-depth="0">schema</td>
-      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a></span>&lt;<span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>|<span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span>&gt;</td>
+      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span> | <span>IFTSSchema</span></td>
       <td data-ice="appendix"></td>
       <td data-ice="description"><p>database schema.</p>
 </td>
@@ -1304,7 +1107,18 @@ Word index is faster than the &apos;ngram&apos; index but can&apos;t find a part
 
   
 
-  
+  <div data-ice="throwWrap">
+    <h4>Throw:</h4>
+    <table>
+      <tbody>
+      
+      <tr class="throw" data-ice="throw">
+        <td><p data-ice="throwName"><span><a href="class/lib/errors.js~InvalidSchemaError.html">InvalidSchemaError</a></span></p></td>
+        
+      </tr>
+</tbody>
+    </table>
+  </div>
 
   
 
@@ -1330,7 +1144,7 @@ Word index is faster than the &apos;ngram&apos; index but can&apos;t find a part
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber79">source</a></span></span>
+      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber65">source</a></span></span>
     </span>
   </h3>
 
@@ -1373,50 +1187,7 @@ Word index is faster than the &apos;ngram&apos; index but can&apos;t find a part
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber46">source</a></span></span>
-    </span>
-  </h3>
-
-  
-  
-  
-  
-
-  
-
-  <div data-ice="properties">
-</div>
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-  
-</div>
-<div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-get-indexes">
-    <span class="access" data-ice="access">public</span>
-    
-    <span class="kind" data-ice="kind">get</span>
-    
-    
-    
-    <span class="code" data-ice="name">indexes</span><span class="code" data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set">Set</a></span>&lt;<span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>&gt;</span>
-    <span class="right-info">
-      
-      
-      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber124">source</a></span></span>
+      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber49">source</a></span></span>
     </span>
   </h3>
 
@@ -1459,136 +1230,7 @@ Word index is faster than the &apos;ngram&apos; index but can&apos;t find a part
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber52">source</a></span></span>
-    </span>
-  </h3>
-
-  
-  
-  
-  
-
-  
-
-  <div data-ice="properties">
-</div>
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-  
-</div>
-<div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-member-ngram_indexes">
-    <span class="access" data-ice="access">public</span>
-    
-    
-    
-    
-    
-    <span class="code" data-ice="name">ngram_indexes</span><span class="code" data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set">Set</a></span>&lt;<span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>&gt;</span>
-    <span class="right-info">
-      
-      
-      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber67">source</a></span></span>
-    </span>
-  </h3>
-
-  
-  
-  
-  
-
-  
-
-  <div data-ice="properties">
-</div>
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-  
-</div>
-<div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-member-normal_indexes">
-    <span class="access" data-ice="access">public</span>
-    
-    
-    
-    
-    
-    <span class="code" data-ice="name">normal_indexes</span><span class="code" data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set">Set</a></span>&lt;<span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>&gt;</span>
-    <span class="right-info">
-      
-      
-      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber76">source</a></span></span>
-    </span>
-  </h3>
-
-  
-  
-  
-  
-
-  
-
-  <div data-ice="properties">
-</div>
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-  
-</div>
-<div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-member-primary_key">
-    <span class="access" data-ice="access">public</span>
-    
-    
-    
-    
-    
-    <span class="code" data-ice="name">primary_key</span><span class="code" data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span> | <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/null">null</a></span></span>
-    <span class="right-info">
-      
-      
-      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber64">source</a></span></span>
+      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber55">source</a></span></span>
     </span>
   </h3>
 
@@ -1627,11 +1269,11 @@ Word index is faster than the &apos;ngram&apos; index but can&apos;t find a part
     
     
     
-    <span class="code" data-ice="name">schema</span><span class="code" data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span></span>
+    <span class="code" data-ice="name">schema</span><span class="code" data-ice="signature">: <span>IFTSSchema</span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber58">source</a></span></span>
+      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber61">source</a></span></span>
     </span>
   </h3>
 
@@ -1674,93 +1316,7 @@ Word index is faster than the &apos;ngram&apos; index but can&apos;t find a part
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber49">source</a></span></span>
-    </span>
-  </h3>
-
-  
-  
-  
-  
-
-  
-
-  <div data-ice="properties">
-</div>
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-  
-</div>
-<div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-member-store_option">
-    <span class="access" data-ice="access">public</span>
-    
-    
-    
-    
-    
-    <span class="code" data-ice="name">store_option</span><span class="code" data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span></span>
-    <span class="right-info">
-      
-      
-      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber61">source</a></span></span>
-    </span>
-  </h3>
-
-  
-  
-  
-  
-
-  
-
-  <div data-ice="properties">
-</div>
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-  
-</div>
-<div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-member-unique_indexes">
-    <span class="access" data-ice="access">public</span>
-    
-    
-    
-    
-    
-    <span class="code" data-ice="name">unique_indexes</span><span class="code" data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set">Set</a></span>&lt;<span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>&gt;</span>
-    <span class="right-info">
-      
-      
-      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber73">source</a></span></span>
+      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber52">source</a></span></span>
     </span>
   </h3>
 
@@ -1803,50 +1359,7 @@ Word index is faster than the &apos;ngram&apos; index but can&apos;t find a part
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber55">source</a></span></span>
-    </span>
-  </h3>
-
-  
-  
-  
-  
-
-  
-
-  <div data-ice="properties">
-</div>
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-  
-</div>
-<div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-member-word_indexes">
-    <span class="access" data-ice="access">public</span>
-    
-    
-    
-    
-    
-    <span class="code" data-ice="name">word_indexes</span><span class="code" data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set">Set</a></span>&lt;<span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>&gt;</span>
-    <span class="right-info">
-      
-      
-      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber70">source</a></span></span>
+      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber58">source</a></span></span>
     </span>
   </h3>
 
@@ -1892,7 +1405,7 @@ Word index is faster than the &apos;ngram&apos; index but can&apos;t find a part
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber359">source</a></span></span>
+      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber313">source</a></span></span>
     </span>
   </h3>
 
@@ -1980,7 +1493,7 @@ Word index is faster than the &apos;ngram&apos; index but can&apos;t find a part
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber178">source</a></span></span>
+      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber132">source</a></span></span>
     </span>
   </h3>
 
@@ -2024,7 +1537,7 @@ Word index is faster than the &apos;ngram&apos; index but can&apos;t find a part
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber217">source</a></span></span>
+      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber171">source</a></span></span>
     </span>
   </h3>
 
@@ -2098,7 +1611,7 @@ Word index is faster than the &apos;ngram&apos; index but can&apos;t find a part
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber298">source</a></span></span>
+      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber252">source</a></span></span>
     </span>
   </h3>
 
@@ -2179,7 +1692,7 @@ Word index is faster than the &apos;ngram&apos; index but can&apos;t find a part
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber272">source</a></span></span>
+      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber226">source</a></span></span>
     </span>
   </h3>
 
@@ -2253,7 +1766,7 @@ Word index is faster than the &apos;ngram&apos; index but can&apos;t find a part
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber228">source</a></span></span>
+      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber182">source</a></span></span>
     </span>
   </h3>
 
@@ -2327,7 +1840,7 @@ Word index is faster than the &apos;ngram&apos; index but can&apos;t find a part
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber246">source</a></span></span>
+      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber200">source</a></span></span>
     </span>
   </h3>
 
@@ -2384,7 +1897,7 @@ Word index is faster than the &apos;ngram&apos; index but can&apos;t find a part
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber402">source</a></span></span>
+      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber356">source</a></span></span>
     </span>
   </h3>
 
@@ -2457,7 +1970,7 @@ Word index is faster than the &apos;ngram&apos; index but can&apos;t find a part
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber413">source</a></span></span>
+      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber367">source</a></span></span>
     </span>
   </h3>
 
@@ -2530,7 +2043,7 @@ Word index is faster than the &apos;ngram&apos; index but can&apos;t find a part
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber322">source</a></span></span>
+      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber276">source</a></span></span>
     </span>
   </h3>
 
@@ -2611,7 +2124,7 @@ Word index is faster than the &apos;ngram&apos; index but can&apos;t find a part
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber346">source</a></span></span>
+      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber300">source</a></span></span>
     </span>
   </h3>
 
@@ -2692,7 +2205,7 @@ Word index is faster than the &apos;ngram&apos; index but can&apos;t find a part
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber310">source</a></span></span>
+      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber264">source</a></span></span>
     </span>
   </h3>
 
@@ -2773,7 +2286,7 @@ Word index is faster than the &apos;ngram&apos; index but can&apos;t find a part
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber334">source</a></span></span>
+      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber288">source</a></span></span>
     </span>
   </h3>
 
@@ -2854,7 +2367,7 @@ Word index is faster than the &apos;ngram&apos; index but can&apos;t find a part
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber259">source</a></span></span>
+      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber213">source</a></span></span>
     </span>
   </h3>
 
@@ -2928,7 +2441,7 @@ Word index is faster than the &apos;ngram&apos; index but can&apos;t find a part
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber137">source</a></span></span>
+      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber91">source</a></span></span>
     </span>
   </h3>
 
@@ -2984,7 +2497,7 @@ Word index is faster than the &apos;ngram&apos; index but can&apos;t find a part
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber206">source</a></span></span>
+      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber160">source</a></span></span>
     </span>
   </h3>
 
@@ -3058,7 +2571,7 @@ Word index is faster than the &apos;ngram&apos; index but can&apos;t find a part
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber375">source</a></span></span>
+      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber329">source</a></span></span>
     </span>
   </h3>
 
@@ -3141,7 +2654,7 @@ If you didn&apos;t made ngram index, you can use <span><a href="class/lib/IFTSAr
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber391">source</a></span></span>
+      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber345">source</a></span></span>
     </span>
   </h3>
 
@@ -3224,7 +2737,7 @@ If you didn&apos;t made word index, you can use <span><a href="class/lib/IFTSArr
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber286">source</a></span></span>
+      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber240">source</a></span></span>
     </span>
   </h3>
 
@@ -3321,7 +2834,7 @@ If you didn&apos;t made word index, you can use <span><a href="class/lib/IFTSArr
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber190">source</a></span></span>
+      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber144">source</a></span></span>
     </span>
   </h3>
 

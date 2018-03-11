@@ -6,12 +6,6 @@ window.esdocSearchIndex = [
     "class"
   ],
   [
-    "indexedfts/lib/iftsschema.js~iftsschema",
-    "class/lib/IFTSSchema.js~IFTSSchema.html",
-    "<span>IFTSSchema</span> <span class=\"search-result-import-path\">indexedfts/lib/IFTSSchema.js</span>",
-    "class"
-  ],
-  [
     "indexedfts/lib/iftstransaction.js~iftstransaction",
     "class/lib/IFTSTransaction.js~IFTSTransaction.html",
     "<span>IFTSTransaction</span> <span class=\"search-result-import-path\">indexedfts/lib/IFTSTransaction.js</span>",
@@ -444,48 +438,6 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
-    "lib/iftsschema.js~iftsschema#constructor",
-    "class/lib/IFTSSchema.js~IFTSSchema.html#instance-constructor-constructor",
-    "lib/IFTSSchema.js~IFTSSchema#constructor",
-    "method"
-  ],
-  [
-    "lib/iftsschema.js~iftsschema#indexes",
-    "class/lib/IFTSSchema.js~IFTSSchema.html#instance-get-indexes",
-    "lib/IFTSSchema.js~IFTSSchema#indexes",
-    "member"
-  ],
-  [
-    "lib/iftsschema.js~iftsschema#ngramindexes",
-    "class/lib/IFTSSchema.js~IFTSSchema.html#instance-member-ngramIndexes",
-    "lib/IFTSSchema.js~IFTSSchema#ngramIndexes",
-    "member"
-  ],
-  [
-    "lib/iftsschema.js~iftsschema#normalindexes",
-    "class/lib/IFTSSchema.js~IFTSSchema.html#instance-member-normalIndexes",
-    "lib/IFTSSchema.js~IFTSSchema#normalIndexes",
-    "member"
-  ],
-  [
-    "lib/iftsschema.js~iftsschema#primarykey",
-    "class/lib/IFTSSchema.js~IFTSSchema.html#instance-member-primaryKey",
-    "lib/IFTSSchema.js~IFTSSchema#primaryKey",
-    "member"
-  ],
-  [
-    "lib/iftsschema.js~iftsschema#uniqueindexes",
-    "class/lib/IFTSSchema.js~IFTSSchema.html#instance-member-uniqueIndexes",
-    "lib/IFTSSchema.js~IFTSSchema#uniqueIndexes",
-    "member"
-  ],
-  [
-    "lib/iftsschema.js~iftsschema#wordindexes",
-    "class/lib/IFTSSchema.js~IFTSSchema.html#instance-member-wordIndexes",
-    "lib/IFTSSchema.js~IFTSSchema#wordIndexes",
-    "member"
-  ],
-  [
     "lib/iftstransaction.js",
     "file/lib/IFTSTransaction.js.html",
     "lib/IFTSTransaction.js",
@@ -708,12 +660,6 @@ window.esdocSearchIndex = [
     "member"
   ],
   [
-    "lib/indexedfts.js~indexedfts#indexes",
-    "class/lib/IndexedFTS.js~IndexedFTS.html#instance-get-indexes",
-    "lib/IndexedFTS.js~IndexedFTS#indexes",
-    "member"
-  ],
-  [
     "lib/indexedfts.js~indexedfts#lower",
     "class/lib/IndexedFTS.js~IndexedFTS.html#instance-method-lower",
     "lib/IndexedFTS.js~IndexedFTS#lower",
@@ -738,28 +684,10 @@ window.esdocSearchIndex = [
     "member"
   ],
   [
-    "lib/indexedfts.js~indexedfts#ngram_indexes",
-    "class/lib/IndexedFTS.js~IndexedFTS.html#instance-member-ngram_indexes",
-    "lib/IndexedFTS.js~IndexedFTS#ngram_indexes",
-    "member"
-  ],
-  [
-    "lib/indexedfts.js~indexedfts#normal_indexes",
-    "class/lib/IndexedFTS.js~IndexedFTS.html#instance-member-normal_indexes",
-    "lib/IndexedFTS.js~IndexedFTS#normal_indexes",
-    "member"
-  ],
-  [
     "lib/indexedfts.js~indexedfts#open",
     "class/lib/IndexedFTS.js~IndexedFTS.html#instance-method-open",
     "lib/IndexedFTS.js~IndexedFTS#open",
     "method"
-  ],
-  [
-    "lib/indexedfts.js~indexedfts#primary_key",
-    "class/lib/IndexedFTS.js~IndexedFTS.html#instance-member-primary_key",
-    "lib/IndexedFTS.js~IndexedFTS#primary_key",
-    "member"
   ],
   [
     "lib/indexedfts.js~indexedfts#put",
@@ -798,33 +726,15 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "lib/indexedfts.js~indexedfts#store_option",
-    "class/lib/IndexedFTS.js~IndexedFTS.html#instance-member-store_option",
-    "lib/IndexedFTS.js~IndexedFTS#store_option",
-    "member"
-  ],
-  [
     "lib/indexedfts.js~indexedfts#transaction",
     "class/lib/IndexedFTS.js~IndexedFTS.html#instance-method-transaction",
     "lib/IndexedFTS.js~IndexedFTS#transaction",
     "method"
   ],
   [
-    "lib/indexedfts.js~indexedfts#unique_indexes",
-    "class/lib/IndexedFTS.js~IndexedFTS.html#instance-member-unique_indexes",
-    "lib/IndexedFTS.js~IndexedFTS#unique_indexes",
-    "member"
-  ],
-  [
     "lib/indexedfts.js~indexedfts#version",
     "class/lib/IndexedFTS.js~IndexedFTS.html#instance-member-version",
     "lib/IndexedFTS.js~IndexedFTS#version",
-    "member"
-  ],
-  [
-    "lib/indexedfts.js~indexedfts#word_indexes",
-    "class/lib/IndexedFTS.js~IndexedFTS.html#instance-member-word_indexes",
-    "lib/IndexedFTS.js~IndexedFTS#word_indexes",
     "member"
   ],
   [
