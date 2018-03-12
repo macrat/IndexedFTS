@@ -157,6 +157,7 @@ export default class IndexedFTS {
 					fts_store.onerror = reject
 					fts_store.createIndex(&apos;key&apos;, &apos;key&apos;, {unique: false});
 					fts_store.createIndex(&apos;token&apos;, &apos;token&apos;, {unique: false});
+					fts_store.createIndex(&apos;lower&apos;, &apos;lower&apos;, {unique: false});
 				});
 
 				this.schema.wordIndexes.forEach(column =&gt; {
@@ -164,6 +165,7 @@ export default class IndexedFTS {
 					fts_store.onerror = reject
 					fts_store.createIndex(&apos;key&apos;, &apos;key&apos;, {unique: false});
 					fts_store.createIndex(&apos;word&apos;, &apos;word&apos;, {unique: false});
+					fts_store.createIndex(&apos;lower&apos;, &apos;lower&apos;, {unique: false});
 				});
 			};
 		});
@@ -366,11 +368,13 @@ export default class IndexedFTS {
 	 *
 	 * @param {object|object[]} columns - column names for search.
 	 * @param {string} query - query for search.
+	 * @param {object} [options] - optional arguments.
+	 * @param {boolean} [options.ignoreCase=false] - ignore case if true. default is false.
 	 *
 	 * @return {IFTSArrayPromise} matched contents. may reject with {@link NoSuchColumnError}.
 	 */
-	search(columns, query) {
-		return this.transaction().search(columns, query);
+	search(columns, query, options={}) {
+		return this.transaction().search(columns, query, options);
 	}
 
 	/**
@@ -382,33 +386,39 @@ export default class IndexedFTS {
 	 *
 	 * @param {object|object[]} columns - column names for search.
 	 * @param {string} query - query for search.
+	 * @param {object} [options] - optional arguments.
+	 * @param {boolean} [options.ignoreCase=false] - ignore case if true. default is false.
 	 *
 	 * @return {IFTSArrayPromise} matched contents. may reject with {@link NoSuchColumnError}.
 	 */
-	searchWord(columns, query) {
-		return this.transaction().searchWord(columns, query);
+	searchWord(columns, query, options={}) {
+		return this.transaction().searchWord(columns, query, options);
 	}
 
 	/**
 	 * Get N-Gram set from index.
 	 *
 	 * @param {string} column - name of column.
+	 * @param {object} [options] - optional arguments.
+	 * @param {boolean} [options.ignoreCase=false] - ignore case when make result.
 	 *
 	 * @return {Promise&lt;Map&lt;string, number&gt;&gt;}
 	 */
-	getNGrams(column) {
-		return this.transaction().getNGrams(column);
+	getNGrams(column, options={}) {
+		return this.transaction().getNGrams(column, options);
 	}
 
 	/**
 	 * Get word set from index.
 	 *
 	 * @param {string} column - name of column.
+	 * @param {object} [options] - optional arguments.
+	 * @param {boolean} [options.ignoreCase=false] - ignore case when make result.
 	 *
 	 * @return {Promise&lt;Map&lt;string, number&gt;&gt;}
 	 */
-	getWords(column) {
-		return this.transaction().getWords(column);
+	getWords(column, options={}) {
+		return this.transaction().getWords(column, options);
 	}
 }
 </code></pre>

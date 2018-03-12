@@ -20,7 +20,8 @@ export default function readwritetest() {
 		});
 
 		it('not found', async function() {
-			assert(await this.target.get(3) === undefined);
+			assert(await this.target.get(-1) === undefined);
+			assert(await this.target.get(this.values.length) === undefined);
 			assert(await this.target.get('hello') === undefined);
 		});
 
@@ -50,7 +51,7 @@ export default function readwritetest() {
 
 			assert.deepStrictEqual(
 				await this.target.getAll(),
-				[this.values[1]],
+				[this.values[1], this.values[3]],
 			);
 			assert(await this.target.get(0) === undefined);
 			assert(await this.target.get(2) === undefined);
@@ -60,7 +61,7 @@ export default function readwritetest() {
 
 		it('not found', async function() {
 			await this.target.delete(-1).catch(err => assert(err === undefined));
-			await this.target.delete(3).catch(err => assert(err === undefined));
+			await this.target.delete(this.values.length).catch(err => assert(err === undefined));
 
 			assert.deepStrictEqual(
 				await this.target.getAll(),
@@ -83,16 +84,37 @@ export default function readwritetest() {
 
 	describe('read indexes', function() {
 		describe('getNGrams', function() {
-			it('simple', async function() {
+			it('case sensitive', async function() {
 				const tokens = [
 					...new Set(['he', 'el', 'll', 'lo', 'o ', ' w', 'wo', 'or', 'rl', 'ld']),
 					...new Set(['te', 'es', 'st', 't ', ' c', 'co', 'on', 'nt', 'te', 'en', 'nt']),
 					...new Set(['ja', 'ap', 'pa', 'an', 'ne', 'es', 'se', 'e ', ' d', 'da', 'at', 'ta', 'a ', ' 日', '日本', '本語']),
+					...new Set(['He', 'el', 'll', 'lo', 'o ', ' W', 'Wo', 'or', 'rl', 'ld']),
 				];
 				const except = new Map(tokens.map(x => [x, tokens.filter(y => x === y).length]));
 
 				assert.deepStrictEqual(
 					[...await this.target.getNGrams('title')].sort(),
+					[...except].sort(),
+				);
+
+				assert.deepStrictEqual(
+					[...await this.target.getNGrams('title', {ignoreCase: false})].sort(),
+					[...except].sort(),
+				);
+			});
+
+			it('ignore case', async function() {
+				const tokens = [
+					...new Set(['he', 'el', 'll', 'lo', 'o ', ' w', 'wo', 'or', 'rl', 'ld']),
+					...new Set(['te', 'es', 'st', 't ', ' c', 'co', 'on', 'nt', 'te', 'en', 'nt']),
+					...new Set(['ja', 'ap', 'pa', 'an', 'ne', 'es', 'se', 'e ', ' d', 'da', 'at', 'ta', 'a ', ' 日', '日本', '本語']),
+					...new Set(['he', 'el', 'll', 'lo', 'o ', ' w', 'wo', 'or', 'rl', 'ld']),
+				];
+				const except = new Map(tokens.map(x => [x, tokens.filter(y => x === y).length]));
+
+				assert.deepStrictEqual(
+					[...await this.target.getNGrams('title', {ignoreCase: true})].sort(),
 					[...except].sort(),
 				);
 			});
@@ -108,16 +130,37 @@ export default function readwritetest() {
 		});
 
 		describe('getWords', function() {
-			it('simple', async function() {
+			it('case sensitive', async function() {
 				const tokens = [
 					'hello', 'world',
 					'test', 'content',
 					'japanese', 'data', '日本語',
+					'Hello', 'World',
 				];
 				const except = new Map(tokens.map(x => [x, tokens.filter(y => x === y).length]));
 
 				assert.deepStrictEqual(
 					[...await this.target.getWords('title')].sort(),
+					[...except].sort(),
+				);
+
+				assert.deepStrictEqual(
+					[...await this.target.getWords('title', {ignoreCase: false})].sort(),
+					[...except].sort(),
+				);
+			});
+
+			it('ignore case', async function() {
+				const tokens = [
+					'hello', 'world',
+					'test', 'content',
+					'japanese', 'data', '日本語',
+					'hello', 'world',
+				];
+				const except = new Map(tokens.map(x => [x, tokens.filter(y => x === y).length]));
+
+				assert.deepStrictEqual(
+					[...await this.target.getWords('title', {ignoreCase: true})].sort(),
 					[...except].sort(),
 				);
 			});

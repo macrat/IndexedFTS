@@ -1,7 +1,7 @@
 {
   "coverage": "100%",
-  "expectCount": 113,
-  "actualCount": 113,
+  "expectCount": 114,
+  "actualCount": 114,
   "files": {
     "lib/ArrayPromise.js": {
       "expectCount": 20,
@@ -19,8 +19,8 @@
       "undocumentLines": []
     },
     "lib/Transaction.js": {
-      "expectCount": 32,
-      "actualCount": 32,
+      "expectCount": 33,
+      "actualCount": 33,
       "undocumentLines": []
     },
     "lib/errors.js": {

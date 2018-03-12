@@ -393,10 +393,12 @@ class IFTSArrayPromise {
   *
   * @param {object|object[]} columns - column names for search.
   * @param {string} query - query for search.
+  * @param {object} [options] - optional arguments.
+  * @param {boolean} [options.ignoreCase=false] - ignore case if true. default is false.
   *
   * @return {IFTSArrayPromise} matched contents.
   */
-	search(columns, query) {
+	search(columns, query, options = {}) {
 		if (typeof columns === 'string') {
 			columns = [columns];
 		}
@@ -407,12 +409,15 @@ class IFTSArrayPromise {
 			}
 		}
 
+		query = options.ignoreCase ? query.toLowerCase() : query;
 		const queries = [];
 		for (let q in splitQuery(query)) {
 			queries.push(q);
 		}
 
-		return this.filter(data => queries.every(q => columns.some(col => data[col].includes(q))));
+		const toLowerIfNeed = options.ignoreCase ? x => x.toLowerCase() : x => x;
+
+		return this.filter(data => queries.every(q => columns.some(col => toLowerIfNeed(data[col]).includes(q))));
 	}
 
 	/**
@@ -426,10 +431,12 @@ class IFTSArrayPromise {
   *
   * @param {object|object[]} columns - column names for search.
   * @param {string} query - query for search.
+  * @param {object} [options] - optional arguments.
+  * @param {boolean} [options.ignoreCase=false] - ignore case if true. default is false.
   *
   * @return {IFTSArrayPromise} matched contents. may reject with {@link NoSuchColumnError}.
   */
-	searchWord(columns, query) {
+	searchWord(columns, query, options = {}) {
 		if (typeof columns === 'string') {
 			columns = [columns];
 		}
@@ -440,10 +447,13 @@ class IFTSArrayPromise {
 			}
 		}
 
+		query = options.ignoreCase ? query.toLowerCase() : query;
 		const queries = splitWords(query);
 
+		const toLowerIfNeed = options.ignoreCase ? x => x.toLowerCase() : x => x;
+
 		return this.filter(data => queries.every(q => columns.some(col => {
-			return splitWords(data[col]).includes(q);
+			return splitWords(toLowerIfNeed(data[col])).includes(q);
 		})));
 	}
 }
@@ -535,7 +545,8 @@ class IFTSTransaction {
 				promises[i] = new Promise((resolve, reject) => {
 					const req = col.store.put({
 						key: key,
-						token: tokens[i]
+						token: tokens[i],
+						lower: tokens[i].toLowerCase()
 					});
 					req.onsuccess = () => resolve();
 					req.onerror = reject;
@@ -558,7 +569,8 @@ class IFTSTransaction {
 				promises[i] = new Promise((resolve, reject) => {
 					const req = col.store.put({
 						key: key,
-						word: words[i]
+						word: words[i],
+						lower: words[i].toLowerCase()
 					});
 					req.onsuccess = () => resolve();
 					req.onerror = reject;
@@ -878,13 +890,16 @@ class IFTSTransaction {
   *
   * @ignore
   */
-	_takeCandidatesBySingleColumn(column, queries) {
-		const index = this.transaction.objectStore(this.db.index_prefix + 'ngram_' + column).index('token');
+	_takeCandidatesBySingleColumn(column, queries, options = {}) {
+		const store = this.transaction.objectStore(this.db.index_prefix + 'ngram_' + column);
+		const index = options.ignoreCase ? store.index('lower') : store.index('token');
 		const result = [];
 
 		for (let q in queries) {
+			const checkIncludes = options.ignoreCase ? x => x.data[column].toLowerCase().includes(q) : x => x.data[column].includes(q);
+
 			if (queries[q].length === 0) {
-				result.push(this._getAllWithKeys().filter(x => x.data[column].includes(q)).map(x => x.key).then(xs => ({ query: q, keys: xs })));
+				result.push(this._getAllWithKeys().filter(checkIncludes).map(x => x.key).then(xs => ({ query: q, keys: xs })));
 				continue;
 			}
 
@@ -922,7 +937,7 @@ class IFTSTransaction {
 					}
 				}
 				return Promise.all(candidates.slice(0, candidate_num));
-			}).then(xs => ({ query: q, keys: xs.filter(x => x.data[column].includes(q)).map(x => x.key) }));
+			}).then(xs => ({ query: q, keys: xs.filter(checkIncludes).map(x => x.key) }));
 
 			result.push(candidate);
 		}
@@ -968,10 +983,12 @@ class IFTSTransaction {
   *
   * @param {object|object[]} columns - column names for search.
   * @param {string} query - query for search.
+  * @param {object} [options] - optional arguments.
+  * @param {boolean} [options.ignoreCase=false] - ignore case if true. default is false.
   *
   * @return {IFTSArrayPromise} matched contents. may reject with {@link NoSuchColumnError}.
   */
-	search(columns, query) {
+	search(columns, query, options = {}) {
 		if (typeof columns === 'string') {
 			columns = [columns];
 		}
@@ -982,6 +999,7 @@ class IFTSTransaction {
 			}
 		}
 
+		query = options.ignoreCase ? query.toLowerCase() : query;
 		const queries = splitQuery(query);
 		let queries_length = 0;
 
@@ -993,7 +1011,7 @@ class IFTSTransaction {
 		const candidatePromises = [];
 
 		for (let i = 0; i < columns.length; i++) {
-			Array.prototype.push.apply(candidatePromises, this._takeCandidatesBySingleColumn(columns[i], queries));
+			Array.prototype.push.apply(candidatePromises, this._takeCandidatesBySingleColumn(columns[i], queries, options));
 		}
 
 		return new IFTSArrayPromise(this.db.schema.indexes, Promise.all(candidatePromises).then(xs => this._pruneCandidates(queries_length, xs)));
@@ -1008,10 +1026,12 @@ class IFTSTransaction {
   *
   * @param {object|object[]} columns - column names for search.
   * @param {string} query - query for search.
+  * @param {object} [options] - optional arguments.
+  * @param {boolean} [options.ignoreCase=false] - ignore case if true. default is false.
   *
   * @return {IFTSArrayPromise} matched contents. may reject with {@link NoSuchColumnError}.
   */
-	searchWord(columns, query) {
+	searchWord(columns, query, options = {}) {
 		if (typeof columns === 'string') {
 			columns = [columns];
 		}
@@ -1022,10 +1042,12 @@ class IFTSTransaction {
 			}
 		}
 
+		query = options.ignoreCase ? query.toLowerCase() : query;
 		const queries = splitWords(query).map(x => ({ text: x, keyRange: this._KeyRange.only(x) }));
 
 		return new IFTSArrayPromise(this.db.schema.indexes, Promise.all(flatten(columns.map(col => {
-			const index = this.transaction.objectStore(this.db.index_prefix + 'word_' + col).index('word');
+			const store = this.transaction.objectStore(this.db.index_prefix + 'word_' + col);
+			const index = options.ignoreCase ? store.index('lower') : store.index('word');
 
 			return queries.map(query => this._readCursor(index.openCursor(query.keyRange), null, data => [data.key, query.text]));
 		}))).then(candidates => {
@@ -1059,25 +1081,20 @@ class IFTSTransaction {
 	}
 
 	/**
-  * Get N-Gram set from index.
+  * Make token set from index.
   *
-  * @param {string} column - name of column.
-  *
-  * @return {Promise<Map<string, number>>}
+  * @ignore
   */
-	getNGrams(column) {
-		if (!this.db.schema.ngramIndexes.has(column)) {
-			return Promise.reject(new NoSuchColumnError(column));
-		}
-
+	_readIndexSet(index) {
 		const result = new Map();
 
-		const cursor = this.transaction.objectStore(this.db.index_prefix + 'ngram_' + column).openCursor();
 		return new Promise((resolve, reject) => {
+			const cursor = index.openKeyCursor();
+
 			cursor.onsuccess = ev => {
 				const cursor = ev.target.result;
 				if (cursor) {
-					result.set(cursor.value.token, (result.get(cursor.value.token) || 0) + 1);
+					result.set(cursor.key, (result.get(cursor.key) || 0) + 1);
 					cursor.continue();
 				} else {
 					resolve(result);
@@ -1088,32 +1105,43 @@ class IFTSTransaction {
 	}
 
 	/**
-  * Get word set from index.
+  * Get N-Gram set from index.
   *
   * @param {string} column - name of column.
+  * @param {object} [options] - optional arguments.
+  * @param {boolean} [options.ignoreCase=false] - ignore case when make result.
   *
   * @return {Promise<Map<string, number>>}
   */
-	getWords(column) {
+	getNGrams(column, options = {}) {
+		if (!this.db.schema.ngramIndexes.has(column)) {
+			return Promise.reject(new NoSuchColumnError(column));
+		}
+
+		const store = this.transaction.objectStore(this.db.index_prefix + 'ngram_' + column);
+		const index = options.ignoreCase ? store.index('lower') : store.index('token');
+
+		return this._readIndexSet(index);
+	}
+
+	/**
+  * Get word set from index.
+  *
+  * @param {string} column - name of column.
+  * @param {object} [options] - optional arguments.
+  * @param {boolean} [options.ignoreCase=false] - ignore case when make result.
+  *
+  * @return {Promise<Map<string, number>>}
+  */
+	getWords(column, options = {}) {
 		if (!this.db.schema.wordIndexes.has(column)) {
 			return Promise.reject(new NoSuchColumnError(column));
 		}
 
-		const result = new Map();
+		const store = this.transaction.objectStore(this.db.index_prefix + 'word_' + column);
+		const index = options.ignoreCase ? store.index('lower') : store.index('word');
 
-		const cursor = this.transaction.objectStore(this.db.index_prefix + 'word_' + column).openCursor();
-		return new Promise((resolve, reject) => {
-			cursor.onsuccess = ev => {
-				const cursor = ev.target.result;
-				if (cursor) {
-					result.set(cursor.value.word, (result.get(cursor.value.word) || 0) + 1);
-					cursor.continue();
-				} else {
-					resolve(result);
-				}
-			};
-			cursor.onerror = ev => reject(ev);
-		});
+		return this._readIndexSet(index);
 	}
 }
 
@@ -1388,6 +1416,7 @@ class IndexedFTS {
 					fts_store.onerror = reject;
 					fts_store.createIndex('key', 'key', { unique: false });
 					fts_store.createIndex('token', 'token', { unique: false });
+					fts_store.createIndex('lower', 'lower', { unique: false });
 				});
 
 				this.schema.wordIndexes.forEach(column => {
@@ -1395,6 +1424,7 @@ class IndexedFTS {
 					fts_store.onerror = reject;
 					fts_store.createIndex('key', 'key', { unique: false });
 					fts_store.createIndex('word', 'word', { unique: false });
+					fts_store.createIndex('lower', 'lower', { unique: false });
 				});
 			};
 		});
@@ -1597,11 +1627,13 @@ class IndexedFTS {
   *
   * @param {object|object[]} columns - column names for search.
   * @param {string} query - query for search.
+  * @param {object} [options] - optional arguments.
+  * @param {boolean} [options.ignoreCase=false] - ignore case if true. default is false.
   *
   * @return {IFTSArrayPromise} matched contents. may reject with {@link NoSuchColumnError}.
   */
-	search(columns, query) {
-		return this.transaction().search(columns, query);
+	search(columns, query, options = {}) {
+		return this.transaction().search(columns, query, options);
 	}
 
 	/**
@@ -1613,33 +1645,39 @@ class IndexedFTS {
   *
   * @param {object|object[]} columns - column names for search.
   * @param {string} query - query for search.
+  * @param {object} [options] - optional arguments.
+  * @param {boolean} [options.ignoreCase=false] - ignore case if true. default is false.
   *
   * @return {IFTSArrayPromise} matched contents. may reject with {@link NoSuchColumnError}.
   */
-	searchWord(columns, query) {
-		return this.transaction().searchWord(columns, query);
+	searchWord(columns, query, options = {}) {
+		return this.transaction().searchWord(columns, query, options);
 	}
 
 	/**
   * Get N-Gram set from index.
   *
   * @param {string} column - name of column.
+  * @param {object} [options] - optional arguments.
+  * @param {boolean} [options.ignoreCase=false] - ignore case when make result.
   *
   * @return {Promise<Map<string, number>>}
   */
-	getNGrams(column) {
-		return this.transaction().getNGrams(column);
+	getNGrams(column, options = {}) {
+		return this.transaction().getNGrams(column, options);
 	}
 
 	/**
   * Get word set from index.
   *
   * @param {string} column - name of column.
+  * @param {object} [options] - optional arguments.
+  * @param {boolean} [options.ignoreCase=false] - ignore case when make result.
   *
   * @return {Promise<Map<string, number>>}
   */
-	getWords(column) {
-		return this.transaction().getWords(column);
+	getWords(column, options = {}) {
+		return this.transaction().getWords(column, options);
 	}
 }
 

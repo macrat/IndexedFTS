@@ -52,33 +52,33 @@ function apitest(targetFunc) {
 		it('asc by id', async function() {
 			assert.deepStrictEqual(
 				await this.target.sort('id').map(x => x.id),
-				[0, 1, 2],
+				[0, 1, 2, 3],
 			);
 			assert.deepStrictEqual(
 				await this.target.sort('id', 'asc').map(x => x.id),
-				[0, 1, 2],
+				[0, 1, 2, 3],
 			);
 		});
 		it('desc by id', async function() {
 			assert.deepStrictEqual(
 				await this.target.sort('id', 'desc').map(x => x.id),
-				[2, 1, 0],
+				[3, 2, 1, 0],
 			);
 		});
 		it('asc by title', async function() {
 			assert.deepStrictEqual(
 				await this.target.sort('title').map(x => x.title),
-				['hello world', 'japanese data 日本語', 'test content'],
+				['Hello World', 'hello world', 'japanese data 日本語', 'test content'],
 			);
 			assert.deepStrictEqual(
 				await this.target.sort('title', 'asc').map(x => x.title),
-				['hello world', 'japanese data 日本語', 'test content'],
+				['Hello World', 'hello world', 'japanese data 日本語', 'test content'],
 			);
 		});
 		it('desc by title', async function() {
 			assert.deepStrictEqual(
 				await this.target.sort('title', 'desc').map(x => x.title),
-				['test content', 'japanese data 日本語', 'hello world'],
+				['test content', 'japanese data 日本語', 'hello world', 'Hello World'],
 			);
 		});
 		it('missing column', async function() {
@@ -92,11 +92,11 @@ function apitest(targetFunc) {
 		it('offset', async function() {
 			assert.deepStrictEqual(
 				await this.target.sort('id', 'asc', 1).map(x => x.id),
-				[1, 2],
+				[1, 2, 3],
 			);
 			assert.deepStrictEqual(
 				await this.target.sort('id', 'desc', 2).map(x => x.id),
-				[0],
+				[1, 0],
 			);
 			assert.deepStrictEqual(
 				await this.target.sort('id', 'asc', 100).map(x => x.id),
@@ -110,11 +110,11 @@ function apitest(targetFunc) {
 			);
 			assert.deepStrictEqual(
 				await this.target.sort('id', 'desc', 0, 1).map(x => x.id),
-				[2],
+				[3],
 			);
 			assert.deepStrictEqual(
 				await this.target.sort('id', 'asc', 0, 100).map(x => x.id),
-				[0, 1, 2],
+				[0, 1, 2, 3],
 			);
 		});
 		it('offset / limit', async function() {
@@ -128,7 +128,7 @@ function apitest(targetFunc) {
 			);
 			assert.deepStrictEqual(
 				await this.target.sort('id', 'asc', 1, 100).map(x => x.id),
-				[1, 2],
+				[1, 2, 3],
 			);
 			assert.deepStrictEqual(
 				await this.target.sort('id', 'asc', 100, 5).map(x => x.id),
@@ -181,7 +181,7 @@ function apitest(targetFunc) {
 		it('simple', async function() {
 			assert.deepStrictEqual(
 				await this.target.lowerOrEquals('age', 15),
-				[this.values[0], this.values[1]],
+				this.values.slice(0, 2),
 			);
 		});
 
@@ -199,7 +199,7 @@ function apitest(targetFunc) {
 		it('simple', async function() {
 			assert.deepStrictEqual(
 				await this.target.greater('age', 15),
-				[this.values[2]],
+				this.values.slice(2),
 			);
 		});
 
@@ -217,7 +217,7 @@ function apitest(targetFunc) {
 		it('simple', async function() {
 			assert.deepStrictEqual(
 				await this.target.greaterOrEquals('age', 15),
-				[this.values[1], this.values[2]],
+				this.values.slice(1),
 			);
 		});
 
@@ -235,15 +235,15 @@ function apitest(targetFunc) {
 		it('simple', async function() {
 			assert.deepStrictEqual(
 				await this.target.between('age', 12, 17),
-				[this.values[1]],
+				this.values.filter(x => 12 <= x.age && x.age <= 17),
 			);
 			assert.deepStrictEqual(
 				await this.target.between('age', 9, 15),
-				this.values.filter(x => x.age <= 15),
+				this.values.filter(x => 9 <= x.age && x.age <= 15),
 			);
 			assert.deepStrictEqual(
 				await this.target.between('age', 15, 21),
-				this.values.filter(x => x.age >= 15),
+				this.values.filter(x => 15 <= x.age && x.age <= 21),
 			);
 		});
 
@@ -258,28 +258,60 @@ function apitest(targetFunc) {
 	});
 
 	describe('search', function() {
-		it('simple', async function() {
-			assert.deepStrictEqual(
-				await this.target.search('text', 'test'),
-				[this.values[0], this.values[1]],
-			);
+		describe('case sensitive', function() {
+			it('simple', async function() {
+				assert.deepStrictEqual(
+					await this.target.search('title', 'Hello'),
+					[this.values[3]],
+				);
+				assert.deepStrictEqual(
+					await this.target.search('title', 'Hello', {ignoreCase: false}),
+					[this.values[3]],
+				);
+			});
+			it('single character', async function() {
+				assert.deepStrictEqual(
+					await this.target.search('title', 'H'),
+					[this.values[3]],
+				);
+				assert.deepStrictEqual(
+					await this.target.search('title', 'j'),
+					[this.values[2]],
+				);
+				assert.deepStrictEqual(
+					await this.target.search(['title', 'text'], 'i data'),
+					[this.values[1]],
+				);
+			});
+			it('japanese', async function() {
+				assert.deepStrictEqual(
+					await this.target.search('title', '日本語'),
+					[this.values[2]],
+				);
+			});
 		});
-		it('single character', async function() {
-			assert.deepStrictEqual(
-				await this.target.search('title', 'j'),
-				[this.values[2]],
-			);
-			assert.deepStrictEqual(
-				await this.target.search(['title', 'text'], 'i data'),
-				[this.values[1]],
-			);
+
+		describe('ignore case', function() {
+			it('simple', async function() {
+				assert.deepStrictEqual(
+					await this.target.search('title', 'hello', {ignoreCase: true}),
+					[this.values[0], this.values[3]],
+				);
+			});
+			it('single character', async function() {
+				assert.deepStrictEqual(
+					await this.target.search('title', 'H', {ignoreCase: true}),
+					[this.values[0], this.values[3]],
+				);
+			});
+			it('japanese', async function() {
+				assert.deepStrictEqual(
+					await this.target.search('title', '日本語', {ignoreCase: true}),
+					[this.values[2]],
+				);
+			});
 		});
-		it('japanese', async function() {
-			assert.deepStrictEqual(
-				await this.target.search('title', '日本語'),
-				[this.values[2]],
-			);
-		});
+
 		it('multi columns', async function() {
 			assert.deepStrictEqual(
 				await this.target.search(['title', 'text'], 'data'),
@@ -292,7 +324,6 @@ function apitest(targetFunc) {
 				[],
 			);
 		});
-
 		it('invalid column', async function() {
 			const err = await this.target.search('foobar', 'hello')
 				.then(x => 'not causes error')
@@ -330,24 +361,74 @@ function apitest(targetFunc) {
 	});
 
 	describe('searchWord', function() {
-		it('simple', async function() {
-			assert.deepStrictEqual(
-				await this.target.searchWord('text', 'test').sort('id'),
-				[this.values[0], this.values[1]],
-			);
+		describe('case sensitive', function() {
+			it('simple', async function() {
+				assert.deepStrictEqual(
+					await this.target.searchWord('text', 'test').sort('id'),
+					[this.values[0], this.values[1]],
+				);
+
+				assert.deepStrictEqual(
+					await this.target.searchWord('text', 'test', {ignoreCase: false}).sort('id'),
+					[this.values[0], this.values[1]],
+				);
+			});
+			it('partial', async function() {
+				assert.deepStrictEqual(
+					await this.target.searchWord('text', 'est'),
+					[],
+				);
+				assert.deepStrictEqual(
+					await this.target.searchWord('text', 'He'),
+					[],
+				);
+
+				assert.deepStrictEqual(
+					await this.target.searchWord('text', 'est', {ignoreCase: false}),
+					[],
+				);
+				assert.deepStrictEqual(
+					await this.target.searchWord('text', 'He', {ignoreCase: false}),
+					[],
+				);
+			});
+			it('japanese', async function() {
+				assert.deepStrictEqual(
+					await this.target.searchWord('title', '日本語'),
+					[this.values[2]],
+				);
+				assert.deepStrictEqual(
+					await this.target.searchWord('title', '日本語', {ignoreCase: false}),
+					[this.values[2]],
+				);
+			});
 		});
-		it('simple partial', async function() {
-			assert.deepStrictEqual(
-				await this.target.searchWord('text', 'est'),
-				[],
-			);
+
+		describe('ignore case', function() {
+			it('simple', async function() {
+				assert.deepStrictEqual(
+					await this.target.searchWord('text', 'test', {ignoreCase: true}).sort('id'),
+					[this.values[0], this.values[1], this.values[3]],
+				);
+			});
+			it('partial', async function() {
+				assert.deepStrictEqual(
+					await this.target.searchWord('text', 'est', {ignoreCase: true}),
+					[],
+				);
+				assert.deepStrictEqual(
+					await this.target.searchWord('text', 'He', {ignoreCase: true}),
+					[],
+				);
+			});
+			it('japanese', async function() {
+				assert.deepStrictEqual(
+					await this.target.searchWord('title', '日本語', {ignoreCase: true}),
+					[this.values[2]],
+				);
+			});
 		});
-		it('japanese', async function() {
-			assert.deepStrictEqual(
-				await this.target.searchWord('title', '日本語'),
-				[this.values[2]],
-			);
-		});
+
 		it('multi columns', async function() {
 			assert.deepStrictEqual(
 				await this.target.searchWord(['title', 'text'], 'data').sort('id'),
@@ -360,7 +441,6 @@ function apitest(targetFunc) {
 				[],
 			);
 		});
-
 		it('invalid column', async function() {
 			const err = await this.target.searchWord('foobar', 'hello')
 				.then(x => 'not causes error')
@@ -396,6 +476,11 @@ apitest.values = [{
 	title: 'japanese data 日本語',
 	text: 'あいうえお\nhello こんにちは\n',
 	age: 20,
+}, {
+	id: 3,
+	title: 'Hello World',
+	text: 'Hello World!\nThis Is Test',
+	age: 25,
 }];
 
 
