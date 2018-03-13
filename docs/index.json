@@ -1385,7 +1385,7 @@
     "__docId__": 69,
     "kind": "file",
     "name": "lib/IndexedFTS.js",
-    "content": "import IFTSTransaction from './Transaction';\nimport IFTSSchema from './Schema';\n\n\n/**\n * The database of IndexedFTS.\n *\n * Almost methods are the same interface as {@link IDBTransaction} and {@link IFTSArrayPromise}.\n */\nexport default class IndexedFTS {\n\t/**\n\t * Create or open IndexedFTS.\n\t *\n\t * Database has name and schema's version.\n\t * The name is a name of the database in the storage.\n\t *\n\t * The schema is an object that key is column name and value is a definition of indexes. Schema can't change in same version database.\n\t * If you want change schema of database, please change version number.\n\t * Please be careful, all contents will remove when changing the version number.\n\t *\n\t * Index types are 'primary', 'unique', 'fulltext', 'ngram', 'word', or normal index.\n\t *\n\t * 'primary' is a primary key of the database. 'primary' can't set to multiple columns.\n\t *\n\t * 'unique' is columns that have a unique value in the database.\n\t *\n\t * If set 'ngram' IndexedFTS will make 2-gram index table for full-text search.\n\t * 'fulltext' is alias to 'ngram'.\n\t *\n\t * 'word' is word based index.\n\t * The word index will split text with whitespaces and store those.\n\t * Word index is faster than the 'ngram' index but can't find a partial match in the word.\n\t *\n\t * The normal index that not set optioned that not unique, not primary, and not indexed for full-text search. You can numeric search like {@link IndexedFTS#lower} {@link IndexedFTS#between} even if not set option.\n\t *\n\t * If you want to set some index types, please use object like `{unique: true, fulltext: true}`.\n\t *\n\t * @param {string} name - name of new (or open) database.\n\t * @param {number} version - schema's version of database.\n\t * @param {object|IFTSSchema} schema - database schema.\n\t * @param {object} [options] - other options.\n\t * @param {string} [options.index_prefix='indexedfts_'] - prefix of indexes for full-text search.\n\t * @param {object} [options.scope=window] - endpoints for IndexedDB API.\n\t *\n\t * @throws {InvalidSchemaError}\n\t */\n\tconstructor(name, version, schema, options={}) {\n\t\t/** @type {string} */\n\t\tthis.index_prefix = options.index_prefix || 'indexedfts_';\n\n\t\t/** @type {object} */\n\t\tthis.scope = options.scope || window;\n\n\t\t/** @type {string} */\n\t\tthis.name = name;\n\n\t\t/** @type {number} */\n\t\tthis.version = version;\n\n\t\t/** @type {IFTSSchema} */\n\t\tthis.schema = schema instanceof IFTSSchema ? schema : new IFTSSchema(schema);\n\n\n\t\t/** @type {IDBDatabase} */\n\t\tthis.db = null;\n\t}\n\n\t/**\n\t * Delete database.\n\t *\n\t * Must be close all IndexedFTS before delete database.\n\t *\n\t * @param {string} name - name of target database. this method will success even if no such database.\n\t * @param {object} [scope] - endpoints for IndexedDB API.\n\t *\n\t * @return {Promise<undefined>}\n\t */\n\tstatic delete(name, scope=null) {\n\t\treturn new Promise((resolve, reject) => {\n\t\t\tconst req = (scope || window).indexedDB.deleteDatabase(name);\n\t\t\treq.onsuccess = ev => resolve();\n\t\t\treq.onerror = ev => reject(ev);\n\t\t});\n\t}\n\n\t/**\n\t * Open database.\n\t *\n\t * @return {Promise<undefined>}\n\t */\n\topen() {\n\t\treturn new Promise((resolve, reject) => {\n\t\t\tconst request = this.scope.indexedDB.open(this.name, this.version);\n\n\t\t\trequest.onsuccess = ev => {\n\t\t\t\tthis.db = ev.target.result;\n\t\t\t\tresolve(this);\n\t\t\t};\n\t\t\trequest.onerror = reject;\n\n\t\t\trequest.onupgradeneeded = ev => {\n\t\t\t\tthis.db = ev.target.result;\n\n\t\t\t\tconst store = this.db.createObjectStore('data', this.schema._storeOption);\n\n\t\t\t\tstore.onerror = reject;\n\n\t\t\t\tthis.schema.uniqueIndexes.forEach(x => store.createIndex(x, x, {unique: true}));\n\n\t\t\t\tthis.schema.normalIndexes.forEach(x => store.createIndex(x, x, {unique: false}));\n\n\t\t\t\tthis.schema.ngramIndexes.forEach(column => {\n\t\t\t\t\tconst fts_store = this.db.createObjectStore(this.index_prefix + 'ngram_' + column, {autoIncrement: true});\n\t\t\t\t\tfts_store.onerror = reject\n\t\t\t\t\tfts_store.createIndex('key', 'key', {unique: false});\n\t\t\t\t\tfts_store.createIndex('token', 'token', {unique: false});\n\t\t\t\t\tfts_store.createIndex('lower', 'lower', {unique: false});\n\t\t\t\t});\n\n\t\t\t\tthis.schema.wordIndexes.forEach(column => {\n\t\t\t\t\tconst fts_store = this.db.createObjectStore(this.index_prefix + 'word_' + column, {autoIncrement: true});\n\t\t\t\t\tfts_store.onerror = reject\n\t\t\t\t\tfts_store.createIndex('key', 'key', {unique: false});\n\t\t\t\t\tfts_store.createIndex('word', 'word', {unique: false});\n\t\t\t\t\tfts_store.createIndex('lower', 'lower', {unique: false});\n\t\t\t\t});\n\t\t\t};\n\t\t});\n\t}\n\n\t/**\n\t * Close database.\n\t */\n\tclose() {\n\t\tthis.db.close();\n\t}\n\n\t/**\n\t * Make new {@link IFTSTransaction}.\n\t *\n\t * @param {\"readonly\"|\"readwrite\"} mode - mode of transaction.\n\t * @param {string[]|null} target - open index targets. open for all if null.\n\t *\n\t * @return {IFTSTransaction}\n\t */\n\ttransaction(mode='readonly', target=null) {\n\t\tif (target === null) {\n\t\t\tconst ngrams = [...this.schema.ngramIndexes].map(x => this.index_prefix + 'ngram_' + x);\n\t\t\tconst words = [...this.schema.wordIndexes].map(x => this.index_prefix + 'word_' + x);\n\t\t\ttarget = ngrams.concat(words).concat(['data']);\n\t\t}\n\t\treturn new IFTSTransaction(this, this.db.transaction(target, mode));\n\t}\n\n\t/**\n\t * Put contents into database.\n\t *\n\t * @param {object} contents - contents for save. allowed multiple arguments.\n\t *\n\t * @return {Promise<IndexedFTS>} returns self for chain.\n\t */\n\tput(...contents) {\n\t\treturn this.transaction('readwrite').put(...contents).then(() => this);\n\t}\n\n\t/**\n\t * Delete contents from database.\n\t *\n\t * @param {object} keys - key of contents.\n\t *\n\t * @return {Promise<IndexedFTS>} returns self for chain. Will reject with {@link InvalidKeyError} if keys included null or undefined.\n\t */\n\tdelete(...keys) {\n\t\treturn this.transaction('readwrite').delete(...keys).then(() => this);\n\t}\n\n\t/**\n\t * Get content by primary key.\n\t *\n\t * @param {object} key - the key of content.\n\t *\n\t * @return {Promise<object|undefined>} content. promise will reject with {@link InvalidKeyError} if keys included null or undefined. result value will be undefined if not found.\n\t */\n\tget(key) {\n\t\treturn this.transaction('readonly', 'data').get(key);\n\t}\n\n\t/**\n\t * Get filtered contents.\n\t *\n\t * @ignore\n\t */\n\t_getFiltered(fun) {\n\t\treturn fun(this.transaction('readonly', 'data'));\n\t}\n\n\t/**\n\t * Get all contents.\n\t *\n\t * @return {IFTSArrayPromise} contents.\n\t */\n\tgetAll() {\n\t\treturn this._getFiltered(x => x.getAll());\n\t}\n\n\t/**\n\t * Do something process for each elements and returns {@link IFTSArrayPromise}.\n\t *\n\t * NOTE: This method doesn't fast. May better do filtering before doing map if need filtering.\n\t *\n\t * @param {function(content: object, index: Number): object} fun - function for processing element.\n\t *\n\t * @return {IFTSArrayPromise}\n\t */\n\tmap(fun) {\n\t\treturn this._getFiltered(x => x.map(fun));\n\t}\n\n\t/**\n\t * Filtering elements by function and returns {@link IFTSArrayPromise}.\n\t *\n\t * WARNING: This method won't use the index. Other methods(eg. {@link IFTSTransaction#equals or @link IFTSTransaction#lower} may faster than this.\n\t *\n\t * @param {function(content: object, index: Number): object} fun - function for filtering element.\n\t *\n\t * @return {IFTSArrayPromise}\n\t */\n\tfilter(fun) {\n\t\treturn this._getFiltered(x => x.filter(fun));\n\t}\n\n\t/**\n\t * Sort and get all contents.\n\t *\n\t * @param {object} column - the column for sorting.\n\t * @param {'asc'|'desc'} [order='asc'] - sort order.\n\t * @param {Number} [offset=0] - starting offset of the result.\n\t * @param {Number} [limit] - maximum number of result length. will unlimited if omitted.\n\t *\n\t * @return {IFTSArrayPromise} sorted contents.\n\t */\n\tsort(column, order='asc', offset=0, limit=undefined) {\n\t\treturn this._getFiltered(x => x.sort(column, order, offset, limit));\n\t}\n\n\t/**\n\t * Get contents that have fully matched property.\n\t *\n\t * @param {object} column - column name for search.\n\t * @param {object} value - value for search.\n\t *\n\t * @return {IFTSArrayPromise} matched contents. may reject with {@link NoSuchColumnError}.\n\t */\n\tequals(column, value) {\n\t\treturn this._getFiltered(x => x.equals(column, value));\n\t}\n\n\t/**\n\t * Get contents that have property lower than value.\n\t *\n\t * @param {object} column - column name for search.\n\t * @param {object} value - value for search.\n\t *\n\t * @return {IFTSArrayPromise} matched contents. may reject with {@link NoSuchColumnError}.\n\t */\n\tlower(column, value) {\n\t\treturn this._getFiltered(x => x.lower(column, value));\n\t}\n\n\t/**\n\t * Get contents that have property greater than value.\n\t *\n\t * @param {object} column - column name for search.\n\t * @param {object} value - value for search.\n\t *\n\t * @return {IFTSArrayPromise} matched contents. may reject with {@link NoSuchColumnError}.\n\t */\n\tgreater(column, value) {\n\t\treturn this._getFiltered(x => x.greater(column, value));\n\t}\n\n\t/**\n\t * Get contents that have property lower than value or equals value.\n\t *\n\t * @param {object} column - column name for search.\n\t * @param {object} value - value for search.\n\t *\n\t * @return {IFTSArrayPromise} matched contents. may reject with {@link NoSuchColumnError}.\n\t */\n\tlowerOrEquals(column, value) {\n\t\treturn this._getFiltered(x => x.lowerOrEquals(column, value));\n\t}\n\n\t/**\n\t * Get contents that have property greater than value or equals value.\n\t *\n\t * @param {object} column - column name for search.\n\t * @param {object} value - value for search.\n\t *\n\t * @return {IFTSArrayPromise} matched contents. may reject with {@link NoSuchColumnError}.\n\t */\n\tgreaterOrEquals(column, value) {\n\t\treturn this._getFiltered(x => x.greaterOrEquals(column, value));\n\t}\n\n\t/**\n\t * Get contents that have property is between argument values.\n\t *\n\t * @param {object} column - column name for search.\n\t * @param {object} lower - minimal value.\n\t * @param {object} upper - maximum value.\n\t *\n\t * @return {IFTSArrayPromise} matched contents. may reject with {@link NoSuchColumnError}.\n\t */\n\tbetween(column, lower, upper) {\n\t\treturn this._getFiltered(x => x.between(column, lower, upper));\n\t}\n\n\t/**\n\t * Get contents that have matched property by full-text search.\n\t *\n\t * All target columns have to made ngram index when created database.\n\t * If you didn't made ngram index, you can use {@link IFTSArrayPromise#search} (but this way is very slow).\n\t *\n\t *\n\t * @param {object|object[]} columns - column names for search.\n\t * @param {string} query - query for search.\n\t * @param {object} [options] - optional arguments.\n\t * @param {boolean} [options.ignoreCase=false] - ignore case if true. default is false.\n\t *\n\t * @return {IFTSArrayPromise} matched contents. may reject with {@link NoSuchColumnError}.\n\t */\n\tsearch(columns, query, options={}) {\n\t\treturn this.transaction().search(columns, query, options);\n\t}\n\n\t/**\n\t * Find contents that have fully matched word in property.\n\t *\n\t * All target columns have to made word index when created database.\n\t * If you didn't made word index, you can use {@link IFTSArrayPromise#searchWord} (but this way is very slow).\n\t *\n\t *\n\t * @param {object|object[]} columns - column names for search.\n\t * @param {string} query - query for search.\n\t * @param {object} [options] - optional arguments.\n\t * @param {boolean} [options.ignoreCase=false] - ignore case if true. default is false.\n\t *\n\t * @return {IFTSArrayPromise} matched contents. may reject with {@link NoSuchColumnError}.\n\t */\n\tsearchWord(columns, query, options={}) {\n\t\treturn this.transaction().searchWord(columns, query, options);\n\t}\n\n\t/**\n\t * Get N-Gram set from index.\n\t *\n\t * @param {string} column - name of column.\n\t * @param {object} [options] - optional arguments.\n\t * @param {boolean} [options.ignoreCase=false] - ignore case when make result.\n\t *\n\t * @return {Promise<Map<string, number>>}\n\t */\n\tgetNGrams(column, options={}) {\n\t\treturn this.transaction().getNGrams(column, options);\n\t}\n\n\t/**\n\t * Get word set from index.\n\t *\n\t * @param {string} column - name of column.\n\t * @param {object} [options] - optional arguments.\n\t * @param {boolean} [options.ignoreCase=false] - ignore case when make result.\n\t *\n\t * @return {Promise<Map<string, number>>}\n\t */\n\tgetWords(column, options={}) {\n\t\treturn this.transaction().getWords(column, options);\n\t}\n}\n",
+    "content": "import IFTSTransaction from './Transaction';\nimport IFTSSchema from './Schema';\n\n\n/**\n * The database of IndexedFTS.\n *\n * Almost methods are the same interface as {@link IDBTransaction} and {@link IFTSArrayPromise}.\n */\nexport default class IndexedFTS {\n\t/**\n\t * Create or open IndexedFTS.\n\t *\n\t * Database has name and schema's version.\n\t * The name is a name of the database in the storage.\n\t *\n\t * The schema is an object that key is column name and value is a definition of indexes. Schema can't change in same version database.\n\t * If you want change schema of database, please change version number.\n\t * Please be careful, all contents will remove when changing the version number.\n\t *\n\t * Index types are 'primary', 'unique', 'fulltext', 'ngram', 'word', or 'normal'.\n\t *\n\t * 'primary' is a primary key of the database. 'primary' can't set to multiple columns.\n\t * 'unique' is columns that have a unique value in the database.\n\t * The 'normal' will enable when not primary and not unique.\n\t * 'primary', 'unique' and 'normal' column can numeric search (eg. {@link IndexedFTS#lower} or {@link IndexedFTS#between}).\n\t *\n\t * If set 'ngram' IndexedFTS will make 2-gram index table for full-text search.\n\t * 'fulltext' is alias to 'ngram'.\n\t *\n\t * 'word' is word based index.\n\t * The word index will split text with whitespaces and store those.\n\t * Word index is faster than the 'ngram' index but can't find a partial match in the word.\n\t *\n\t * If you want to set some index types, please use object like `{unique: true, fulltext: true, normal: false}`.\n\t *\n\t * @param {string} name - name of new (or open) database.\n\t * @param {number} version - schema's version of database.\n\t * @param {object|IFTSSchema} schema - database schema.\n\t * @param {object} [options] - other options.\n\t * @param {string} [options.index_prefix='indexedfts_'] - prefix of indexes for full-text search.\n\t * @param {object} [options.scope=window] - endpoints for IndexedDB API.\n\t *\n\t * @throws {InvalidSchemaError}\n\t */\n\tconstructor(name, version, schema, options={}) {\n\t\t/** @type {string} */\n\t\tthis.index_prefix = options.index_prefix || 'indexedfts_';\n\n\t\t/** @type {object} */\n\t\tthis.scope = options.scope || window;\n\n\t\t/** @type {string} */\n\t\tthis.name = name;\n\n\t\t/** @type {number} */\n\t\tthis.version = version;\n\n\t\t/** @type {IFTSSchema} */\n\t\tthis.schema = schema instanceof IFTSSchema ? schema : new IFTSSchema(schema);\n\n\n\t\t/** @type {IDBDatabase} */\n\t\tthis.db = null;\n\t}\n\n\t/**\n\t * Delete database.\n\t *\n\t * Must be close all IndexedFTS before delete database.\n\t *\n\t * @param {string} name - name of target database. this method will success even if no such database.\n\t * @param {object} [scope] - endpoints for IndexedDB API.\n\t *\n\t * @return {Promise<undefined>}\n\t */\n\tstatic delete(name, scope=null) {\n\t\treturn new Promise((resolve, reject) => {\n\t\t\tconst req = (scope || window).indexedDB.deleteDatabase(name);\n\t\t\treq.onsuccess = ev => resolve();\n\t\t\treq.onerror = ev => reject(ev);\n\t\t});\n\t}\n\n\t/**\n\t * Open database.\n\t *\n\t * @return {Promise<undefined>}\n\t */\n\topen() {\n\t\treturn new Promise((resolve, reject) => {\n\t\t\tconst request = this.scope.indexedDB.open(this.name, this.version);\n\n\t\t\trequest.onsuccess = ev => {\n\t\t\t\tthis.db = ev.target.result;\n\t\t\t\tresolve(this);\n\t\t\t};\n\t\t\trequest.onerror = reject;\n\n\t\t\trequest.onupgradeneeded = ev => {\n\t\t\t\tthis.db = ev.target.result;\n\n\t\t\t\tconst store = this.db.createObjectStore('data', this.schema._storeOption);\n\n\t\t\t\tstore.onerror = reject;\n\n\t\t\t\tthis.schema.uniqueIndexes.forEach(x => store.createIndex(x, x, {unique: true}));\n\n\t\t\t\tthis.schema.normalIndexes.forEach(x => store.createIndex(x, x, {unique: false}));\n\n\t\t\t\tthis.schema.ngramIndexes.forEach(column => {\n\t\t\t\t\tconst fts_store = this.db.createObjectStore(this.index_prefix + 'ngram_' + column, {autoIncrement: true});\n\t\t\t\t\tfts_store.onerror = reject\n\t\t\t\t\tfts_store.createIndex('key', 'key', {unique: false});\n\t\t\t\t\tfts_store.createIndex('token', 'token', {unique: false});\n\t\t\t\t\tfts_store.createIndex('lower', 'lower', {unique: false});\n\t\t\t\t});\n\n\t\t\t\tthis.schema.wordIndexes.forEach(column => {\n\t\t\t\t\tconst fts_store = this.db.createObjectStore(this.index_prefix + 'word_' + column, {autoIncrement: true});\n\t\t\t\t\tfts_store.onerror = reject\n\t\t\t\t\tfts_store.createIndex('key', 'key', {unique: false});\n\t\t\t\t\tfts_store.createIndex('word', 'word', {unique: false});\n\t\t\t\t\tfts_store.createIndex('lower', 'lower', {unique: false});\n\t\t\t\t});\n\t\t\t};\n\t\t});\n\t}\n\n\t/**\n\t * Close database.\n\t */\n\tclose() {\n\t\tthis.db.close();\n\t}\n\n\t/**\n\t * Make new {@link IFTSTransaction}.\n\t *\n\t * @param {\"readonly\"|\"readwrite\"} mode - mode of transaction.\n\t * @param {string[]|null} target - open index targets. open for all if null.\n\t *\n\t * @return {IFTSTransaction}\n\t */\n\ttransaction(mode='readonly', target=null) {\n\t\tif (target === null) {\n\t\t\tconst ngrams = [...this.schema.ngramIndexes].map(x => this.index_prefix + 'ngram_' + x);\n\t\t\tconst words = [...this.schema.wordIndexes].map(x => this.index_prefix + 'word_' + x);\n\t\t\ttarget = ngrams.concat(words).concat(['data']);\n\t\t}\n\t\treturn new IFTSTransaction(this, this.db.transaction(target, mode));\n\t}\n\n\t/**\n\t * Put contents into database.\n\t *\n\t * @param {object} contents - contents for save. allowed multiple arguments.\n\t *\n\t * @return {Promise<IndexedFTS>} returns self for chain.\n\t */\n\tput(...contents) {\n\t\treturn this.transaction('readwrite').put(...contents).then(() => this);\n\t}\n\n\t/**\n\t * Delete contents from database.\n\t *\n\t * @param {object} keys - key of contents.\n\t *\n\t * @return {Promise<IndexedFTS>} returns self for chain. Will reject with {@link InvalidKeyError} if keys included null or undefined.\n\t */\n\tdelete(...keys) {\n\t\treturn this.transaction('readwrite').delete(...keys).then(() => this);\n\t}\n\n\t/**\n\t * Get content by primary key.\n\t *\n\t * @param {object} key - the key of content.\n\t *\n\t * @return {Promise<object|undefined>} content. promise will reject with {@link InvalidKeyError} if keys included null or undefined. result value will be undefined if not found.\n\t */\n\tget(key) {\n\t\treturn this.transaction('readonly', 'data').get(key);\n\t}\n\n\t/**\n\t * Get filtered contents.\n\t *\n\t * @ignore\n\t */\n\t_getFiltered(fun) {\n\t\treturn fun(this.transaction('readonly', 'data'));\n\t}\n\n\t/**\n\t * Get all contents.\n\t *\n\t * @return {IFTSArrayPromise} contents.\n\t */\n\tgetAll() {\n\t\treturn this._getFiltered(x => x.getAll());\n\t}\n\n\t/**\n\t * Do something process for each elements and returns {@link IFTSArrayPromise}.\n\t *\n\t * NOTE: This method doesn't fast. May better do filtering before doing map if need filtering.\n\t *\n\t * @param {function(content: object, index: Number): object} fun - function for processing element.\n\t *\n\t * @return {IFTSArrayPromise}\n\t */\n\tmap(fun) {\n\t\treturn this._getFiltered(x => x.map(fun));\n\t}\n\n\t/**\n\t * Filtering elements by function and returns {@link IFTSArrayPromise}.\n\t *\n\t * WARNING: This method won't use the index. Other methods(eg. {@link IFTSTransaction#equals or @link IFTSTransaction#lower} may faster than this.\n\t *\n\t * @param {function(content: object, index: Number): object} fun - function for filtering element.\n\t *\n\t * @return {IFTSArrayPromise}\n\t */\n\tfilter(fun) {\n\t\treturn this._getFiltered(x => x.filter(fun));\n\t}\n\n\t/**\n\t * Sort and get all contents.\n\t *\n\t * @param {object} column - the column for sorting.\n\t * @param {'asc'|'desc'} [order='asc'] - sort order.\n\t * @param {Number} [offset=0] - starting offset of the result.\n\t * @param {Number} [limit] - maximum number of result length. will unlimited if omitted.\n\t *\n\t * @return {IFTSArrayPromise} sorted contents.\n\t */\n\tsort(column, order='asc', offset=0, limit=undefined) {\n\t\treturn this._getFiltered(x => x.sort(column, order, offset, limit));\n\t}\n\n\t/**\n\t * Get contents that have fully matched property.\n\t *\n\t * @param {object} column - column name for search.\n\t * @param {object} value - value for search.\n\t *\n\t * @return {IFTSArrayPromise} matched contents. may reject with {@link NoSuchColumnError}.\n\t */\n\tequals(column, value) {\n\t\treturn this._getFiltered(x => x.equals(column, value));\n\t}\n\n\t/**\n\t * Get contents that have property lower than value.\n\t *\n\t * @param {object} column - column name for search.\n\t * @param {object} value - value for search.\n\t *\n\t * @return {IFTSArrayPromise} matched contents. may reject with {@link NoSuchColumnError}.\n\t */\n\tlower(column, value) {\n\t\treturn this._getFiltered(x => x.lower(column, value));\n\t}\n\n\t/**\n\t * Get contents that have property greater than value.\n\t *\n\t * @param {object} column - column name for search.\n\t * @param {object} value - value for search.\n\t *\n\t * @return {IFTSArrayPromise} matched contents. may reject with {@link NoSuchColumnError}.\n\t */\n\tgreater(column, value) {\n\t\treturn this._getFiltered(x => x.greater(column, value));\n\t}\n\n\t/**\n\t * Get contents that have property lower than value or equals value.\n\t *\n\t * @param {object} column - column name for search.\n\t * @param {object} value - value for search.\n\t *\n\t * @return {IFTSArrayPromise} matched contents. may reject with {@link NoSuchColumnError}.\n\t */\n\tlowerOrEquals(column, value) {\n\t\treturn this._getFiltered(x => x.lowerOrEquals(column, value));\n\t}\n\n\t/**\n\t * Get contents that have property greater than value or equals value.\n\t *\n\t * @param {object} column - column name for search.\n\t * @param {object} value - value for search.\n\t *\n\t * @return {IFTSArrayPromise} matched contents. may reject with {@link NoSuchColumnError}.\n\t */\n\tgreaterOrEquals(column, value) {\n\t\treturn this._getFiltered(x => x.greaterOrEquals(column, value));\n\t}\n\n\t/**\n\t * Get contents that have property is between argument values.\n\t *\n\t * @param {object} column - column name for search.\n\t * @param {object} lower - minimal value.\n\t * @param {object} upper - maximum value.\n\t *\n\t * @return {IFTSArrayPromise} matched contents. may reject with {@link NoSuchColumnError}.\n\t */\n\tbetween(column, lower, upper) {\n\t\treturn this._getFiltered(x => x.between(column, lower, upper));\n\t}\n\n\t/**\n\t * Get contents that have matched property by full-text search.\n\t *\n\t * All target columns have to made ngram index when created database.\n\t * If you didn't made ngram index, you can use {@link IFTSArrayPromise#search} (but this way is very slow).\n\t *\n\t *\n\t * @param {object|object[]} columns - column names for search.\n\t * @param {string} query - query for search.\n\t * @param {object} [options] - optional arguments.\n\t * @param {boolean} [options.ignoreCase=false] - ignore case if true. default is false.\n\t *\n\t * @return {IFTSArrayPromise} matched contents. may reject with {@link NoSuchColumnError}.\n\t */\n\tsearch(columns, query, options={}) {\n\t\treturn this.transaction().search(columns, query, options);\n\t}\n\n\t/**\n\t * Find contents that have fully matched word in property.\n\t *\n\t * All target columns have to made word index when created database.\n\t * If you didn't made word index, you can use {@link IFTSArrayPromise#searchWord} (but this way is very slow).\n\t *\n\t *\n\t * @param {object|object[]} columns - column names for search.\n\t * @param {string} query - query for search.\n\t * @param {object} [options] - optional arguments.\n\t * @param {boolean} [options.ignoreCase=false] - ignore case if true. default is false.\n\t *\n\t * @return {IFTSArrayPromise} matched contents. may reject with {@link NoSuchColumnError}.\n\t */\n\tsearchWord(columns, query, options={}) {\n\t\treturn this.transaction().searchWord(columns, query, options);\n\t}\n\n\t/**\n\t * Get N-Gram set from index.\n\t *\n\t * @param {string} column - name of column.\n\t * @param {object} [options] - optional arguments.\n\t * @param {boolean} [options.ignoreCase=false] - ignore case when make result.\n\t *\n\t * @return {Promise<Map<string, number>>}\n\t */\n\tgetNGrams(column, options={}) {\n\t\treturn this.transaction().getNGrams(column, options);\n\t}\n\n\t/**\n\t * Get word set from index.\n\t *\n\t * @param {string} column - name of column.\n\t * @param {object} [options] - optional arguments.\n\t * @param {boolean} [options.ignoreCase=false] - ignore case when make result.\n\t *\n\t * @return {Promise<Map<string, number>>}\n\t */\n\tgetWords(column, options={}) {\n\t\treturn this.transaction().getWords(column, options);\n\t}\n}\n",
     "static": true,
     "longname": "/home/ena/indexedfts/lib/IndexedFTS.js",
     "access": "public",
@@ -1417,8 +1417,8 @@
     "static": false,
     "longname": "lib/IndexedFTS.js~IndexedFTS#constructor",
     "access": "public",
-    "description": "Create or open IndexedFTS.\n\nDatabase has name and schema's version.\nThe name is a name of the database in the storage.\n\nThe schema is an object that key is column name and value is a definition of indexes. Schema can't change in same version database.\nIf you want change schema of database, please change version number.\nPlease be careful, all contents will remove when changing the version number.\n\nIndex types are 'primary', 'unique', 'fulltext', 'ngram', 'word', or normal index.\n\n'primary' is a primary key of the database. 'primary' can't set to multiple columns.\n\n'unique' is columns that have a unique value in the database.\n\nIf set 'ngram' IndexedFTS will make 2-gram index table for full-text search.\n'fulltext' is alias to 'ngram'.\n\n'word' is word based index.\nThe word index will split text with whitespaces and store those.\nWord index is faster than the 'ngram' index but can't find a partial match in the word.\n\nThe normal index that not set optioned that not unique, not primary, and not indexed for full-text search. You can numeric search like {@link IndexedFTS#lower} {@link IndexedFTS#between} even if not set option.\n\nIf you want to set some index types, please use object like `{unique: true, fulltext: true}`.",
-    "lineNumber": 47,
+    "description": "Create or open IndexedFTS.\n\nDatabase has name and schema's version.\nThe name is a name of the database in the storage.\n\nThe schema is an object that key is column name and value is a definition of indexes. Schema can't change in same version database.\nIf you want change schema of database, please change version number.\nPlease be careful, all contents will remove when changing the version number.\n\nIndex types are 'primary', 'unique', 'fulltext', 'ngram', 'word', or 'normal'.\n\n'primary' is a primary key of the database. 'primary' can't set to multiple columns.\n'unique' is columns that have a unique value in the database.\nThe 'normal' will enable when not primary and not unique.\n'primary', 'unique' and 'normal' column can numeric search (eg. {@link IndexedFTS#lower} or {@link IndexedFTS#between}).\n\nIf set 'ngram' IndexedFTS will make 2-gram index table for full-text search.\n'fulltext' is alias to 'ngram'.\n\n'word' is word based index.\nThe word index will split text with whitespaces and store those.\nWord index is faster than the 'ngram' index but can't find a partial match in the word.\n\nIf you want to set some index types, please use object like `{unique: true, fulltext: true, normal: false}`.",
+    "lineNumber": 46,
     "params": [
       {
         "nullable": null,
@@ -1504,7 +1504,7 @@
     "longname": "lib/IndexedFTS.js~IndexedFTS#index_prefix",
     "access": "public",
     "description": null,
-    "lineNumber": 49,
+    "lineNumber": 48,
     "type": {
       "nullable": null,
       "types": [
@@ -1523,7 +1523,7 @@
     "longname": "lib/IndexedFTS.js~IndexedFTS#scope",
     "access": "public",
     "description": null,
-    "lineNumber": 52,
+    "lineNumber": 51,
     "type": {
       "nullable": null,
       "types": [
@@ -1542,7 +1542,7 @@
     "longname": "lib/IndexedFTS.js~IndexedFTS#name",
     "access": "public",
     "description": null,
-    "lineNumber": 55,
+    "lineNumber": 54,
     "type": {
       "nullable": null,
       "types": [
@@ -1561,7 +1561,7 @@
     "longname": "lib/IndexedFTS.js~IndexedFTS#version",
     "access": "public",
     "description": null,
-    "lineNumber": 58,
+    "lineNumber": 57,
     "type": {
       "nullable": null,
       "types": [
@@ -1580,7 +1580,7 @@
     "longname": "lib/IndexedFTS.js~IndexedFTS#schema",
     "access": "public",
     "description": null,
-    "lineNumber": 61,
+    "lineNumber": 60,
     "type": {
       "nullable": null,
       "types": [
@@ -1599,7 +1599,7 @@
     "longname": "lib/IndexedFTS.js~IndexedFTS#db",
     "access": "public",
     "description": null,
-    "lineNumber": 65,
+    "lineNumber": 64,
     "type": {
       "nullable": null,
       "types": [
@@ -1620,7 +1620,7 @@
     "longname": "lib/IndexedFTS.js~IndexedFTS.delete",
     "access": "public",
     "description": "Delete database.\n\nMust be close all IndexedFTS before delete database.",
-    "lineNumber": 78,
+    "lineNumber": 77,
     "params": [
       {
         "nullable": null,
@@ -1663,7 +1663,7 @@
     "longname": "lib/IndexedFTS.js~IndexedFTS#open",
     "access": "public",
     "description": "Open database.",
-    "lineNumber": 91,
+    "lineNumber": 90,
     "return": {
       "nullable": null,
       "types": [
@@ -1685,7 +1685,7 @@
     "longname": "lib/IndexedFTS.js~IndexedFTS#close",
     "access": "public",
     "description": "Close database.",
-    "lineNumber": 134,
+    "lineNumber": 133,
     "params": [],
     "return": null
   },
@@ -1700,7 +1700,7 @@
     "longname": "lib/IndexedFTS.js~IndexedFTS#transaction",
     "access": "public",
     "description": "Make new {@link IFTSTransaction}.",
-    "lineNumber": 146,
+    "lineNumber": 145,
     "params": [
       {
         "nullable": null,
@@ -1745,7 +1745,7 @@
     "longname": "lib/IndexedFTS.js~IndexedFTS#put",
     "access": "public",
     "description": "Put contents into database.",
-    "lineNumber": 162,
+    "lineNumber": 161,
     "params": [
       {
         "nullable": null,
@@ -1778,7 +1778,7 @@
     "longname": "lib/IndexedFTS.js~IndexedFTS#delete",
     "access": "public",
     "description": "Delete contents from database.",
-    "lineNumber": 173,
+    "lineNumber": 172,
     "params": [
       {
         "nullable": null,
@@ -1811,7 +1811,7 @@
     "longname": "lib/IndexedFTS.js~IndexedFTS#get",
     "access": "public",
     "description": "Get content by primary key.",
-    "lineNumber": 184,
+    "lineNumber": 183,
     "params": [
       {
         "nullable": null,
@@ -1844,7 +1844,7 @@
     "longname": "lib/IndexedFTS.js~IndexedFTS#_getFiltered",
     "access": "private",
     "description": "Get filtered contents.",
-    "lineNumber": 193,
+    "lineNumber": 192,
     "ignore": true,
     "params": [
       {
@@ -1871,7 +1871,7 @@
     "longname": "lib/IndexedFTS.js~IndexedFTS#getAll",
     "access": "public",
     "description": "Get all contents.",
-    "lineNumber": 202,
+    "lineNumber": 201,
     "return": {
       "nullable": null,
       "types": [
@@ -1893,7 +1893,7 @@
     "longname": "lib/IndexedFTS.js~IndexedFTS#map",
     "access": "public",
     "description": "Do something process for each elements and returns {@link IFTSArrayPromise}.\n\nNOTE: This method doesn't fast. May better do filtering before doing map if need filtering.",
-    "lineNumber": 215,
+    "lineNumber": 214,
     "params": [
       {
         "nullable": null,
@@ -1926,7 +1926,7 @@
     "longname": "lib/IndexedFTS.js~IndexedFTS#filter",
     "access": "public",
     "description": "Filtering elements by function and returns {@link IFTSArrayPromise}.\n\nWARNING: This method won't use the index. Other methods(eg. {@link IFTSTransaction#equals or @link IFTSTransaction#lower} may faster than this.",
-    "lineNumber": 228,
+    "lineNumber": 227,
     "params": [
       {
         "nullable": null,
@@ -1959,7 +1959,7 @@
     "longname": "lib/IndexedFTS.js~IndexedFTS#sort",
     "access": "public",
     "description": "Sort and get all contents.",
-    "lineNumber": 242,
+    "lineNumber": 241,
     "params": [
       {
         "nullable": null,
@@ -2027,7 +2027,7 @@
     "longname": "lib/IndexedFTS.js~IndexedFTS#equals",
     "access": "public",
     "description": "Get contents that have fully matched property.",
-    "lineNumber": 254,
+    "lineNumber": 253,
     "params": [
       {
         "nullable": null,
@@ -2070,7 +2070,7 @@
     "longname": "lib/IndexedFTS.js~IndexedFTS#lower",
     "access": "public",
     "description": "Get contents that have property lower than value.",
-    "lineNumber": 266,
+    "lineNumber": 265,
     "params": [
       {
         "nullable": null,
@@ -2113,7 +2113,7 @@
     "longname": "lib/IndexedFTS.js~IndexedFTS#greater",
     "access": "public",
     "description": "Get contents that have property greater than value.",
-    "lineNumber": 278,
+    "lineNumber": 277,
     "params": [
       {
         "nullable": null,
@@ -2156,7 +2156,7 @@
     "longname": "lib/IndexedFTS.js~IndexedFTS#lowerOrEquals",
     "access": "public",
     "description": "Get contents that have property lower than value or equals value.",
-    "lineNumber": 290,
+    "lineNumber": 289,
     "params": [
       {
         "nullable": null,
@@ -2199,7 +2199,7 @@
     "longname": "lib/IndexedFTS.js~IndexedFTS#greaterOrEquals",
     "access": "public",
     "description": "Get contents that have property greater than value or equals value.",
-    "lineNumber": 302,
+    "lineNumber": 301,
     "params": [
       {
         "nullable": null,
@@ -2242,7 +2242,7 @@
     "longname": "lib/IndexedFTS.js~IndexedFTS#between",
     "access": "public",
     "description": "Get contents that have property is between argument values.",
-    "lineNumber": 315,
+    "lineNumber": 314,
     "params": [
       {
         "nullable": null,
@@ -2295,7 +2295,7 @@
     "longname": "lib/IndexedFTS.js~IndexedFTS#search",
     "access": "public",
     "description": "Get contents that have matched property by full-text search.\n\nAll target columns have to made ngram index when created database.\nIf you didn't made ngram index, you can use {@link IFTSArrayPromise#search} (but this way is very slow).",
-    "lineNumber": 333,
+    "lineNumber": 332,
     "params": [
       {
         "nullable": null,
@@ -2361,7 +2361,7 @@
     "longname": "lib/IndexedFTS.js~IndexedFTS#searchWord",
     "access": "public",
     "description": "Find contents that have fully matched word in property.\n\nAll target columns have to made word index when created database.\nIf you didn't made word index, you can use {@link IFTSArrayPromise#searchWord} (but this way is very slow).",
-    "lineNumber": 351,
+    "lineNumber": 350,
     "params": [
       {
         "nullable": null,
@@ -2427,7 +2427,7 @@
     "longname": "lib/IndexedFTS.js~IndexedFTS#getNGrams",
     "access": "public",
     "description": "Get N-Gram set from index.",
-    "lineNumber": 364,
+    "lineNumber": 363,
     "params": [
       {
         "nullable": null,
@@ -2482,7 +2482,7 @@
     "longname": "lib/IndexedFTS.js~IndexedFTS#getWords",
     "access": "public",
     "description": "Get word set from index.",
-    "lineNumber": 377,
+    "lineNumber": 376,
     "params": [
       {
         "nullable": null,
@@ -2530,7 +2530,7 @@
     "__docId__": 102,
     "kind": "file",
     "name": "lib/Schema.js",
-    "content": "import {InvalidSchemaError} from './errors';\n\n\n/** @ignore */\nfunction normalize(schema) {\n\tconst allowedOptions = new Set(['primary', 'unique', 'ngram', 'fulltext', 'word']);\n\n\tconst result = {};\n\tfor (const col in schema) {\n\t\tresult[col] = {};\n\n\t\tif (typeof schema[col] === 'object') {\n\t\t\tfor (const opt in schema[col]) {\n\t\t\t\tif (!allowedOptions.has(opt)) {\n\t\t\t\t\tthrow new InvalidSchemaError(opt + ' is unknown option', col);\n\t\t\t\t}\n\t\t\t\tresult[col][opt] = schema[col][opt];\n\t\t\t}\n\t\t} else if (typeof schema[col] === 'string') {\n\t\t\tif (!allowedOptions.has(schema[col])) {\n\t\t\t\tthrow new InvalidSchemaError(schema[col] + ' is unknown option', col);\n\t\t\t}\n\t\t\tresult[col][schema[col]] = true;\n\t\t} else {\n\t\t\tthrow new InvalidSchemaError((typeof schema[col]) + ' is invalid option type', col);\n\t\t}\n\t}\n\treturn result;\n}\n\n\n/** @ignore */\nfunction schemaCheck(schema) {\n\tlet primaryKey = null;\n\n\tfor (const col in schema) {\n\t\tif (schema[col].primary !== undefined) {\n\t\t\tif (typeof schema[col].primary !== 'boolean') {\n\t\t\t\tthrow new InvalidSchemaError('\"primary\" option must be boolean', col);\n\t\t\t}\n\t\t\tif (schema[col].primary) {\n\t\t\t\tif (primaryKey !== null) {\n\t\t\t\t\tthrow new InvalidSchemaError('can not use multiple primary key', [col, primaryKey]);\n\t\t\t\t}\n\t\t\t\tprimaryKey = col;\n\t\t\t}\n\t\t}\n\n\t\tif (schema[col].unique !== undefined) {\n\t\t\tif (typeof schema[col].unique !== 'boolean') {\n\t\t\t\tthrow new InvalidSchemaError('\"unique\" option must be boolean', col);\n\t\t\t}\n\t\t}\n\n\t\tif (schema[col].primary && schema[col].unique) {\n\t\t\tthrow new InvalidSchemaError('can not enable both of \"primary\" option and \"unique\" option to same column', col);\n\t\t}\n\n\t\tif (schema[col].ngram !== undefined && schema[col].fulltext !== undefined) {\n\t\t\tthrow new InvalidSchemaError('can not set both of \"ngram\" option and \"fulltext\" option to same column', col);\n\t\t}\n\t\tconst fts = schema[col].ngram === undefined ? schema[col].fulltext : schema[col].ngram;\n\t\tconst ftsFrom = schema[col].ngram === undefined ? 'fulltext' : 'ngram';\n\t\tif (fts !== undefined && typeof fts !== 'boolean') {\n\t\t\tthrow new InvalidSchemaError(`\"${ftsFrom}\" option must be boolean`, col);\n\t\t}\n\n\t\tif (schema[col].word !== undefined && typeof schema[col].word !== 'boolean') {\n\t\t\tthrow new InvalidSchemaError('\"word\" option must be boolean', col);\n\t\t}\n\t}\n}\n\n\nexport {normalize, schemaCheck};\n\n\n/**\n * The database schema of IndexedFTS.\n */\nexport default class IFTSSchema {\n\t/**\n\t * Create IFTSSchema.\n\t *\n\t * @param {object} schema - please see same name param of {@link IndexedFTS#constructor}.\n\t *\n\t * @throws {InvalidSchemaError}\n\t */\n\tconstructor(schema) {\n\t\t/** @ignore */\n\t\tthis._schema = normalize(schema);\n\n\t\t/** @ignore */\n\t\tthis._storeOption = {autoIncrement: true};\n\n\t\t/**\n\t\t * Primary key of this schema.\n\t\t *\n\t\t * This value will be null if not set primary key.\n\t\t *\n\t\t * @type {string|null}\n\t\t */\n\t\tthis.primaryKey = null;\n\n\t\t/**\n\t\t * Column names that indexed with ngram for full-text search.\n\t\t *\n\t\t * @type {Set<string>}\n\t\t */\n\t\tthis.ngramIndexes = new Set();\n\n\t\t/**\n\t\t * Column names that indexed with word for full-text search.\n\t\t *\n\t\t * @type {Set<string>}\n\t\t */\n\t\tthis.wordIndexes = new Set();\n\n\t\t/**\n\t\t * Column names that unique indexed.\n\t\t *\n\t\t * @type {Set<string>}\n\t\t */\n\t\tthis.uniqueIndexes = new Set();\n\n\t\t/**\n\t\t * Column names that normal indexed.\n\t\t *\n\t\t * @type {Set<string>}\n\t\t */\n\t\tthis.normalIndexes = new Set();\n\n\t\tfor (let x in schema) {\n\t\t\tschemaCheck(this._schema);\n\n\t\t\tif (this._schema[x].primary) {\n\t\t\t\tthis.primaryKey = x;\n\t\t\t\tthis._storeOption = {keyPath: x};\n\t\t\t} else if (this._schema[x].unique) {\n\t\t\t\tthis.uniqueIndexes.add(x);\n\t\t\t} else {\n\t\t\t\tthis.normalIndexes.add(x);\n\t\t\t}\n\n\t\t\tif (this._schema[x].ngram || this._schema[x].fulltext) {\n\t\t\t\tthis.ngramIndexes.add(x);\n\t\t\t}\n\n\t\t\tif (this._schema[x].word) {\n\t\t\t\tthis.wordIndexes.add(x);\n\t\t\t}\n\t\t}\n\t}\n\n\t/**\n\t * All column names that indexed in some way.\n\t *\n\t * @type {Set<string>}\n\t */\n\tget indexes() {\n\t\tif (this.primaryKey) {\n\t\t\treturn new Set([this.primaryKey, ...this.uniqueIndexes, ...this.normalIndexes]);\n\t\t} else {\n\t\t\treturn new Set([...this.uniqueIndexes, ...this.normalIndexes]);\n\t\t}\n\t}\n}\n",
+    "content": "import {InvalidSchemaError} from './errors';\n\n\n/** @ignore */\nfunction normalize(schema) {\n\tconst allowedOptions = new Set(['primary', 'unique', 'normal', 'ngram', 'fulltext', 'word']);\n\n\tconst result = {};\n\tfor (const col in schema) {\n\t\tresult[col] = {};\n\n\t\tif (typeof schema[col] === 'object') {\n\t\t\tfor (const opt in schema[col]) {\n\t\t\t\tif (!allowedOptions.has(opt)) {\n\t\t\t\t\tthrow new InvalidSchemaError(opt + ' is unknown option', col);\n\t\t\t\t}\n\t\t\t\tresult[col][opt] = schema[col][opt];\n\t\t\t}\n\t\t} else if (typeof schema[col] === 'string') {\n\t\t\tif (!allowedOptions.has(schema[col])) {\n\t\t\t\tthrow new InvalidSchemaError(schema[col] + ' is unknown option', col);\n\t\t\t}\n\t\t\tresult[col][schema[col]] = true;\n\t\t} else {\n\t\t\tthrow new InvalidSchemaError((typeof schema[col]) + ' is invalid option type', col);\n\t\t}\n\t}\n\treturn result;\n}\n\n\n/** @ignore */\nfunction schemaCheck(schema) {\n\tlet primaryKey = null;\n\n\tfor (const col in schema) {\n\t\tif (schema[col].primary !== undefined) {\n\t\t\tif (typeof schema[col].primary !== 'boolean') {\n\t\t\t\tthrow new InvalidSchemaError('\"primary\" option must be boolean', col);\n\t\t\t}\n\t\t\tif (schema[col].primary) {\n\t\t\t\tif (primaryKey !== null) {\n\t\t\t\t\tthrow new InvalidSchemaError('can not use multiple primary key', [col, primaryKey]);\n\t\t\t\t}\n\t\t\t\tprimaryKey = col;\n\t\t\t}\n\t\t}\n\n\t\tif (schema[col].unique !== undefined) {\n\t\t\tif (typeof schema[col].unique !== 'boolean') {\n\t\t\t\tthrow new InvalidSchemaError('\"unique\" option must be boolean', col);\n\t\t\t}\n\t\t}\n\n\t\tif (schema[col].normal !== undefined) {\n\t\t\tif (typeof schema[col].normal !== 'boolean') {\n\t\t\t\tthrow new InvalidSchemaError('\"normal\" option must be boolean', col);\n\t\t\t}\n\t\t}\n\n\t\tif (schema[col].primary && schema[col].unique) {\n\t\t\tthrow new InvalidSchemaError('can not enable both of \"primary\" option and \"unique\" option to same column', col);\n\t\t}\n\t\tif (schema[col].primary && schema[col].normal) {\n\t\t\tthrow new InvalidSchemaError('can not enable both of \"primary\" option and \"normal\" option to same column', col);\n\t\t}\n\t\tif (schema[col].unique && schema[col].normal) {\n\t\t\tthrow new InvalidSchemaError('can not enable both of \"unique\" option and \"normal\" option to same column', col);\n\t\t}\n\n\t\tif (schema[col].ngram !== undefined && schema[col].fulltext !== undefined) {\n\t\t\tthrow new InvalidSchemaError('can not set both of \"ngram\" option and \"fulltext\" option to same column', col);\n\t\t}\n\t\tconst fts = schema[col].ngram === undefined ? schema[col].fulltext : schema[col].ngram;\n\t\tconst ftsFrom = schema[col].ngram === undefined ? 'fulltext' : 'ngram';\n\t\tif (fts !== undefined && typeof fts !== 'boolean') {\n\t\t\tthrow new InvalidSchemaError(`\"${ftsFrom}\" option must be boolean`, col);\n\t\t}\n\n\t\tif (schema[col].word !== undefined && typeof schema[col].word !== 'boolean') {\n\t\t\tthrow new InvalidSchemaError('\"word\" option must be boolean', col);\n\t\t}\n\t}\n}\n\n\nexport {normalize, schemaCheck};\n\n\n/**\n * The database schema of IndexedFTS.\n */\nexport default class IFTSSchema {\n\t/**\n\t * Create IFTSSchema.\n\t *\n\t * @param {object} schema - please see same name param of {@link IndexedFTS#constructor}.\n\t *\n\t * @throws {InvalidSchemaError}\n\t */\n\tconstructor(schema) {\n\t\t/** @ignore */\n\t\tthis._schema = normalize(schema);\n\n\t\t/** @ignore */\n\t\tthis._storeOption = {autoIncrement: true};\n\n\t\t/**\n\t\t * Primary key of this schema.\n\t\t *\n\t\t * This value will be null if not set primary key.\n\t\t *\n\t\t * @type {string|null}\n\t\t */\n\t\tthis.primaryKey = null;\n\n\t\t/**\n\t\t * Column names that indexed with ngram for full-text search.\n\t\t *\n\t\t * @type {Set<string>}\n\t\t */\n\t\tthis.ngramIndexes = new Set();\n\n\t\t/**\n\t\t * Column names that indexed with word for full-text search.\n\t\t *\n\t\t * @type {Set<string>}\n\t\t */\n\t\tthis.wordIndexes = new Set();\n\n\t\t/**\n\t\t * Column names that unique indexed.\n\t\t *\n\t\t * @type {Set<string>}\n\t\t */\n\t\tthis.uniqueIndexes = new Set();\n\n\t\t/**\n\t\t * Column names that normal indexed.\n\t\t *\n\t\t * @type {Set<string>}\n\t\t */\n\t\tthis.normalIndexes = new Set();\n\n\t\tfor (let x in schema) {\n\t\t\tschemaCheck(this._schema);\n\n\t\t\tif (this._schema[x].primary === true) {\n\t\t\t\tthis.primaryKey = x;\n\t\t\t\tthis._storeOption = {keyPath: x};\n\t\t\t} else if (this._schema[x].unique === true) {\n\t\t\t\tthis.uniqueIndexes.add(x);\n\t\t\t} else if (this._schema[x].normal !== false) {\n\t\t\t\tthis.normalIndexes.add(x);\n\t\t\t}\n\n\t\t\tif (this._schema[x].ngram || this._schema[x].fulltext) {\n\t\t\t\tthis.ngramIndexes.add(x);\n\t\t\t}\n\n\t\t\tif (this._schema[x].word) {\n\t\t\t\tthis.wordIndexes.add(x);\n\t\t\t}\n\t\t}\n\t}\n\n\t/**\n\t * All column names that indexed in some way.\n\t *\n\t * @type {Set<string>}\n\t */\n\tget indexes() {\n\t\tif (this.primaryKey) {\n\t\t\treturn new Set([this.primaryKey, ...this.uniqueIndexes, ...this.normalIndexes]);\n\t\t} else {\n\t\t\treturn new Set([...this.uniqueIndexes, ...this.normalIndexes]);\n\t\t}\n\t}\n}\n",
     "static": true,
     "longname": "/home/ena/indexedfts/lib/Schema.js",
     "access": "public",
@@ -2549,7 +2549,7 @@
     "importPath": "indexedfts/lib/Schema.js",
     "importStyle": "IFTSSchema",
     "description": "The database schema of IndexedFTS.",
-    "lineNumber": 81,
+    "lineNumber": 93,
     "interface": false
   },
   {
@@ -2563,7 +2563,7 @@
     "longname": "lib/Schema.js~IFTSSchema#constructor",
     "access": "public",
     "description": "Create IFTSSchema.",
-    "lineNumber": 89,
+    "lineNumber": 101,
     "params": [
       {
         "nullable": null,
@@ -2594,7 +2594,7 @@
     "longname": "lib/Schema.js~IFTSSchema#_schema",
     "access": "private",
     "description": null,
-    "lineNumber": 91,
+    "lineNumber": 103,
     "ignore": true,
     "type": {
       "types": [
@@ -2611,7 +2611,7 @@
     "longname": "lib/Schema.js~IFTSSchema#_storeOption",
     "access": "private",
     "description": null,
-    "lineNumber": 94,
+    "lineNumber": 106,
     "ignore": true,
     "type": {
       "types": [
@@ -2628,7 +2628,7 @@
     "longname": "lib/Schema.js~IFTSSchema#primaryKey",
     "access": "public",
     "description": "Primary key of this schema.\n\nThis value will be null if not set primary key.",
-    "lineNumber": 103,
+    "lineNumber": 115,
     "type": {
       "nullable": null,
       "types": [
@@ -2648,7 +2648,7 @@
     "longname": "lib/Schema.js~IFTSSchema#ngramIndexes",
     "access": "public",
     "description": "Column names that indexed with ngram for full-text search.",
-    "lineNumber": 110,
+    "lineNumber": 122,
     "type": {
       "nullable": null,
       "types": [
@@ -2667,7 +2667,7 @@
     "longname": "lib/Schema.js~IFTSSchema#wordIndexes",
     "access": "public",
     "description": "Column names that indexed with word for full-text search.",
-    "lineNumber": 117,
+    "lineNumber": 129,
     "type": {
       "nullable": null,
       "types": [
@@ -2686,7 +2686,7 @@
     "longname": "lib/Schema.js~IFTSSchema#uniqueIndexes",
     "access": "public",
     "description": "Column names that unique indexed.",
-    "lineNumber": 124,
+    "lineNumber": 136,
     "type": {
       "nullable": null,
       "types": [
@@ -2705,7 +2705,7 @@
     "longname": "lib/Schema.js~IFTSSchema#normalIndexes",
     "access": "public",
     "description": "Column names that normal indexed.",
-    "lineNumber": 131,
+    "lineNumber": 143,
     "type": {
       "nullable": null,
       "types": [
@@ -2726,7 +2726,7 @@
     "longname": "lib/Schema.js~IFTSSchema#indexes",
     "access": "public",
     "description": "All column names that indexed in some way.",
-    "lineNumber": 160,
+    "lineNumber": 172,
     "type": {
       "nullable": null,
       "types": [
