@@ -1,6 +1,6 @@
 {
   "name": "indexedfts",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Full-Text Search engine for web browser.",
   "keywords": [
     "fts",
