@@ -934,7 +934,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber78">source</a></span></span>
+      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber77">source</a></span></span>
     </span>
   </h3>
 
@@ -1018,7 +1018,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber47">source</a></span></span>
+      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber46">source</a></span></span>
     </span>
   </h3>
 
@@ -1031,16 +1031,17 @@ The name is a name of the database in the storage.</p>
 <p>The schema is an object that key is column name and value is a definition of indexes. Schema can&apos;t change in same version database.
 If you want change schema of database, please change version number.
 Please be careful, all contents will remove when changing the version number.</p>
-<p>Index types are &apos;primary&apos;, &apos;unique&apos;, &apos;fulltext&apos;, &apos;ngram&apos;, &apos;word&apos;, or normal index.</p>
-<p>&apos;primary&apos; is a primary key of the database. &apos;primary&apos; can&apos;t set to multiple columns.</p>
-<p>&apos;unique&apos; is columns that have a unique value in the database.</p>
+<p>Index types are &apos;primary&apos;, &apos;unique&apos;, &apos;fulltext&apos;, &apos;ngram&apos;, &apos;word&apos;, or &apos;normal&apos;.</p>
+<p>&apos;primary&apos; is a primary key of the database. &apos;primary&apos; can&apos;t set to multiple columns.
+&apos;unique&apos; is columns that have a unique value in the database.
+The &apos;normal&apos; will enable when not primary and not unique.
+&apos;primary&apos;, &apos;unique&apos; and &apos;normal&apos; column can numeric search (eg. <span><a href="class/lib/IndexedFTS.js~IndexedFTS.html#instance-method-lower">IndexedFTS#lower</a></span> or <span><a href="class/lib/IndexedFTS.js~IndexedFTS.html#instance-method-between">IndexedFTS#between</a></span>).</p>
 <p>If set &apos;ngram&apos; IndexedFTS will make 2-gram index table for full-text search.
 &apos;fulltext&apos; is alias to &apos;ngram&apos;.</p>
 <p>&apos;word&apos; is word based index.
 The word index will split text with whitespaces and store those.
 Word index is faster than the &apos;ngram&apos; index but can&apos;t find a partial match in the word.</p>
-<p>The normal index that not set optioned that not unique, not primary, and not indexed for full-text search. You can numeric search like <span><a href="class/lib/IndexedFTS.js~IndexedFTS.html#instance-method-lower">IndexedFTS#lower</a></span> <span><a href="class/lib/IndexedFTS.js~IndexedFTS.html#instance-method-between">IndexedFTS#between</a></span> even if not set option.</p>
-<p>If you want to set some index types, please use object like <code>{unique: true, fulltext: true}</code>.</p>
+<p>If you want to set some index types, please use object like <code>{unique: true, fulltext: true, normal: false}</code>.</p>
 </div>
 
   
@@ -1145,7 +1146,7 @@ Word index is faster than the &apos;ngram&apos; index but can&apos;t find a part
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber65">source</a></span></span>
+      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber64">source</a></span></span>
     </span>
   </h3>
 
@@ -1188,7 +1189,7 @@ Word index is faster than the &apos;ngram&apos; index but can&apos;t find a part
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber49">source</a></span></span>
+      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber48">source</a></span></span>
     </span>
   </h3>
 
@@ -1231,7 +1232,7 @@ Word index is faster than the &apos;ngram&apos; index but can&apos;t find a part
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber55">source</a></span></span>
+      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber54">source</a></span></span>
     </span>
   </h3>
 
@@ -1274,7 +1275,7 @@ Word index is faster than the &apos;ngram&apos; index but can&apos;t find a part
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber61">source</a></span></span>
+      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber60">source</a></span></span>
     </span>
   </h3>
 
@@ -1317,7 +1318,7 @@ Word index is faster than the &apos;ngram&apos; index but can&apos;t find a part
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber52">source</a></span></span>
+      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber51">source</a></span></span>
     </span>
   </h3>
 
@@ -1360,7 +1361,7 @@ Word index is faster than the &apos;ngram&apos; index but can&apos;t find a part
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber58">source</a></span></span>
+      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber57">source</a></span></span>
     </span>
   </h3>
 
@@ -1406,7 +1407,7 @@ Word index is faster than the &apos;ngram&apos; index but can&apos;t find a part
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber315">source</a></span></span>
+      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber314">source</a></span></span>
     </span>
   </h3>
 
@@ -1494,7 +1495,7 @@ Word index is faster than the &apos;ngram&apos; index but can&apos;t find a part
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber134">source</a></span></span>
+      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber133">source</a></span></span>
     </span>
   </h3>
 
@@ -1538,7 +1539,7 @@ Word index is faster than the &apos;ngram&apos; index but can&apos;t find a part
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber173">source</a></span></span>
+      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber172">source</a></span></span>
     </span>
   </h3>
 
@@ -1612,7 +1613,7 @@ Word index is faster than the &apos;ngram&apos; index but can&apos;t find a part
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber254">source</a></span></span>
+      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber253">source</a></span></span>
     </span>
   </h3>
 
@@ -1693,7 +1694,7 @@ Word index is faster than the &apos;ngram&apos; index but can&apos;t find a part
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber228">source</a></span></span>
+      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber227">source</a></span></span>
     </span>
   </h3>
 
@@ -1767,7 +1768,7 @@ Word index is faster than the &apos;ngram&apos; index but can&apos;t find a part
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber184">source</a></span></span>
+      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber183">source</a></span></span>
     </span>
   </h3>
 
@@ -1841,7 +1842,7 @@ Word index is faster than the &apos;ngram&apos; index but can&apos;t find a part
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber202">source</a></span></span>
+      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber201">source</a></span></span>
     </span>
   </h3>
 
@@ -1898,7 +1899,7 @@ Word index is faster than the &apos;ngram&apos; index but can&apos;t find a part
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber364">source</a></span></span>
+      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber363">source</a></span></span>
     </span>
   </h3>
 
@@ -1986,7 +1987,7 @@ Word index is faster than the &apos;ngram&apos; index but can&apos;t find a part
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber377">source</a></span></span>
+      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber376">source</a></span></span>
     </span>
   </h3>
 
@@ -2074,7 +2075,7 @@ Word index is faster than the &apos;ngram&apos; index but can&apos;t find a part
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber278">source</a></span></span>
+      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber277">source</a></span></span>
     </span>
   </h3>
 
@@ -2155,7 +2156,7 @@ Word index is faster than the &apos;ngram&apos; index but can&apos;t find a part
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber302">source</a></span></span>
+      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber301">source</a></span></span>
     </span>
   </h3>
 
@@ -2236,7 +2237,7 @@ Word index is faster than the &apos;ngram&apos; index but can&apos;t find a part
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber266">source</a></span></span>
+      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber265">source</a></span></span>
     </span>
   </h3>
 
@@ -2317,7 +2318,7 @@ Word index is faster than the &apos;ngram&apos; index but can&apos;t find a part
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber290">source</a></span></span>
+      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber289">source</a></span></span>
     </span>
   </h3>
 
@@ -2398,7 +2399,7 @@ Word index is faster than the &apos;ngram&apos; index but can&apos;t find a part
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber215">source</a></span></span>
+      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber214">source</a></span></span>
     </span>
   </h3>
 
@@ -2472,7 +2473,7 @@ Word index is faster than the &apos;ngram&apos; index but can&apos;t find a part
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber91">source</a></span></span>
+      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber90">source</a></span></span>
     </span>
   </h3>
 
@@ -2528,7 +2529,7 @@ Word index is faster than the &apos;ngram&apos; index but can&apos;t find a part
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber162">source</a></span></span>
+      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber161">source</a></span></span>
     </span>
   </h3>
 
@@ -2602,7 +2603,7 @@ Word index is faster than the &apos;ngram&apos; index but can&apos;t find a part
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber333">source</a></span></span>
+      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber332">source</a></span></span>
     </span>
   </h3>
 
@@ -2700,7 +2701,7 @@ If you didn&apos;t made ngram index, you can use <span><a href="class/lib/ArrayP
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber351">source</a></span></span>
+      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber350">source</a></span></span>
     </span>
   </h3>
 
@@ -2798,7 +2799,7 @@ If you didn&apos;t made word index, you can use <span><a href="class/lib/ArrayPr
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber242">source</a></span></span>
+      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber241">source</a></span></span>
     </span>
   </h3>
 
@@ -2895,7 +2896,7 @@ If you didn&apos;t made word index, you can use <span><a href="class/lib/ArrayPr
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber146">source</a></span></span>
+      <span data-ice="source"><span><a href="file/lib/IndexedFTS.js.html#lineNumber145">source</a></span></span>
     </span>
   </h3>
 

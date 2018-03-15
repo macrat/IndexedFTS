@@ -12,6 +12,7 @@ describe('IFTSSchema', function() {
 				ngram: 'ngram',
 				fulltext: 'fulltext',
 				word: 'word',
+				normal: 'normal'
 			});
 
 			assert.deepStrictEqual(normalized['primary'], {primary: true});
@@ -19,6 +20,7 @@ describe('IFTSSchema', function() {
 			assert.deepStrictEqual(normalized['ngram'], {ngram: true});
 			assert.deepStrictEqual(normalized['fulltext'], {fulltext: true});
 			assert.deepStrictEqual(normalized['word'], {word: true});
+			assert.deepStrictEqual(normalized['normal'], {normal: true});
 		});
 
 		it('object option', function() {
@@ -26,11 +28,13 @@ describe('IFTSSchema', function() {
 				priFull: {primary: true, fulltext: true},
 				uniGram: {unique: true, ngram: true},
 				fullWord: {fulltext: true, word: true},
+				norGram: {normal: true, ngram: true},
 			});
 
 			assert.deepStrictEqual(normalized['priFull'], {primary: true, fulltext: true});
 			assert.deepStrictEqual(normalized['uniGram'], {unique: true, ngram: true});
 			assert.deepStrictEqual(normalized['fullWord'], {fulltext: true, word: true});
+			assert.deepStrictEqual(normalized['norGram'], {normal: true, ngram: true});
 		});
 
 		it('unknown string option', function() {
@@ -80,12 +84,13 @@ describe('IFTSSchema', function() {
 				name: {unique: true, primary: false},
 				profile: {ngram: true, word: false},
 				message: 'fulltext',
-				tags: 'word',
+				tags: {word: true, normal: false},
+				date: {},
 			});
 
 			assert(schema.primaryKey === 'id');
 			assert.deepStrictEqual([...schema.uniqueIndexes], ['name']);
-			assert.deepStrictEqual([...schema.normalIndexes], ['profile', 'message', 'tags']);
+			assert.deepStrictEqual([...schema.normalIndexes], ['profile', 'message', 'date']);
 			assert.deepStrictEqual([...schema.ngramIndexes], ['profile', 'message']);
 			assert.deepStrictEqual([...schema.wordIndexes], ['tags']);
 		});
@@ -141,6 +146,19 @@ describe('IFTSSchema', function() {
 				});
 			});
 
+			it('normal is not boolean', function() {
+				assert.throws(() => {
+					new IFTSSchema({
+						name: {normal: 42},
+					});
+				}, err => {
+					assert(err.toString() === 'InvalidSchemaError: "normal" option must be boolean');
+					assert(err.column === 'name');
+
+					return err.name === 'InvalidSchemaError';
+				});
+			});
+
 			it('enabled both of primary and unique', function() {
 				assert.throws(() => {
 					new IFTSSchema({
@@ -148,6 +166,32 @@ describe('IFTSSchema', function() {
 					});
 				}, err => {
 					assert(err.toString() === 'InvalidSchemaError: can not enable both of "primary" option and "unique" option to same column');
+					assert(err.column === 'id');
+
+					return err.name === 'InvalidSchemaError';
+				});
+			});
+
+			it('enabled both of primary and normal', function() {
+				assert.throws(() => {
+					new IFTSSchema({
+						id: {primary: true, normal: true},
+					});
+				}, err => {
+					assert(err.toString() === 'InvalidSchemaError: can not enable both of "primary" option and "normal" option to same column');
+					assert(err.column === 'id');
+
+					return err.name === 'InvalidSchemaError';
+				});
+			});
+
+			it('enabled both of unique and normal', function() {
+				assert.throws(() => {
+					new IFTSSchema({
+						id: {unique: true, normal: true},
+					});
+				}, err => {
+					assert(err.toString() === 'InvalidSchemaError: can not enable both of "unique" option and "normal" option to same column');
 					assert(err.column === 'id');
 
 					return err.name === 'InvalidSchemaError';

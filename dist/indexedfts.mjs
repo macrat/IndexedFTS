@@ -1141,7 +1141,7 @@ class IFTSTransaction {
 
 /** @ignore */
 function normalize(schema) {
-	const allowedOptions = new Set(['primary', 'unique', 'ngram', 'fulltext', 'word']);
+	const allowedOptions = new Set(['primary', 'unique', 'normal', 'ngram', 'fulltext', 'word']);
 
 	const result = {};
 	for (const col in schema) {
@@ -1189,8 +1189,20 @@ function schemaCheck(schema) {
 			}
 		}
 
+		if (schema[col].normal !== undefined) {
+			if (typeof schema[col].normal !== 'boolean') {
+				throw new InvalidSchemaError('"normal" option must be boolean', col);
+			}
+		}
+
 		if (schema[col].primary && schema[col].unique) {
 			throw new InvalidSchemaError('can not enable both of "primary" option and "unique" option to same column', col);
+		}
+		if (schema[col].primary && schema[col].normal) {
+			throw new InvalidSchemaError('can not enable both of "primary" option and "normal" option to same column', col);
+		}
+		if (schema[col].unique && schema[col].normal) {
+			throw new InvalidSchemaError('can not enable both of "unique" option and "normal" option to same column', col);
 		}
 
 		if (schema[col].ngram !== undefined && schema[col].fulltext !== undefined) {
@@ -1266,12 +1278,12 @@ class IFTSSchema {
 		for (let x in schema) {
 			schemaCheck(this._schema);
 
-			if (this._schema[x].primary) {
+			if (this._schema[x].primary === true) {
 				this.primaryKey = x;
 				this._storeOption = { keyPath: x };
-			} else if (this._schema[x].unique) {
+			} else if (this._schema[x].unique === true) {
 				this.uniqueIndexes.add(x);
-			} else {
+			} else if (this._schema[x].normal !== false) {
 				this.normalIndexes.add(x);
 			}
 
@@ -1315,11 +1327,12 @@ class IndexedFTS {
   * If you want change schema of database, please change version number.
   * Please be careful, all contents will remove when changing the version number.
   *
-  * Index types are 'primary', 'unique', 'fulltext', 'ngram', 'word', or normal index.
+  * Index types are 'primary', 'unique', 'fulltext', 'ngram', 'word', or 'normal'.
   *
   * 'primary' is a primary key of the database. 'primary' can't set to multiple columns.
-  *
   * 'unique' is columns that have a unique value in the database.
+  * The 'normal' will enable when not primary and not unique.
+  * 'primary', 'unique' and 'normal' column can numeric search (eg. {@link IndexedFTS#lower} or {@link IndexedFTS#between}).
   *
   * If set 'ngram' IndexedFTS will make 2-gram index table for full-text search.
   * 'fulltext' is alias to 'ngram'.
@@ -1328,9 +1341,7 @@ class IndexedFTS {
   * The word index will split text with whitespaces and store those.
   * Word index is faster than the 'ngram' index but can't find a partial match in the word.
   *
-  * The normal index that not set optioned that not unique, not primary, and not indexed for full-text search. You can numeric search like {@link IndexedFTS#lower} {@link IndexedFTS#between} even if not set option.
-  *
-  * If you want to set some index types, please use object like `{unique: true, fulltext: true}`.
+  * If you want to set some index types, please use object like `{unique: true, fulltext: true, normal: false}`.
   *
   * @param {string} name - name of new (or open) database.
   * @param {number} version - schema's version of database.

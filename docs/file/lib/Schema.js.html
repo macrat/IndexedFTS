@@ -46,7 +46,7 @@
 
 /** @ignore */
 function normalize(schema) {
-	const allowedOptions = new Set([&apos;primary&apos;, &apos;unique&apos;, &apos;ngram&apos;, &apos;fulltext&apos;, &apos;word&apos;]);
+	const allowedOptions = new Set([&apos;primary&apos;, &apos;unique&apos;, &apos;normal&apos;, &apos;ngram&apos;, &apos;fulltext&apos;, &apos;word&apos;]);
 
 	const result = {};
 	for (const col in schema) {
@@ -95,8 +95,20 @@ function schemaCheck(schema) {
 			}
 		}
 
+		if (schema[col].normal !== undefined) {
+			if (typeof schema[col].normal !== &apos;boolean&apos;) {
+				throw new InvalidSchemaError(&apos;&quot;normal&quot; option must be boolean&apos;, col);
+			}
+		}
+
 		if (schema[col].primary &amp;&amp; schema[col].unique) {
 			throw new InvalidSchemaError(&apos;can not enable both of &quot;primary&quot; option and &quot;unique&quot; option to same column&apos;, col);
+		}
+		if (schema[col].primary &amp;&amp; schema[col].normal) {
+			throw new InvalidSchemaError(&apos;can not enable both of &quot;primary&quot; option and &quot;normal&quot; option to same column&apos;, col);
+		}
+		if (schema[col].unique &amp;&amp; schema[col].normal) {
+			throw new InvalidSchemaError(&apos;can not enable both of &quot;unique&quot; option and &quot;normal&quot; option to same column&apos;, col);
 		}
 
 		if (schema[col].ngram !== undefined &amp;&amp; schema[col].fulltext !== undefined) {
@@ -176,12 +188,12 @@ export default class IFTSSchema {
 		for (let x in schema) {
 			schemaCheck(this._schema);
 
-			if (this._schema[x].primary) {
+			if (this._schema[x].primary === true) {
 				this.primaryKey = x;
 				this._storeOption = {keyPath: x};
-			} else if (this._schema[x].unique) {
+			} else if (this._schema[x].unique === true) {
 				this.uniqueIndexes.add(x);
-			} else {
+			} else if (this._schema[x].normal !== false) {
 				this.normalIndexes.add(x);
 			}
 

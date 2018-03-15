@@ -61,11 +61,12 @@ export default class IndexedFTS {
 	 * If you want change schema of database, please change version number.
 	 * Please be careful, all contents will remove when changing the version number.
 	 *
-	 * Index types are &apos;primary&apos;, &apos;unique&apos;, &apos;fulltext&apos;, &apos;ngram&apos;, &apos;word&apos;, or normal index.
+	 * Index types are &apos;primary&apos;, &apos;unique&apos;, &apos;fulltext&apos;, &apos;ngram&apos;, &apos;word&apos;, or &apos;normal&apos;.
 	 *
 	 * &apos;primary&apos; is a primary key of the database. &apos;primary&apos; can&apos;t set to multiple columns.
-	 *
 	 * &apos;unique&apos; is columns that have a unique value in the database.
+	 * The &apos;normal&apos; will enable when not primary and not unique.
+	 * &apos;primary&apos;, &apos;unique&apos; and &apos;normal&apos; column can numeric search (eg. {@link IndexedFTS#lower} or {@link IndexedFTS#between}).
 	 *
 	 * If set &apos;ngram&apos; IndexedFTS will make 2-gram index table for full-text search.
 	 * &apos;fulltext&apos; is alias to &apos;ngram&apos;.
@@ -74,9 +75,7 @@ export default class IndexedFTS {
 	 * The word index will split text with whitespaces and store those.
 	 * Word index is faster than the &apos;ngram&apos; index but can&apos;t find a partial match in the word.
 	 *
-	 * The normal index that not set optioned that not unique, not primary, and not indexed for full-text search. You can numeric search like {@link IndexedFTS#lower} {@link IndexedFTS#between} even if not set option.
-	 *
-	 * If you want to set some index types, please use object like `{unique: true, fulltext: true}`.
+	 * If you want to set some index types, please use object like `{unique: true, fulltext: true, normal: false}`.
 	 *
 	 * @param {string} name - name of new (or open) database.
 	 * @param {number} version - schema&apos;s version of database.
