@@ -1,6 +1,6 @@
 const rollup = require('rollup');
 const babel = require('rollup-plugin-babel');
-const uglify = require('rollup-plugin-uglify');
+const {terser} = require('rollup-plugin-terser');
 
 
 Promise.all([
@@ -21,14 +21,14 @@ Promise.all([
 	rollup
 		.rollup({
 			input: 'lib/index.js',
-			plugins: [babel({runtimeHelpers: true}), uglify()],
+			plugins: [babel({runtimeHelpers: true}), terser()],
 		})
 		.then(bundle => bundle.write({format: 'es', exports: 'named', sourcemap: true, file: 'dist/indexedfts.min.mjs'})),
 
 	rollup
 		.rollup({
 			input: 'lib/browser_index.js',
-			plugins: [babel({runtimeHelpers: true}), uglify()],
+			plugins: [babel({runtimeHelpers: true}), terser()],
 		})
 		.then(bundle => bundle.write({format: 'umd', exports: 'named', sourcemap: true, file: 'dist/indexedfts.min.js', name: 'IndexedFTS'})),
 ]).catch(console.error);
