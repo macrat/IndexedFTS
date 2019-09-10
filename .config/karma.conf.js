@@ -21,7 +21,7 @@ module.exports = function(config) {
 			debug: true,
 			transform: [
 				['babelify', {
-					'presets': ['env', 'power-assert'],
+					'presets': ['@babel/preset-env', 'power-assert'],
 					'plugins': ['istanbul'],
 				}],
 			],

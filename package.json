@@ -14,14 +14,14 @@
   "unpkg": "dist/indexedfts.min.js",
   "scripts": {
     "test": "npm run test:node && npm run test:browser",
-    "test:node": "NODE_ENV=development ./node_modules/.bin/nyc --require babel-core/register --reporter lcov ./node_modules/.bin/mocha --timeout 5000 ./test/node/*.js",
-    "test:browser": "NODE_ENV=development ./node_modules/.bin/karma start",
+    "test:node": "NODE_ENV=development nyc --require @babel/register --reporter lcov mocha --timeout 5000 ./test/node/*.js",
+    "test:browser": "NODE_ENV=development karma start",
     "build": "npm run docs && npm run benchmark:build && npm run dist:build",
     "benchmark": "npm run benchmark:build && npm run benchmark:open",
-    "benchmark:build": "cd benchmark && ../node_modules/.bin/rollup -c",
-    "benchmark:open": "./node_modules/.bin/opener ./benchmark/index.html",
+    "benchmark:build": "cd benchmark && rollup -c",
+    "benchmark:open": "opener ./benchmark/index.html",
     "dist:build": "NODE_ENV=production node build.js",
-    "docs": "./node_modules/.bin/esdoc"
+    "docs": "esdoc"
   },
   "files": [
     "README.md",
@@ -40,43 +40,47 @@
   "bugs": "https://github.com/macrat/indexedfts/issues",
   "homepage": "https://macrat.github.io/indexedfts/",
   "devDependencies": {
-    "asyncmark": "^0.2.3",
-    "babel-cli": "^6.26.0",
-    "babel-plugin-istanbul": "^4.1.6",
-    "babel-plugin-transform-runtime": "^6.23.0",
-    "babel-preset-env": "^1.7.0",
-    "babel-preset-power-assert": "^2.0.0",
-    "babelify": "^8.0.0",
-    "browserify": "^16.2.3",
+    "@babel/cli": "^7.6.0",
+    "@babel/core": "^7.6.0",
+    "@babel/plugin-transform-runtime": "^7.6.0",
+    "@babel/preset-env": "^7.6.0",
+    "@babel/register": "^7.6.0",
+    "@babel/runtime": "^7.6.0",
+    "asyncmark": "^0.3.0",
+    "babel-plugin-istanbul": "^5.2.0",
+    "babel-preset-power-assert": "^3.0.0",
+    "babelify": "^10.0.0",
+    "browserify": "^16.5.0",
     "esdoc": "^1.1.0",
     "esdoc-standard-plugin": "^1.0.0",
-    "fake-indexeddb": "^2.0.4",
-    "karma": "^3.1.3",
-    "karma-browserify": "^5.3.0",
-    "karma-chrome-launcher": "^2.2.0",
-    "karma-cli": "^1.0.1",
-    "karma-coverage": "^1.1.2",
-    "karma-firefox-launcher": "^1.1.0",
+    "fake-indexeddb": "^2.1.1",
+    "karma": "^4.3.0",
+    "karma-browserify": "^6.1.0",
+    "karma-chrome-launcher": "^3.1.0",
+    "karma-cli": "^2.0.0",
+    "karma-coverage": "^2.0.1",
+    "karma-firefox-launcher": "^1.2.0",
     "karma-mocha": "^1.3.0",
     "karma-mocha-reporter": "^2.2.5",
-    "mocha": "^5.2.0",
-    "nyc": "^12.0.2",
+    "mocha": "^6.2.0",
+    "nyc": "^14.1.1",
     "opener": "^1.5.1",
     "power-assert": "^1.6.1",
-    "rollup": "^0.63.5",
-    "rollup-plugin-babel": "^3.0.7",
-    "rollup-plugin-commonjs": "^9.2.0",
-    "rollup-plugin-node-resolve": "^3.4.0"
+    "rollup": "^1.21.2",
+    "rollup-plugin-babel": "^4.3.3",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-terser": "^5.1.1"
   },
   "babel": {
     "env": {
       "development": {
         "presets": [
-          "env",
+          "@babel/preset-env",
           "power-assert"
         ],
         "plugins": [
-          "transform-runtime"
+          "@babel/plugin-transform-runtime"
         ]
       }
     }
@@ -89,8 +93,5 @@
         "name": "esdoc-standard-plugin"
       }
     ]
-  },
-  "dependencies": {
-    "rollup-plugin-terser": "^1.0.1"
   }
 }
