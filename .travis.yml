@@ -15,4 +15,4 @@ before_install:
 
 script:
   - npm run test:node
-  - ./node_modules/.bin/karma start --browsers Chrome_travis,FirefoxHeadless --reporters mocha,coverage,coveralls .config/karma.conf.js
+  - ./node_modules/.bin/karma start --single-run --browsers Chrome_travis,FirefoxHeadless --reporters mocha,coverage,coveralls .config/karma.conf.js
